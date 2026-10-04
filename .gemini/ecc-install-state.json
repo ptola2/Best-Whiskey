@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "ecc.install.v1",
+  "installedAt": "2026-10-04T15:54:59.254Z",
+  "target": {
+    "id": "gemini-project",
+    "target": "gemini",
+    "kind": "project",
+    "root": "/home/user/Best-Whiskey/.gemini",
+    "installStatePath": "/home/user/Best-Whiskey/.gemini/ecc-install-state.json"
+  },
+  "request": {
+    "profile": "core",
+    "modules": [],
+    "includeComponents": [],
+    "excludeComponents": [],
+    "legacyLanguages": [],
+    "legacyMode": false,
+    "hookConsent": null
+  },
+  "resolution": {
+    "selectedModules": [
+      "platform-configs"
+    ],
+    "skippedModules": [
+      "rules-core",
+      "agents-core",
+      "commands-core",
+      "hooks-runtime",
+      "workflow-quality"
+    ]
+  },
+  "source": {
+    "repoVersion": "2.2.3",
+    "repoCommit": null,
+    "manifestVersion": 1
+  },
+  "operations": [
+    {
+      "kind": "copy-file",
+      "moduleId": "platform-configs",
+      "sourcePath": "/root/.npm/_npx/75937596e609f96e/node_modules/ecc-universal/.gemini/GEMINI.md",
+      "sourceRelativePath": ".gemini/GEMINI.md",
+      "destinationPath": "/home/user/Best-Whiskey/.gemini/GEMINI.md",
+      "strategy": "sync-root-children",
+      "ownership": "managed",
+      "scaffoldOnly": false,
+      "contentSha256": "d2b1d04ea2fc3654bcb4a3e6705b249b49d1ab83b65131ed39bb0f05657afad2"
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "platform-configs",
+      "sourcePath": "/root/.npm/_npx/75937596e609f96e/node_modules/ecc-universal/.pi/README.md",
+      "sourceRelativePath": ".pi/README.md",
+      "destinationPath": "/home/user/Best-Whiskey/.gemini/.pi/README.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false,
+      "contentSha256": "0196e47160da4cf4e697e13d0c405ff91c877aa18620075a6be931835a6f7d75"
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "platform-configs",
+      "sourcePath": "/root/.npm/_npx/75937596e609f96e/node_modules/ecc-universal/.pi/extensions/hook-runtime.js",
+      "sourceRelativePath": ".pi/extensions/hook-runtime.js",
+      "destinationPath": "/home/user/Best-Whiskey/.gemini/.pi/extensions/hook-runtime.js",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false,
+      "contentSha256": "8c16cfac1c852f8e8fc729829cc5f8fa241e78e1c4a8f80f4bffc32c229991fb"
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "platform-configs",
+      "sourcePath": "/root/.npm/_npx/75937596e609f96e/node_modules/ecc-universal/.pi/extensions/index.ts",
+      "sourceRelativePath": ".pi/extensions/index.ts",
+      "destinationPath": "/home/user/Best-Whiskey/.gemini/.pi/extensions/index.ts",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false,
+      "contentSha256": "bc6685e4cd72ef0072b6e4f8d34d9680ed0430c97444fdc1cb54c4fa31298c0d"
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "platform-configs",
+      "sourcePath": "/root/.npm/_npx/75937596e609f96e/node_modules/ecc-universal/mcp-configs/mcp-servers.json",
+      "sourceRelativePath": "mcp-configs/mcp-servers.json",
+      "destinationPath": "/home/user/Best-Whiskey/.gemini/mcp-configs/mcp-servers.json",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false,
+      "contentSha256": "1424c0de0ee3efd13ebbb8e9724c26e6b7dc604b7edeff6616b2c71cb4c6bd46"
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "platform-configs",
+      "sourcePath": "/root/.npm/_npx/75937596e609f96e/node_modules/ecc-universal/scripts/auto-update.js",
+      "sourceRelativePath": "scripts/auto-update.js",
+      "destinationPath": "/home/user/Best-Whiskey/.gemini/scripts/auto-update.js",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false,
+      "contentSha256": "86f6b3a9254a59d68e51c7066a8939c08e26f70a551dba6394a06fe4ddbc64e7"
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "platform-configs",
+      "sourcePath": "/root/.npm/_npx/75937596e609f96e/node_modules/ecc-universal/scripts/setup-package-manager.js",
+      "sourceRelativePath": "scripts/setup-package-manager.js",
+      "destinationPath": "/home/user/Best-Whiskey/.gemini/scripts/setup-package-manager.js",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false,
+      "contentSha256": "499f38ef03b3f7f9896ad97229b8213df215544bb3c6bd6343e3889f023f6bda"
+    }
+  ]
+}
