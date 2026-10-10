@@ -1,0 +1,1353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Waterline Fasting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one column of instrument panels on cool chart paper. Tab bar pinned to the bottom on phones, inline under the header on wide screens. */
+:root {
+  --paper: #edf2f3;
+  --surface: #ffffff;
+  --surface-2: #f4f8f9;
+  --ink: #0f2530;
+  --ink-2: #3c5460;
+  --muted: #647a85;
+  --line: #d2dde1;
+  --accent: #16708a;
+  --accent-ink: #ffffff;
+  --accent-soft: #d7ebf1;
+  --band-1: #d3e8ee; --band-2: #b7dae4; --band-3: #93c6d5; --band-4: #6badc1;
+  --band-5: #4791a9; --band-6: #2b7690; --band-7: #1a5b71; --band-8: #0f3f50;
+  --ok: #23704a; --ok-soft: #e0f1e7;
+  --warn: #9a5b00; --warn-soft: #fbedd5;
+  --stop: #b3261e; --stop-soft: #fbe2df;
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-body: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-data: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0b1419; --surface: #121f26; --surface-2: #17282f; --ink: #e1ebee; --ink-2: #b4c5cc;
+    --muted: #8399a3; --line: #263842; --accent: #62bad2; --accent-ink: #062330; --accent-soft: #163742;
+    --band-1: #173842; --band-2: #1c4a58; --band-3: #225d6e; --band-4: #2b7287;
+    --band-5: #3a88a0; --band-6: #529fb6; --band-7: #74b8cb; --band-8: #9ed2e0;
+    --ok: #62c891; --ok-soft: #132f20; --warn: #e8aa4e; --warn-soft: #33270f; --stop: #f37a6f; --stop-soft: #3b1815;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0b1419; --surface: #121f26; --surface-2: #17282f; --ink: #e1ebee; --ink-2: #b4c5cc;
+  --muted: #8399a3; --line: #263842; --accent: #62bad2; --accent-ink: #062330; --accent-soft: #163742;
+  --band-1: #173842; --band-2: #1c4a58; --band-3: #225d6e; --band-4: #2b7287;
+  --band-5: #3a88a0; --band-6: #529fb6; --band-7: #74b8cb; --band-8: #9ed2e0;
+  --ok: #62c891; --ok-soft: #132f20; --warn: #e8aa4e; --warn-soft: #33270f; --stop: #f37a6f; --stop-soft: #3b1815;
+  color-scheme: dark;
+}
+
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 15px/1.55 var(--font-body); }
+img, svg { max-width: 100%; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+.shell { max-width: 780px; margin: 0 auto; padding-inline: 16px; padding-block: 14px 128px; }
+@media (min-width: 720px) { .shell { padding-inline: 24px; padding-block: 28px 56px; } }
+
+/* Header */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.brand-mark { width: 34px; height: 34px; flex: none; color: var(--accent); }
+.brand h1 { margin: 0; font: 600 27px/1 var(--font-display); letter-spacing: -0.01em; }
+.brand p { margin: 3px 0 0; font-size: 12px; color: var(--muted); letter-spacing: 0.02em; }
+.mode-pill { display: inline-flex; align-items: center; gap: 7px; padding: 6px 11px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font: 500 12.5px/1.2 var(--font-data); color: var(--ink-2); white-space: nowrap; }
+.mode-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.mode-pill.fasting .dot { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.mode-pill.refeed .dot { background: var(--ok); }
+
+/* Tabs */
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: grid; grid-template-columns: repeat(5, 1fr);
+  background: var(--surface); border-top: 1px solid var(--line); padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px)); }
+.tab { appearance: none; border: 0; background: none; color: var(--muted); font: 600 11px/1.2 var(--font-body); display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 2px; border-radius: 10px; cursor: pointer; }
+.tab svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.tab[aria-current="page"] { color: var(--accent); background: var(--accent-soft); }
+@media (min-width: 720px) {
+  .tabs { position: sticky; top: env(safe-area-inset-top, 0px); bottom: auto; display: flex; gap: 4px; margin-block: 18px 6px; border: 1px solid var(--line); border-radius: 12px; padding: 4px; }
+  .tab { flex: 1; flex-direction: row; justify-content: center; gap: 7px; font-size: 13.5px; padding: 9px 8px; }
+  .tab svg { width: 18px; height: 18px; }
+}
+
+/* Banner, view, panels */
+.demo-banner { margin-top: 14px; display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  padding: 12px 14px; border-radius: 12px; background: var(--accent-soft); color: var(--ink); font-size: 14px; }
+.demo-banner p { margin: 0; flex: 1 1 240px; }
+#view { display: grid; gap: 14px; margin-top: 14px; }
+#view:focus { outline: none; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; min-width: 0; }
+.panel > :first-child { margin-top: 0; }
+.panel > :last-child { margin-bottom: 0; }
+.grid2 { display: grid; gap: 14px; }
+@media (min-width: 640px) { .grid2 { grid-template-columns: 1fr 1fr; } }
+
+h2 { font: 500 23px/1.2 var(--font-display); margin: 0 0 8px; text-wrap: balance; letter-spacing: -0.005em; }
+h3 { font: 600 15px/1.3 var(--font-body); margin: 18px 0 8px; }
+.eyebrow { margin: 0 0 6px; font: 600 11.5px/1.3 var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+p { margin: 0 0 10px; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.data { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+ul.clean { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+ul.ticks { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+
+/* Buttons and controls */
+.btn { appearance: none; font: 600 15px/1.2 var(--font-body); border-radius: 10px; padding: 11px 16px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
+.btn:hover { border-color: var(--ink-2); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.primary:hover { filter: brightness(1.06); }
+.btn.danger { color: var(--stop); border-color: var(--stop); }
+.btn.quiet { border-color: transparent; background: none; color: var(--accent); padding-inline: 8px; }
+.btn.small { font-size: 13px; padding: 7px 11px; border-radius: 8px; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; filter: none; }
+.btn-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+label.field { display: grid; gap: 5px; font-size: 13px; font-weight: 600; color: var(--ink-2); min-width: 0; }
+input[type="number"], input[type="text"], input[type="tel"], input[type="datetime-local"], select, textarea {
+  font: 400 16px/1.3 var(--font-body); color: var(--ink); background: var(--surface-2); border: 1px solid var(--line); border-radius: 9px; padding: 10px 11px; width: 100%; min-width: 0; }
+input[type="number"] { font-family: var(--font-data); }
+textarea { min-height: 70px; resize: vertical; }
+.fields { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+.unit { font-weight: 400; color: var(--muted); }
+.check { display: flex; gap: 10px; align-items: flex-start; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2); font-size: 14px; cursor: pointer; }
+.check input { width: 18px; height: 18px; margin-top: 1px; flex: none; accent-color: var(--accent); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { appearance: none; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); font: 500 14px/1 var(--font-data); padding: 9px 12px; border-radius: 999px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.chip:disabled { opacity: 0.4; cursor: not-allowed; text-decoration: line-through; }
+
+/* Status pills and notices */
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 7px; border-radius: 999px; font: 600 12.5px/1.2 var(--font-body); color: var(--ink); white-space: nowrap; }
+.pill svg { width: 15px; height: 15px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.pill.ok { background: var(--ok-soft); } .pill.ok svg { color: var(--ok); }
+.pill.caution { background: var(--warn-soft); } .pill.caution svg { color: var(--warn); }
+.pill.stop { background: var(--stop-soft); } .pill.stop svg { color: var(--stop); }
+.pill.neutral { background: var(--surface-2); border: 1px solid var(--line); }
+.notice { border-radius: var(--radius); padding: 14px 16px; display: grid; gap: 6px; border: 1px solid transparent; }
+.notice p { margin: 0; }
+.notice.ok { background: var(--ok-soft); }
+.notice.caution { background: var(--warn-soft); }
+.notice.stop { background: var(--stop-soft); }
+.notice.info { background: var(--accent-soft); }
+.notice strong { font-weight: 700; }
+.notes { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.notes li { display: grid; grid-template-columns: 16px 1fr; gap: 8px; font-size: 14px; }
+.notes li svg { width: 16px; height: 16px; margin-top: 2px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.notes li.ok svg { stroke: var(--ok); } .notes li.caution svg { stroke: var(--warn); } .notes li.stop svg { stroke: var(--stop); }
+
+/* Hero timer */
+.hero { display: grid; gap: 14px; grid-template-columns: 1fr auto; align-items: center; }
+.hero > div:first-child { min-width: 0; }
+.clock { margin: 2px 0 2px; font: 500 clamp(34px, 10vw, 54px)/1 var(--font-data); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.clock-sub { margin: 6px 0 0; color: var(--ink-2); font-size: 14px; }
+.ring-wrap { position: relative; width: 104px; height: 104px; }
+@media (min-width: 520px) { .ring-wrap { width: 128px; height: 128px; } }
+.ring-wrap svg { width: 100%; height: 100%; display: block; }
+.ring-track { fill: none; stroke: var(--surface-2); stroke-width: 9; }
+.ring-fill { fill: none; stroke: var(--accent); stroke-width: 9; stroke-linecap: round; transition: stroke-dashoffset 0.6s ease; }
+.ring-label { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.ring-label b { font: 500 22px/1 var(--font-data); }
+.ring-label small { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.hero .remaining { grid-column: 1 / -1; margin: 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2); }
+
+/* Timeline */
+.tl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.tl-head h3 { margin: 0; }
+.tl-track { position: relative; height: 18px; margin-top: 10px; }
+.tl-bands { position: absolute; inset: 0; border-radius: 4px; overflow: hidden; background: var(--surface-2); }
+.seg { position: absolute; top: 0; bottom: 0; border-right: 2px solid var(--surface); }
+.tl-target { position: absolute; top: -5px; bottom: -5px; border-left: 2px dashed var(--ink-2); }
+.tl-now { position: absolute; top: -7px; bottom: -7px; width: 2px; margin-left: -1px; background: var(--ink); transition: left 0.6s ease; }
+.tl-now::before { content: ''; position: absolute; top: -6px; left: 50%; width: 11px; height: 11px; margin-left: -5.5px; border-radius: 50%; background: var(--ink); border: 2px solid var(--surface); }
+.tl-ticks { position: relative; height: 18px; margin-top: 10px; }
+.tl-ticks span { position: absolute; top: 0; transform: translateX(-50%); font: 11px/1 var(--font-data); color: var(--muted); white-space: nowrap; }
+.tl-ticks span.end { transform: translateX(-100%); }
+.tl-key { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: 12px; color: var(--muted); }
+.tl-key i { display: inline-block; vertical-align: middle; margin-right: 6px; }
+.key-now { width: 10px; height: 10px; border-radius: 50%; background: var(--ink); }
+.key-target { width: 0; height: 12px; border-left: 2px dashed var(--ink-2); }
+
+/* Water meter */
+.meter { position: relative; height: 14px; border-radius: 4px; background: var(--surface-2); border: 1px solid var(--line); margin: 12px 0 6px; overflow: hidden; }
+.meter-band { position: absolute; top: 0; bottom: 0; background: var(--accent-soft); }
+.meter-fill { position: absolute; left: 0; top: 3px; bottom: 3px; background: var(--accent); border-radius: 0 4px 4px 0; transition: width 0.3s ease; }
+.meter-scale { position: relative; height: 14px; font: 11px/1 var(--font-data); color: var(--muted); }
+.meter-scale span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+.meter-scale span:first-child { transform: none; }
+.meter-scale span:last-child { transform: translateX(-100%); }
+.big-num { font: 500 30px/1 var(--font-data); font-variant-numeric: tabular-nums; }
+.big-num small { font-size: 14px; color: var(--muted); margin-left: 4px; }
+
+/* Lists of watch items, check-ins */
+.watch li { padding: 12px; border-radius: 10px; background: var(--surface-2); }
+.watch li strong { display: block; margin-bottom: 2px; }
+.watch .when { font: 500 11.5px/1.2 var(--font-data); color: var(--muted); }
+.ci { border-top: 1px solid var(--line); padding-top: 14px; display: grid; gap: 8px; }
+.ci:first-child { border-top: 0; padding-top: 0; }
+.ci-head { display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; }
+.ci-metrics { font: 13px/1.5 var(--font-data); color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 12px; padding: 3px 8px; border-radius: 6px; background: var(--surface-2); border: 1px solid var(--line); }
+.tag.stop { background: var(--stop-soft); border-color: transparent; }
+.tag.watch { background: var(--warn-soft); border-color: transparent; }
+
+/* Symptom pickers */
+.sym-group { display: grid; gap: 8px; margin-top: 12px; }
+.sym-group > p { margin: 0; font-size: 12.5px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.syms { display: flex; flex-wrap: wrap; gap: 8px; }
+.sym { position: relative; }
+.sym input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.sym span { display: inline-block; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface-2); font-size: 13.5px; }
+.sym input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sym input:checked + span { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.sym.stop input:checked + span { background: var(--stop); border-color: var(--stop); color: var(--surface); }
+.sym.watch input:checked + span { background: var(--warn); border-color: var(--warn); color: var(--surface); }
+.bp-row { display: grid; gap: 10px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.bp-block { border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: grid; gap: 8px; min-width: 0; margin: 0; }
+.bp-block legend { font-size: 13px; font-weight: 600; padding: 0 4px; }
+.form-error { color: var(--stop); font-weight: 600; font-size: 14px; margin: 10px 0 0; }
+
+/* Safety questions */
+.q { display: grid; grid-template-columns: 1fr auto; gap: 8px 14px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+.q:first-of-type { border-top: 0; }
+.q-text { font-size: 14.5px; }
+.q-why { grid-column: 1 / -1; font-size: 13.5px; margin: 0; padding: 10px 12px; border-radius: 9px; }
+.q-why.stop { background: var(--stop-soft); }
+.q-why.caution { background: var(--warn-soft); }
+.yn { display: inline-flex; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
+.yn button { appearance: none; border: 0; background: var(--surface-2); color: var(--ink-2); font: 600 13px/1 var(--font-body); padding: 9px 13px; cursor: pointer; }
+.yn button + button { border-left: 1px solid var(--line); }
+.yn button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.bmi { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-top: 12px; }
+
+/* Refeed plan */
+.days { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.day { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 12px; border-radius: 10px; border: 1px solid var(--line); }
+.day.now { border-color: var(--accent); background: var(--accent-soft); }
+.day.done { opacity: 0.6; }
+.day-n { font: 500 13px/1.3 var(--font-data); color: var(--muted); }
+.day.now .day-n { color: var(--ink); }
+.day strong { display: block; margin-bottom: 2px; }
+.kv { display: grid; gap: 10px; margin: 0; }
+.kv > div { display: grid; grid-template-columns: minmax(110px, 30%) 1fr; gap: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+.kv > div:first-child { border-top: 0; padding-top: 0; }
+.kv dt { font-size: 13px; color: var(--muted); font-weight: 600; }
+.kv dd { margin: 0; min-width: 0; }
+@media (max-width: 460px) { .kv > div { grid-template-columns: 1fr; gap: 2px; } }
+
+/* Learn */
+details.acc { padding: 0; }
+details.acc > summary { list-style: none; cursor: pointer; padding: 16px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+details.acc > summary::-webkit-details-marker { display: none; }
+details.acc > summary h3 { margin: 0; font: 500 19px/1.25 var(--font-display); }
+details.acc > summary::after { content: '+'; font: 400 22px/1 var(--font-data); color: var(--muted); }
+details.acc[open] > summary::after { content: '\2212'; }
+.acc-body { padding: 0 18px 18px; display: grid; gap: 12px; }
+.acc-body p { margin: 0; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 560px; }
+th, td { text-align: left; vertical-align: top; padding: 9px 11px; border-top: 1px solid var(--line); }
+thead th { border-top: 0; background: var(--surface-2); font-weight: 600; font-size: 12px; color: var(--ink-2); }
+td.num, .arrow { font-family: var(--font-data); white-space: nowrap; }
+.phase-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.phase-list li { display: grid; grid-template-columns: 14px 1fr; gap: 12px; padding-bottom: 14px; }
+.phase-list .sw { width: 14px; border-radius: 3px; }
+.phase-list b { display: block; }
+.phase-list .rng { font: 12px/1.4 var(--font-data); color: var(--muted); }
+.stats { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.stat { padding: 12px; border-radius: 10px; background: var(--surface-2); }
+.stat b { display: block; font: 500 26px/1.1 var(--font-data); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: var(--ink-2); }
+.study { padding: 12px 0; border-top: 1px solid var(--line); }
+.study:first-child { border-top: 0; padding-top: 0; }
+.study b { font-weight: 600; }
+.study .meta { font: 12px/1.4 var(--font-data); color: var(--muted); margin: 2px 0 4px; }
+ol.sources { margin: 0; padding-left: 22px; display: grid; gap: 6px; font-size: 13.5px; }
+ol.sources a { overflow-wrap: anywhere; }
+
+/* Footer, toast */
+.foot { margin-top: 26px; font-size: 12.5px; color: var(--muted); display: grid; gap: 6px; }
+.foot p { margin: 0; max-width: 65ch; }
+#store-line { font-family: var(--font-data); font-size: 11.5px; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(86px + env(safe-area-inset-bottom, 0px)); z-index: 40; max-width: calc(100% - 32px);
+  background: var(--ink); color: var(--surface); border-radius: 10px; padding: 10px 14px; font-size: 14px; display: flex; gap: 12px; align-items: center; box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+.toast button { appearance: none; border: 0; background: none; color: var(--surface); font: 700 14px var(--font-body); text-decoration: underline; cursor: pointer; padding: 0; }
+@media (min-width: 720px) { .toast { bottom: 28px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="top">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true">
+        <circle cx="17" cy="17" r="15.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M3.5 19.5c3.4 0 3.4-2.2 6.8-2.2s3.4 2.2 6.7 2.2 3.4-2.2 6.7-2.2 3.4 2.2 6.8 2.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M4.6 23.5h24.8M7 27.4h20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.55"/>
+      </svg>
+      <div>
+        <h1>Waterline</h1>
+        <p>Water fasting, by the evidence</p>
+      </div>
+    </div>
+    <div id="mode-pill" class="mode-pill"><span class="dot"></span><span id="mode-text">Loading</span></div>
+  </header>
+
+  <nav class="tabs" aria-label="Sections">
+    <button type="button" class="tab" data-tab="today"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3 4 6 7.3 6 10.8A6 6 0 0 1 6 13.8C6 10.3 9 7 12 3z"/><path d="M9.5 14.5a2.6 2.6 0 0 0 2.5 2.5"/></svg>Today</button>
+    <button type="button" class="tab" data-tab="log"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M8.5 10h7M8.5 14h7M8.5 18h4"/></svg>Log</button>
+    <button type="button" class="tab" data-tab="refeed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12h17a8.5 8.5 0 0 1-17 0z"/><path d="M9 8c0-1.5 1-1.5 1-3M13.5 8c0-1.5 1-1.5 1-3"/></svg>Refeed</button>
+    <button type="button" class="tab" data-tab="learn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg>Learn</button>
+    <button type="button" class="tab" data-tab="profile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c1.2-3.6 4-5.3 7.5-5.3s6.3 1.7 7.5 5.3"/></svg>Profile</button>
+  </nav>
+
+  <div id="demo-banner" class="demo-banner" hidden>
+    <p><strong>This is an example fast.</strong> It shows how Waterline works. None of it is your data.</p>
+    <button type="button" class="btn primary small" data-action="setup-own">Set up my own</button>
+  </div>
+
+  <main id="view" tabindex="-1"></main>
+
+  <footer class="foot">
+    <p>Waterline is an educational tool built from published research on water-only fasting. It is not medical advice. The research restricts fasts longer than 72 hours to medically supervised settings. In an emergency, call your local emergency number.</p>
+    <p id="store-line"></p>
+  </footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<script>
+(() => {
+  'use strict';
+
+  /* ---------- Constants from the research ---------- */
+  const HOUR = 3600000, DAY = 86400000;
+  const LS_STATE = 'waterline.state.v1', LS_TAB = 'waterline.tab';
+  const WATER_MIN = 1200, WATER_MAX = 2500, WATER_SCALE = 3000;
+  const TABS = ['today', 'log', 'refeed', 'learn', 'profile'];
+  const TARGETS = [24, 36, 48, 72, 120, 168, 240, 336, 504];
+  const RANK = { ok: 0, caution: 1, stop: 2 };
+  const LEVEL_LABEL = { ok: 'No warning signs', caution: 'Caution', stop: 'Stop and get help' };
+
+  const PHASES = [
+    { from: 0, to: 12, name: 'Running on your last meal', range: '0 to 12 h',
+      text: 'Blood sugar comes from your last meal, then from glycogen stored in the liver. Insulin begins to fall.' },
+    { from: 12, to: 36, name: 'Glycogen runs down', range: '12 to 36 h',
+      text: 'Liver glycogen is used up. Falling insulin unlocks fat stores, sending fatty acids and glycerol into the blood. Each gram of glycogen holds 3 to 4 g of water, so early weight loss is mostly water.' },
+    { from: 36, to: 72, name: 'The metabolic switch', range: '36 to 72 h',
+      text: 'The liver turns the flood of fatty acids into ketones (acetoacetate and beta-hydroxybutyrate, or BHB). Low insulin makes the kidneys shed sodium, so blood pressure drops. Typical loss over the first 3 days is 0.9 to 1.5 kg a day, mostly water, glycogen and gut contents.' },
+    { from: 72, to: 96, name: 'The 72-hour threshold', range: 'Day 4',
+      text: 'A study that tracked about 3,000 blood proteins daily saw only small changes for 48 hours. From the third day, about 36% of them changed together across every major organ system. 72-hour trials also show more autophagy markers (LC3-II, Beclin-1).' },
+    { from: 96, to: 168, name: 'Keto-adaptation', range: 'Days 5 to 7',
+      text: 'Once BHB passes 2.0 mmol/L, ketones reach the brain and can cover 60 to 70% of its energy. The body needs less glucose made from muscle protein, so protein breakdown drops and steadies around days 4 to 7. The kidneys raise ammonium output to save sodium and potassium.' },
+    { from: 168, to: 240, name: 'Deep ketosis', range: 'Days 8 to 10',
+      text: 'BHB usually sits between 3.0 and 7.0 mmol/L by days 5 to 10, up from under 0.1 mmol/L at baseline. IGF-1 falls 40 to 60% by days 5 to 8. Weight loss slows to about 0.25 to 0.40 kg a day as the kidneys switch to saving sodium.' },
+    { from: 240, to: 504, name: 'Prolonged fast', range: 'Days 11 to 21',
+      text: 'Free T3 falls and metabolic rate drops to save energy. Under medical supervision, about 28% of fasters had a severe (Grade 3) side effect by day 10 and 32% by day 15.' },
+    { from: 504, to: Infinity, name: 'Extreme range', range: 'Past day 21',
+      text: 'Lean tissue loss, low micronutrients and strain on the heart become major concerns. Fasts this long have only been studied in residential medical settings.' },
+  ];
+
+  const RISKS = [
+    { id: 'ortho', name: 'Low blood pressure on standing', from: 2, to: 5,
+      signs: 'Lightheaded, faint or a racing heart when you stand up.',
+      act: 'Sit on the edge of the bed before standing. Keep to rest and quiet walking.' },
+    { id: 'hypona', name: 'Low sodium (hyponatremia)', from: 3, to: 8,
+      signs: 'Muscle cramps, sluggishness, headache, dizziness.',
+      act: 'Only a blood test can confirm sodium below 136 mmol/L. Tell your clinician. Stay inside your water target rather than drinking extra.' },
+    { id: 'acid', name: 'Ketone acid build-up (metabolic acidosis)', from: 3, to: 10,
+      signs: 'Fast, deep breathing, nausea, extreme tiredness.',
+      act: 'Fast, deep breathing means stop and get medical help.' },
+    { id: 'gout', name: 'High uric acid and gout', from: 4, to: 12,
+      signs: 'Hot, red, painful swelling in a joint, often the big toe.',
+      act: 'Keep up your water intake. An acute flare means ending the fast.' },
+    { id: 'bone', name: 'Bone mineral loss', from: 15, to: 9999,
+      signs: 'No symptoms. Shows up as more calcium in urine.',
+      act: 'A reason to cap how long a fast runs, especially with low bone density.' },
+  ];
+
+  const SYMPTOMS = [
+    { id: 'fatigue', label: 'Tiredness', level: 'common' },
+    { id: 'headache', label: 'Headache', level: 'common' },
+    { id: 'nausea', label: 'Nausea', level: 'common' },
+    { id: 'insomnia', label: 'Poor sleep', level: 'common' },
+    { id: 'drymouth', label: 'Dry mouth', level: 'common' },
+    { id: 'dyspepsia', label: 'Indigestion', level: 'common' },
+    { id: 'backpain', label: 'Lower back pain', level: 'common' },
+    { id: 'dizzy', label: 'Lightheaded when standing', level: 'watch' },
+    { id: 'cramps', label: 'Muscle cramps', level: 'watch' },
+    { id: 'lethargy', label: 'Heavy, sluggish drowsiness', level: 'watch' },
+    { id: 'faint', label: 'Fainted or nearly fainted', level: 'stop' },
+    { id: 'chest', label: 'Chest pain or irregular heartbeat', level: 'stop' },
+    { id: 'confusion', label: 'Confusion', level: 'stop' },
+    { id: 'vomit', label: 'Vomiting, can’t keep water down', level: 'stop' },
+    { id: 'joint', label: 'Hot, swollen, painful joint', level: 'stop' },
+    { id: 'breathing', label: 'Fast, deep breathing', level: 'stop' },
+    { id: 'swelling', label: 'Swollen ankles, legs or face', level: 'stop' },
+    { id: 'breathless', label: 'Short of breath', level: 'stop' },
+  ];
+
+  const ABSOLUTE = [
+    { id: 't1d', q: 'Type 1 diabetes',
+      why: 'Without your own insulin, a fast leads to diabetic ketoacidosis if insulin is stopped, or dangerously low blood sugar if it is not.' },
+    { id: 'preg', q: 'Pregnant or breastfeeding',
+      why: 'A baby relies on a steady supply of glucose and amino acids, sustained ketones may affect brain development, and milk supply drops.' },
+    { id: 'ed', q: 'A current or past eating disorder (anorexia, bulimia, ARFID)',
+      why: 'Stopping food can set off a serious relapse and carries a high risk of fatal refeeding problems. If eating feels hard right now, an eating disorder support service can help.' },
+    { id: 'ckd', q: 'Advanced kidney disease (CKD stage 3b to 5, or dialysis)',
+      why: 'The kidneys cannot clear the acid load, which risks severe acidosis and high potassium.' },
+    { id: 'liver', q: 'Cirrhosis of the liver with complications',
+      why: 'The liver cannot store glycogen or make glucose well, so blood sugar stays dangerously low.' },
+    { id: 'porph', q: 'Acute porphyria',
+      why: 'Cutting calories switches on the liver enzyme ALAS1, which sets off attacks.' },
+    { id: 'cachexia', q: 'Severe weight or muscle wasting (cachexia, sarcopenia)',
+      why: 'Without fat and protein reserves, fasting can waste heart muscle and cause fatal heart rhythms.' },
+  ];
+  const RELATIVE = [
+    { id: 'diuretic', supervise: true, q: 'Taking a diuretic ("water pill")',
+      why: 'Diuretics add to the sodium loss of fasting and can cause fluid collapse, fainting, low potassium and heart rhythm problems.',
+      act: 'Your doctor has to stop it before the fast, and the fast needs inpatient monitoring.' },
+    { id: 't2d', supervise: true, q: 'Type 2 diabetes treated with tablets or insulin',
+      why: 'Sulfonylureas cause severe low blood sugar without food. SGLT2 inhibitors can cause ketoacidosis even with normal glucose.',
+      act: 'Medicines must be tapered or stopped by a doctor, SGLT2 inhibitors well before the fast. Fast only under physician oversight.' },
+    { id: 'bpmeds', q: 'Taking blood pressure medicine (ACE inhibitor, ARB, calcium channel blocker, beta-blocker)',
+      why: 'Fasting lowers blood pressure by itself. Full doses on top can cause severe low pressure, fainting and poor blood flow to the kidneys.',
+      act: 'Only your doctor should reduce or stop these.' },
+    { id: 'lithium', q: 'Taking lithium or another psychiatric medicine with a narrow safe range',
+      why: 'Dehydration and sodium changes slow lithium clearance and raise the risk of toxicity.',
+      act: 'Needs close monitoring by your prescriber.' },
+    { id: 'gout', q: 'Gout or high uric acid',
+      why: 'Ketones compete with uric acid for removal by the kidneys, which can set off a gout flare.',
+      act: 'Drink enough water and have uric acid checked during the fast.' },
+    { id: 'bone', q: 'Osteopenia or osteoporosis',
+      why: 'Long fasts draw minerals from bone to buffer ketone acids.',
+      act: 'Fasts over 72 hours are off the table. Keep any fast short.' },
+    { id: 'heart', q: 'Heart disease or a heart rhythm problem',
+      why: 'Electrolyte losses can trigger rhythm problems, and refeeding can overload the heart with salt and fluid.',
+      act: 'Needs specialist supervision.' },
+  ];
+  const REFEED_RISK = [
+    { id: 'wtloss', q: 'Lost more than 10% of your body weight without trying in the last 3 to 6 months' },
+    { id: 'lytes', q: 'Been told you have low phosphate, potassium or magnesium' },
+  ];
+
+  const REFEED_STAGES = {
+    juice: { title: 'Diluted juice', text: 'Fresh fruit or vegetable juice diluted with water, 100 to 200 mL every 2 to 3 hours. It gently restarts stomach acid, digestive enzymes and insulin.' },
+    fruitveg: { title: 'Whole fruit and steamed vegetables', text: 'Raw whole fruit and steamed non-starchy vegetables, in small meals.' },
+    starch: { title: 'Add starches and plant fats', text: 'Complex carbohydrates such as sweet potato or brown rice, plus modest plant fats like avocado, nuts or seeds. Keep avoiding concentrated animal fats and refined sugar.' },
+  };
+  const TIERS = {
+    low: { label: 'Lower risk', level: 'ok',
+      crit: 'Fast under 5 days, normal electrolytes and a healthy BMI.',
+      fluids: 'Drink to thirst. Keep added salt out at first, then bring it back slowly.',
+      labs: 'Baseline checks only. Get tested if symptoms appear.' },
+    moderate: { label: 'Moderate risk', level: 'caution',
+      crit: 'Fast of 5 to 7 days, or BMI 16 to 18.5.',
+      fluids: 'No added salt. Make sure food supplies potassium and phosphorus.',
+      labs: 'Vital signs twice a day and blood electrolytes every 48 hours.' },
+    high: { label: 'Significant risk', level: 'stop',
+      crit: 'Fast over 7 days, BMI under 16, recent unintended weight loss over 10%, or low electrolytes before refeeding.',
+      fluids: 'Thiamine (vitamin B1), 100 to 300 mg a day as prescribed. No added salt. Electrolytes replaced as needed.',
+      labs: 'Daily blood tests (electrolytes, magnesium, phosphorus) for 3 to 5 days.' },
+  };
+
+  const ICON = {
+    ok: '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.4"/><path d="M5.2 8.2l1.9 1.9 3.7-4"/></svg>',
+    caution: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.9l6.4 11.4H1.6z"/><path d="M8 6.3v3.2M8 11.4v.1"/></svg>',
+    stop: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.3 1.6h5.4l3.7 3.7v5.4l-3.7 3.7H5.3l-3.7-3.7V5.3z"/><path d="M6 6l4 4M10 6l-4 4"/></svg>',
+  };
+
+  /* ---------- Small helpers ---------- */
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const num = (v) => { if (v === null || v === undefined || v === '') return null; const n = parseFloat(String(v).replace(',', '.')); return Number.isFinite(n) ? n : null; };
+  const r1 = (n) => (Math.round(n * 10) / 10).toFixed(1);
+  const round10 = (n) => Math.round(n / 10) * 10;
+  const plural = (n, w) => n + ' ' + w + (n === 1 ? '' : 's');
+  const dateKey = (t) => { const d = new Date(t); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+  const clock = (ms) => { const s = Math.floor(Math.max(0, ms) / 1000); return Math.floor(s / 3600) + ':' + String(Math.floor(s % 3600 / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); };
+  function span(ms) {
+    const mins = Math.max(0, Math.round(ms / 60000));
+    if (mins >= 2880) return Math.floor(mins / 1440) + ' d ' + Math.floor(mins % 1440 / 60) + ' h';
+    const h = Math.floor(mins / 60), m = mins % 60;
+    return h ? h + ' h ' + m + ' m' : m + ' m';
+  }
+  const targetLabel = (h) => (h <= 72 || h % 24 ? h + ' h' : (h / 24) + ' days');
+  const fmtWhen = (t) => new Date(t).toLocaleString(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  const fmtDay = (t) => new Date(t).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+  const phaseIndex = (h) => { for (let i = PHASES.length - 1; i >= 0; i--) if (h >= PHASES[i].from) return i; return 0; };
+  const pill = (level, text) => '<span class="pill ' + level + '">' + (ICON[level] || '') + esc(text || LEVEL_LABEL[level]) + '</span>';
+  const noteList = (notes) => '<ul class="notes">' + notes.map((n) => '<li class="' + n.l + '">' + ICON[n.l] + '<span>' + esc(n.text) + '</span></li>').join('') + '</ul>';
+  function bmiOf(p) { const h = num(p && p.heightCm), w = num(p && p.weightKg); return h && w ? w / Math.pow(h / 100, 2) : null; }
+  function durationClass(h) {
+    if (h < 24) return { name: 'Short fast', note: 'Under 24 hours.' };
+    if (h <= 72) return { name: 'Short-term fast', note: '24 to 72 hours. Glycogen runs out and early ketosis begins.' };
+    if (h <= 504) return { name: 'Prolonged fast', note: '4 to 21 days of sustained ketosis. Research on fasts this long comes from supervised clinics with twice-daily checks and weekly blood tests.' };
+    return { name: 'Extreme fast', note: 'Over 21 days. Lean tissue loss, micronutrient depletion and heart strain become major concerns.' };
+  }
+
+  /* ---------- State ---------- */
+  function freshState() { return { v: 1, started: false, profile: {}, screening: {}, clinician: {}, active: null, refeed: null, history: [] }; }
+  function normalize(s) {
+    const f = Object.assign(freshState(), s || {});
+    ['profile', 'screening', 'clinician'].forEach((k) => { if (!f[k] || typeof f[k] !== 'object') f[k] = {}; });
+    if (!Array.isArray(f.history)) f.history = [];
+    if (f.active) { f.active.water = f.active.water || {}; f.active.checkins = f.active.checkins || []; }
+    if (f.refeed) f.refeed.checkins = f.refeed.checkins || [];
+    return f;
+  }
+  const hasRealData = (s) => !!(s.started || s.active || s.refeed || s.history.length || s.profile.weightKg || Object.keys(s.screening).length);
+  function readLocal() { try { const raw = localStorage.getItem(LS_STATE); return raw ? normalize(JSON.parse(raw)) : null; } catch (e) { return null; } }
+  function writeLocal() { try { localStorage.setItem(LS_STATE, JSON.stringify(state)); } catch (e) { /* storage blocked */ } }
+
+  let state = readLocal() || freshState();
+  let demo = !hasRealData(state);
+  let demoData = null;
+  const S = () => (demo ? (demoData || (demoData = buildDemo())) : state);
+
+  const ui = { tab: 'today', planTarget: 72, planSupervised: false, planDoctor: false, planStart: '', planError: '',
+    confirmEnd: false, endReason: 'target', confirmDelete: false, lastResult: null, formError: '', plannerDays: null, renderedPhase: -1, renderedReached: null, renderedRefeedDay: -1 };
+  try { const t = localStorage.getItem(LS_TAB); if (TABS.includes(t)) ui.tab = t; } catch (e) { /* ignore */ }
+  const hashTab = (location.hash || '').slice(1);
+  if (TABS.includes(hashTab)) ui.tab = hashTab;
+
+  /* ---------- Storage: private account store when the viewer offers it, browser otherwise ---------- */
+  const store = { mode: 'local', ref: null, checking: false, retried: false };
+  let saveTimer = null, writing = false, again = false;
+
+  function commit() {
+    if (demo) return;
+    writeLocal();
+    if (store.mode === 'account') { clearTimeout(saveTimer); saveTimer = setTimeout(flush, 400); }
+    updateFoot();
+  }
+  async function flush() {
+    if (store.mode !== 'account' || !store.ref) return;
+    if (writing) { again = true; return; }
+    writing = true;
+    try {
+      await store.ref.set({ v: 1, savedAt: Date.now(), state: JSON.parse(JSON.stringify(state)) });
+    } catch (e) {
+      const code = e && e.code;
+      if (code === 'unavailable' && !store.retried) {
+        store.retried = true;
+        setTimeout(() => { store.retried = false; flush(); }, 1200 + Math.random() * 1500);
+      } else if (code === 'quota_exceeded') {
+        toast('Account storage is full. Delete your data in Profile to free space.');
+      } else {
+        store.mode = 'local'; store.ref = null; updateFoot();
+      }
+    }
+    writing = false;
+    if (again) { again = false; flush(); }
+  }
+  async function initStore() {
+    const c = window.claude;
+    if (!c || typeof c.use !== 'function') { updateFoot(); return; }
+    store.checking = true; updateFoot();
+    let db = null, user = null, uid = null;
+    try { [db, user] = await Promise.all([c.use('db'), c.use('user')]); } catch (e) { /* unavailable */ }
+    if (db && user && typeof user.id === 'function') { try { uid = await user.id(); } catch (e) { uid = null; } }
+    if (db && uid) {
+      try {
+        const ref = db.doc('data/users/' + uid + '/waterline');
+        const snap = await ref.get();
+        store.ref = ref; store.mode = 'account';
+        const body = snap.exists ? snap.data() : null;
+        if (body && body.state && typeof body.state === 'object') {
+          state = normalize(JSON.parse(JSON.stringify(body.state)));
+          demo = !hasRealData(state); demoData = null;
+          writeLocal();
+          store.checking = false; render(); return;
+        }
+        if (hasRealData(state)) flush();
+      } catch (e) { store.ref = null; store.mode = 'local'; }
+    }
+    store.checking = false; updateFoot();
+  }
+  function updateFoot() {
+    const line = $('#store-line');
+    if (!line) return;
+    if (demo) line.textContent = 'Example data. Nothing is saved until you set up your own.';
+    else if (store.checking) line.textContent = 'Connecting to your saved data...';
+    else if (store.mode === 'account') line.textContent = 'Saved privately to your account. Other viewers cannot see it.';
+    else line.textContent = 'Saved in this browser, on this device only.';
+  }
+
+  /* ---------- Example data so the first view shows the app working ---------- */
+  function buildDemo() {
+    const now = Date.now(), start = now - 38.6 * HOUR;
+    const water = {};
+    for (let t = start; dateKey(t) !== dateKey(now); t += DAY) water[dateKey(t)] = 1850;
+    water[dateKey(now)] = 1000;
+    const s = freshState();
+    Object.assign(s, { started: true, profile: { heightCm: 178, weightKg: 84.2, age: 44, sex: 'm' } });
+    [...ABSOLUTE, ...RELATIVE, ...REFEED_RISK].forEach((q) => { s.screening[q.id] = false; });
+    s.active = { id: 'demo', startedAt: start, targetHours: 72, supervised: false, startWeightKg: 84.2, water, checkins: [] };
+    const c1 = { at: start + 21 * HOUR, weightKg: 83.1, ketones: 0.6, bp: { ls: 134, ld: 86, lh: 62, ss: 130, sd: 84, sh: 70 }, symptoms: ['headache', 'fatigue'], note: 'Dull headache in the afternoon, eased after resting.' };
+    const c2 = { at: now - 1.4 * HOUR, weightKg: 82.0, ketones: 1.6, bp: { ls: 126, ld: 80, lh: 64, ss: 104, sd: 72, sh: 84 }, symptoms: ['dizzy', 'drymouth'], note: 'Lightheaded getting out of bed.' };
+    [c1, c2].forEach((c) => { const r = assess(c, { mode: 'fast', start, startWeightKg: 84.2, water }); c.level = r.level; c.notes = r.notes; s.active.checkins.push(c); });
+    s.history = [{ id: 'demo0', startedAt: start - 30 * DAY, endedAt: start - 30 * DAY + 36 * HOUR, hours: 36, targetHours: 36, startWeightKg: 85.0, endWeightKg: 83.6, checkins: 2, worst: 'ok', reason: 'target' }];
+    return s;
+  }
+
+  /* ---------- Safety screen ---------- */
+  function screen(s) {
+    const ans = s.screening || {};
+    const all = [...ABSOLUTE, ...RELATIVE, ...REFEED_RISK];
+    const missing = all.filter((q) => ans[q.id] !== true && ans[q.id] !== false).length;
+    const bmi = bmiOf(s.profile);
+    const age = num(s.profile.age);
+    const blockers = ABSOLUTE.filter((q) => ans[q.id] === true);
+    if (bmi !== null && bmi < 18.5) blockers.push({ id: 'bmi', q: 'BMI of ' + r1(bmi) + ' (under 18.5)', why: 'Without enough fat and protein reserves, fasting can waste heart muscle and cause dangerous heart rhythms.' });
+    if (age !== null && age < 18) blockers.push({ id: 'minor', q: 'Under 18', why: 'The research covers adults only.' });
+    const cautions = RELATIVE.filter((q) => ans[q.id] === true);
+    const refeedFlags = REFEED_RISK.filter((q) => ans[q.id] === true);
+    const profileOk = !!(num(s.profile.heightCm) && num(s.profile.weightKg) && age !== null);
+    return { missing, blockers, cautions, refeedFlags, bmi, profileOk, complete: missing === 0 && profileOk,
+      superviseAlways: cautions.some((c) => c.supervise), noLong: !!ans.bone };
+  }
+
+  /* ---------- Check-in assessment ---------- */
+  function assess(c, ctx) {
+    const notes = []; let level = 'ok';
+    const add = (l, text) => { notes.push({ l, text }); if (RANK[l] > RANK[level]) level = l; };
+    const sym = new Set(c.symptoms || []);
+    const stops = SYMPTOMS.filter((s) => s.level === 'stop' && sym.has(s.id));
+    if (stops.length) {
+      add('stop', 'Warning sign' + (stops.length > 1 ? 's' : '') + ': ' + stops.map((s) => s.label.toLowerCase()).join('; ') + '. ' +
+        (ctx.mode === 'refeed' ? 'Contact your clinician now. These can be signs of refeeding syndrome or refeeding swelling.' : 'End the fast and contact your clinician now.') +
+        ' If it feels severe, call your local emergency number.');
+    }
+    if (sym.has('joint')) add('stop', 'A hot, swollen joint during a fast is often gout: ketones block uric acid clearance. An acute flare is a reason to end the fast.');
+    if (sym.has('dizzy')) add('caution', 'Lightheadedness on standing is common on days 2 to 5 as blood volume drops. Get up slowly and rest. If you faint or nearly faint, stop the fast.');
+    const hypo = ['headache', 'lethargy', 'dizzy'].filter((x) => sym.has(x)).length;
+    if (sym.has('cramps') && hypo) add('caution', 'Cramps with headache, sluggishness or dizziness can point to low sodium (below 136 mmol/L). Only a blood test can tell. Let your clinician know.');
+    else if (sym.has('cramps') || sym.has('lethargy')) add('caution', 'Cramps or heavy drowsiness can be early signs of low sodium. Mention it to your clinician and keep watching.');
+    const b = c.bp || {};
+    if (b.ls && b.ss) {
+      const dS = b.ls - b.ss, dD = b.ld && b.sd ? b.ld - b.sd : 0;
+      if (dS >= 20 || dD >= 10) add('caution', 'Blood pressure fell ' + dS + '/' + dD + ' mmHg when you stood up. A drop of 20/10 or more counts as orthostatic hypotension. Share it with your clinician and avoid sudden position changes.');
+    }
+    if (b.lh && b.sh && b.sh - b.lh >= 30) add('caution', 'Your pulse rose ' + (b.sh - b.lh) + ' beats a minute on standing, a sign of low blood volume.');
+    if (b.ls && b.ls < 90) add('caution', 'A lying systolic pressure of ' + b.ls + ' mmHg is low. Rest and tell your clinician.');
+    if (c.ketones != null) {
+      if (c.ketones > 7) add('caution', 'BHB of ' + c.ketones + ' mmol/L is above the 3.0 to 7.0 range usually seen by days 5 to 10. Share the reading with your clinician.');
+      else if (c.ketones >= 2) notes.push({ l: 'ok', text: 'BHB of ' + c.ketones + ' mmol/L: above 2.0, ketones are reaching the brain and covering much of its fuel.' });
+      else notes.push({ l: 'ok', text: 'BHB of ' + c.ketones + ' mmol/L. Ketones start reaching the brain in quantity above 2.0 mmol/L.' });
+    }
+    if (ctx.mode === 'fast' && ctx.water && ctx.start) {
+      const yKey = dateKey(c.at - DAY);
+      const y = ctx.water[yKey];
+      if (y && yKey >= dateKey(ctx.start)) {
+        if (y < WATER_MIN) add('caution', 'Yesterday you logged ' + (y / 1000).toFixed(2) + ' L of water, under the 1.2 L minimum.');
+        else if (y > WATER_MAX) add('caution', 'Yesterday you logged ' + (y / 1000).toFixed(2) + ' L of water, above the usual 1.2 to 2.5 L. Large amounts of plain water can lower blood sodium.');
+      }
+    }
+    if (c.weightKg && ctx.startWeightKg) {
+      const d = ctx.startWeightKg - c.weightKg;
+      if (d > 0) notes.push({ l: 'ok', text: 'Down ' + r1(d) + ' kg (' + r1(d / ctx.startWeightKg * 100) + '%) since the start. Early loss is mostly water and glycogen, which come back when you eat.' });
+    }
+    const common = SYMPTOMS.filter((s) => s.level === 'common' && sym.has(s.id));
+    if (common.length && level === 'ok') notes.push({ l: 'ok', text: 'Common, mostly mild side effects. In 768 supervised fasts, 90% of people had at least one by day 5.' });
+    if (!notes.length) notes.push({ l: 'ok', text: 'No warning signs in this check-in.' });
+    notes.sort((a, z) => RANK[z.l] - RANK[a.l]);
+    return { level, notes };
+  }
+
+  /* ---------- Refeeding plan ---------- */
+  function refeedDays(hours) { return Math.max(1, Math.ceil(hours / 24 / 2 - 1e-9)); }
+  function refeedSchedule(n) {
+    if (n === 1) return [['juice', 'fruitveg']];
+    if (n === 2) return [['juice'], ['fruitveg', 'starch']];
+    const k1 = Math.max(1, Math.round(n * 0.25)), k2 = Math.max(1, Math.round(n * 0.35));
+    const out = [];
+    for (let i = 0; i < n; i++) out.push(i < k1 ? ['juice'] : i < k1 + k2 ? ['fruitveg'] : ['starch']);
+    return out;
+  }
+  function maintenance(p, w) {
+    const h = num(p.heightCm), a = num(p.age);
+    if (!h || !a || !w) return null;
+    const sx = p.sex === 'm' ? 5 : p.sex === 'f' ? -161 : -78;
+    return round10((10 * w + 6.25 * h - 5 * a + sx) * 1.2);
+  }
+  function buildRefeed(fastHours, s, weightKg) {
+    const days = refeedDays(fastHours), fastDays = fastHours / 24;
+    const sc = screen(s), bmi = sc.bmi;
+    const hi = [], mid = [];
+    if (fastDays > 7) hi.push('fast longer than 7 days');
+    if (bmi !== null && bmi < 16) hi.push('BMI under 16');
+    sc.refeedFlags.forEach((f) => hi.push(f.id === 'wtloss' ? 'recent unintended weight loss' : 'low electrolytes'));
+    if (fastDays >= 5 && fastDays <= 7) mid.push('fast of 5 to 7 days');
+    if (bmi !== null && bmi >= 16 && bmi < 18.5) mid.push('BMI 16 to 18.5');
+    const tier = hi.length ? 'high' : mid.length ? 'moderate' : 'low';
+    const reasons = hi.length ? hi : mid;
+    const w = weightKg || num(s.profile.weightKg);
+    let kcal;
+    if (tier === 'low') {
+      const m = maintenance(s.profile, w);
+      kcal = { head: 'Start at 50 to 70% of your usual needs.', value: m ? 'About ' + round10(m * 0.5) + ' to ' + round10(m * 0.7) + ' kcal a day' : null,
+        basis: m ? 'Estimated from about ' + m + ' kcal a day for a restful day (Mifflin-St Jeor x 1.2).' : 'Add height, weight and age in Profile for a personal estimate.' };
+    } else if (tier === 'moderate') {
+      kcal = { head: 'Start low, around 10 to 20 kcal per kg a day (the ASPEN starting range), and build up across 4 to 7 days.', value: w ? 'About ' + round10(w * 10) + ' to ' + round10(w * 20) + ' kcal a day' : null, basis: w ? 'Based on ' + r1(w) + ' kg.' : '' };
+    } else {
+      kcal = { head: 'Limit to 5 to 10 kcal per kg a day and advance gradually, under medical care.', value: w ? 'About ' + round10(w * 5) + ' to ' + round10(w * 10) + ' kcal a day' : null, basis: w ? 'Based on ' + r1(w) + ' kg.' : '' };
+    }
+    return { fastHours, days, tier, reasons, kcal, schedule: refeedSchedule(days), weight: w };
+  }
+
+  /* ---------- Rendering ---------- */
+  const view = $('#view');
+
+  function render() {
+    const s = S();
+    document.querySelectorAll('.tab').forEach((b) => { if (b.dataset.tab === ui.tab) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+    $('#demo-banner').hidden = !demo || ui.tab === 'profile';
+    const focusSel = focusKey(document.activeElement);
+    let html = '';
+    if (ui.tab === 'today') html = viewToday(s);
+    else if (ui.tab === 'log') html = viewLog(s);
+    else if (ui.tab === 'refeed') html = viewRefeed(s);
+    else if (ui.tab === 'learn') html = viewLearn();
+    else html = viewProfile();
+    view.innerHTML = html;
+    if (focusSel) { const el = view.querySelector(focusSel); if (el) el.focus({ preventScroll: true }); }
+    updateMode();
+    updateFoot();
+    tick(true);
+  }
+  function focusKey(el) {
+    if (!el || !view.contains(el)) return null;
+    if (el.id) return '#' + CSS.escape(el.id);
+    if (!el.dataset || !el.dataset.action) return null;
+    return Object.keys(el.dataset).map((k) => '[data-' + k.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase()) + '="' + CSS.escape(el.dataset[k]) + '"]').join('');
+  }
+  function updateMode() {
+    const s = S(), pillEl = $('#mode-pill'), text = $('#mode-text');
+    pillEl.className = 'mode-pill';
+    if (s.active) {
+      const h = (Date.now() - s.active.startedAt) / HOUR;
+      pillEl.classList.add('fasting');
+      text.textContent = (demo ? 'Example · ' : '') + 'Fasting, day ' + (Math.floor(h / 24) + 1);
+    } else if (s.refeed) {
+      const d = Math.floor((Date.now() - s.refeed.startedAt) / DAY) + 1;
+      pillEl.classList.add('refeed');
+      text.textContent = 'Refeeding, day ' + Math.min(d, s.refeed.days) + ' of ' + s.refeed.days;
+    } else text.textContent = 'Not fasting';
+  }
+
+  /* Today */
+  function viewToday(s) {
+    if (s.active) return todayActive(s);
+    if (s.refeed) return todayRefeed(s);
+    return todayIdle(s);
+  }
+
+  function todayActive(s) {
+    const a = s.active, now = Date.now(), h = (now - a.startedAt) / HOUR;
+    const ph = PHASES[phaseIndex(h)], day = Math.floor(h / 24) + 1;
+    const risks = RISKS.filter((r) => day >= r.from && day <= r.to);
+    const last = a.checkins[a.checkins.length - 1];
+    const reached = h >= a.targetHours;
+    const pct = Math.min(h / a.targetHours, 1);
+    let out = '';
+    if (reached) out += '<section class="notice ok"><p><strong>You reached your ' + esc(targetLabel(a.targetHours)) + ' target.</strong> Supervised clinics end a fast once its goal is met. End the fast below to get your refeeding plan.</p></section>';
+    out += '<section class="panel hero" aria-label="Fast timer">' +
+      '<div><p class="eyebrow">Fasting since ' + esc(fmtWhen(a.startedAt)) + '</p>' +
+      '<p class="clock" data-tick="elapsed">' + clock(now - a.startedAt) + '</p>' +
+      '<p class="clock-sub"><span data-tick="day">Day ' + day + '</span> of a ' + esc(targetLabel(a.targetHours)) + ' plan' + (a.supervised ? ' · supervised' : '') + '</p></div>' +
+      '<div class="ring-wrap"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="ring-track" cx="60" cy="60" r="52"/><circle class="ring-fill" data-tick="ring" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="' + (326.73 * (1 - pct)).toFixed(2) + '" transform="rotate(-90 60 60)"/></svg>' +
+      '<div class="ring-label"><b data-tick="pct">' + Math.floor(pct * 100) + '%</b><small>of target</small></div></div>' +
+      '<p class="remaining" data-tick="remaining"></p></section>';
+    out += timelineHTML(a.targetHours, h);
+    out += '<section class="panel"><p class="eyebrow">Now · ' + esc(ph.range) + '</p><h2>' + esc(ph.name) + '</h2><p>' + esc(ph.text) + '</p><p class="small muted" data-tick="next"></p></section>';
+    out += '<div class="grid2">' + waterHTML(a) + statusHTML(last, a) + '</div>';
+    if (risks.length) {
+      out += '<section class="panel"><h2>Watch for, on day ' + day + '</h2><p class="small muted">The windows when these problems usually start, from supervised fasting data.</p><ul class="clean watch">' +
+        risks.map((r) => '<li><span class="when">Days ' + r.from + (r.to > 100 ? '+' : ' to ' + r.to) + '</span><strong>' + esc(r.name) + '</strong><span class="small">' + esc(r.signs) + ' ' + esc(r.act) + '</span></li>').join('') + '</ul></section>';
+    }
+    out += stopCard(s);
+    out += endFastHTML();
+    return out;
+  }
+
+  function timelineHTML(target, h) {
+    const end = Math.max(target, 72, Math.ceil((h + 0.01) / 24) * 24);
+    let segs = '', ticks = '', lastLabel = 0;
+    PHASES.forEach((p, i) => {
+      if (p.from >= end) return;
+      const L = p.from / end * 100, W = (Math.min(p.to, end) - p.from) / end * 100;
+      segs += '<span class="seg" style="left:' + L + '%;width:' + W + '%;background:var(--band-' + (i + 1) + ')"></span>';
+      if (p.from > 0 && L - lastLabel >= 10 && L <= 88) { ticks += '<span style="left:' + L + '%">' + (p.from <= 72 ? p.from + ' h' : p.from / 24 + ' d') + '</span>'; lastLabel = L; }
+    });
+    ticks = '<span style="left:0;transform:none">0</span>' + ticks + '<span class="end" style="left:100%">' + (end <= 72 ? end + ' h' : r1(end / 24).replace('.0', '') + ' d') + '</span>';
+    const T = Math.min(target / end * 100, 100), N = Math.min(h / end * 100, 100);
+    return '<section class="panel"><div class="tl-head"><h3>Where you are in the fast</h3><span class="small muted">Shaded by metabolic phase, deeper over time</span></div>' +
+      '<div class="tl-track" role="img" aria-label="' + esc('Timeline: ' + Math.floor(h) + ' hours elapsed of a ' + target + ' hour target') + '"><div class="tl-bands">' + segs + '</div>' +
+      '<span class="tl-target" style="left:' + T + '%"></span><span class="tl-now" data-tick="now" data-end="' + end + '" style="left:' + N + '%"></span></div>' +
+      '<div class="tl-ticks">' + ticks + '</div>' +
+      '<div class="tl-key"><span><i class="key-now"></i>Now</span><span><i class="key-target"></i>Your target</span></div></section>';
+  }
+
+  function waterHTML(a) {
+    const ml = (a.water || {})[dateKey(Date.now())] || 0;
+    const fill = Math.min(ml / WATER_SCALE, 1) * 100;
+    const msg = ml === 0 ? 'Nothing logged yet today.' : ml < WATER_MIN ? 'Below the 1.2 L daily minimum so far.' : ml <= WATER_MAX ? 'Inside the 1.2 to 2.5 L range.' : 'Above the usual range. More plain water is not better: it can dilute blood sodium.';
+    return '<section class="panel"><h3 style="margin-top:0">Water today</h3>' +
+      '<div class="big-num">' + (ml / 1000).toFixed(2) + '<small>L</small></div>' +
+      '<div class="meter" role="meter" aria-valuemin="0" aria-valuemax="' + WATER_SCALE + '" aria-valuenow="' + ml + '" aria-label="Water today in millilitres"><span class="meter-band" style="left:' + (WATER_MIN / WATER_SCALE * 100) + '%;width:' + ((WATER_MAX - WATER_MIN) / WATER_SCALE * 100) + '%"></span><span class="meter-fill" style="width:' + fill + '%"></span></div>' +
+      '<div class="meter-scale"><span style="left:0">0</span><span style="left:40%">1.2</span><span style="left:83.33%">2.5</span><span style="left:100%">3 L</span></div>' +
+      '<p class="small muted" style="margin-top:8px">' + esc(msg) + ' Plain distilled or low-mineral water.</p>' +
+      '<div class="btn-row"><button type="button" class="btn small" data-action="water" data-ml="-250" aria-label="Remove 250 millilitres">− 250 mL</button><button type="button" class="btn small" data-action="water" data-ml="250">+ 250 mL</button><button type="button" class="btn small primary" data-action="water" data-ml="500">+ 500 mL</button></div></section>';
+  }
+
+  function statusHTML(last, a) {
+    if (!last) return '<section class="panel"><h3 style="margin-top:0">Latest check-in</h3><p class="muted">No check-ins yet. Clinics record lying and standing blood pressure, pulse and symptoms twice a day.</p><button type="button" class="btn primary" data-tab="log">Check in now</button></section>';
+    const day = Math.floor((last.at - a.startedAt) / DAY) + 1;
+    const top = (last.notes || [])[0];
+    return '<section class="panel"><h3 style="margin-top:0">Latest check-in</h3><p>' + pill(last.level) + '</p>' +
+      '<p class="small muted">Day ' + day + ', ' + esc(fmtWhen(last.at)) + '</p>' +
+      (top ? '<p class="small">' + esc(top.text) + '</p>' : '') +
+      '<button type="button" class="btn" data-tab="log">Check in again</button></section>';
+  }
+
+  function stopCard(s) {
+    const cl = s.clinician || {};
+    return '<section class="panel"><h2>End the fast and get help if you</h2><ul class="ticks">' +
+      '<li>faint or nearly faint</li><li>have chest pain, or a racing or irregular heartbeat</li><li>become confused</li><li>vomit and cannot keep water down</li><li>start fast, deep breathing</li><li>get a hot, swollen, painful joint</li></ul>' +
+      '<p class="small muted" style="margin-top:10px">Supervised clinics also end a fast when its goal is reached or when vital signs become unstable.</p>' +
+      (cl.name || cl.phone ? '<p class="small"><strong>Your clinician:</strong> ' + esc(cl.name || '') + (cl.phone ? ' <span class="data">' + esc(cl.phone) + '</span>' : '') + '</p>' : '<p class="small muted">Add your clinician’s contact details in Profile so they show here.</p>') +
+      '</section>';
+  }
+
+  function endFastHTML() {
+    if (!ui.confirmEnd) return '<div class="btn-row"><button type="button" class="btn danger" data-action="end-open">End fast</button></div>';
+    const opt = (v, l) => '<label class="check"><input type="radio" name="end-reason" value="' + v + '"' + (ui.endReason === v ? ' checked' : '') + '><span>' + l + '</span></label>';
+    return '<section class="panel"><h2>End this fast?</h2><p class="small muted">Waterline will build your refeeding plan from how long you fasted.</p><div style="display:grid;gap:8px">' +
+      opt('target', 'I reached my target') + opt('symptoms', 'Stopping early because of symptoms') + opt('other', 'Stopping early for another reason') + '</div>' +
+      '<div class="btn-row" style="margin-top:14px"><button type="button" class="btn primary" data-action="end-confirm">End fast and plan refeeding</button><button type="button" class="btn quiet" data-action="end-cancel">Keep fasting</button></div></section>';
+  }
+
+  function todayRefeed(s) {
+    const r = s.refeed, plan = buildRefeed(r.fastHours, s, r.endWeightKg);
+    const d = Math.min(Math.floor((Date.now() - r.startedAt) / DAY) + 1, plan.days);
+    const stages = plan.schedule[d - 1] || [];
+    const tier = TIERS[plan.tier];
+    return '<section class="panel"><p class="eyebrow">Refeeding · day ' + d + ' of ' + plan.days + '</p><h2>' + esc(stages.map((k) => REFEED_STAGES[k].title).join(', then ')) + '</h2>' +
+      stages.map((k) => '<p>' + esc(REFEED_STAGES[k].text) + '</p>').join('') +
+      '<p>' + pill(tier.level, tier.label) + '</p>' +
+      '<div class="btn-row"><button type="button" class="btn primary" data-tab="refeed">See the full plan</button><button type="button" class="btn" data-tab="log">Check in</button></div></section>' +
+      '<section class="notice caution"><p><strong>No added salt yet.</strong> After a fast, insulin makes the kidneys hold on to sodium and water. Salt now can cause swelling and strain the heart.</p></section>' +
+      refeedWarnings();
+  }
+
+  function refeedWarnings() {
+    return '<section class="panel"><h2>Call your clinician if you notice</h2><ul class="ticks"><li>swelling in your ankles, legs or face</li><li>shortness of breath</li><li>a racing or irregular heartbeat</li><li>muscle weakness or new numbness</li><li>confusion</li></ul><p class="small muted" style="margin-top:10px">These can signal refeeding syndrome (phosphate, potassium and magnesium rushing into cells) or refeeding swelling (edema). Both are most likely in the first 3 to 5 days of eating again.</p></section>';
+  }
+
+  function todayIdle(s) {
+    const sc = screen(s);
+    let out = '';
+    const last = s.history[0];
+    if (!sc.complete) {
+      out += '<section class="panel"><p class="eyebrow">Get set up</p><h2>Start with the safety check</h2><p>Water fasting is not safe for everyone. Answer a few questions first. They come straight from the contraindications in the clinical research.</p>' +
+        '<ol class="ticks"><li>Add your height, weight and age</li><li>Answer the safety questions</li><li>Plan your fast</li></ol>' +
+        '<div class="btn-row" style="margin-top:14px"><button type="button" class="btn primary" data-tab="profile">Go to the safety check</button></div>' +
+        (sc.missing && sc.profileOk ? '<p class="small muted" style="margin-top:10px">' + plural(sc.missing, 'question') + ' left to answer.</p>' : '') + '</section>';
+      return out + learnTeaser();
+    }
+    if (sc.blockers.length) {
+      out += '<section class="notice stop"><p><strong>Water fasting is not safe for you.</strong></p><ul class="notes">' +
+        sc.blockers.map((b) => '<li class="stop">' + ICON.stop + '<span><strong>' + esc(b.q) + '.</strong> ' + esc(b.why) + '</span></li>').join('') +
+        '</ul><p class="small" style="margin-top:6px">Talk to your doctor about what is safe for you. If an answer was a mistake, change it in Profile.</p></section>';
+      return out + learnTeaser();
+    }
+    if (last) out += '<section class="panel"><p class="eyebrow">Last fast</p><p style="margin:0"><span class="data">' + r1(last.hours / 24).replace('.0', '') + ' days</span> (' + Math.round(last.hours) + ' h), ended ' + esc(fmtDay(last.endedAt)) + '. ' + (last.startWeightKg && last.endWeightKg ? 'Weight change ' + r1(last.endWeightKg - last.startWeightKg) + ' kg.' : '') + '</p></section>';
+    out += planHTML(sc);
+    out += beforeHTML();
+    return out;
+  }
+
+  function planHTML(sc) {
+    const t = ui.planTarget;
+    const needSup = t > 72 || sc.superviseAlways;
+    const cls = durationClass(t);
+    const blockedLong = sc.noLong && t > 72;
+    const reasons = [];
+    if (blockedLong) reasons.push('With osteopenia or osteoporosis, keep fasts to 72 hours or less.');
+    if (needSup && !ui.planSupervised) reasons.push(t > 72 ? 'Fasts longer than 72 hours need a clinician supervising.' : 'Your answers mean this fast needs a clinician supervising.');
+    if (sc.cautions.length && !ui.planDoctor) reasons.push('Confirm your doctor has reviewed this fast and your medicines.');
+    const can = !reasons.length;
+    let out = '<section class="panel"><p class="eyebrow">Plan a fast</p><h2>How long?</h2><div class="chips" role="group" aria-label="Fast length">' +
+      TARGETS.map((h) => '<button type="button" class="chip" data-action="plan-target" data-h="' + h + '" aria-pressed="' + (h === t) + '"' + (sc.noLong && h > 72 ? ' disabled' : '') + '>' + targetLabel(h) + '</button>').join('') + '</div>' +
+      '<div class="fields" style="margin-top:12px"><label class="field" for="plan-custom">Or enter hours <input id="plan-custom" type="number" inputmode="numeric" min="12" max="960" step="1" value="' + (TARGETS.includes(t) ? '' : t) + '" placeholder="e.g. 60"></label>' +
+      '<label class="field" for="plan-start">Started (leave blank for now) <input id="plan-start" type="datetime-local" value="' + esc(ui.planStart) + '"></label></div>' +
+      '<div class="notice ' + (t > 504 ? 'stop' : t > 72 ? 'caution' : 'info') + '" style="margin-top:12px"><p><strong>' + esc(cls.name) + '.</strong> ' + esc(cls.note) + '</p></div>';
+    if (sc.cautions.length) {
+      out += '<div class="notice caution" style="margin-top:12px"><p><strong>Your answers need a doctor’s input:</strong></p><ul class="notes">' +
+        sc.cautions.map((c) => '<li class="caution">' + ICON.caution + '<span><strong>' + esc(c.q) + '.</strong> ' + esc(c.act) + '</span></li>').join('') + '</ul></div>' +
+        '<label class="check" style="margin-top:10px"><input type="checkbox" id="plan-doctor"' + (ui.planDoctor ? ' checked' : '') + '><span>My doctor has reviewed this fast and my medicines.</span></label>';
+    }
+    if (needSup) out += '<label class="check" style="margin-top:10px"><input type="checkbox" id="plan-supervised"' + (ui.planSupervised ? ' checked' : '') + '><span>A clinician is supervising this fast, with regular checks of my blood pressure, pulse and blood tests.</span></label>';
+    out += '<div class="btn-row" style="margin-top:16px"><button type="button" class="btn primary" data-action="start-fast"' + (can ? '' : ' disabled') + '>Start ' + esc(targetLabel(t)) + ' fast</button></div>';
+    if (reasons.length) out += '<p class="small muted" style="margin-top:8px">' + esc(reasons.join(' ')) + '</p>';
+    if (ui.planError) out += '<p class="form-error">' + esc(ui.planError) + '</p>';
+    return out + '</section>';
+  }
+
+  function beforeHTML() {
+    return '<section class="panel"><h2>Before you start</h2><p class="small muted">What supervised clinics ask of people starting a fast.</p><ul class="clean watch">' +
+      '<li><strong>See a doctor first</strong><span class="small">Blood tests (metabolic panel and blood count), a urine test and a resting ECG.</span></li>' +
+      '<li><strong>Ease in for 48 hours</strong><span class="small">Eat only raw and steamed fruit and vegetables for two days beforehand.</span></li>' +
+      '<li><strong>Plan to rest</strong><span class="small">Quiet walking and lying down only. Rest protects muscle and prevents fainting.</span></li>' +
+      '<li><strong>Drink 1.2 to 2.5 L of water a day</strong><span class="small">Plain distilled or low-mineral water.</span></li>' +
+      '<li><strong>Block out time to refeed</strong><span class="small">At least half as long as the fast. A 10-day fast needs 5 days of careful refeeding.</span></li></ul></section>';
+  }
+
+  function learnTeaser() {
+    return '<section class="panel"><p class="eyebrow">While you’re here</p><h2>What a water fast does, hour by hour</h2><p>From the glycogen switch at 12 to 36 hours to the protein changes that appear around day 3, read what the research found, including the risks.</p><button type="button" class="btn" data-tab="learn">Open Learn</button></section>';
+  }
+
+  /* Log */
+  function viewLog(s) {
+    const target = s.active || s.refeed;
+    let out = '';
+    if (!target) {
+      out += '<section class="panel"><h2>No fast in progress</h2><p class="muted">Check-ins open once you start a fast. Each one records weight, blood pressure lying and standing, ketones and symptoms, then flags anything that needs attention.</p><button type="button" class="btn primary" data-tab="today">Plan a fast</button></section>';
+      return out + historyHTML(s);
+    }
+    const isFast = !!s.active;
+    const start = isFast ? s.active.startedAt : s.refeed.startedAt;
+    const day = Math.floor((Date.now() - start) / DAY) + 1;
+    const latest = target.checkins.find((c) => c.at === ui.lastResult);
+    if (latest) out += '<section class="notice ' + latest.level + '" id="ci-result" tabindex="-1"><p>' + pill(latest.level) + '</p>' + noteList(latest.notes || []) + '</section>';
+    out += checkinForm(isFast, day);
+    out += '<section class="panel"><h2>' + (isFast ? 'Check-ins this fast' : 'Refeeding check-ins') + '</h2>' +
+      (target.checkins.length ? '<div style="display:grid;gap:14px">' + target.checkins.slice().reverse().map((c) => ciHTML(c, start)).join('') + '</div>' : '<p class="muted">None yet.</p>') + '</section>';
+    if (isFast) out += weightHTML(s.active);
+    return out + historyHTML(s);
+  }
+
+  function checkinForm(isFast, day) {
+    const group = (lvl, title) => '<div class="sym-group"><p>' + title + '</p><div class="syms">' + SYMPTOMS.filter((x) => x.level === lvl).map((x) =>
+      '<label class="sym ' + (lvl === 'common' ? '' : lvl) + '"><input type="checkbox" name="sym" value="' + x.id + '"><span>' + esc(x.label) + '</span></label>').join('') + '</div></div>';
+    const n = (id, label, unit, attrs) => '<label class="field" for="' + id + '"><span>' + label + (unit ? ' <span class="unit">' + unit + '</span>' : '') + '</span><input id="' + id + '" type="number" inputmode="decimal" ' + attrs + '></label>';
+    return '<section class="panel"><p class="eyebrow">' + (isFast ? 'Fast' : 'Refeeding') + ', day ' + day + '</p><h2>Check in</h2><p class="small muted">Fill in what you have. Every field is optional.</p>' +
+      '<form id="checkin-form" novalidate><div class="fields">' + n('ci-weight', 'Weight', 'kg', 'step="0.1" min="25" max="350"') + n('ci-ketones', 'Blood ketones (BHB)', 'mmol/L', 'step="0.1" min="0" max="15"') + '</div>' +
+      '<h3>Blood pressure and pulse</h3><p class="small muted" style="margin-top:-4px">Measure lying down after 5 minutes of rest, then after 1 to 3 minutes standing.</p>' +
+      '<div style="display:grid;gap:10px">' +
+      '<fieldset class="bp-block"><legend>Lying down</legend><div class="bp-row">' + n('ci-ls', 'Systolic', '', 'min="60" max="260"') + n('ci-ld', 'Diastolic', '', 'min="30" max="160"') + n('ci-lh', 'Pulse', '', 'min="30" max="220"') + '</div></fieldset>' +
+      '<fieldset class="bp-block"><legend>Standing</legend><div class="bp-row">' + n('ci-ss', 'Systolic', '', 'min="60" max="260"') + n('ci-sd', 'Diastolic', '', 'min="30" max="160"') + n('ci-sh', 'Pulse', '', 'min="30" max="220"') + '</div></fieldset></div>' +
+      '<h3>How do you feel?</h3>' + group('common', 'Common in the first days') + group('watch', 'Keep an eye on') + group('stop', 'Warning signs') +
+      '<label class="field" for="ci-note" style="margin-top:14px">Note<textarea id="ci-note" maxlength="500" placeholder="Anything else worth recording"></textarea></label>' +
+      (ui.formError ? '<p class="form-error">' + esc(ui.formError) + '</p>' : '') +
+      '<div class="btn-row" style="margin-top:14px"><button type="submit" class="btn primary">Save check-in</button></div></form></section>';
+  }
+
+  function ciHTML(c, start) {
+    const b = c.bp || {};
+    const m = [];
+    if (c.weightKg) m.push(r1(c.weightKg) + ' kg');
+    if (c.ketones != null) m.push('BHB ' + c.ketones);
+    if (b.ls || b.ld || b.lh) m.push('Lying ' + (b.ls || '?') + '/' + (b.ld || '?') + (b.lh ? ', ' + b.lh + ' bpm' : ''));
+    if (b.ss || b.sd || b.sh) m.push('Standing ' + (b.ss || '?') + '/' + (b.sd || '?') + (b.sh ? ', ' + b.sh + ' bpm' : ''));
+    const tags = (c.symptoms || []).map((id) => { const x = SYMPTOMS.find((y) => y.id === id); return x ? '<span class="tag ' + (x.level === 'common' ? '' : x.level) + '">' + esc(x.label) + '</span>' : ''; }).join('');
+    const day = Math.floor((c.at - start) / DAY) + 1;
+    return '<article class="ci"><div class="ci-head"><span><strong>Day ' + day + '</strong> <span class="small muted">' + esc(fmtWhen(c.at)) + '</span></span>' + pill(c.level) + '</div>' +
+      (m.length ? '<div class="ci-metrics">' + m.map((x) => '<span>' + esc(x) + '</span>').join('') + '</div>' : '') +
+      (tags ? '<div class="tags">' + tags + '</div>' : '') + (c.note ? '<p class="small" style="margin:0">' + esc(c.note) + '</p>' : '') +
+      (c.notes && c.notes.length ? noteList(c.notes) : '') +
+      '<div><button type="button" class="btn quiet small" data-action="remove-ci" data-at="' + c.at + '">Remove</button></div></article>';
+  }
+
+  function weightHTML(a) {
+    const ws = a.checkins.filter((c) => c.weightKg);
+    if (!a.startWeightKg || !ws.length) return '';
+    const lastW = ws[ws.length - 1].weightKg, d = a.startWeightKg - lastW;
+    const days = Math.max((ws[ws.length - 1].at - a.startedAt) / DAY, 0.01);
+    return '<section class="panel"><h2>Weight</h2><div class="stats">' +
+      '<div class="stat"><b>' + r1(a.startWeightKg) + '</b><span>kg at the start</span></div>' +
+      '<div class="stat"><b>' + r1(lastW) + '</b><span>kg latest</span></div>' +
+      '<div class="stat"><b>' + (d >= 0 ? '−' : '+') + r1(Math.abs(d)) + '</b><span>kg change (' + r1(Math.abs(d) / a.startWeightKg * 100) + '%), about ' + r1(Math.abs(d) / days) + ' kg a day</span></div></div>' +
+      '<p class="small muted" style="margin-top:12px">Expected: 0.9 to 1.5 kg a day over the first 3 days, slowing to 0.25 to 0.40 kg a day by days 7 to 10. Across 5 to 20 day fasts about two-thirds of the loss is lean mass, mostly glycogen and water that return within 3 to 5 days of eating. The fat loss stays.</p></section>';
+  }
+
+  function historyHTML(s) {
+    if (!s.history.length) return '';
+    const reason = { target: 'Reached target', symptoms: 'Ended early: symptoms', other: 'Ended early' };
+    return '<section class="panel"><h2>Past fasts</h2><div style="display:grid;gap:12px">' + s.history.map((f) =>
+      '<article class="ci"><div class="ci-head"><span><strong class="data">' + Math.round(f.hours) + ' h</strong> <span class="small muted">' + esc(fmtDay(f.startedAt)) + '</span></span>' + pill(f.worst || 'ok', f.worst === 'stop' ? 'Had warning signs' : f.worst === 'caution' ? 'Had cautions' : 'No warning signs') + '</div>' +
+      '<div class="ci-metrics"><span>Target ' + esc(targetLabel(f.targetHours)) + '</span><span>' + esc(reason[f.reason] || '') + '</span>' + (f.startWeightKg && f.endWeightKg ? '<span>' + r1(f.startWeightKg) + ' to ' + r1(f.endWeightKg) + ' kg</span>' : '') + '<span>' + plural(f.checkins || 0, 'check-in') + '</span></div></article>').join('') + '</div></section>';
+  }
+
+  /* Refeed */
+  function viewRefeed(s) {
+    if (s.refeed) {
+      const r = s.refeed, plan = buildRefeed(r.fastHours, s, r.endWeightKg);
+      const d = Math.floor((Date.now() - r.startedAt) / DAY) + 1;
+      return '<section class="panel"><p class="eyebrow">Your refeeding plan</p><h2>Day ' + Math.min(d, plan.days) + ' of ' + plan.days + '</h2><p>After a fast of ' + Math.round(r.fastHours) + ' hours, refeed for at least ' + plural(plan.days, 'day') + ': half the length of the fast.</p></section>' +
+        planBody(plan, d) + refeedWarnings() +
+        '<section class="panel"><h2>Finished refeeding?</h2><p class="small muted">Move on to a whole-food, low-sodium diet. Without lasting changes, blood pressure, blood sugar and blood fats drift back toward where they started within 3 to 4 months.</p><button type="button" class="btn" data-action="finish-refeed">Mark refeeding complete</button></section>';
+    }
+    if (ui.plannerDays == null) ui.plannerDays = s.active ? r1(s.active.targetHours / 24).replace('.0', '') : '5';
+    return '<section class="panel"><p class="eyebrow">Refeeding planner</p><h2>Breaking a fast safely</h2><p>Coming off a fast is the riskiest part. Eating too much too fast can drive phosphate, potassium and magnesium into cells all at once (refeeding syndrome), and salt can make the body hold fluid. Plan the way back before you start.</p>' +
+      (s.active ? '<p class="small muted">Prefilled with your current target. When you end the fast, this plan starts automatically.</p>' : '') +
+      '<div class="fields" style="max-width:320px"><label class="field" for="planner-days"><span>Fast length <span class="unit">days</span></span><input id="planner-days" type="number" inputmode="decimal" min="1" max="40" step="0.5" value="' + esc(ui.plannerDays) + '"></label></div></section>' +
+      '<div id="planner-out" style="display:grid;gap:14px">' + plannerOut(s) + '</div>';
+  }
+  function plannerOut(s) {
+    const days = num(ui.plannerDays);
+    if (!days || days < 1 || days > 40) return '<section class="panel"><p class="muted">Enter a fast length between 1 and 40 days.</p></section>';
+    const plan = buildRefeed(days * 24, s, null);
+    return planBody(plan, 0);
+  }
+  function planBody(plan, currentDay) {
+    const tier = TIERS[plan.tier];
+    const dayList = plan.schedule.map((stages, i) => {
+      const n = i + 1, cls = currentDay ? (n === currentDay ? ' now' : n < currentDay ? ' done' : '') : '';
+      return '<li class="day' + cls + '"><span class="day-n">Day ' + n + (n === currentDay ? '<br>today' : '') + '</span><div>' + stages.map((k) => '<strong>' + esc(REFEED_STAGES[k].title) + '</strong><span class="small">' + esc(REFEED_STAGES[k].text) + '</span>').join('<br>') + '</div></li>';
+    }).join('');
+    return '<section class="panel"><div class="ci-head" style="margin-bottom:12px"><h2 style="margin:0">Refeeding risk</h2>' + pill(tier.level, tier.label) + '</div>' +
+      '<p class="small">' + esc(tier.crit) + (plan.reasons.length ? ' For you: ' + esc(plan.reasons.join(', ')) + '.' : '') + '</p>' +
+      (plan.tier === 'high' ? '<div class="notice stop"><p><strong>This refeed needs a clinician.</strong> Significant-risk refeeding uses prescribed thiamine and daily blood tests.</p></div>' : '') +
+      '<dl class="kv" style="margin-top:14px"><div><dt>Length</dt><dd><span class="data">' + plural(plan.days, 'day') + '</span>, at least half the fast</dd></div>' +
+      '<div><dt>Calories</dt><dd>' + esc(plan.kcal.head) + (plan.kcal.value ? '<br><strong class="data">' + esc(plan.kcal.value) + '</strong>' : '') + (plan.kcal.basis ? '<br><span class="small muted">' + esc(plan.kcal.basis) + '</span>' : '') + '</dd></div>' +
+      '<div><dt>Salt and fluids</dt><dd>' + esc(tier.fluids) + '</dd></div><div><dt>Monitoring</dt><dd>' + esc(tier.labs) + '</dd></div></dl>' +
+      '<p class="small muted" style="margin-top:12px">Ranges come from ASPEN and NICE refeeding guidance. Your clinician sets the final numbers.</p></section>' +
+      '<section class="panel"><h2>Day by day</h2><ol class="days">' + dayList + '</ol>' +
+      '<p class="small" style="margin-top:12px"><strong>Throughout:</strong> no added salt or salty seasonings. Insulin makes the kidneys hold sodium and water after a fast, which can cause swelling and strain the heart.</p></section>';
+  }
+
+  /* Profile */
+  function viewProfile() {
+    const s = state, p = s.profile, sc = screen(s);
+    let summary;
+    if (!sc.complete) summary = '<section class="notice info"><p><strong>Safety check: ' + (sc.profileOk ? plural(sc.missing, 'question') + ' left' : 'add your details below') + '.</strong> Your answers decide which fasts Waterline will help you plan.</p></section>';
+    else if (sc.blockers.length) summary = '<section class="notice stop"><p>' + pill('stop', 'Water fasting is not safe for you') + '</p><p class="small">' + esc(sc.blockers.map((b) => b.q).join('; ')) + '. Talk to your doctor about what is safe.</p></section>';
+    else if (sc.cautions.length) summary = '<section class="notice caution"><p>' + pill('caution', 'Doctor review needed') + '</p><p class="small">' + esc(sc.cautions.map((c) => c.q).join('; ')) + '.</p></section>';
+    else summary = '<section class="notice ok"><p>' + pill('ok', 'No red flags in your answers') + '</p><p class="small">That does not replace a check-up. Clinics still run blood tests, a urine test and an ECG before a fast.</p></section>';
+
+    const bmi = sc.bmi;
+    const bmiTxt = bmi === null ? '' : '<div class="bmi"><span class="eyebrow" style="margin:0">BMI</span><span class="big-num">' + r1(bmi) + '</span>' + (bmi < 16 ? pill('stop', 'Under 16') : bmi < 18.5 ? pill('stop', 'Under 18.5') : pill('ok', '18.5 or above')) + '</div>';
+    const q = (item, kind) => {
+      const v = s.screening[item.id];
+      const yes = v === true;
+      return '<div class="q"><span class="q-text">' + esc(item.q) + '</span><span class="yn" role="group" aria-label="' + esc(item.q) + '">' +
+        '<button type="button" data-action="answer" data-q="' + item.id + '" data-v="yes" aria-pressed="' + (v === true) + '">Yes</button>' +
+        '<button type="button" data-action="answer" data-q="' + item.id + '" data-v="no" aria-pressed="' + (v === false) + '">No</button></span>' +
+        (yes && kind === 'abs' ? '<p class="q-why stop">' + esc(item.why) + '</p>' : '') +
+        (yes && kind === 'rel' ? '<p class="q-why caution">' + esc(item.why) + ' ' + esc(item.act) + '</p>' : '') + '</div>';
+    };
+    const sel = (v, l) => '<option value="' + v + '"' + (p.sex === v ? ' selected' : '') + '>' + l + '</option>';
+    return summary +
+      '<section class="panel"><h2>About you</h2><div class="fields">' +
+      '<label class="field" for="pf-height"><span>Height <span class="unit">cm</span></span><input id="pf-height" data-field="profile.heightCm" type="number" inputmode="decimal" min="100" max="230" step="0.5" value="' + esc(p.heightCm ?? '') + '"></label>' +
+      '<label class="field" for="pf-weight"><span>Weight <span class="unit">kg</span></span><input id="pf-weight" data-field="profile.weightKg" type="number" inputmode="decimal" min="25" max="350" step="0.1" value="' + esc(p.weightKg ?? '') + '"></label>' +
+      '<label class="field" for="pf-age"><span>Age <span class="unit">years</span></span><input id="pf-age" data-field="profile.age" type="number" inputmode="numeric" min="10" max="110" step="1" value="' + esc(p.age ?? '') + '"></label>' +
+      '<label class="field" for="pf-sex"><span>Sex <span class="unit">for calorie estimates</span></span><select id="pf-sex" data-field="profile.sex">' + sel('', 'Prefer not to say') + sel('f', 'Female') + sel('m', 'Male') + '</select></label>' +
+      '</div>' + bmiTxt + '</section>' +
+      '<section class="panel"><h2>Safety check</h2><h3>Do any of these apply to you?</h3><p class="small muted" style="margin-top:-4px">Any yes rules out water fasting.</p>' + ABSOLUTE.map((x) => q(x, 'abs')).join('') +
+      '<h3>Medicines and conditions</h3><p class="small muted" style="margin-top:-4px">A yes means a doctor must be involved first.</p>' + RELATIVE.map((x) => q(x, 'rel')).join('') +
+      '<h3>Refeeding risk</h3><p class="small muted" style="margin-top:-4px">These raise the risk of problems when you start eating again.</p>' + REFEED_RISK.map((x) => q(x, 'rf')).join('') + '</section>' +
+      '<section class="panel"><h2>Your clinician</h2><p class="small muted">Shown on the Today screen during a fast so it is close at hand.</p><div class="fields">' +
+      '<label class="field" for="pf-cname">Name<input id="pf-cname" data-field="clinician.name" type="text" maxlength="80" value="' + esc(s.clinician.name || '') + '"></label>' +
+      '<label class="field" for="pf-cphone">Phone<input id="pf-cphone" data-field="clinician.phone" type="tel" maxlength="40" value="' + esc(s.clinician.phone || '') + '"></label></div></section>' +
+      '<section class="panel"><h2>Your data</h2><p class="small" id="store-line-2">' + esc(storeText()) + '</p>' +
+      (ui.confirmDelete ? '<div class="notice stop"><p><strong>Delete everything?</strong> Your profile, answers, current fast and history will be gone for good.</p><div class="btn-row"><button type="button" class="btn danger" data-action="delete-confirm">Delete all my data</button><button type="button" class="btn quiet" data-action="delete-cancel">Cancel</button></div></div>'
+        : '<button type="button" class="btn danger" data-action="delete-open">Delete all my data</button>') + '</section>';
+  }
+  function storeText() {
+    if (store.mode === 'account') return 'Saved privately to your account. Other viewers of this app cannot see it.';
+    return 'Saved in this browser on this device only. Clearing site data removes it.';
+  }
+
+  /* Learn */
+  function viewLearn() {
+    const bandDot = (i) => '<span class="sw" style="background:var(--band-' + (i + 1) + ')"></span>';
+    return '<section class="panel"><p class="eyebrow">The science</p><h2>What a water-only fast does to the body</h2>' +
+      '<p>Water-only fasting means no food and no caloric drinks, only plain water. With nothing coming in, the body runs on its own reserves, first glycogen and then fat turned into ketones. These changes can lower blood pressure and improve blood sugar markers. They also stress the kidneys, electrolytes and acid balance, which is why the research on fasts beyond a few days comes from medically supervised clinics.</p></section>' +
+
+      '<details class="panel acc" open><summary><h3>Types of fasting compared</h3></summary><div class="acc-body"><div class="table-wrap"><table><thead><tr><th>Protocol</th><th>Calories</th><th>Allowed</th><th>Typical length</th><th>Setting</th></tr></thead><tbody>' +
+      '<tr><td><strong>Water-only</strong></td><td class="num">0 kcal/day</td><td>Plain distilled or mineral water, 1.2 to 2.5 L a day or more</td><td>3 to 21+ days</td><td>Residential, with twice-daily checks and lab tests</td></tr>' +
+      '<tr><td><strong>Buchinger</strong></td><td class="num">200 to 250 kcal/day</td><td>Vegetable broth, fresh juice, herbal tea with honey</td><td>5 to 20 days</td><td>Residential or outpatient, run by certified therapists</td></tr>' +
+      '<tr><td><strong>Fasting-mimicking diet</strong></td><td>Reduced</td><td>Plant-based soups, energy bars, teas, a glycerol drink</td><td>5 days per cycle</td><td>Self-run or supervised</td></tr>' +
+      '<tr><td><strong>Alternate-day fasting</strong></td><td>0 kcal or a small allowance on fast days</td><td>Water, black coffee, unsweetened tea</td><td>Alternating 24 h</td><td>Lifestyle routine</td></tr>' +
+      '<tr><td><strong>Time-restricted eating</strong></td><td>Normal, inside an eating window</td><td>Water and zero-calorie drinks while fasting</td><td>14 to 20 h fasting daily</td><td>Lifestyle routine</td></tr>' +
+      '</tbody></table></div><p class="small muted">Durations in studies: short-term 24 to 72 hours, prolonged 4 to 21 days, extreme over 21 days (up to 40 in some residential groups).</p></div></details>' +
+
+      '<details class="panel acc"><summary><h3>Hour by hour</h3></summary><div class="acc-body"><ol class="phase-list">' +
+      PHASES.map((p, i) => '<li>' + bandDot(i) + '<div><span class="rng">' + esc(p.range) + '</span><b>' + esc(p.name) + '</b><span class="small">' + esc(p.text) + '</span></div></li>').join('') + '</ol>' +
+      '<h3 style="margin:4px 0 0">Hormones and signals</h3><div class="table-wrap"><table><thead><tr><th>Marker</th><th>Change</th><th>Why</th><th>Effect</th></tr></thead><tbody>' +
+      '<tr><td>Insulin</td><td class="arrow">↓ marked</td><td>No carbohydrate or protein coming in</td><td>Unlocks fat stores; kidneys shed sodium</td></tr>' +
+      '<tr><td>BHB (ketone)</td><td class="arrow">↑ marked</td><td>Liver burns fatty acids</td><td>Main brain fuel; relaxes blood vessels</td></tr>' +
+      '<tr><td>Growth hormone</td><td class="arrow">↑</td><td>Response to falling insulin and glucose</td><td>Spares muscle; more fat breakdown</td></tr>' +
+      '<tr><td>IGF-1</td><td class="arrow">↓ 40 to 60%</td><td>Liver stops responding to growth hormone</td><td>Halts cell growth signals; more stress resistance</td></tr>' +
+      '<tr><td>Cortisol</td><td class="arrow">↑</td><td>Stress axis switched on</td><td>Keeps the liver making glucose</td></tr>' +
+      '<tr><td>Free T3</td><td class="arrow">↓</td><td>Less thyroid hormone activated in the liver</td><td>Lower metabolic rate; spares protein</td></tr>' +
+      '<tr><td>mTORC1</td><td class="arrow">↓</td><td>Amino acids run low; AMPK switched on</td><td>Triggers autophagy and mitophagy</td></tr>' +
+      '<tr><td>Uric acid</td><td class="arrow">↑</td><td>Ketones block its removal in the kidney</td><td>Gout flare risk</td></tr>' +
+      '</tbody></table></div><p class="small">Autophagy: once mTORC1 switches off, cells start breaking down and recycling damaged proteins and mitochondria. Fasting also raises spermidine, which keeps this recycling going.</p></div></details>' +
+
+      '<details class="panel acc"><summary><h3>What the studies found</h3></summary><div class="acc-body"><div>' +
+      study('Goldhamer et al., 2001', '174 adults with high blood pressure · water fast, average 10.5 days', '89% reached a reading under 140/90 mmHg. People starting above 180/110 dropped 37/13 mmHg on average. Everyone on blood pressure medicine stopped it during the fast with no rebound.') +
+      study('Dai et al., 2022', 'Overweight men without diabetes · 10-day water fast', 'Weight fell 7.28 kg (9.8%). Systolic pressure was down 6.44% by day 7 and 14.68% at its lowest, on the first day of refeeding. Sodium, chloride and IGF-1 fell.') +
+      study('Ogłodek and Pilis, 2021', 'Healthy, normal-weight men · 8-day water fast', 'Lower blood pressure, weight, BMI, fat-free mass and body water. Low sodium (under 136 mmol/L) developed, and uric acid clearance fell.') +
+      study('Pietzner et al., 2024', 'Healthy adults · 7-day water fast', 'Average loss of 5.7 kg, with the lean mass regained after refeeding. A distinct change in blood proteins appeared from day 3, involving about 36% of those measured.') +
+      study('Scharf et al., 2022', 'Adults with obesity, no diabetes · 17-day water fast', 'Body weight fell 10.2%. Blood pressure, fasting glucose, insulin and insulin resistance (HOMA-IR) fell. Triglycerides rose for a while.') +
+      '</div><div class="stats"><div class="stat"><b>0.9-1.5</b><span>kg a day lost over days 1 to 3, mostly water and glycogen</span></div><div class="stat"><b>0.25-0.40</b><span>kg a day by days 7 to 10</span></div><div class="stat"><b>~2/3</b><span>of loss in 5 to 20 day fasts is lean mass, mostly regained within 3 to 5 days</span></div></div>' +
+      '<p><strong>Why blood pressure falls.</strong> Low insulin makes the kidneys shed sodium and water. After 48 to 72 hours the nervous system calms (less sympathetic, more parasympathetic tone). BHB also relaxes artery walls through nitric oxide and potassium channels.</p>' +
+      '<p><strong>The benefits fade.</strong> 3 to 4 months later, blood pressure, glucose and blood fats are usually back near where they started unless eating habits change for good. A fast works as a short reset, not a cure.</p></div></details>' +
+
+      '<details class="panel acc"><summary><h3>Side effects and risks</h3></summary><div class="acc-body">' +
+      '<p>A review of 768 medically supervised water fasts (2 to 41 days, median 7) graded every side effect on the standard CTCAE scale.</p>' +
+      '<div class="stats"><div class="stat"><b>90%</b><span>had at least one side effect by day 5, mostly mild</span></div><div class="stat"><b>20 / 28 / 32%</b><span>had a severe (Grade 3) event by days 5, 10 and 15</span></div><div class="stat"><b>1 / 0</b><span>life-threatening events / deaths, all under daily medical checks</span></div></div>' +
+      '<p class="small">Common mild effects: tiredness, nausea, poor sleep, headache, dizziness, fainting, indigestion, dry mouth and lower back pain.</p>' +
+      '<div class="table-wrap"><table><thead><tr><th>Problem</th><th>Usual onset</th><th>Cause</th><th>Signs</th><th>Clinic response</th></tr></thead><tbody>' +
+      '<tr><td><strong>Low sodium</strong></td><td class="num">Days 3 to 8</td><td>Sodium loss from low insulin, plus plain water</td><td>Cramps, sluggishness, headache, dizziness on standing</td><td>Watch fluid intake; sometimes oral salt</td></tr>' +
+      '<tr><td><strong>High uric acid, gout</strong></td><td class="num">Days 4 to 12</td><td>Ketones compete with urate in the kidney</td><td>Red, painful, swollen joint, often the big toe</td><td>Keep hydrated; end the fast for an acute flare</td></tr>' +
+      '<tr><td><strong>Low blood pressure on standing</strong></td><td class="num">Days 2 to 5</td><td>Lower blood volume and calmer nervous system</td><td>Near-fainting, lightheadedness, racing pulse on standing</td><td>Strict rest; slow position changes; vital signs</td></tr>' +
+      '<tr><td><strong>Metabolic acidosis</strong></td><td class="num">Days 3 to 10</td><td>Ketone acids build up</td><td>Fast, deep breathing, nausea, extreme tiredness</td><td>Track bicarbonate; start refeeding if blood pH falls</td></tr>' +
+      '<tr><td><strong>Bone mineral loss</strong></td><td>Extended fasts</td><td>Bone releases calcium salts to buffer acid</td><td>More calcium in urine</td><td>Cap fast length; avoid long fasts with low bone density</td></tr>' +
+      '</tbody></table></div>' +
+      '<p class="small">Electrolytes: the body loses about 300 mEq of potassium over the first 7 days, even while blood levels look normal (3.5 to 4.0 mmol/L). Blood pH settles around 7.32 to 7.36 as bicarbonate is used up.</p></div></details>' +
+
+      '<details class="panel acc"><summary><h3>Refeeding syndrome</h3></summary><div class="acc-body">' +
+      '<p>During a long fast, the phosphate, magnesium and potassium stored inside cells run low, even when blood tests look normal. When carbohydrate returns, insulin drives these minerals into cells all at once. Blood phosphate can crash below 0.30 mmol/L (1.0 mg/dL). Without phosphate, red cells cannot release oxygen properly, which can lead to breathing failure, dangerous heart rhythms and muscle breakdown. Restarting carbohydrate also burns through thiamine (vitamin B1), risking lactic acidosis and Wernicke’s encephalopathy.</p>' +
+      '<p><strong>Refeeding swelling (edema)</strong> is a separate problem: insulin makes the kidneys hold sodium and water. Salt eaten too early can cause swollen legs, fluid on the lungs and heart strain.</p>' +
+      '<div class="table-wrap"><table><thead><tr><th>ASPEN severity</th><th>Drop in phosphorus, potassium or magnesium within 5 days of eating</th></tr></thead><tbody><tr><td>Mild</td><td class="num">10 to 20%</td></tr><tr><td>Moderate</td><td class="num">20 to 30%</td></tr><tr><td>Severe</td><td>Over 30%, or organ problems, or thiamine deficiency</td></tr></tbody></table></div>' +
+      '<p><strong>Higher risk:</strong> little or no food for more than 7 to 10 days, BMI under 16, unintended loss of 10 to 15% of body weight in 3 to 6 months, or low phosphate or potassium before eating again.</p>' +
+      '<p><strong>The rule of thumb:</strong> refeed for at least half as long as the fast, starting with diluted juice, then fruit and steamed vegetables, then starches and plant fats, with no added salt. The Refeed tab builds this plan for you.</p></div></details>' +
+
+      '<details class="panel acc"><summary><h3>Who should not water fast</h3></summary><div class="acc-body">' +
+      '<p><strong>Ruled out completely:</strong></p><ul class="notes">' + ABSOLUTE.map((x) => '<li class="stop">' + ICON.stop + '<span><strong>' + esc(x.q) + '.</strong> ' + esc(x.why) + '</span></li>').join('') +
+      '<li class="stop">' + ICON.stop + '<span><strong>BMI under 18.5.</strong> Too few reserves to withstand starvation.</span></li></ul>' +
+      '<p><strong>Needs a doctor and often inpatient care:</strong></p><ul class="notes">' + RELATIVE.map((x) => '<li class="caution">' + ICON.caution + '<span><strong>' + esc(x.q) + '.</strong> ' + esc(x.why) + '</span></li>').join('') + '</ul></div></details>' +
+
+      '<details class="panel acc"><summary><h3>Sources</h3></summary><div class="acc-body"><ol class="sources">' + SOURCES.map((x) => '<li><a href="' + x[1] + '" target="_blank" rel="noopener noreferrer">' + esc(x[0]) + '</a></li>').join('') + '</ol></div></details>';
+  }
+  function study(name, meta, text) { return '<div class="study"><b>' + esc(name) + '</b><div class="meta">' + esc(meta) + '</div><span class="small">' + esc(text) + '</span></div>'; }
+  const SOURCES = [
+    ['Is water-only fasting safe? (PMC8369953)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8369953/'],
+    ['Goldhamer A. Water fasting, clinical effectiveness (PMC4684131)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4684131/'],
+    ['Efficacy and safety of prolonged water fasting: a narrative review (PMC11494232)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11494232/'],
+    ['Is fasting safe? A chart review of adverse events during medically supervised, water-only fasting (PMC5819235)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5819235/'],
+    ['Fasting therapy: an expert panel update of the 2002 consensus (Karger)', 'https://karger.com/fok/article/20/6/434/356679/Fasting-Therapy-an-Expert-Panel-Update-of-the-2002'],
+    ['Critical assessment of fasting to promote metabolic health (Endocrine Reviews)', 'https://academic.oup.com/edrv/article/46/6/856/8211151'],
+    ['Effects of 10-day complete fasting on physiological homeostasis (Nutrients)', 'https://www.mdpi.com/2072-6643/14/18/3860'],
+    ['Metabolic and hormonal effects of an 8 days water only fasting (PMC12219608)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12219608/'],
+    ['Endocrine adaptations to prolonged fasting (Nutrients)', 'https://www.mdpi.com/2072-6643/17/24/3949'],
+    ['Spermidine is essential for fasting-mediated autophagy and longevity (PMC11392816)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11392816/'],
+    ['A single 36-h water-only fast vastly remodels the plasma lipidome (PMC10513913)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10513913/'],
+    ['The effects of prolonged water-only fasting and refeeding (PMC8951503)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8951503/'],
+    ['Prolonged water-only fasting followed by a whole-plant-food diet (PMC11597177)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11597177/'],
+    ['Refeeding syndrome, StatPearls (NCBI Bookshelf)', 'https://www.ncbi.nlm.nih.gov/sites/books/NBK564513/'],
+    ['ASPEN guidelines for refeeding syndrome, a review (PMC9464262)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9464262/'],
+    ['Scientists reveal what seven days of fasting does to the human body (ScienceDaily)', 'https://www.sciencedaily.com/releases/2026/10/261005012444.htm'],
+  ];
+
+  /* ---------- Live clock ---------- */
+  function tick(fromRender) {
+    const s = S(), now = Date.now();
+    if (!fromRender) {
+      if (s.active && ui.tab === 'today') {
+        const h = (now - s.active.startedAt) / HOUR;
+        if (phaseIndex(h) !== ui.renderedPhase || (h >= s.active.targetHours) !== ui.renderedReached) { if (!view.contains(document.activeElement) || document.activeElement.tagName === 'BUTTON') { render(); return; } }
+      }
+      if (s.refeed && (ui.tab === 'today' || ui.tab === 'refeed')) {
+        const d = Math.floor((now - s.refeed.startedAt) / DAY);
+        if (d !== ui.renderedRefeedDay) { ui.renderedRefeedDay = d; render(); return; }
+      }
+    }
+    if (s.refeed) ui.renderedRefeedDay = Math.floor((now - s.refeed.startedAt) / DAY);
+    if (!s.active) return;
+    const a = s.active, ms = now - a.startedAt, h = ms / HOUR;
+    ui.renderedPhase = phaseIndex(h); ui.renderedReached = h >= a.targetHours;
+    const set = (k, v) => { const el = view.querySelector('[data-tick="' + k + '"]'); if (el) el.textContent = v; return el; };
+    set('elapsed', clock(ms));
+    set('day', 'Day ' + (Math.floor(h / 24) + 1));
+    const pct = Math.min(h / a.targetHours, 1);
+    set('pct', Math.floor(pct * 100) + '%');
+    const ring = view.querySelector('[data-tick="ring"]');
+    if (ring) ring.setAttribute('stroke-dashoffset', (326.73 * (1 - pct)).toFixed(2));
+    set('remaining', h >= a.targetHours ? 'Target reached ' + span(ms - a.targetHours * HOUR) + ' ago.' : span(a.targetHours * HOUR - ms) + ' to go until your ' + targetLabel(a.targetHours) + ' target.');
+    const next = PHASES.find((p) => p.from > h);
+    set('next', next ? 'Next: ' + next.name + ' in ' + span((next.from - h) * HOUR) + '.' : '');
+    const nowEl = view.querySelector('[data-tick="now"]');
+    if (nowEl) nowEl.style.left = Math.min(h / Number(nowEl.dataset.end) * 100, 100) + '%';
+    updateMode();
+  }
+
+  /* ---------- Actions ---------- */
+  let toastTimer = null;
+  function toast(msg, actionLabel, onAction) {
+    const el = $('#toast');
+    el.innerHTML = '<span>' + esc(msg) + '</span>' + (actionLabel ? '<button type="button">' + esc(actionLabel) + '</button>' : '');
+    el.hidden = false;
+    if (actionLabel) el.querySelector('button').onclick = () => { el.hidden = true; onAction(); };
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { el.hidden = true; }, actionLabel ? 6000 : 3500);
+  }
+  const demoToast = () => toast('This is the example fast. Set up your own to log real data.', 'Set up', () => ACTIONS['setup-own']());
+
+  function setTab(t) {
+    if (!TABS.includes(t)) return;
+    ui.tab = t; ui.formError = ''; ui.planError = '';
+    if (t !== 'log') ui.lastResult = null;
+    try { localStorage.setItem(LS_TAB, t); } catch (e) { /* ignore */ }
+    render();
+    window.scrollTo(0, 0);
+    view.focus({ preventScroll: true });
+  }
+  function exitDemo() { if (!demo) return; demo = false; demoData = null; state.started = true; commit(); }
+
+  const ACTIONS = {
+    'setup-own'() { exitDemo(); setTab('profile'); },
+    answer(t) { exitDemo(); state.screening[t.dataset.q] = t.dataset.v === 'yes'; commit(); render(); },
+    'plan-target'(t) { ui.planTarget = Number(t.dataset.h); ui.planError = ''; render(); },
+    'start-fast'() {
+      if (demo) return demoToast();
+      const sc = screen(state);
+      if (!sc.complete || sc.blockers.length) return;
+      let start = Date.now();
+      if (ui.planStart) {
+        const t = new Date(ui.planStart).getTime();
+        if (!Number.isFinite(t)) { ui.planError = 'That start time is not a valid date.'; return render(); }
+        if (t > Date.now() + 60000) { ui.planError = 'The start time is in the future. Leave it blank to start now.'; return render(); }
+        if (Date.now() - t > 7 * DAY) { ui.planError = 'The start time is more than 7 days ago. Pick a later time.'; return render(); }
+        start = t;
+      }
+      state.active = { id: 'f' + Date.now().toString(36), startedAt: start, targetHours: ui.planTarget, supervised: !!ui.planSupervised,
+        startWeightKg: num(state.profile.weightKg), water: {}, checkins: [] };
+      state.refeed = null;
+      ui.planStart = ''; ui.planError = ''; ui.confirmEnd = false; ui.plannerDays = null;
+      commit(); render(); toast('Fast started. Check in at least once a day.');
+    },
+    water(t) {
+      if (demo) return demoToast();
+      const a = state.active; if (!a) return;
+      const k = dateKey(Date.now());
+      a.water[k] = Math.min(Math.max(0, (a.water[k] || 0) + parseInt(t.dataset.ml, 10)), 8000);
+      commit(); render();
+    },
+    'end-open'() { if (demo) return demoToast(); ui.confirmEnd = true; ui.endReason = 'target'; render(); },
+    'end-cancel'() { ui.confirmEnd = false; render(); },
+    'end-confirm'() {
+      const a = state.active; if (!a) return;
+      const sel = view.querySelector('input[name="end-reason"]:checked');
+      const end = Date.now(), hours = (end - a.startedAt) / HOUR;
+      const ws = a.checkins.filter((c) => c.weightKg);
+      const endW = ws.length ? ws[ws.length - 1].weightKg : null;
+      const worst = a.checkins.reduce((m, c) => (RANK[c.level] > RANK[m] ? c.level : m), 'ok');
+      state.history.unshift({ id: a.id, startedAt: a.startedAt, endedAt: end, hours, targetHours: a.targetHours, startWeightKg: a.startWeightKg, endWeightKg: endW, checkins: a.checkins.length, worst, reason: sel ? sel.value : 'other' });
+      state.history = state.history.slice(0, 60);
+      state.active = null; ui.confirmEnd = false;
+      if (hours >= 24) {
+        state.refeed = { fastId: a.id, fastHours: hours, startedAt: end, days: refeedDays(hours), endWeightKg: endW, checkins: [] };
+        commit(); setTab('refeed'); toast('Fast ended. Your refeeding plan is ready.');
+      } else {
+        commit(); render(); toast('Fast ended. After a short fast, start with a light meal with no added salt.');
+      }
+    },
+    'finish-refeed'() { if (demo) return demoToast(); state.refeed = null; commit(); setTab('today'); toast('Refeeding marked complete.'); },
+    'remove-ci'(t) {
+      if (demo) return demoToast();
+      const target = state.active || state.refeed; if (!target) return;
+      const i = target.checkins.findIndex((c) => String(c.at) === t.dataset.at);
+      if (i < 0) return;
+      const removed = target.checkins.splice(i, 1)[0];
+      if (ui.lastResult === removed.at) ui.lastResult = null;
+      commit(); render();
+      toast('Check-in removed.', 'Undo', () => { target.checkins.push(removed); target.checkins.sort((x, y) => x.at - y.at); commit(); render(); });
+    },
+    'delete-open'() { ui.confirmDelete = true; render(); },
+    'delete-cancel'() { ui.confirmDelete = false; render(); },
+    async 'delete-confirm'() {
+      clearTimeout(saveTimer);
+      state = freshState(); demo = true; demoData = null; ui.confirmDelete = false;
+      try { localStorage.removeItem(LS_STATE); } catch (e) { /* ignore */ }
+      if (store.mode === 'account' && store.ref) { try { await store.ref.delete(); } catch (e) { /* ignore */ } }
+      setTab('today'); toast('All your data was deleted.');
+    },
+  };
+
+  function submitCheckin(form) {
+    if (demo) return demoToast();
+    const target = state.active || state.refeed; if (!target) return;
+    const f = (id) => num(form.querySelector('#' + id).value);
+    const c = { at: Date.now(), weightKg: f('ci-weight'), ketones: f('ci-ketones'),
+      bp: { ls: f('ci-ls'), ld: f('ci-ld'), lh: f('ci-lh'), ss: f('ci-ss'), sd: f('ci-sd'), sh: f('ci-sh') },
+      symptoms: Array.from(form.querySelectorAll('input[name="sym"]:checked')).map((i) => i.value),
+      note: form.querySelector('#ci-note').value.trim().slice(0, 500) };
+    const bad = [];
+    const range = (v, lo, hi, label) => { if (v != null && (v < lo || v > hi)) bad.push(label + ' should be between ' + lo + ' and ' + hi + '.'); };
+    range(c.weightKg, 25, 350, 'Weight'); range(c.ketones, 0, 15, 'Ketones');
+    ['ls', 'ss'].forEach((k) => range(c.bp[k], 60, 260, 'Systolic pressure'));
+    ['ld', 'sd'].forEach((k) => range(c.bp[k], 30, 160, 'Diastolic pressure'));
+    ['lh', 'sh'].forEach((k) => range(c.bp[k], 30, 220, 'Pulse'));
+    const empty = c.weightKg == null && c.ketones == null && !Object.values(c.bp).some((v) => v != null) && !c.symptoms.length && !c.note;
+    if (empty) bad.push('Add at least one reading, symptom or note.');
+    if (bad.length) { ui.formError = Array.from(new Set(bad)).join(' '); render(); const err = view.querySelector('.form-error'); if (err) err.scrollIntoView({ block: 'center' }); return; }
+    const isFast = target === state.active;
+    const r = assess(c, isFast ? { mode: 'fast', start: target.startedAt, startWeightKg: target.startWeightKg, water: target.water } : { mode: 'refeed' });
+    c.level = r.level; c.notes = r.notes;
+    if (isFast && c.weightKg && !target.startWeightKg) target.startWeightKg = c.weightKg;
+    target.checkins.push(c);
+    ui.lastResult = c.at; ui.formError = '';
+    commit(); render();
+    const res = $('#ci-result'); if (res) { res.scrollIntoView({ block: 'start' }); res.focus({ preventScroll: true }); }
+  }
+
+  /* ---------- Events ---------- */
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-tab], [data-action]');
+    if (!t) return;
+    if (t.dataset.tab) { setTab(t.dataset.tab); return; }
+    const fn = ACTIONS[t.dataset.action];
+    if (fn) { e.preventDefault(); fn(t); }
+  });
+  document.addEventListener('change', (e) => {
+    const t = e.target;
+    if (t.dataset && t.dataset.field) {
+      exitDemo();
+      const [group, key] = t.dataset.field.split('.');
+      let v = t.value.trim();
+      if (t.type === 'number') v = num(v);
+      state[group][key] = v;
+      commit(); render();
+    } else if (t.id === 'plan-custom') {
+      const h = Math.round(num(t.value) || 0);
+      if (h >= 12 && h <= 960) { ui.planTarget = h; ui.planError = ''; } else if (t.value) ui.planError = 'Enter between 12 and 960 hours.';
+      render();
+    } else if (t.id === 'plan-start') { ui.planStart = t.value; ui.planError = ''; }
+    else if (t.id === 'plan-supervised') { ui.planSupervised = t.checked; render(); }
+    else if (t.id === 'plan-doctor') { ui.planDoctor = t.checked; render(); }
+    else if (t.name === 'end-reason') ui.endReason = t.value;
+  });
+  document.addEventListener('input', (e) => {
+    if (e.target.id === 'planner-days') { ui.plannerDays = e.target.value; const out = $('#planner-out'); if (out) out.innerHTML = plannerOut(S()); }
+  });
+  document.addEventListener('submit', (e) => { if (e.target.id === 'checkin-form') { e.preventDefault(); submitCheckin(e.target); } });
+
+  render();
+  setInterval(() => tick(false), 1000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(false); });
+  initStore();
+})();
+</script>
+</body>
+</html>
