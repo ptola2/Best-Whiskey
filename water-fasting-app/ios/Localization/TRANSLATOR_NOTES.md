@@ -26,6 +26,8 @@ anything it reports before committing.
 - Keep these as they are: Waterline, ASPEN, NICE, CTCAE, BHB, HOMA-IR, IGF-1,
   mTORC1, AMPK, LC3-II, Beclin-1, ECG, Mifflin-St Jeor, SGLT2, ARFID, Free T3,
   Grade 3, and units such as mmHg, mmol/L, mEq, mg/dL, kcal, kg, cm, mL and L.
+  Languages that normally write units in their own script (for example
+  Russian кг, мм рт. ст.) may use those forms.
   Medicine and condition names should use the common medical term in your
   language, with the plain-language version where the English gives one.
 - Write plainly and calmly. Address the reader directly, using the register a
