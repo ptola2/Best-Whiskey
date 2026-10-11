@@ -10,22 +10,25 @@ enum Fmt {
 
     static func span(_ interval: TimeInterval) -> String {
         let mins = max(0, Int((interval / 60).rounded()))
-        if mins >= 2880 { return "\(mins / 1440) d \((mins % 1440) / 60) h" }
+        if mins >= 2880 { return tr("fmt.days_hours", mins / 1440, (mins % 1440) / 60) }
         let h = mins / 60, m = mins % 60
-        return h > 0 ? "\(h) h \(m) m" : "\(m) m"
+        return h > 0 ? tr("fmt.hours_minutes", h, m) : tr("fmt.minutes", m)
     }
 
     static func target(_ hours: Int) -> String {
-        (hours <= 72 || hours % 24 != 0) ? "\(hours) h" : "\(hours / 24) days"
+        (hours <= 72 || hours % 24 != 0) ? tr("fmt.hours", hours) : trCount("count.days", hours / 24)
     }
 
-    static func one(_ value: Double) -> String { String(format: "%.1f", value) }
+    /// One decimal place with the person's own decimal separator (82.5 or 82,5).
+    static func one(_ value: Double) -> String { String(format: "%.1f", locale: Locale.current, value) }
+
+    static func two(_ value: Double) -> String { String(format: "%.2f", locale: Locale.current, value) }
 
     /// Whole numbers without a decimal point. Safe for any input: huge or non-finite values never reach Int().
     static func trimmed(_ value: Double) -> String {
         guard value.isFinite else { return "" }
         if value == value.rounded(), let whole = safeInt(value) { return String(whole) }
-        return String(format: "%.1f", value)
+        return one(value)
     }
 
     /// Int(x) traps outside Int's range, so every Double-to-Int conversion of user input goes through here.
@@ -35,8 +38,6 @@ enum Fmt {
     }
 
     static func roundTo10(_ value: Double) -> Int { (safeInt(value / 10) ?? 0) * 10 }
-
-    static func plural(_ n: Int, _ word: String) -> String { "\(n) \(word)\(n == 1 ? "" : "s")" }
 
     private static let dayKeyFormatter: DateFormatter = {
         let f = DateFormatter()
@@ -66,10 +67,10 @@ enum FastMath {
     static func dayNumber(hours: Double) -> Int { Int(floor(max(hours, 0) / 24)) + 1 }
 
     static func durationClass(hours: Int) -> (name: String, note: String) {
-        if hours < 24 { return ("Short fast", "Under 24 hours.") }
-        if hours <= 72 { return ("Short-term fast", "24 to 72 hours. Glycogen runs out and early ketosis begins.") }
-        if hours <= 504 { return ("Prolonged fast", "4 to 21 days of sustained ketosis. Research on fasts this long comes from supervised clinics with twice-daily checks and weekly blood tests.") }
-        return ("Extreme fast", "Over 21 days. Lean tissue loss, micronutrient depletion and heart strain become major concerns.")
+        if hours < 24 { return (tr("duration.short.name"), tr("duration.short.note")) }
+        if hours <= 72 { return (tr("duration.shortterm.name"), tr("duration.shortterm.note")) }
+        if hours <= 504 { return (tr("duration.prolonged.name"), tr("duration.prolonged.note")) }
+        return (tr("duration.extreme.name"), tr("duration.extreme.note"))
     }
 
     static func bmi(_ p: Profile) -> Double? {
@@ -135,11 +136,10 @@ enum Screening {
             .filter { d.screening[$0.id] == true }
             .map { Blocker(id: $0.id, title: $0.question, why: $0.why) }
         if let bmi, bmi < 18.5 {
-            blockers.append(Blocker(id: "bmi", title: "BMI of \(Fmt.one(bmi)) (under 18.5)",
-                                    why: "Without enough fat and protein reserves, fasting can waste heart muscle and cause dangerous heart rhythms."))
+            blockers.append(Blocker(id: "bmi", title: tr("blocker.bmi.title", Fmt.one(bmi)), why: tr("blocker.bmi.why")))
         }
         if let age = d.profile.age, age < 18 {
-            blockers.append(Blocker(id: "minor", title: "Under 18", why: "The research covers adults only."))
+            blockers.append(Blocker(id: "minor", title: tr("blocker.minor.title"), why: tr("blocker.minor.why")))
         }
         let cautions = Research.relative.filter { d.screening[$0.id] == true }
         let flags = Research.refeedRisk.filter { d.screening[$0.id] == true }
@@ -170,23 +170,21 @@ enum Assessor {
         let sym = Set(c.symptoms)
         let stops = Research.symptoms.filter { $0.group == .stop && sym.contains($0.id) }
         if !stops.isEmpty {
-            let list = stops.map { $0.label.lowercased() }.joined(separator: "; ")
-            let action = ctx.isRefeed
-                ? "Contact your clinician now. These can be signs of refeeding syndrome or refeeding swelling."
-                : "End the fast and contact your clinician now."
-            add(.stop, "Warning sign\(stops.count > 1 ? "s" : ""): \(list). \(action) If it feels severe, call your local emergency number.")
+            let list = stops.map(\.label).joined(separator: "; ")
+            let action = ctx.isRefeed ? tr("assess.action.refeed") : tr("assess.action.fast")
+            add(.stop, tr("assess.warnings", list, action))
         }
         if sym.contains("joint") {
-            add(.stop, "A hot, swollen joint during a fast is often gout: ketones block uric acid clearance. An acute flare is a reason to end the fast.")
+            add(.stop, tr("assess.joint"))
         }
         if sym.contains("dizzy") {
-            add(.caution, "Lightheadedness on standing is common on days 2 to 5 as blood volume drops. Get up slowly and rest. If you faint or nearly faint, stop the fast.")
+            add(.caution, tr("assess.dizzy"))
         }
         let lowSodiumCompanions = ["headache", "lethargy", "dizzy"].filter { sym.contains($0) }.count
         if sym.contains("cramps") && lowSodiumCompanions > 0 {
-            add(.caution, "Cramps with headache, sluggishness or dizziness can point to low sodium (below 136 mmol/L). Only a blood test can tell. Let your clinician know.")
+            add(.caution, tr("assess.sodium.likely"))
         } else if sym.contains("cramps") || sym.contains("lethargy") {
-            add(.caution, "Cramps or heavy drowsiness can be early signs of low sodium. Mention it to your clinician and keep watching.")
+            add(.caution, tr("assess.sodium.possible"))
         }
 
         let v = c.vitals
@@ -195,24 +193,24 @@ enum Assessor {
             var dropDia = 0
             if let ld = v.lyingDiastolic, let sd = v.standingDiastolic { dropDia = ld - sd }
             if dropSys >= 20 || dropDia >= 10 {
-                add(.caution, "Blood pressure fell \(dropSys)/\(dropDia) mmHg when you stood up. A drop of 20/10 or more counts as orthostatic hypotension. Share it with your clinician and avoid sudden position changes.")
+                add(.caution, tr("assess.bp_drop", dropSys, dropDia))
             }
         }
         if let lp = v.lyingPulse, let sp = v.standingPulse, sp - lp >= 30 {
-            add(.caution, "Your pulse rose \(sp - lp) beats a minute on standing, a sign of low blood volume.")
+            add(.caution, tr("assess.pulse_rise", sp - lp))
         }
         if let ls = v.lyingSystolic, ls < 90 {
-            add(.caution, "A lying systolic pressure of \(ls) mmHg is low. Rest and tell your clinician.")
+            add(.caution, tr("assess.low_systolic", ls))
         }
 
         if let k = c.ketones {
             let ks = Fmt.trimmed(k)
             if k > 7 {
-                add(.caution, "BHB of \(ks) mmol/L is above the 3.0 to 7.0 range usually seen by days 5 to 10. Share the reading with your clinician.")
+                add(.caution, tr("assess.bhb.high", ks))
             } else if k >= 2 {
-                notes.append(Note(level: .ok, text: "BHB of \(ks) mmol/L: above 2.0, ketones are reaching the brain and covering much of its fuel."))
+                notes.append(Note(level: .ok, text: tr("assess.bhb.brain", ks)))
             } else {
-                notes.append(Note(level: .ok, text: "BHB of \(ks) mmol/L. Ketones start reaching the brain in quantity above 2.0 mmol/L."))
+                notes.append(Note(level: .ok, text: tr("assess.bhb.low", ks)))
             }
         }
 
@@ -223,26 +221,26 @@ enum Assessor {
            start <= calendar.startOfDay(for: yesterdayDate) {
             let yesterday = Fmt.dayKey(yesterdayDate)
             if let ml = ctx.water[yesterday], ml > 0 {
-                let litres = String(format: "%.2f", Double(ml) / 1000)
+                let litres = Fmt.two(Double(ml) / 1000)
                 if ml < Research.waterMin {
-                    add(.caution, "Yesterday you logged \(litres) L of water, under the 1.2 L minimum.")
+                    add(.caution, tr("assess.water.low", litres))
                 } else if ml > Research.waterMax {
-                    add(.caution, "Yesterday you logged \(litres) L of water, above the usual 1.2 to 2.5 L. Large amounts of plain water can lower blood sodium.")
+                    add(.caution, tr("assess.water.high", litres))
                 }
             }
         }
 
         if let w = c.weightKg, let sw = ctx.startWeightKg, sw - w > 0 {
             let d = sw - w
-            notes.append(Note(level: .ok, text: "Down \(Fmt.one(d)) kg (\(Fmt.one(d / sw * 100))%) since the start. Early loss is mostly water and glycogen, which come back when you eat."))
+            notes.append(Note(level: .ok, text: tr("assess.weight_down", Fmt.one(d), Fmt.one(d / sw * 100))))
         }
 
         let hasCommon = Research.symptoms.contains { $0.group == .common && sym.contains($0.id) }
         if hasCommon && level == .ok {
-            notes.append(Note(level: .ok, text: "Common, mostly mild side effects. In 768 supervised fasts, 90% of people had at least one by day 5."))
+            notes.append(Note(level: .ok, text: tr("assess.common")))
         }
         if notes.isEmpty {
-            notes.append(Note(level: .ok, text: "No warning signs in this check-in."))
+            notes.append(Note(level: .ok, text: tr("assess.none")))
         }
         notes.sort { $0.level > $1.level }
         return (level, notes)
@@ -270,13 +268,13 @@ enum RefeedPlanner {
 
         var high: [String] = []
         var mid: [String] = []
-        if fastDays > 7 { high.append("fast longer than 7 days") }
-        if let b = screening.bmi, b < 16 { high.append("BMI under 16") }
+        if fastDays > 7 { high.append(tr("refeed.reason.long_fast")) }
+        if let b = screening.bmi, b < 16 { high.append(tr("refeed.reason.bmi_under_16")) }
         for flag in screening.refeedFlags {
-            high.append(flag.id == "wtloss" ? "recent unintended weight loss" : "low electrolytes")
+            high.append(flag.id == "wtloss" ? tr("refeed.reason.weight_loss") : tr("refeed.reason.electrolytes"))
         }
-        if fastDays >= 5 && fastDays <= 7 { mid.append("fast of 5 to 7 days") }
-        if let b = screening.bmi, b >= 16, b < 18.5 { mid.append("BMI 16 to 18.5") }
+        if fastDays >= 5 && fastDays <= 7 { mid.append(tr("refeed.reason.fast_5_7")) }
+        if let b = screening.bmi, b >= 16, b < 18.5 { mid.append(tr("refeed.reason.bmi_16_18")) }
 
         let tier: RefeedTier = !high.isEmpty ? .high : (!mid.isEmpty ? .moderate : .low)
         let reasons = !high.isEmpty ? high : mid
@@ -287,24 +285,24 @@ enum RefeedPlanner {
         var basis = ""
         switch tier {
         case .low:
-            headline = "Start at 50 to 70% of your usual needs."
+            headline = tr("kcal.low.headline")
             if let m = FastMath.maintenance(data.profile, weight: weight) {
-                value = "About \(Fmt.roundTo10(Double(m) * 0.5)) to \(Fmt.roundTo10(Double(m) * 0.7)) kcal a day"
-                basis = "Estimated from about \(m) kcal a day for a restful day (Mifflin-St Jeor x 1.2)."
+                value = tr("kcal.range", Fmt.roundTo10(Double(m) * 0.5), Fmt.roundTo10(Double(m) * 0.7))
+                basis = tr("kcal.low.basis", m)
             } else {
-                basis = "Add height, weight and age in Profile for a personal estimate."
+                basis = tr("kcal.low.missing")
             }
         case .moderate:
-            headline = "Start low, around 10 to 20 kcal per kg a day (the ASPEN starting range), and build up across 4 to 7 days."
+            headline = tr("kcal.moderate.headline")
             if let w = weight {
-                value = "About \(Fmt.roundTo10(w * 10)) to \(Fmt.roundTo10(w * 20)) kcal a day"
-                basis = "Based on \(Fmt.one(w)) kg."
+                value = tr("kcal.range", Fmt.roundTo10(w * 10), Fmt.roundTo10(w * 20))
+                basis = tr("kcal.based_on_weight", Fmt.one(w))
             }
         case .high:
-            headline = "Limit to 5 to 10 kcal per kg a day and advance gradually, under medical care."
+            headline = tr("kcal.high.headline")
             if let w = weight {
-                value = "About \(Fmt.roundTo10(w * 5)) to \(Fmt.roundTo10(w * 10)) kcal a day"
-                basis = "Based on \(Fmt.one(w)) kg."
+                value = tr("kcal.range", Fmt.roundTo10(w * 5), Fmt.roundTo10(w * 10))
+                basis = tr("kcal.based_on_weight", Fmt.one(w))
             }
         }
 

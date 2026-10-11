@@ -2,6 +2,8 @@
 
 **Last updated: 11 October 2026**
 
+Published at: https://malebolabs.com/waterline-privacy-policy/
+
 This Privacy Policy explains how Waterline ("Waterline", "we", "us") handles your information when you use the Waterline iOS app. Waterline is made by Malebo Labs and operated by Pasito Tola, who is the data controller for any personal data described here. If you do not agree with this policy, please do not use the app.
 
 Contact for any privacy question or request: **passytotola@gmail.com**
@@ -136,7 +138,7 @@ Please read this before you use Waterline.
 
 ## 14. Changes to this policy
 
-We may update this policy from time to time. When we do, we will change the date at the top. For significant changes, we will tell you in the app's release notes, or by email if you use Backup and sync. If a change would let us use your health information in a new way, we will ask for your consent first.
+We may update this policy from time to time. The current version is always at https://malebolabs.com/waterline-privacy-policy/ and is linked inside the app. When we update it, we will change the date at the top. For significant changes, we will tell you in the app's release notes, or by email if you use Backup and sync. If a change would let us use your health information in a new way, we will ask for your consent first.
 
 ## 15. Contact us
 

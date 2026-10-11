@@ -14,9 +14,9 @@ enum Level: String, Codable, CaseIterable, Comparable {
 
     var label: String {
         switch self {
-        case .ok: return "No warning signs"
-        case .caution: return "Caution"
-        case .stop: return "Stop and get help"
+        case .ok: return tr("level.ok")
+        case .caution: return tr("level.caution")
+        case .stop: return tr("level.stop")
         }
     }
 
@@ -84,9 +84,9 @@ enum EndReason: String, Codable, CaseIterable {
 
     var label: String {
         switch self {
-        case .target: return "Reached target"
-        case .symptoms: return "Ended early: symptoms"
-        case .other: return "Ended early"
+        case .target: return tr("end_reason.target")
+        case .symptoms: return tr("end_reason.symptoms")
+        case .other: return tr("end_reason.other")
         }
     }
 

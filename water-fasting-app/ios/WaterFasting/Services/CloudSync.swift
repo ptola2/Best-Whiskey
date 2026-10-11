@@ -131,7 +131,7 @@ final class CloudSync {
 
     private func received(_ remote: RemoteCopy, fromCache: Bool, pending: Bool, failure: String?) {
         if let failure {
-            message = "Sync paused: \(failure)"
+            message = tr("cloud.sync_paused", failure)
             return
         }
         // Cached snapshots can be stale; wait for the server.
@@ -141,7 +141,7 @@ final class CloudSync {
         let decoded = remote.exists ? decode(remote) : nil
         if remote.exists && decoded == nil {
             paused = true
-            message = "Your cloud copy was saved by a newer version of Waterline. Update the app to keep syncing. Nothing was overwritten."
+            message = tr("cloud.newer_version")
             return
         }
 
@@ -152,7 +152,7 @@ final class CloudSync {
             store.replaceAll(with: adopted)
             sync = SyncState(ownerUID: uid, baseRevision: remote.exists ? remote.revision : 0, dirty: false)
             saveSyncState()
-            message = "Data from a different account was removed from this iPhone."
+            message = tr("cloud.other_account")
             return
         }
 
@@ -162,7 +162,7 @@ final class CloudSync {
                 paused = true
                 sync = SyncState()
                 saveSyncState()
-                message = "Your cloud copy was removed. Data on this iPhone stays. Sign out and back in to start a new backup."
+                message = tr("cloud.copy_removed")
                 return
             }
             // First link to an empty account: upload what this iPhone has.
@@ -269,7 +269,7 @@ final class CloudSync {
             message = nil
             if sync.dirty { schedulePush() }
         } catch {
-            message = "Could not back up: \(error.localizedDescription)"
+            message = tr("cloud.backup_failed", error.localizedDescription)
         }
     }
 
@@ -310,7 +310,7 @@ final class CloudSync {
     func publishWipe(_ wiped: AppData) async -> String? {
         guard let uid, sync.ownerUID == nil || sync.ownerUID == uid else { return nil }
         guard let bytes = try? JSONEncoder().encode(wiped), let json = String(data: bytes, encoding: .utf8) else {
-            return "Could not prepare the deletion. Nothing was deleted."
+            return tr("cloud.wipe_prepare_failed")
         }
         pushTask?.cancel()
         isBusy = true
@@ -322,7 +322,7 @@ final class CloudSync {
             saveSyncState()
             return nil
         } catch {
-            return "Could not delete your cloud copy (\(error.localizedDescription)). Nothing was deleted. Check your connection and try again."
+            return tr("cloud.wipe_failed", error.localizedDescription)
         }
     }
 
@@ -354,7 +354,7 @@ final class CloudSync {
                   let tokenData = credential.identityToken,
                   let token = String(data: tokenData, encoding: .utf8),
                   let nonce = currentNonce else {
-                message = "Sign in with Apple did not return a token. Try again."
+                message = tr("cloud.no_token")
                 return nil
             }
             let code = credential.authorizationCode.flatMap { String(data: $0, encoding: .utf8) }
@@ -380,12 +380,12 @@ final class CloudSync {
         defer { isBusy = false }
         if sync.dirty && FastStore.shared.data.hasContent {
             if paused {
-                message = "Some changes are not backed up, so you are still signed in. Update the app, then try again."
+                message = tr("cloud.signout_needs_update")
                 return
             }
             await push()
             if sync.dirty {
-                message = "Some changes are not backed up yet, so you are still signed in. Check your connection and try again."
+                message = tr("cloud.signout_pending")
                 return
             }
         }
@@ -399,7 +399,7 @@ final class CloudSync {
         sync = SyncState()
         saveSyncState()
         FastStore.shared.resetAfterSignOut()
-        message = "Signed out. Your data stays in your account."
+        message = tr("cloud.signed_out")
     }
 
     /// Account deletion needs a fresh Sign in with Apple confirmation: it re-authenticates, revokes the
@@ -411,7 +411,7 @@ final class CloudSync {
             return
         }
         guard let code = proof.authorizationCode else {
-            message = "Apple did not return an authorization code. Try again."
+            message = tr("cloud.no_code")
             return
         }
         isBusy = true
@@ -428,9 +428,9 @@ final class CloudSync {
             sync = SyncState()
             saveSyncState()
             confirmingDeletion = false
-            message = "Account deleted. Your data on this iPhone stays."
+            message = tr("cloud.account_deleted")
         } catch {
-            message = "Could not delete the account: \(error.localizedDescription)"
+            message = tr("cloud.delete_failed", error.localizedDescription)
         }
     }
 

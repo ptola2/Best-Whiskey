@@ -1,0 +1,6741 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "assess.action.fast": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End the fast and contact your clinician now."
+          }
+        }
+      }
+    },
+    "assess.action.refeed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contact your clinician now. These can be signs of refeeding syndrome or refeeding swelling."
+          }
+        }
+      }
+    },
+    "assess.bhb.brain": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BHB of %@ mmol/L: above 2.0, ketones are reaching the brain and covering much of its fuel."
+          }
+        }
+      }
+    },
+    "assess.bhb.high": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BHB of %@ mmol/L is above the 3.0 to 7.0 range usually seen by days 5 to 10. Share the reading with your clinician."
+          }
+        }
+      }
+    },
+    "assess.bhb.low": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BHB of %@ mmol/L. Ketones start reaching the brain in quantity above 2.0 mmol/L."
+          }
+        }
+      }
+    },
+    "assess.bp_drop": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blood pressure fell %1$lld/%2$lld mmHg when you stood up. A drop of 20/10 or more counts as orthostatic hypotension. Share it with your clinician and avoid sudden position changes."
+          }
+        }
+      }
+    },
+    "assess.common": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Common, mostly mild side effects. In 768 supervised fasts, 90% of people had at least one by day 5."
+          }
+        }
+      }
+    },
+    "assess.dizzy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lightheadedness on standing is common on days 2 to 5 as blood volume drops. Get up slowly and rest. If you faint or nearly faint, stop the fast."
+          }
+        }
+      }
+    },
+    "assess.joint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A hot, swollen joint during a fast is often gout: ketones block uric acid clearance. An acute flare is a reason to end the fast."
+          }
+        }
+      }
+    },
+    "assess.low_systolic": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A lying systolic pressure of %lld mmHg is low. Rest and tell your clinician."
+          }
+        }
+      }
+    },
+    "assess.none": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No warning signs in this check-in."
+          }
+        }
+      }
+    },
+    "assess.pulse_rise": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your pulse rose %lld beats a minute on standing, a sign of low blood volume."
+          }
+        }
+      }
+    },
+    "assess.sodium.likely": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cramps with headache, sluggishness or dizziness can point to low sodium (below 136 mmol/L). Only a blood test can tell. Let your clinician know."
+          }
+        }
+      }
+    },
+    "assess.sodium.possible": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cramps or heavy drowsiness can be early signs of low sodium. Mention it to your clinician and keep watching."
+          }
+        }
+      }
+    },
+    "assess.warnings": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning signs: %1$@. %2$@ If it feels severe, call your local emergency number."
+          }
+        }
+      }
+    },
+    "assess.water.high": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yesterday you logged %@ L of water, above the usual 1.2 to 2.5 L. Large amounts of plain water can lower blood sodium."
+          }
+        }
+      }
+    },
+    "assess.water.low": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yesterday you logged %@ L of water, under the 1.2 L minimum."
+          }
+        }
+      }
+    },
+    "assess.weight_down": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Down %1$@ kg (%2$@%%) since the start. Early loss is mostly water and glycogen, which come back when you eat."
+          }
+        }
+      }
+    },
+    "before.doctor.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blood tests (metabolic panel and blood count), a urine test and a resting ECG."
+          }
+        }
+      }
+    },
+    "before.doctor.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See a doctor first"
+          }
+        }
+      }
+    },
+    "before.ease_in.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eat only raw and steamed fruit and vegetables for two days beforehand."
+          }
+        }
+      }
+    },
+    "before.ease_in.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ease in for 48 hours"
+          }
+        }
+      }
+    },
+    "before.refeed.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At least half as long as the fast. A 10-day fast needs 5 days of careful refeeding."
+          }
+        }
+      }
+    },
+    "before.refeed.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Block out time to refeed"
+          }
+        }
+      }
+    },
+    "before.rest.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quiet walking and lying down only. Rest protects muscle and prevents fainting."
+          }
+        }
+      }
+    },
+    "before.rest.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan to rest"
+          }
+        }
+      }
+    },
+    "before.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What supervised clinics ask of people starting a fast."
+          }
+        }
+      }
+    },
+    "before.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Before you start"
+          }
+        }
+      }
+    },
+    "before.water.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plain distilled or low-mineral water."
+          }
+        }
+      }
+    },
+    "before.water.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink 1.2 to 2.5 L of water a day"
+          }
+        }
+      }
+    },
+    "blocked.footer": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Talk to your doctor about what is safe for you. If an answer was a mistake, change it in Profile."
+          }
+        }
+      }
+    },
+    "blocked.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water fasting is not safe for you."
+          }
+        }
+      }
+    },
+    "blocker.bmi.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMI of %@ (under 18.5)"
+          }
+        }
+      }
+    },
+    "blocker.bmi.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without enough fat and protein reserves, fasting can waste heart muscle and cause dangerous heart rhythms."
+          }
+        }
+      }
+    },
+    "blocker.minor.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under 18"
+          }
+        }
+      }
+    },
+    "blocker.minor.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The research covers adults only."
+          }
+        }
+      }
+    },
+    "checkin.bp.how": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measure lying down after 5 minutes of rest, then after 1 to 3 minutes standing."
+          }
+        }
+      }
+    },
+    "checkin.bp.lying": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lying down"
+          }
+        }
+      }
+    },
+    "checkin.bp.standing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standing"
+          }
+        }
+      }
+    },
+    "checkin.bp.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blood pressure and pulse"
+          }
+        }
+      }
+    },
+    "checkin.diastolic": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diastolic"
+          }
+        }
+      }
+    },
+    "checkin.error.empty": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add at least one reading, symptom or note."
+          }
+        }
+      }
+    },
+    "checkin.error.range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ should be between %2$lld and %3$lld."
+          }
+        }
+      }
+    },
+    "checkin.eyebrow.fast": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast, day %lld"
+          }
+        }
+      }
+    },
+    "checkin.eyebrow.refeed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refeeding, day %lld"
+          }
+        }
+      }
+    },
+    "checkin.feel": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How do you feel?"
+          }
+        }
+      }
+    },
+    "checkin.group.common": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Common in the first days"
+          }
+        }
+      }
+    },
+    "checkin.group.stop": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning signs"
+          }
+        }
+      }
+    },
+    "checkin.group.watch": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep an eye on"
+          }
+        }
+      }
+    },
+    "checkin.ketones": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketones (BHB)"
+          }
+        }
+      }
+    },
+    "checkin.note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note"
+          }
+        }
+      }
+    },
+    "checkin.note.placeholder": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anything else worth recording"
+          }
+        }
+      }
+    },
+    "checkin.optional": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fill in what you have. Every field is optional."
+          }
+        }
+      }
+    },
+    "checkin.pulse": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulse"
+          }
+        }
+      }
+    },
+    "checkin.row.bhb": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BHB %@"
+          }
+        }
+      }
+    },
+    "checkin.row.day": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day %lld"
+          }
+        }
+      }
+    },
+    "checkin.row.lying": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lying %@"
+          }
+        }
+      }
+    },
+    "checkin.row.pressure": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@/%2$@"
+          }
+        }
+      }
+    },
+    "checkin.row.remove": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove"
+          }
+        }
+      }
+    },
+    "checkin.row.remove_action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove check-in"
+          }
+        }
+      }
+    },
+    "checkin.row.remove_confirm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove this check-in?"
+          }
+        }
+      }
+    },
+    "checkin.row.standing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standing %@"
+          }
+        }
+      }
+    },
+    "checkin.save": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save check-in"
+          }
+        }
+      }
+    },
+    "checkin.systolic": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systolic"
+          }
+        }
+      }
+    },
+    "checkin.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check in"
+          }
+        }
+      }
+    },
+    "checkin.weight": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight"
+          }
+        }
+      }
+    },
+    "cloud.account_deleted": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account deleted. Your data on this iPhone stays."
+          }
+        }
+      }
+    },
+    "cloud.backup_failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not back up: %@"
+          }
+        }
+      }
+    },
+    "cloud.copy_removed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your cloud copy was removed. Data on this iPhone stays. Sign out and back in to start a new backup."
+          }
+        }
+      }
+    },
+    "cloud.delete.confirm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete your Waterline account?"
+          }
+        }
+      }
+    },
+    "cloud.delete.confirm_with_apple": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To delete your account, confirm with Apple. This removes your cloud copy, revokes Waterline's access to your Apple ID and deletes the account. Data on this iPhone stays."
+          }
+        }
+      }
+    },
+    "cloud.delete.message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You will confirm with Apple next. Your cloud copy is deleted. Data on this iPhone stays."
+          }
+        }
+      }
+    },
+    "cloud.delete_account": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete account"
+          }
+        }
+      }
+    },
+    "cloud.delete_failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not delete the account: %@"
+          }
+        }
+      }
+    },
+    "cloud.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional. Sign in to back up your fasts and keep them if you reinstall the app or change phones."
+          }
+        }
+      }
+    },
+    "cloud.newer_version": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your cloud copy was saved by a newer version of Waterline. Update the app to keep syncing. Nothing was overwritten."
+          }
+        }
+      }
+    },
+    "cloud.no_code": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple did not return an authorization code. Try again."
+          }
+        }
+      }
+    },
+    "cloud.no_token": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign in with Apple did not return a token. Try again."
+          }
+        }
+      }
+    },
+    "cloud.not_configured": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add GoogleService-Info.plist to the project to switch on cloud backup."
+          }
+        }
+      }
+    },
+    "cloud.other_account": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data from a different account was removed from this iPhone."
+          }
+        }
+      }
+    },
+    "cloud.sign_out": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign out"
+          }
+        }
+      }
+    },
+    "cloud.sign_out.confirm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign out?"
+          }
+        }
+      }
+    },
+    "cloud.sign_out.message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your data stays in your account and is removed from this iPhone. Sign in again to get it back."
+          }
+        }
+      }
+    },
+    "cloud.signed_in": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signed in. Your data backs up privately and syncs to your other devices."
+          }
+        }
+      }
+    },
+    "cloud.signed_in_as": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signed in as %@. Your data backs up privately and syncs to your other devices."
+          }
+        }
+      }
+    },
+    "cloud.signed_out": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signed out. Your data stays in your account."
+          }
+        }
+      }
+    },
+    "cloud.signout_needs_update": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some changes are not backed up, so you are still signed in. Update the app, then try again."
+          }
+        }
+      }
+    },
+    "cloud.signout_pending": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some changes are not backed up yet, so you are still signed in. Check your connection and try again."
+          }
+        }
+      }
+    },
+    "cloud.sync_paused": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync paused: %@"
+          }
+        }
+      }
+    },
+    "cloud.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup and sync"
+          }
+        }
+      }
+    },
+    "cloud.wipe_failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not delete your cloud copy (%@). Nothing was deleted. Check your connection and try again."
+          }
+        }
+      }
+    },
+    "cloud.wipe_prepare_failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not prepare the deletion. Nothing was deleted."
+          }
+        }
+      }
+    },
+    "common.cancel": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "common.continue": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        }
+      }
+    },
+    "common.done": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "common.no": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No"
+          }
+        }
+      }
+    },
+    "common.privacy_policy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy policy"
+          }
+        }
+      }
+    },
+    "common.title_and_reason": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@. %2$@"
+          }
+        }
+      }
+    },
+    "common.yes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yes"
+          }
+        }
+      }
+    },
+    "complication.acid.cause": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketone acids build up"
+          }
+        }
+      }
+    },
+    "complication.acid.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metabolic acidosis"
+          }
+        }
+      }
+    },
+    "complication.acid.onset": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days 3 to 10"
+          }
+        }
+      }
+    },
+    "complication.acid.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track bicarbonate; start refeeding if blood pH falls"
+          }
+        }
+      }
+    },
+    "complication.acid.signs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast, deep breathing, nausea, extreme tiredness"
+          }
+        }
+      }
+    },
+    "complication.bone.cause": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bone releases calcium salts to buffer acid"
+          }
+        }
+      }
+    },
+    "complication.bone.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bone mineral loss"
+          }
+        }
+      }
+    },
+    "complication.bone.onset": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extended fasts"
+          }
+        }
+      }
+    },
+    "complication.bone.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cap fast length; avoid long fasts with low bone density"
+          }
+        }
+      }
+    },
+    "complication.bone.signs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More calcium in urine"
+          }
+        }
+      }
+    },
+    "complication.gout.cause": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketones compete with urate in the kidney"
+          }
+        }
+      }
+    },
+    "complication.gout.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "High uric acid, gout"
+          }
+        }
+      }
+    },
+    "complication.gout.onset": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days 4 to 12"
+          }
+        }
+      }
+    },
+    "complication.gout.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep hydrated; end the fast for an acute flare"
+          }
+        }
+      }
+    },
+    "complication.gout.signs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Red, painful, swollen joint, often the big toe"
+          }
+        }
+      }
+    },
+    "complication.ortho.cause": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lower blood volume and a calmer nervous system"
+          }
+        }
+      }
+    },
+    "complication.ortho.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Low blood pressure on standing"
+          }
+        }
+      }
+    },
+    "complication.ortho.onset": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days 2 to 5"
+          }
+        }
+      }
+    },
+    "complication.ortho.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict rest; slow position changes; vital signs"
+          }
+        }
+      }
+    },
+    "complication.ortho.signs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Near-fainting, lightheadedness, racing pulse on standing"
+          }
+        }
+      }
+    },
+    "complication.sodium.cause": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sodium loss from low insulin, plus plain water"
+          }
+        }
+      }
+    },
+    "complication.sodium.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Low sodium"
+          }
+        }
+      }
+    },
+    "complication.sodium.onset": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days 3 to 8"
+          }
+        }
+      }
+    },
+    "complication.sodium.response": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watch fluid intake; sometimes oral salt"
+          }
+        }
+      }
+    },
+    "complication.sodium.signs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cramps, sluggishness, headache, dizziness on standing"
+          }
+        }
+      }
+    },
+    "count.checkins": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld check-in"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld check-ins"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "count.days": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld day"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld days"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "count.questions_left": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld question left to answer"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld questions left to answer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "duration.extreme.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extreme fast"
+          }
+        }
+      }
+    },
+    "duration.extreme.note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over 21 days. Lean tissue loss, micronutrient depletion and heart strain become major concerns."
+          }
+        }
+      }
+    },
+    "duration.prolonged.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prolonged fast"
+          }
+        }
+      }
+    },
+    "duration.prolonged.note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4 to 21 days of sustained ketosis. Research on fasts this long comes from supervised clinics with twice-daily checks and weekly blood tests."
+          }
+        }
+      }
+    },
+    "duration.short.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Short fast"
+          }
+        }
+      }
+    },
+    "duration.short.note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under 24 hours."
+          }
+        }
+      }
+    },
+    "duration.shortterm.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Short-term fast"
+          }
+        }
+      }
+    },
+    "duration.shortterm.note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "24 to 72 hours. Glycogen runs out and early ketosis begins."
+          }
+        }
+      }
+    },
+    "end_reason.other": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ended early"
+          }
+        }
+      }
+    },
+    "end_reason.symptoms": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ended early: symptoms"
+          }
+        }
+      }
+    },
+    "end_reason.target": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reached target"
+          }
+        }
+      }
+    },
+    "fast.end": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End fast"
+          }
+        }
+      }
+    },
+    "fast.end_confirm.keep": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep fasting"
+          }
+        }
+      }
+    },
+    "fast.end_confirm.message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline will build your refeeding plan from how long you fasted."
+          }
+        }
+      }
+    },
+    "fast.end_confirm.other": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopping early: another reason"
+          }
+        }
+      }
+    },
+    "fast.end_confirm.symptoms": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopping early: symptoms"
+          }
+        }
+      }
+    },
+    "fast.end_confirm.target": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I reached my target"
+          }
+        }
+      }
+    },
+    "fast.end_confirm.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End this fast?"
+          }
+        }
+      }
+    },
+    "fast.target_reached.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supervised clinics end a fast once its goal is met. End the fast below to get your refeeding plan."
+          }
+        }
+      }
+    },
+    "fast.target_reached.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You reached your %@ target."
+          }
+        }
+      }
+    },
+    "fast.unsupervised.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The research restricts fasts beyond 72 hours to medically supervised settings. End the fast now, or confirm that a clinician is supervising it."
+          }
+        }
+      }
+    },
+    "fast.unsupervised.confirm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A clinician is supervising"
+          }
+        }
+      }
+    },
+    "fast.unsupervised.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This fast has passed 72 hours without supervision."
+          }
+        }
+      }
+    },
+    "fmt.days_hours": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld d %2$lld h"
+          }
+        }
+      }
+    },
+    "fmt.hours": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld h"
+          }
+        }
+      }
+    },
+    "fmt.hours_minutes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld h %2$lld m"
+          }
+        }
+      }
+    },
+    "fmt.minutes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld m"
+          }
+        }
+      }
+    },
+    "footer.disclaimer": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline is an educational tool built from published research on water-only fasting. It is not medical advice. In an emergency, call your local emergency number."
+          }
+        }
+      }
+    },
+    "history.target": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Target %@"
+          }
+        }
+      }
+    },
+    "history.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Past fasts"
+          }
+        }
+      }
+    },
+    "history.weight": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ to %2$@ kg"
+          }
+        }
+      }
+    },
+    "history.worst.caution": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Had cautions"
+          }
+        }
+      }
+    },
+    "history.worst.ok": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No warning signs"
+          }
+        }
+      }
+    },
+    "history.worst.stop": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Had warning signs"
+          }
+        }
+      }
+    },
+    "hormone.bhb.change": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up, marked"
+          }
+        }
+      }
+    },
+    "hormone.bhb.effect": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Main brain fuel; relaxes blood vessels"
+          }
+        }
+      }
+    },
+    "hormone.bhb.marker": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BHB (ketone)"
+          }
+        }
+      }
+    },
+    "hormone.bhb.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liver burns fatty acids"
+          }
+        }
+      }
+    },
+    "hormone.cortisol.change": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up"
+          }
+        }
+      }
+    },
+    "hormone.cortisol.effect": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keeps the liver making glucose"
+          }
+        }
+      }
+    },
+    "hormone.cortisol.marker": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cortisol"
+          }
+        }
+      }
+    },
+    "hormone.cortisol.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stress axis switched on"
+          }
+        }
+      }
+    },
+    "hormone.ft3.change": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Down"
+          }
+        }
+      }
+    },
+    "hormone.ft3.effect": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lower metabolic rate; spares protein"
+          }
+        }
+      }
+    },
+    "hormone.ft3.marker": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Free T3"
+          }
+        }
+      }
+    },
+    "hormone.ft3.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Less thyroid hormone activated in the liver"
+          }
+        }
+      }
+    },
+    "hormone.gh.change": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up"
+          }
+        }
+      }
+    },
+    "hormone.gh.effect": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spares muscle; more fat breakdown"
+          }
+        }
+      }
+    },
+    "hormone.gh.marker": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Growth hormone"
+          }
+        }
+      }
+    },
+    "hormone.gh.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Response to falling insulin and glucose"
+          }
+        }
+      }
+    },
+    "hormone.igf1.change": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Down 40 to 60%"
+          }
+        }
+      }
+    },
+    "hormone.igf1.effect": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Halts cell growth signals; more stress resistance"
+          }
+        }
+      }
+    },
+    "hormone.igf1.marker": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IGF-1"
+          }
+        }
+      }
+    },
+    "hormone.igf1.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liver stops responding to growth hormone"
+          }
+        }
+      }
+    },
+    "hormone.insulin.change": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Down, marked"
+          }
+        }
+      }
+    },
+    "hormone.insulin.effect": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlocks fat stores; kidneys shed sodium"
+          }
+        }
+      }
+    },
+    "hormone.insulin.marker": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insulin"
+          }
+        }
+      }
+    },
+    "hormone.insulin.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No carbohydrate or protein coming in"
+          }
+        }
+      }
+    },
+    "hormone.mtor.change": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Down"
+          }
+        }
+      }
+    },
+    "hormone.mtor.effect": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Triggers autophagy and mitophagy"
+          }
+        }
+      }
+    },
+    "hormone.mtor.marker": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mTORC1"
+          }
+        }
+      }
+    },
+    "hormone.mtor.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amino acids run low; AMPK switched on"
+          }
+        }
+      }
+    },
+    "hormone.uric.change": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up"
+          }
+        }
+      }
+    },
+    "hormone.uric.effect": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gout flare risk"
+          }
+        }
+      }
+    },
+    "hormone.uric.marker": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uric acid"
+          }
+        }
+      }
+    },
+    "hormone.uric.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketones block its removal in the kidney"
+          }
+        }
+      }
+    },
+    "kcal.based_on_weight": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Based on %@ kg."
+          }
+        }
+      }
+    },
+    "kcal.high.headline": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limit to 5 to 10 kcal per kg a day and advance gradually, under medical care."
+          }
+        }
+      }
+    },
+    "kcal.low.basis": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated from about %lld kcal a day for a restful day (Mifflin-St Jeor x 1.2)."
+          }
+        }
+      }
+    },
+    "kcal.low.headline": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start at 50 to 70% of your usual needs."
+          }
+        }
+      }
+    },
+    "kcal.low.missing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add height, weight and age in Profile for a personal estimate."
+          }
+        }
+      }
+    },
+    "kcal.moderate.headline": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start low, around 10 to 20 kcal per kg a day (the ASPEN starting range), and build up across 4 to 7 days."
+          }
+        }
+      }
+    },
+    "kcal.range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About %1$lld to %2$lld kcal a day"
+          }
+        }
+      }
+    },
+    "last_fast.eyebrow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last fast"
+          }
+        }
+      }
+    },
+    "last_fast.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ d (%2$lld h), ended %3$@."
+          }
+        }
+      }
+    },
+    "last_fast.weight_change": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight change %@ kg."
+          }
+        }
+      }
+    },
+    "latest.again": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check in again"
+          }
+        }
+      }
+    },
+    "latest.none": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No check-ins yet. Clinics record lying and standing blood pressure, pulse and symptoms twice a day."
+          }
+        }
+      }
+    },
+    "latest.now": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check in now"
+          }
+        }
+      }
+    },
+    "latest.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latest check-in"
+          }
+        }
+      }
+    },
+    "latest.when": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day %1$lld, %2$@"
+          }
+        }
+      }
+    },
+    "learn.autophagy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autophagy: once mTORC1 switches off, cells start breaking down and recycling damaged proteins and mitochondria. Fasting also raises spermidine, which keeps this recycling going."
+          }
+        }
+      }
+    },
+    "learn.benefits_fade": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The benefits fade: 3 to 4 months later, blood pressure, glucose and blood fats are usually back near where they started unless eating habits change for good. A fast works as a short reset, not a cure."
+          }
+        }
+      }
+    },
+    "learn.bp_why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Why blood pressure falls: low insulin makes the kidneys shed sodium and water. After 48 to 72 hours the nervous system calms (less sympathetic, more parasympathetic tone). BHB also relaxes artery walls through nitric oxide and potassium channels."
+          }
+        }
+      }
+    },
+    "learn.eyebrow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The science"
+          }
+        }
+      }
+    },
+    "learn.hormones.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hormones and signals"
+          }
+        }
+      }
+    },
+    "learn.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water-only fasting means no food and no caloric drinks, only plain water. With nothing coming in, the body runs on its own reserves, first glycogen and then fat turned into ketones. These changes can lower blood pressure and improve blood sugar markers. They also stress the kidneys, electrolytes and acid balance, which is why the research on fasts beyond a few days comes from medically supervised clinics."
+          }
+        }
+      }
+    },
+    "learn.label.allowed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allowed"
+          }
+        }
+      }
+    },
+    "learn.label.calories": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calories"
+          }
+        }
+      }
+    },
+    "learn.label.cause": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cause"
+          }
+        }
+      }
+    },
+    "learn.label.change": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change"
+          }
+        }
+      }
+    },
+    "learn.label.clinics": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clinics"
+          }
+        }
+      }
+    },
+    "learn.label.effect": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effect"
+          }
+        }
+      }
+    },
+    "learn.label.length": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Length"
+          }
+        }
+      }
+    },
+    "learn.label.onset": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Onset"
+          }
+        }
+      }
+    },
+    "learn.label.setting": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Setting"
+          }
+        }
+      }
+    },
+    "learn.label.signs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signs"
+          }
+        }
+      }
+    },
+    "learn.label.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Why"
+          }
+        }
+      }
+    },
+    "learn.refeeding.aspen.mild": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mild"
+          }
+        }
+      }
+    },
+    "learn.refeeding.aspen.mild_value": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 to 20%"
+          }
+        }
+      }
+    },
+    "learn.refeeding.aspen.moderate": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moderate"
+          }
+        }
+      }
+    },
+    "learn.refeeding.aspen.moderate_value": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "20 to 30%"
+          }
+        }
+      }
+    },
+    "learn.refeeding.aspen.severe": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Severe"
+          }
+        }
+      }
+    },
+    "learn.refeeding.aspen.severe_value": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over 30%, or organ problems, or thiamine deficiency"
+          }
+        }
+      }
+    },
+    "learn.refeeding.aspen.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ASPEN severity (drop in phosphorus, potassium or magnesium within 5 days of eating)"
+          }
+        }
+      }
+    },
+    "learn.refeeding.edema": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refeeding swelling (edema) is a separate problem: insulin makes the kidneys hold sodium and water. Salt eaten too early can cause swollen legs, fluid on the lungs and heart strain."
+          }
+        }
+      }
+    },
+    "learn.refeeding.higher_risk": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Higher risk: little or no food for more than 7 to 10 days, BMI under 16, unintended loss of 10 to 15% of body weight in 3 to 6 months, or low phosphate or potassium before eating again."
+          }
+        }
+      }
+    },
+    "learn.refeeding.mechanism": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "During a long fast, the phosphate, magnesium and potassium stored inside cells run low, even when blood tests look normal. When carbohydrate returns, insulin drives these minerals into cells all at once. Blood phosphate can crash below 0.30 mmol/L (1.0 mg/dL). Without phosphate, red cells cannot release oxygen properly, which can lead to breathing failure, dangerous heart rhythms and muscle breakdown. Restarting carbohydrate also burns through thiamine (vitamin B1), risking lactic acidosis and Wernicke's encephalopathy."
+          }
+        }
+      }
+    },
+    "learn.refeeding.rule": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The rule of thumb: refeed for at least half as long as the fast, starting with diluted juice, then fruit and steamed vegetables, then starches and plant fats, with no added salt. The Refeed tab builds this plan for you."
+          }
+        }
+      }
+    },
+    "learn.risks.common": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Common mild effects: tiredness, nausea, poor sleep, headache, dizziness, fainting, indigestion, dry mouth and lower back pain."
+          }
+        }
+      }
+    },
+    "learn.risks.electrolytes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Electrolytes: the body loses about 300 mEq of potassium over the first 7 days, even while blood levels look normal (3.5 to 4.0 mmol/L). Blood pH settles around 7.32 to 7.36 as bicarbonate is used up."
+          }
+        }
+      }
+    },
+    "learn.risks.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A review of 768 medically supervised water fasts (2 to 41 days, median 7) graded every side effect on the standard CTCAE scale."
+          }
+        }
+      }
+    },
+    "learn.section.hours": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hour by hour"
+          }
+        }
+      }
+    },
+    "learn.section.refeeding": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refeeding syndrome"
+          }
+        }
+      }
+    },
+    "learn.section.risks": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Side effects and risks"
+          }
+        }
+      }
+    },
+    "learn.section.sources": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sources"
+          }
+        }
+      }
+    },
+    "learn.section.studies": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What the studies found"
+          }
+        }
+      }
+    },
+    "learn.section.types": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Types of fasting compared"
+          }
+        }
+      }
+    },
+    "learn.section.who": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Who should not water fast"
+          }
+        }
+      }
+    },
+    "learn.sources.note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Research papers are listed in the language they were published in."
+          }
+        }
+      }
+    },
+    "learn.stat.any_effect": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "had at least one side effect by day 5, mostly mild"
+          }
+        }
+      }
+    },
+    "learn.stat.early_loss": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kg a day lost over days 1 to 3, mostly water and glycogen"
+          }
+        }
+      }
+    },
+    "learn.stat.grade3": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "percent with a severe (Grade 3) event by days 5, 10 and 15"
+          }
+        }
+      }
+    },
+    "learn.stat.later_loss": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kg a day by days 7 to 10"
+          }
+        }
+      }
+    },
+    "learn.stat.lean_mass": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "of loss in 5 to 20 day fasts is lean mass, mostly regained within 3 to 5 days"
+          }
+        }
+      }
+    },
+    "learn.stat.serious": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "life-threatening events / deaths, all under daily medical checks"
+          }
+        }
+      }
+    },
+    "learn.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What a water-only fast does to the body"
+          }
+        }
+      }
+    },
+    "learn.types.durations": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durations in studies: short-term 24 to 72 hours, prolonged 4 to 21 days, extreme over 21 days (up to 40 in some residential groups)."
+          }
+        }
+      }
+    },
+    "learn.who.absolute": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruled out completely"
+          }
+        }
+      }
+    },
+    "learn.who.bmi": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMI under 18.5. Too few reserves to withstand starvation."
+          }
+        }
+      }
+    },
+    "learn.who.relative": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needs a doctor and often inpatient care"
+          }
+        }
+      }
+    },
+    "level.caution": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caution"
+          }
+        }
+      }
+    },
+    "level.ok": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No warning signs"
+          }
+        }
+      }
+    },
+    "level.stop": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop and get help"
+          }
+        }
+      }
+    },
+    "log.empty.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check-ins open once you start a fast. Each one records weight, blood pressure lying and standing, ketones and symptoms, then flags anything that needs attention."
+          }
+        }
+      }
+    },
+    "log.empty.plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan a fast"
+          }
+        }
+      }
+    },
+    "log.empty.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No fast in progress"
+          }
+        }
+      }
+    },
+    "log.list.fast": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check-ins this fast"
+          }
+        }
+      }
+    },
+    "log.list.none": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None yet."
+          }
+        }
+      }
+    },
+    "log.list.refeed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refeeding check-ins"
+          }
+        }
+      }
+    },
+    "notify.checkin.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log lying and standing blood pressure, pulse, weight and how you feel."
+          }
+        }
+      }
+    },
+    "notify.checkin.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time to check in"
+          }
+        }
+      }
+    },
+    "notify.d7.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight loss is slowing and the kidneys are saving sodium. Keep checking in twice a day."
+          }
+        }
+      }
+    },
+    "notify.d7.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day 7"
+          }
+        }
+      }
+    },
+    "notify.h12.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liver glycogen is running down and fat stores are opening up."
+          }
+        }
+      }
+    },
+    "notify.h12.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "12 hours in"
+          }
+        }
+      }
+    },
+    "notify.h36.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketone production is climbing. Get up slowly: lightheadedness on standing is common now."
+          }
+        }
+      }
+    },
+    "notify.h36.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "36 hours: the metabolic switch"
+          }
+        }
+      }
+    },
+    "notify.h72.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body-wide protein changes appear around now. Fasts beyond this point belong under medical supervision."
+          }
+        }
+      }
+    },
+    "notify.h72.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The 72-hour threshold"
+          }
+        }
+      }
+    },
+    "notify.past_target.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your fast is still running. End it in Waterline to get your refeeding plan, or check in."
+          }
+        }
+      }
+    },
+    "notify.past_target.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "12 hours past your target"
+          }
+        }
+      }
+    },
+    "notify.target.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You reached your %@ target. End the fast in Waterline to get your refeeding plan."
+          }
+        }
+      }
+    },
+    "notify.target.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Target reached"
+          }
+        }
+      }
+    },
+    "notify.unsupervised.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The research restricts fasts beyond 72 hours to medically supervised settings. End the fast now, or confirm in Waterline that a clinician is supervising."
+          }
+        }
+      }
+    },
+    "notify.unsupervised.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72 hours without supervision"
+          }
+        }
+      }
+    },
+    "phase.0.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running on your last meal"
+          }
+        }
+      }
+    },
+    "phase.0.range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0 to 12 h"
+          }
+        }
+      }
+    },
+    "phase.0.text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blood sugar comes from your last meal, then from glycogen stored in the liver. Insulin begins to fall."
+          }
+        }
+      }
+    },
+    "phase.1.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glycogen runs down"
+          }
+        }
+      }
+    },
+    "phase.1.range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "12 to 36 h"
+          }
+        }
+      }
+    },
+    "phase.1.text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liver glycogen is used up. Falling insulin unlocks fat stores, sending fatty acids and glycerol into the blood. Each gram of glycogen holds 3 to 4 g of water, so early weight loss is mostly water."
+          }
+        }
+      }
+    },
+    "phase.2.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The metabolic switch"
+          }
+        }
+      }
+    },
+    "phase.2.range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "36 to 72 h"
+          }
+        }
+      }
+    },
+    "phase.2.text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The liver turns the flood of fatty acids into ketones (acetoacetate and beta-hydroxybutyrate, or BHB). Low insulin makes the kidneys shed sodium, so blood pressure drops. Typical loss over the first 3 days is 0.9 to 1.5 kg a day, mostly water, glycogen and gut contents."
+          }
+        }
+      }
+    },
+    "phase.3.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The 72-hour threshold"
+          }
+        }
+      }
+    },
+    "phase.3.range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day 4"
+          }
+        }
+      }
+    },
+    "phase.3.text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A study that tracked about 3,000 blood proteins daily saw only small changes for 48 hours. From the third day, about 36% of them changed together across every major organ system. 72-hour trials also show more autophagy markers (LC3-II, Beclin-1)."
+          }
+        }
+      }
+    },
+    "phase.4.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keto-adaptation"
+          }
+        }
+      }
+    },
+    "phase.4.range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days 5 to 7"
+          }
+        }
+      }
+    },
+    "phase.4.text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Once BHB passes 2.0 mmol/L, ketones reach the brain and can cover 60 to 70% of its energy. The body needs less glucose made from muscle protein, so protein breakdown drops and steadies around days 4 to 7. The kidneys raise ammonium output to save sodium and potassium."
+          }
+        }
+      }
+    },
+    "phase.5.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deep ketosis"
+          }
+        }
+      }
+    },
+    "phase.5.range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days 8 to 10"
+          }
+        }
+      }
+    },
+    "phase.5.text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BHB usually sits between 3.0 and 7.0 mmol/L by days 5 to 10, up from under 0.1 mmol/L at baseline. IGF-1 falls 40 to 60% by days 5 to 8. Weight loss slows to about 0.25 to 0.40 kg a day as the kidneys switch to saving sodium."
+          }
+        }
+      }
+    },
+    "phase.6.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prolonged fast"
+          }
+        }
+      }
+    },
+    "phase.6.range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days 11 to 21"
+          }
+        }
+      }
+    },
+    "phase.6.text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Free T3 falls and metabolic rate drops to save energy. Under medical supervision, about 28% of fasters had a severe (Grade 3) side effect by day 10 and 32% by day 15."
+          }
+        }
+      }
+    },
+    "phase.7.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extreme range"
+          }
+        }
+      }
+    },
+    "phase.7.range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Past day 21"
+          }
+        }
+      }
+    },
+    "phase.7.text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lean tissue loss, low micronutrients and strain on the heart become major concerns. Fasts this long have only been studied in residential medical settings."
+          }
+        }
+      }
+    },
+    "phase_card.next": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next: %1$@ in %2$@."
+          }
+        }
+      }
+    },
+    "phase_card.now": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Now · %@"
+          }
+        }
+      }
+    },
+    "plan.cautions.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your answers need a doctor's input:"
+          }
+        }
+      }
+    },
+    "plan.custom_hours": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Or enter hours"
+          }
+        }
+      }
+    },
+    "plan.custom_hours.range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "12 to 960"
+          }
+        }
+      }
+    },
+    "plan.doctor_reviewed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My doctor has reviewed this fast and my medicines."
+          }
+        }
+      }
+    },
+    "plan.error.future": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The start time is in the future. Turn off “I started earlier” to start now."
+          }
+        }
+      }
+    },
+    "plan.error.too_old": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The start time is more than 7 days ago. Pick a later time."
+          }
+        }
+      }
+    },
+    "plan.eyebrow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan a fast"
+          }
+        }
+      }
+    },
+    "plan.reason.answers_need_supervision": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your answers mean this fast needs a clinician supervising."
+          }
+        }
+      }
+    },
+    "plan.reason.bone": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With osteopenia or osteoporosis, keep fasts to 72 hours or less."
+          }
+        }
+      }
+    },
+    "plan.reason.doctor": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm your doctor has reviewed this fast and your medicines."
+          }
+        }
+      }
+    },
+    "plan.reason.long_needs_supervision": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasts longer than 72 hours need a clinician supervising."
+          }
+        }
+      }
+    },
+    "plan.start": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start %@ fast"
+          }
+        }
+      }
+    },
+    "plan.started": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Started"
+          }
+        }
+      }
+    },
+    "plan.started_earlier": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I started earlier"
+          }
+        }
+      }
+    },
+    "plan.supervised": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A clinician is supervising this fast, with regular checks of my blood pressure, pulse and blood tests."
+          }
+        }
+      }
+    },
+    "plan.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How long?"
+          }
+        }
+      }
+    },
+    "profile.about.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About you"
+          }
+        }
+      }
+    },
+    "profile.age": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Age"
+          }
+        }
+      }
+    },
+    "profile.bmi": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMI"
+          }
+        }
+      }
+    },
+    "profile.bmi.ok": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "18.5 or above"
+          }
+        }
+      }
+    },
+    "profile.bmi.under16": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under 16"
+          }
+        }
+      }
+    },
+    "profile.bmi.under18": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under 18.5"
+          }
+        }
+      }
+    },
+    "profile.clinician.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shown on the Today screen during a fast, with a call button, so it is close at hand."
+          }
+        }
+      }
+    },
+    "profile.clinician.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        }
+      }
+    },
+    "profile.clinician.phone": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phone"
+          }
+        }
+      }
+    },
+    "profile.clinician.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your clinician"
+          }
+        }
+      }
+    },
+    "profile.data.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Everything is saved in a protected file on this iPhone. Nothing leaves the device unless you switch on cloud backup."
+          }
+        }
+      }
+    },
+    "profile.data.delete": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete all my data"
+          }
+        }
+      }
+    },
+    "profile.data.delete_confirm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete everything?"
+          }
+        }
+      }
+    },
+    "profile.data.delete_message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your profile, answers, current fast and history will be gone for good, including any cloud copy."
+          }
+        }
+      }
+    },
+    "profile.data.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your data"
+          }
+        }
+      }
+    },
+    "profile.height": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Height"
+          }
+        }
+      }
+    },
+    "profile.reminders.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check-in prompts at 9:00 and 21:00 during a fast, plus alerts at 12 h, 36 h, 72 h, day 7 and your target."
+          }
+        }
+      }
+    },
+    "profile.reminders.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminders"
+          }
+        }
+      }
+    },
+    "profile.safety.absolute": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do any of these apply to you?"
+          }
+        }
+      }
+    },
+    "profile.safety.absolute.hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Any yes rules out water fasting."
+          }
+        }
+      }
+    },
+    "profile.safety.refeed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refeeding risk"
+          }
+        }
+      }
+    },
+    "profile.safety.refeed.hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These raise the risk of problems when you start eating again."
+          }
+        }
+      }
+    },
+    "profile.safety.relative": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medicines and conditions"
+          }
+        }
+      }
+    },
+    "profile.safety.relative.hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A yes means a doctor must be involved first."
+          }
+        }
+      }
+    },
+    "profile.safety.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Safety check"
+          }
+        }
+      }
+    },
+    "profile.sex": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sex, for calorie estimates"
+          }
+        }
+      }
+    },
+    "profile.sex.female": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Female"
+          }
+        }
+      }
+    },
+    "profile.sex.male": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Male"
+          }
+        }
+      }
+    },
+    "profile.sex.unspecified": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prefer not to say"
+          }
+        }
+      }
+    },
+    "profile.summary.add_details": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "add your details below"
+          }
+        }
+      }
+    },
+    "profile.summary.blocked.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Talk to your doctor about what is safe."
+          }
+        }
+      }
+    },
+    "profile.summary.clear": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No red flags in your answers"
+          }
+        }
+      }
+    },
+    "profile.summary.clear.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "That does not replace a check-up. Clinics still run blood tests, a urine test and an ECG before a fast."
+          }
+        }
+      }
+    },
+    "profile.summary.doctor": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doctor review needed"
+          }
+        }
+      }
+    },
+    "profile.summary.incomplete": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Safety check: %@."
+          }
+        }
+      }
+    },
+    "profile.summary.incomplete.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your answers decide which fasts Waterline will help you plan."
+          }
+        }
+      }
+    },
+    "profile.weight": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight"
+          }
+        }
+      }
+    },
+    "protocol.adf.allowed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water, black coffee, unsweetened tea"
+          }
+        }
+      }
+    },
+    "protocol.adf.calories": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0 kcal or a small allowance on fast days"
+          }
+        }
+      }
+    },
+    "protocol.adf.length": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alternating 24 h"
+          }
+        }
+      }
+    },
+    "protocol.adf.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alternate-day fasting"
+          }
+        }
+      }
+    },
+    "protocol.adf.setting": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lifestyle routine"
+          }
+        }
+      }
+    },
+    "protocol.buchinger.allowed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vegetable broth, fresh juice, herbal tea with honey"
+          }
+        }
+      }
+    },
+    "protocol.buchinger.calories": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "200 to 250 kcal a day"
+          }
+        }
+      }
+    },
+    "protocol.buchinger.length": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 to 20 days"
+          }
+        }
+      }
+    },
+    "protocol.buchinger.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buchinger"
+          }
+        }
+      }
+    },
+    "protocol.buchinger.setting": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Residential or outpatient, run by certified therapists"
+          }
+        }
+      }
+    },
+    "protocol.fmd.allowed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plant-based soups, energy bars, teas, a glycerol drink"
+          }
+        }
+      }
+    },
+    "protocol.fmd.calories": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reduced"
+          }
+        }
+      }
+    },
+    "protocol.fmd.length": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 days per cycle"
+          }
+        }
+      }
+    },
+    "protocol.fmd.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasting-mimicking diet"
+          }
+        }
+      }
+    },
+    "protocol.fmd.setting": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Self-run or supervised"
+          }
+        }
+      }
+    },
+    "protocol.tre.allowed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water and zero-calorie drinks while fasting"
+          }
+        }
+      }
+    },
+    "protocol.tre.calories": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Normal, inside an eating window"
+          }
+        }
+      }
+    },
+    "protocol.tre.length": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "14 to 20 h fasting daily"
+          }
+        }
+      }
+    },
+    "protocol.tre.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time-restricted eating"
+          }
+        }
+      }
+    },
+    "protocol.tre.setting": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lifestyle routine"
+          }
+        }
+      }
+    },
+    "protocol.water.allowed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plain distilled or mineral water, 1.2 to 2.5 L a day or more"
+          }
+        }
+      }
+    },
+    "protocol.water.calories": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0 kcal a day"
+          }
+        }
+      }
+    },
+    "protocol.water.length": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 to 21+ days"
+          }
+        }
+      }
+    },
+    "protocol.water.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water-only"
+          }
+        }
+      }
+    },
+    "protocol.water.setting": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Residential, with twice-daily checks and lab tests"
+          }
+        }
+      }
+    },
+    "refeed.active.day": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day %1$lld of %2$lld"
+          }
+        }
+      }
+    },
+    "refeed.active.eyebrow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your refeeding plan"
+          }
+        }
+      }
+    },
+    "refeed.active.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After a fast of %1$lld hours, refeed for at least %2$@: half the length of the fast."
+          }
+        }
+      }
+    },
+    "refeed.finish.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move on to a whole-food, low-sodium diet. Without lasting changes, blood pressure, blood sugar and blood fats drift back toward where they started within 3 to 4 months."
+          }
+        }
+      }
+    },
+    "refeed.finish.button": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mark refeeding complete"
+          }
+        }
+      }
+    },
+    "refeed.finish.confirm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mark refeeding complete?"
+          }
+        }
+      }
+    },
+    "refeed.finish.confirm_action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mark complete"
+          }
+        }
+      }
+    },
+    "refeed.finish.not_yet": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not yet"
+          }
+        }
+      }
+    },
+    "refeed.finish.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finished refeeding?"
+          }
+        }
+      }
+    },
+    "refeed.plan.by_day": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day by day"
+          }
+        }
+      }
+    },
+    "refeed.plan.calories": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calories"
+          }
+        }
+      }
+    },
+    "refeed.plan.day": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day %lld"
+          }
+        }
+      }
+    },
+    "refeed.plan.fluids": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salt and fluids"
+          }
+        }
+      }
+    },
+    "refeed.plan.for_you": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For you: %@."
+          }
+        }
+      }
+    },
+    "refeed.plan.length": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Length"
+          }
+        }
+      }
+    },
+    "refeed.plan.length_value": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, at least half the fast"
+          }
+        }
+      }
+    },
+    "refeed.plan.monitoring": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monitoring"
+          }
+        }
+      }
+    },
+    "refeed.plan.needs_clinician": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This refeed needs a clinician."
+          }
+        }
+      }
+    },
+    "refeed.plan.needs_clinician.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Significant-risk refeeding uses prescribed thiamine and daily blood tests."
+          }
+        }
+      }
+    },
+    "refeed.plan.no_salt": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Throughout: no added salt or salty seasonings. Insulin makes the kidneys hold sodium and water after a fast, which can cause swelling and strain the heart."
+          }
+        }
+      }
+    },
+    "refeed.plan.risk_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refeeding risk"
+          }
+        }
+      }
+    },
+    "refeed.plan.source": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ranges come from ASPEN and NICE refeeding guidance. Your clinician sets the final numbers."
+          }
+        }
+      }
+    },
+    "refeed.plan.today": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "today"
+          }
+        }
+      }
+    },
+    "refeed.planner.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coming off a fast is the riskiest part. Eating too much too fast can drive phosphate, potassium and magnesium into cells all at once (refeeding syndrome), and salt can make the body hold fluid. Plan the way back before you start."
+          }
+        }
+      }
+    },
+    "refeed.planner.eyebrow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refeeding planner"
+          }
+        }
+      }
+    },
+    "refeed.planner.invalid": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter a fast length between 1 and 40 days."
+          }
+        }
+      }
+    },
+    "refeed.planner.length": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast length"
+          }
+        }
+      }
+    },
+    "refeed.planner.prefilled": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prefilled with your current target. When you end the fast, this plan starts automatically."
+          }
+        }
+      }
+    },
+    "refeed.planner.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breaking a fast safely"
+          }
+        }
+      }
+    },
+    "refeed.reason.bmi_16_18": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMI 16 to 18.5"
+          }
+        }
+      }
+    },
+    "refeed.reason.bmi_under_16": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMI under 16"
+          }
+        }
+      }
+    },
+    "refeed.reason.electrolytes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "low electrolytes"
+          }
+        }
+      }
+    },
+    "refeed.reason.fast_5_7": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fast of 5 to 7 days"
+          }
+        }
+      }
+    },
+    "refeed.reason.long_fast": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fast longer than 7 days"
+          }
+        }
+      }
+    },
+    "refeed.reason.weight_loss": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "recent unintended weight loss"
+          }
+        }
+      }
+    },
+    "refeed_today.check_in": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check in"
+          }
+        }
+      }
+    },
+    "refeed_today.eyebrow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refeeding · day %1$lld of %2$lld"
+          }
+        }
+      }
+    },
+    "refeed_today.full_plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See the full plan"
+          }
+        }
+      }
+    },
+    "refeed_today.no_salt.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After a fast, insulin makes the kidneys hold on to sodium and water. Salt now can cause swelling and strain the heart."
+          }
+        }
+      }
+    },
+    "refeed_today.no_salt.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No added salt yet."
+          }
+        }
+      }
+    },
+    "refeed_today.then": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ", then "
+          }
+        }
+      }
+    },
+    "refeed_warnings.breath": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "shortness of breath"
+          }
+        }
+      }
+    },
+    "refeed_warnings.confusion": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "confusion"
+          }
+        }
+      }
+    },
+    "refeed_warnings.heart": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "a racing or irregular heartbeat"
+          }
+        }
+      }
+    },
+    "refeed_warnings.note": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These can signal refeeding syndrome (phosphate, potassium and magnesium rushing into cells) or refeeding swelling (edema). Both are most likely in the first 3 to 5 days of eating again."
+          }
+        }
+      }
+    },
+    "refeed_warnings.swelling": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "swelling in your ankles, legs or face"
+          }
+        }
+      }
+    },
+    "refeed_warnings.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Call your clinician if you notice"
+          }
+        }
+      }
+    },
+    "refeed_warnings.weakness": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "muscle weakness or new numbness"
+          }
+        }
+      }
+    },
+    "risk.acid.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast, deep breathing means stop and get medical help."
+          }
+        }
+      }
+    },
+    "risk.acid.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketone acid build-up (metabolic acidosis)"
+          }
+        }
+      }
+    },
+    "risk.acid.signs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast, deep breathing, nausea, extreme tiredness."
+          }
+        }
+      }
+    },
+    "risk.bone.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A reason to cap how long a fast runs, especially with low bone density."
+          }
+        }
+      }
+    },
+    "risk.bone.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bone mineral loss"
+          }
+        }
+      }
+    },
+    "risk.bone.signs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No symptoms. Shows up as more calcium in urine."
+          }
+        }
+      }
+    },
+    "risk.gout.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep up your water intake. An acute flare means ending the fast."
+          }
+        }
+      }
+    },
+    "risk.gout.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "High uric acid and gout"
+          }
+        }
+      }
+    },
+    "risk.gout.signs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hot, red, painful swelling in a joint, often the big toe."
+          }
+        }
+      }
+    },
+    "risk.hypona.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only a blood test can confirm sodium below 136 mmol/L. Tell your clinician. Stay inside your water target rather than drinking extra."
+          }
+        }
+      }
+    },
+    "risk.hypona.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Low sodium (hyponatremia)"
+          }
+        }
+      }
+    },
+    "risk.hypona.signs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muscle cramps, sluggishness, headache, dizziness."
+          }
+        }
+      }
+    },
+    "risk.ortho.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sit on the edge of the bed before standing. Keep to rest and quiet walking."
+          }
+        }
+      }
+    },
+    "risk.ortho.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Low blood pressure on standing"
+          }
+        }
+      }
+    },
+    "risk.ortho.signs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lightheaded, faint or a racing heart when you stand up."
+          }
+        }
+      }
+    },
+    "screen.bone.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasts over 72 hours are off the table. Keep any fast short."
+          }
+        }
+      }
+    },
+    "screen.bone.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Osteopenia or osteoporosis"
+          }
+        }
+      }
+    },
+    "screen.bone.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Long fasts draw minerals from bone to buffer ketone acids."
+          }
+        }
+      }
+    },
+    "screen.bpmeds.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only your doctor should reduce or stop these."
+          }
+        }
+      }
+    },
+    "screen.bpmeds.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taking blood pressure medicine (ACE inhibitor, ARB, calcium channel blocker, beta-blocker)"
+          }
+        }
+      }
+    },
+    "screen.bpmeds.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasting lowers blood pressure by itself. Full doses on top can cause severe low pressure, fainting and poor blood flow to the kidneys."
+          }
+        }
+      }
+    },
+    "screen.cachexia.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Severe weight or muscle wasting (cachexia, sarcopenia)"
+          }
+        }
+      }
+    },
+    "screen.cachexia.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without fat and protein reserves, fasting can waste heart muscle and cause fatal heart rhythms."
+          }
+        }
+      }
+    },
+    "screen.ckd.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Advanced kidney disease (CKD stage 3b to 5, or dialysis)"
+          }
+        }
+      }
+    },
+    "screen.ckd.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The kidneys cannot clear the acid load, which risks severe acidosis and high potassium."
+          }
+        }
+      }
+    },
+    "screen.diuretic.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your doctor has to stop it before the fast, and the fast needs inpatient monitoring."
+          }
+        }
+      }
+    },
+    "screen.diuretic.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taking a diuretic (“water pill”)"
+          }
+        }
+      }
+    },
+    "screen.diuretic.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diuretics add to the sodium loss of fasting and can cause fluid collapse, fainting, low potassium and heart rhythm problems."
+          }
+        }
+      }
+    },
+    "screen.ed.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A current or past eating disorder (anorexia, bulimia, ARFID)"
+          }
+        }
+      }
+    },
+    "screen.ed.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopping food can set off a serious relapse and carries a high risk of fatal refeeding problems. If eating feels hard right now, an eating disorder support service can help."
+          }
+        }
+      }
+    },
+    "screen.gout.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink enough water and have uric acid checked during the fast."
+          }
+        }
+      }
+    },
+    "screen.gout.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gout or high uric acid"
+          }
+        }
+      }
+    },
+    "screen.gout.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ketones compete with uric acid for removal by the kidneys, which can set off a gout flare."
+          }
+        }
+      }
+    },
+    "screen.heart.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needs specialist supervision."
+          }
+        }
+      }
+    },
+    "screen.heart.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart disease or a heart rhythm problem"
+          }
+        }
+      }
+    },
+    "screen.heart.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Electrolyte losses can trigger rhythm problems, and refeeding can overload the heart with salt and fluid."
+          }
+        }
+      }
+    },
+    "screen.lithium.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needs close monitoring by your prescriber."
+          }
+        }
+      }
+    },
+    "screen.lithium.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taking lithium or another psychiatric medicine with a narrow safe range"
+          }
+        }
+      }
+    },
+    "screen.lithium.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dehydration and sodium changes slow lithium clearance and raise the risk of toxicity."
+          }
+        }
+      }
+    },
+    "screen.liver.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cirrhosis of the liver with complications"
+          }
+        }
+      }
+    },
+    "screen.liver.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The liver cannot store glycogen or make glucose well, so blood sugar stays dangerously low."
+          }
+        }
+      }
+    },
+    "screen.lytes.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Been told you have low phosphate, potassium or magnesium"
+          }
+        }
+      }
+    },
+    "screen.porph.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acute porphyria"
+          }
+        }
+      }
+    },
+    "screen.porph.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cutting calories switches on the liver enzyme ALAS1, which sets off attacks."
+          }
+        }
+      }
+    },
+    "screen.preg.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregnant or breastfeeding"
+          }
+        }
+      }
+    },
+    "screen.preg.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A baby relies on a steady supply of glucose and amino acids, sustained ketones may affect brain development, and milk supply drops."
+          }
+        }
+      }
+    },
+    "screen.t1d.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type 1 diabetes"
+          }
+        }
+      }
+    },
+    "screen.t1d.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without your own insulin, a fast leads to diabetic ketoacidosis if insulin is stopped, or dangerously low blood sugar if it is not."
+          }
+        }
+      }
+    },
+    "screen.t2d.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medicines must be tapered or stopped by a doctor, SGLT2 inhibitors well before the fast. Fast only under physician oversight."
+          }
+        }
+      }
+    },
+    "screen.t2d.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type 2 diabetes treated with tablets or insulin"
+          }
+        }
+      }
+    },
+    "screen.t2d.why": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sulfonylureas cause severe low blood sugar without food. SGLT2 inhibitors can cause ketoacidosis even with normal glucose."
+          }
+        }
+      }
+    },
+    "screen.wtloss.question": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lost more than 10% of your body weight without trying in the last 3 to 6 months"
+          }
+        }
+      }
+    },
+    "setup.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water fasting is not safe for everyone. Answer a few questions first. They come straight from the contraindications in the clinical research."
+          }
+        }
+      }
+    },
+    "setup.eyebrow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get set up"
+          }
+        }
+      }
+    },
+    "setup.go": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go to the safety check"
+          }
+        }
+      }
+    },
+    "setup.step1": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1. Add your height, weight and age"
+          }
+        }
+      }
+    },
+    "setup.step2": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2. Answer the safety questions"
+          }
+        }
+      }
+    },
+    "setup.step3": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3. Plan your fast"
+          }
+        }
+      }
+    },
+    "setup.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start with the safety check"
+          }
+        }
+      }
+    },
+    "stage.fruitVeg.text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raw whole fruit and steamed non-starchy vegetables, in small meals."
+          }
+        }
+      }
+    },
+    "stage.fruitVeg.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole fruit and steamed vegetables"
+          }
+        }
+      }
+    },
+    "stage.juice.text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fresh fruit or vegetable juice diluted with water, 100 to 200 mL every 2 to 3 hours. It gently restarts stomach acid, digestive enzymes and insulin."
+          }
+        }
+      }
+    },
+    "stage.juice.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diluted juice"
+          }
+        }
+      }
+    },
+    "stage.starch.text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complex carbohydrates such as sweet potato or brown rice, plus modest plant fats like avocado, nuts or seeds. Keep avoiding concentrated animal fats and refined sugar."
+          }
+        }
+      }
+    },
+    "stage.starch.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add starches and plant fats"
+          }
+        }
+      }
+    },
+    "stop.add_clinician": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add your clinician's contact details in Profile so they show here."
+          }
+        }
+      }
+    },
+    "stop.breathing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "start fast, deep breathing"
+          }
+        }
+      }
+    },
+    "stop.call": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Call"
+          }
+        }
+      }
+    },
+    "stop.chest": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "have chest pain, or a racing or irregular heartbeat"
+          }
+        }
+      }
+    },
+    "stop.clinics": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supervised clinics also end a fast when its goal is reached or when vital signs become unstable."
+          }
+        }
+      }
+    },
+    "stop.confused": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "become confused"
+          }
+        }
+      }
+    },
+    "stop.faint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "faint or nearly faint"
+          }
+        }
+      }
+    },
+    "stop.joint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "get a hot, swollen, painful joint"
+          }
+        }
+      }
+    },
+    "stop.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End the fast and get help if you"
+          }
+        }
+      }
+    },
+    "stop.vomit": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vomit and cannot keep water down"
+          }
+        }
+      }
+    },
+    "stop.your_clinician": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your clinician"
+          }
+        }
+      }
+    },
+    "study.dai.cohort": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Overweight men without diabetes, 10-day water fast"
+          }
+        }
+      }
+    },
+    "study.dai.finding": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight fell 7.28 kg (9.8%). Systolic pressure was down 6.44% by day 7 and 14.68% at its lowest, on the first day of refeeding. Sodium, chloride and IGF-1 fell."
+          }
+        }
+      }
+    },
+    "study.goldhamer.cohort": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "174 adults with high blood pressure, water fast averaging 10.5 days"
+          }
+        }
+      }
+    },
+    "study.goldhamer.finding": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "89% reached a reading under 140/90 mmHg. People starting above 180/110 dropped 37/13 mmHg on average. Everyone on blood pressure medicine stopped it during the fast with no rebound."
+          }
+        }
+      }
+    },
+    "study.oglodek.cohort": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Healthy, normal-weight men, 8-day water fast"
+          }
+        }
+      }
+    },
+    "study.oglodek.finding": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lower blood pressure, weight, BMI, fat-free mass and body water. Low sodium (under 136 mmol/L) developed, and uric acid clearance fell."
+          }
+        }
+      }
+    },
+    "study.pietzner.cohort": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Healthy adults, 7-day water fast"
+          }
+        }
+      }
+    },
+    "study.pietzner.finding": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average loss of 5.7 kg, with the lean mass regained after refeeding. A distinct change in blood proteins appeared from day 3, involving about 36% of those measured."
+          }
+        }
+      }
+    },
+    "study.scharf.cohort": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adults with obesity, no diabetes, 17-day water fast"
+          }
+        }
+      }
+    },
+    "study.scharf.finding": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body weight fell 10.2%. Blood pressure, fasting glucose, insulin and insulin resistance (HOMA-IR) fell. Triglycerides rose for a while."
+          }
+        }
+      }
+    },
+    "symptom.backpain": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lower back pain"
+          }
+        }
+      }
+    },
+    "symptom.breathing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast, deep breathing"
+          }
+        }
+      }
+    },
+    "symptom.breathless": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Short of breath"
+          }
+        }
+      }
+    },
+    "symptom.chest": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chest pain or irregular heartbeat"
+          }
+        }
+      }
+    },
+    "symptom.confusion": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confusion"
+          }
+        }
+      }
+    },
+    "symptom.cramps": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muscle cramps"
+          }
+        }
+      }
+    },
+    "symptom.dizzy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lightheaded when standing"
+          }
+        }
+      }
+    },
+    "symptom.drymouth": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dry mouth"
+          }
+        }
+      }
+    },
+    "symptom.dyspepsia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indigestion"
+          }
+        }
+      }
+    },
+    "symptom.faint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fainted or nearly fainted"
+          }
+        }
+      }
+    },
+    "symptom.fatigue": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiredness"
+          }
+        }
+      }
+    },
+    "symptom.headache": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Headache"
+          }
+        }
+      }
+    },
+    "symptom.insomnia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poor sleep"
+          }
+        }
+      }
+    },
+    "symptom.joint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hot, swollen, painful joint"
+          }
+        }
+      }
+    },
+    "symptom.lethargy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heavy, sluggish drowsiness"
+          }
+        }
+      }
+    },
+    "symptom.nausea": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nausea"
+          }
+        }
+      }
+    },
+    "symptom.swelling": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swollen ankles, legs or face"
+          }
+        }
+      }
+    },
+    "symptom.vomit": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vomiting, can't keep water down"
+          }
+        }
+      }
+    },
+    "tab.learn": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learn"
+          }
+        }
+      }
+    },
+    "tab.log": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log"
+          }
+        }
+      }
+    },
+    "tab.profile": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profile"
+          }
+        }
+      }
+    },
+    "tab.refeed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refeed"
+          }
+        }
+      }
+    },
+    "tab.today": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        }
+      }
+    },
+    "teaser.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From the glycogen switch at 12 to 36 hours to the protein changes that appear around day 3, read what the research found, including the risks."
+          }
+        }
+      }
+    },
+    "teaser.eyebrow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "While you're here"
+          }
+        }
+      }
+    },
+    "teaser.open": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Learn"
+          }
+        }
+      }
+    },
+    "teaser.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What a water fast does, hour by hour"
+          }
+        }
+      }
+    },
+    "tier.high.criteria": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast over 7 days, BMI under 16, recent unintended weight loss over 10%, or low electrolytes before refeeding."
+          }
+        }
+      }
+    },
+    "tier.high.fluids": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiamine (vitamin B1), 100 to 300 mg a day as prescribed. No added salt. Electrolytes replaced as needed."
+          }
+        }
+      }
+    },
+    "tier.high.label": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Significant risk"
+          }
+        }
+      }
+    },
+    "tier.high.monitoring": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily blood tests (electrolytes, magnesium, phosphorus) for 3 to 5 days."
+          }
+        }
+      }
+    },
+    "tier.low.criteria": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast under 5 days, normal electrolytes and a healthy BMI."
+          }
+        }
+      }
+    },
+    "tier.low.fluids": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drink to thirst. Keep added salt out at first, then bring it back slowly."
+          }
+        }
+      }
+    },
+    "tier.low.label": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lower risk"
+          }
+        }
+      }
+    },
+    "tier.low.monitoring": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baseline checks only. Get tested if symptoms appear."
+          }
+        }
+      }
+    },
+    "tier.moderate.criteria": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast of 5 to 7 days, or BMI 16 to 18.5."
+          }
+        }
+      }
+    },
+    "tier.moderate.fluids": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No added salt. Make sure food supplies potassium and phosphorus."
+          }
+        }
+      }
+    },
+    "tier.moderate.label": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moderate risk"
+          }
+        }
+      }
+    },
+    "tier.moderate.monitoring": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vital signs twice a day and blood electrolytes every 48 hours."
+          }
+        }
+      }
+    },
+    "timeline.accessibility": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timeline: %1$lld hours elapsed of a %2$lld hour target"
+          }
+        }
+      }
+    },
+    "timeline.now": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Now"
+          }
+        }
+      }
+    },
+    "timeline.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shaded by metabolic phase, deeper over time"
+          }
+        }
+      }
+    },
+    "timeline.target": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your target"
+          }
+        }
+      }
+    },
+    "timeline.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where you are in the fast"
+          }
+        }
+      }
+    },
+    "timer.day_of_plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day %1$lld of a %2$@ plan"
+          }
+        }
+      }
+    },
+    "timer.of_target": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "of target"
+          }
+        }
+      }
+    },
+    "timer.reached_ago": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Target reached %@ ago."
+          }
+        }
+      }
+    },
+    "timer.since": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasting since %@"
+          }
+        }
+      }
+    },
+    "timer.supervised": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "supervised"
+          }
+        }
+      }
+    },
+    "timer.to_go": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ to go until your %2$@ target."
+          }
+        }
+      }
+    },
+    "unit.bpm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld bpm"
+          }
+        }
+      }
+    },
+    "unit.cm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cm"
+          }
+        }
+      }
+    },
+    "unit.days": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "days"
+          }
+        }
+      }
+    },
+    "unit.days_short": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ d"
+          }
+        }
+      }
+    },
+    "unit.hours_short": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld h"
+          }
+        }
+      }
+    },
+    "unit.kg": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kg"
+          }
+        }
+      }
+    },
+    "unit.litres": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L"
+          }
+        }
+      }
+    },
+    "unit.mmol_l": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mmol/L"
+          }
+        }
+      }
+    },
+    "unit.years": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "years"
+          }
+        }
+      }
+    },
+    "watch.days_from": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days %lld+"
+          }
+        }
+      }
+    },
+    "watch.days_range": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days %1$lld to %2$lld"
+          }
+        }
+      }
+    },
+    "watch.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The windows when these problems usually start, from supervised fasting data."
+          }
+        }
+      }
+    },
+    "watch.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watch for, on day %lld"
+          }
+        }
+      }
+    },
+    "water.add": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+ %lld mL"
+          }
+        }
+      }
+    },
+    "water.kind": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plain distilled or low-mineral water."
+          }
+        }
+      }
+    },
+    "water.meter.accessibility": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water today: %lld millilitres. Target 1,200 to 2,500."
+          }
+        }
+      }
+    },
+    "water.remove": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "− %lld mL"
+          }
+        }
+      }
+    },
+    "water.remove.accessibility": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove %lld millilitres"
+          }
+        }
+      }
+    },
+    "water.status.above": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Above the usual range. More plain water is not better: it can dilute blood sodium."
+          }
+        }
+      }
+    },
+    "water.status.below": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Below the 1.2 L daily minimum so far."
+          }
+        }
+      }
+    },
+    "water.status.inside": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inside the 1.2 to 2.5 L range."
+          }
+        }
+      }
+    },
+    "water.status.none": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing logged yet today."
+          }
+        }
+      }
+    },
+    "water.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water today"
+          }
+        }
+      }
+    },
+    "weight.change_detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kg change (%1$@%%), about %2$@ kg a day"
+          }
+        }
+      }
+    },
+    "weight.expected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected: 0.9 to 1.5 kg a day over the first 3 days, slowing to 0.25 to 0.40 kg a day by days 7 to 10. Across 5 to 20 day fasts about two-thirds of the loss is lean mass, mostly glycogen and water that return within 3 to 5 days of eating. The fat loss stays."
+          }
+        }
+      }
+    },
+    "weight.latest": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kg latest"
+          }
+        }
+      }
+    },
+    "weight.start": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kg at the start"
+          }
+        }
+      }
+    },
+    "weight.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight"
+          }
+        }
+      }
+    },
+    "welcome.disclaimer.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline is an educational tool. The research it draws on restricts fasts longer than 72 hours to medically supervised settings."
+          }
+        }
+      }
+    },
+    "welcome.disclaimer.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not medical advice"
+          }
+        }
+      }
+    },
+    "welcome.refeed.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A refeeding plan sized to your fast, using the ASPEN and NICE risk levels."
+          }
+        }
+      }
+    },
+    "welcome.refeed.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Break the fast safely"
+          }
+        }
+      }
+    },
+    "welcome.start": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get started"
+          }
+        }
+      }
+    },
+    "welcome.tagline": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water fasting, by the evidence"
+          }
+        }
+      }
+    },
+    "welcome.timer.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A live timer shows each metabolic phase, from glycogen running out to the 72-hour threshold."
+          }
+        }
+      }
+    },
+    "welcome.timer.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Know where you are"
+          }
+        }
+      }
+    },
+    "welcome.warnings.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check-ins grade blood pressure, ketones and symptoms against the clinical research."
+          }
+        }
+      }
+    },
+    "welcome.warnings.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Catch warning signs early"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

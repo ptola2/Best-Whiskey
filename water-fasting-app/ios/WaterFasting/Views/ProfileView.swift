@@ -21,7 +21,7 @@ struct ProfileView: View {
             }
             .scrollDismissesKeyboard(.interactively)
             .screenBackground()
-            .navigationTitle("Profile")
+            .navigationTitle(tr("tab.profile"))
             .keyboardDoneButton()
         }
     }
@@ -32,25 +32,25 @@ private struct ScreeningSummary: View {
 
     var body: some View {
         if !result.complete {
-            let what = result.profileComplete ? "\(Fmt.plural(result.missing, "question")) left" : "add your details below"
+            let what = result.profileComplete ? trCount("count.questions_left", result.missing) : tr("profile.summary.add_details")
             Notice(tone: .info) {
-                Text("Safety check: \(what).").bold()
-                Para(text: "Your answers decide which fasts Waterline will help you plan.", font: .subheadline)
+                Text(tr("profile.summary.incomplete", what)).bold()
+                Para(text: tr("profile.summary.incomplete.body"), font: .subheadline)
             }
         } else if !result.blockers.isEmpty {
             Notice(tone: .stop) {
-                StatusPill(level: .stop, text: "Water fasting is not safe for you")
-                Para(text: result.blockers.map(\.title).joined(separator: "; ") + ". Talk to your doctor about what is safe.", font: .subheadline)
+                StatusPill(level: .stop, text: tr("blocked.title"))
+                Para(text: result.blockers.map(\.title).joined(separator: "; ") + ". " + tr("profile.summary.blocked.body"), font: .subheadline)
             }
         } else if !result.cautions.isEmpty {
             Notice(tone: .caution) {
-                StatusPill(level: .caution, text: "Doctor review needed")
+                StatusPill(level: .caution, text: tr("profile.summary.doctor"))
                 Para(text: result.cautions.map(\.question).joined(separator: "; ") + ".", font: .subheadline)
             }
         } else {
             Notice(tone: .ok) {
-                StatusPill(level: .ok, text: "No red flags in your answers")
-                Para(text: "That does not replace a check-up. Clinics still run blood tests, a urine test and an ECG before a fast.", font: .subheadline)
+                StatusPill(level: .ok, text: tr("profile.summary.clear"))
+                Para(text: tr("profile.summary.clear.body"), font: .subheadline)
             }
         }
     }
@@ -67,27 +67,27 @@ private struct AboutYouCard: View {
         let store = FastStore.shared
         let bmi = FastMath.bmi(store.data.profile)
         Card {
-            CardTitle(text: "About you", style: .title3)
+            CardTitle(text: tr("profile.about.title"), style: .title3)
             HStack(alignment: .top, spacing: 12) {
-                NumberField(label: "Height", unit: "cm", value: Binding(
+                NumberField(label: tr("profile.height"), unit: tr("unit.cm"), value: Binding(
                     get: { store.data.profile.heightCm },
                     set: { value in store.update { d in d.profile.heightCm = value } }))
-                NumberField(label: "Weight", unit: "kg", value: Binding(
+                NumberField(label: tr("profile.weight"), unit: tr("unit.kg"), value: Binding(
                     get: { store.data.profile.weightKg },
                     set: { value in store.update { d in d.profile.weightKg = value } }))
             }
             HStack(alignment: .top, spacing: 12) {
-                NumberField(label: "Age", unit: "years", value: Binding(
+                NumberField(label: tr("profile.age"), unit: tr("unit.years"), value: Binding(
                     get: { store.data.profile.age.map { Double($0) } },
                     set: { value in store.update { d in d.profile.age = Self.age(from: value) } }), decimals: false)
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Sex, for calorie estimates").font(.footnote.weight(.semibold)).foregroundStyle(Theme.ink2)
-                    Picker("Sex", selection: Binding(
+                    Text(tr("profile.sex")).font(.footnote.weight(.semibold)).foregroundStyle(Theme.ink2)
+                    Picker(tr("profile.sex"), selection: Binding(
                         get: { store.data.profile.sex },
                         set: { value in store.update { d in d.profile.sex = value } })) {
-                        Text("Prefer not to say").tag(Sex.unspecified)
-                        Text("Female").tag(Sex.female)
-                        Text("Male").tag(Sex.male)
+                        Text(tr("profile.sex.unspecified")).tag(Sex.unspecified)
+                        Text(tr("profile.sex.female")).tag(Sex.female)
+                        Text(tr("profile.sex.male")).tag(Sex.male)
                     }
                     .pickerStyle(.menu)
                     .labelsHidden()
@@ -96,14 +96,14 @@ private struct AboutYouCard: View {
             }
             if let bmi {
                 HStack(spacing: 10) {
-                    Eyebrow(text: "BMI")
+                    Eyebrow(text: tr("profile.bmi"))
                     Text(Fmt.one(bmi)).font(.system(size: 26, weight: .medium, design: .monospaced)).foregroundStyle(Theme.ink)
                     if bmi < 16 {
-                        StatusPill(level: .stop, text: "Under 16")
+                        StatusPill(level: .stop, text: tr("profile.bmi.under16"))
                     } else if bmi < 18.5 {
-                        StatusPill(level: .stop, text: "Under 18.5")
+                        StatusPill(level: .stop, text: tr("profile.bmi.under18"))
                     } else {
-                        StatusPill(level: .ok, text: "18.5 or above")
+                        StatusPill(level: .ok, text: tr("profile.bmi.ok"))
                     }
                 }
                 .padding(.top, 4)
@@ -115,10 +115,10 @@ private struct AboutYouCard: View {
 private struct SafetyCheckCard: View {
     var body: some View {
         Card {
-            CardTitle(text: "Safety check", style: .title3)
-            QuestionGroup(title: "Do any of these apply to you?", hint: "Any yes rules out water fasting.", questions: Research.absolute, kind: .absolute)
-            QuestionGroup(title: "Medicines and conditions", hint: "A yes means a doctor must be involved first.", questions: Research.relative, kind: .relative)
-            QuestionGroup(title: "Refeeding risk", hint: "These raise the risk of problems when you start eating again.", questions: Research.refeedRisk, kind: .refeed)
+            CardTitle(text: tr("profile.safety.title"), style: .title3)
+            QuestionGroup(title: tr("profile.safety.absolute"), hint: tr("profile.safety.absolute.hint"), questions: Research.absolute, kind: .absolute)
+            QuestionGroup(title: tr("profile.safety.relative"), hint: tr("profile.safety.relative.hint"), questions: Research.relative, kind: .relative)
+            QuestionGroup(title: tr("profile.safety.refeed"), hint: tr("profile.safety.refeed.hint"), questions: Research.refeedRisk, kind: .refeed)
         }
     }
 }
@@ -156,7 +156,7 @@ private struct QuestionGroup: View {
                             .background(Theme.stopSoft, in: RoundedRectangle(cornerRadius: 9, style: .continuous))
                     }
                     if value == true && kind == .relative {
-                        Para(text: "\(question.why) \(question.action)", font: .footnote)
+                        Para(text: question.why + " " + question.action, font: .footnote)
                             .padding(10)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .background(Theme.warnSoft, in: RoundedRectangle(cornerRadius: 9, style: .continuous))
@@ -173,13 +173,13 @@ private struct ClinicianCard: View {
     var body: some View {
         let store = FastStore.shared
         Card {
-            CardTitle(text: "Your clinician", style: .title3)
-            Para(text: "Shown on the Today screen during a fast, with a call button, so it is close at hand.", font: .footnote, color: Theme.muted)
-            LabeledField(label: "Name", text: Binding(
+            CardTitle(text: tr("profile.clinician.title"), style: .title3)
+            Para(text: tr("profile.clinician.body"), font: .footnote, color: Theme.muted)
+            LabeledField(label: tr("profile.clinician.name"), text: Binding(
                 get: { store.data.clinician.name },
                 set: { value in store.update { d in d.clinician.name = String(value.prefix(80)) } }))
                 .textContentType(.name)
-            LabeledField(label: "Phone", text: Binding(
+            LabeledField(label: tr("profile.clinician.phone"), text: Binding(
                 get: { store.data.clinician.phone },
                 set: { value in store.update { d in d.clinician.phone = String(value.prefix(40)) } }))
                 .keyboardType(.phonePad)
@@ -210,9 +210,8 @@ private struct RemindersCard: View {
         Card {
             Toggle(isOn: Binding(get: { store.data.remindersOn }, set: { store.setReminders($0) })) {
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("Reminders").font(.headline).foregroundStyle(Theme.ink)
-                    Para(text: "Check-in prompts at 9:00 and 21:00 during a fast, plus alerts at 12 h, 36 h, 72 h, day 7 and your target.",
-                         font: .footnote, color: Theme.muted)
+                    Text(tr("profile.reminders.title")).font(.headline).foregroundStyle(Theme.ink)
+                    Para(text: tr("profile.reminders.body"), font: .footnote, color: Theme.muted)
                 }
             }
             .tint(Theme.accent)
@@ -227,21 +226,20 @@ private struct DataCard: View {
 
     var body: some View {
         Card {
-            CardTitle(text: "Your data", style: .title3)
-            Para(text: "Everything is saved in a protected file on this iPhone. Nothing leaves the device unless you switch on cloud backup.",
-                 font: .subheadline, color: Theme.ink2)
+            CardTitle(text: tr("profile.data.title"), style: .title3)
+            Para(text: tr("profile.data.body"), font: .subheadline, color: Theme.ink2)
             Link(destination: AppLinks.privacyPolicy) {
-                Label("Privacy policy", systemImage: "hand.raised")
+                Label(tr("common.privacy_policy"), systemImage: "hand.raised")
                     .font(.subheadline.weight(.semibold))
             }
             .tint(Theme.accent)
-            Button("Delete all my data", role: .destructive) { confirmDelete = true }
+            Button(tr("profile.data.delete"), role: .destructive) { confirmDelete = true }
                 .buttonStyle(WLButtonStyle(kind: .danger))
                 .disabled(deleting)
-                .confirmationDialog("Delete everything?", isPresented: $confirmDelete, titleVisibility: .visible) {
-                    Button("Delete all my data", role: .destructive) { delete() }
+                .confirmationDialog(tr("profile.data.delete_confirm"), isPresented: $confirmDelete, titleVisibility: .visible) {
+                    Button(tr("profile.data.delete"), role: .destructive) { delete() }
                 } message: {
-                    Text("Your profile, answers, current fast and history will be gone for good, including any cloud copy.")
+                    Text(tr("profile.data.delete_message"))
                 }
             if deleting {
                 ProgressView().frame(maxWidth: .infinity, alignment: .leading)

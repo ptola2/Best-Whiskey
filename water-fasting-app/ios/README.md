@@ -33,6 +33,9 @@ WaterFasting/
     Models.swift                 AppData, ActiveFast, CheckIn, RefeedState, PastFast
     Research.swift               Phases, risk windows, symptoms, safety questions, studies, sources
     Logic.swift                  Formatting, safety screen, check-in grading, refeeding planner
+    SyncMerge.swift              Combines two copies of the data when devices sync
+    L10n.swift                   tr() and trCount(), which look up translated text
+    AppLinks.swift               Privacy policy address
   Services/
     FastStore.swift              Single source of truth, JSON cache, all actions
     NotificationService.swift    Milestone alerts and 9:00 / 21:00 check-in reminders
@@ -47,6 +50,11 @@ WaterFasting/
     CloudCard.swift              Backup and sync card (only with Firebase)
     Theme.swift, Components.swift
   Assets.xcassets                App icon and accent colour
+  Localizable.xcstrings          All text in 21 languages (generated, see Languages)
+Localization/
+  en.json, fr.json, ...          Text for each language, edited by hand
+  build_catalog.py               Checks the files and writes Localizable.xcstrings
+  TRANSLATOR_NOTES.md            Rules and context for translators
 ```
 
 ## Safety rules
@@ -81,11 +89,38 @@ How the sync behaves:
 
 ## Privacy policy
 
-`PRIVACY_POLICY.md` is the app's privacy policy, written to match what the code actually does. Publish it as a page on malebolabs.com, then:
+`PRIVACY_POLICY.md` is the app's privacy policy, written to match what the code actually does. It is published at:
 
-1. Open the live page in a browser and copy its exact address.
-2. Put that address in `WaterFasting/Models/AppLinks.swift` (the in-app link in Profile, required by guideline 5.1.1) and in App Store Connect.
-3. If version 1 ships without cloud backup, delete section 4, section 11 and the Google Firebase row in section 7, and remove the "Account" row from the table in section 1.
+**https://malebolabs.com/waterline-privacy-policy/**
+
+1. The app already opens that address from the Welcome screen and from Profile, then Your data (`WaterFasting/Models/AppLinks.swift`), as guideline 5.1.1 requires.
+2. In App Store Connect, paste the same address into App Information, then Privacy Policy URL. If you add a Support or Marketing URL, keep them on malebolabs.com too.
+3. Keep the page and `PRIVACY_POLICY.md` in step: when one changes, update the other and its "Last updated" date.
+4. If version 1 ships without cloud backup, delete section 4, section 11 and the Google Firebase row in section 7, and remove the "Account" row from the table in section 1.
+
+## Languages
+
+The app is translated into 21 languages: English (the source), Arabic, Chinese (Simplified, for Mandarin), Dutch, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Malay, Polish, Portuguese (Brazil), Russian, Spanish, Swahili, Swedish, Thai, Turkish and Vietnamese. iPhone picks the language from the phone's settings, and people can also choose one for Waterline alone in Settings, then Waterline, then Language.
+
+How it fits together:
+
+- `Localization/en.json` holds every piece of text in English, under a short key such as `fast.end`. Each other language has its own file with the same keys (`fr.json`, `pt-BR.json`, `zh-Hans.json` and so on).
+- `Localization/build_catalog.py` checks all the files and writes `WaterFasting/Localizable.xcstrings`, the String Catalog that Xcode builds into the app. Do not edit the catalog by hand; edit the JSON files and run:
+
+  ```sh
+  cd ios
+  python3 Localization/build_catalog.py
+  ```
+
+  It stops with a list of problems if a key is missing, a placeholder such as `%@` or `%lld` does not match the English, a plural form is missing, or an em dash slipped in.
+- To change wording, edit `en.json` and the same key in every other file, then run the script. To add text in Swift, call `tr("new.key")` (or `trCount` for counted text), add the key to every file and run the script; it also fails if the code uses a key that is not in `en.json`.
+- `Localization/TRANSLATOR_NOTES.md` explains the rules and which strings are built from pieces. Send it with the files to anyone reviewing a translation.
+- Arabic reads right to left. The layout flips by itself; the timeline, water meter, clock, phone numbers and source links stay left to right on purpose.
+- Research paper titles and author names stay in their original language.
+
+Before release, have a native speaker check at least the safety text in each language: the Today warnings, the check-in results, the refeeding plan and the safety questions in Profile. The translations were written carefully to keep every number and warning, but medical wording deserves a human check. In Xcode, Product, then Scheme, then Edit Scheme, then Run, then Options lets you set App Language to see each one in the simulator.
+
+App Store Connect: add a listing (name, subtitle, description, screenshots) for each language you want to show in the store. App Store Connect has no Swahili listing, so Swahili speakers see the English listing but still get the app in Swahili once installed.
 
 ## App Store notes
 

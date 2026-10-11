@@ -19,7 +19,7 @@ struct RefeedView: View {
             }
             .scrollDismissesKeyboard(.interactively)
             .screenBackground()
-            .navigationTitle("Refeed")
+            .navigationTitle(tr("tab.refeed"))
             .keyboardDoneButton()
             .onAppear {
                 if plannerDays == nil {
@@ -42,27 +42,26 @@ struct ActiveRefeedSection: View {
         let plan = RefeedPlanner.build(fastHours: refeed.fastHours, data: FastStore.shared.data, weightKg: refeed.endWeightKg)
         TimelineView(.periodic(from: .now, by: 60)) { context in
             let day = min(Int(floor(context.date.timeIntervalSince(refeed.startedAt) / 86_400)) + 1, plan.days)
-            let intro = "After a fast of \(Int(refeed.fastHours.rounded())) hours, refeed for at least \(Fmt.plural(plan.days, "day")): half the length of the fast."
+            let intro = tr("refeed.active.intro", Int(refeed.fastHours.rounded()), trCount("count.days", plan.days))
             VStack(spacing: 14) {
                 Card {
-                    Eyebrow(text: "Your refeeding plan")
-                    CardTitle(text: "Day \(day) of \(plan.days)")
+                    Eyebrow(text: tr("refeed.active.eyebrow"))
+                    CardTitle(text: tr("refeed.active.day", day, plan.days))
                     Para(text: intro)
                 }
                 PlanBody(plan: plan, currentDay: day)
                 RefeedWarningsCard()
                 Card {
-                    CardTitle(text: "Finished refeeding?")
-                    Para(text: "Move on to a whole-food, low-sodium diet. Without lasting changes, blood pressure, blood sugar and blood fats drift back toward where they started within 3 to 4 months.",
-                         font: .subheadline, color: Theme.ink2)
-                    Button("Mark refeeding complete") { confirmFinish = true }
+                    CardTitle(text: tr("refeed.finish.title"))
+                    Para(text: tr("refeed.finish.body"), font: .subheadline, color: Theme.ink2)
+                    Button(tr("refeed.finish.button")) { confirmFinish = true }
                         .buttonStyle(WLButtonStyle(kind: .secondary))
                 }
             }
         }
-        .confirmationDialog("Mark refeeding complete?", isPresented: $confirmFinish, titleVisibility: .visible) {
-            Button("Mark complete") { FastStore.shared.finishRefeed() }
-            Button("Not yet", role: .cancel) {}
+        .confirmationDialog(tr("refeed.finish.confirm"), isPresented: $confirmFinish, titleVisibility: .visible) {
+            Button(tr("refeed.finish.confirm_action")) { FastStore.shared.finishRefeed() }
+            Button(tr("refeed.finish.not_yet"), role: .cancel) {}
         }
     }
 }
@@ -74,20 +73,20 @@ struct PlannerSection: View {
     var body: some View {
         VStack(spacing: 14) {
             Card {
-                Eyebrow(text: "Refeeding planner")
-                CardTitle(text: "Breaking a fast safely")
-                Para(text: "Coming off a fast is the riskiest part. Eating too much too fast can drive phosphate, potassium and magnesium into cells all at once (refeeding syndrome), and salt can make the body hold fluid. Plan the way back before you start.")
+                Eyebrow(text: tr("refeed.planner.eyebrow"))
+                CardTitle(text: tr("refeed.planner.title"))
+                Para(text: tr("refeed.planner.body"))
                 if prefilled {
-                    Para(text: "Prefilled with your current target. When you end the fast, this plan starts automatically.", font: .footnote, color: Theme.muted)
+                    Para(text: tr("refeed.planner.prefilled"), font: .footnote, color: Theme.muted)
                 }
-                NumberField(label: "Fast length", unit: "days", value: $days)
-                    .frame(maxWidth: 200, alignment: .leading)
+                NumberField(label: tr("refeed.planner.length"), unit: tr("unit.days"), value: $days)
+                    .frame(maxWidth: 220, alignment: .leading)
             }
             if let d = days, d >= 1, d <= 40 {
                 PlanBody(plan: RefeedPlanner.build(fastHours: d * 24, data: FastStore.shared.data, weightKg: nil), currentDay: 0)
             } else {
                 Card {
-                    Para(text: "Enter a fast length between 1 and 40 days.", color: Theme.muted)
+                    Para(text: tr("refeed.planner.invalid"), color: Theme.muted)
                 }
             }
         }
@@ -99,25 +98,25 @@ struct PlanBody: View {
     let currentDay: Int
 
     var body: some View {
-        let reasons = plan.reasons.isEmpty ? "" : " For you: \(plan.reasons.joined(separator: ", "))."
+        let reasons = plan.reasons.isEmpty ? "" : " " + tr("refeed.plan.for_you", plan.reasons.joined(separator: ", "))
         VStack(spacing: 14) {
             Card {
                 HStack(alignment: .center) {
-                    CardTitle(text: "Refeeding risk", style: .title3)
+                    CardTitle(text: tr("refeed.plan.risk_title"), style: .title3)
                     Spacer()
                     StatusPill(level: plan.tier.level, text: plan.tier.label)
                 }
                 Para(text: plan.tier.criteria + reasons, font: .subheadline)
                 if plan.tier == .high {
                     Notice(tone: .stop) {
-                        Text("This refeed needs a clinician.").bold()
-                        Para(text: "Significant-risk refeeding uses prescribed thiamine and daily blood tests.", font: .subheadline)
+                        Text(tr("refeed.plan.needs_clinician")).bold()
+                        Para(text: tr("refeed.plan.needs_clinician.body"), font: .subheadline)
                     }
                 }
-                KeyValueRow(label: "Length") {
-                    Para(text: "\(Fmt.plural(plan.days, "day")), at least half the fast", font: .subheadline)
+                KeyValueRow(label: tr("refeed.plan.length")) {
+                    Para(text: tr("refeed.plan.length_value", trCount("count.days", plan.days)), font: .subheadline)
                 }
-                KeyValueRow(label: "Calories") {
+                KeyValueRow(label: tr("refeed.plan.calories")) {
                     Para(text: plan.calorieHeadline, font: .subheadline)
                     if let value = plan.calorieValue {
                         Text(value).font(.subheadline.monospaced().weight(.semibold)).foregroundStyle(Theme.ink)
@@ -126,20 +125,20 @@ struct PlanBody: View {
                         Para(text: plan.calorieBasis, font: .footnote, color: Theme.muted)
                     }
                 }
-                KeyValueRow(label: "Salt and fluids") {
+                KeyValueRow(label: tr("refeed.plan.fluids")) {
                     Para(text: plan.tier.fluids, font: .subheadline)
                 }
-                KeyValueRow(label: "Monitoring") {
+                KeyValueRow(label: tr("refeed.plan.monitoring")) {
                     Para(text: plan.tier.monitoring, font: .subheadline)
                 }
-                Para(text: "Ranges come from ASPEN and NICE refeeding guidance. Your clinician sets the final numbers.", font: .footnote, color: Theme.muted)
+                Para(text: tr("refeed.plan.source"), font: .footnote, color: Theme.muted)
             }
             Card {
-                CardTitle(text: "Day by day", style: .title3)
+                CardTitle(text: tr("refeed.plan.by_day"), style: .title3)
                 ForEach(Array(plan.schedule.enumerated()), id: \.offset) { index, stages in
                     DayRow(number: index + 1, stages: stages, currentDay: currentDay)
                 }
-                Para(text: "Throughout: no added salt or salty seasonings. Insulin makes the kidneys hold sodium and water after a fast, which can cause swelling and strain the heart.", font: .footnote)
+                Para(text: tr("refeed.plan.no_salt"), font: .footnote)
             }
         }
     }
@@ -155,13 +154,13 @@ private struct DayRow: View {
         let isDone = currentDay > 0 && number < currentDay
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
-                Text("Day \(number)").font(.footnote.monospaced())
+                Text(tr("refeed.plan.day", number)).font(.footnote.monospaced())
                 if isToday {
-                    Text("today").font(.caption.monospaced())
+                    Text(tr("refeed.plan.today")).font(.caption.monospaced())
                 }
             }
             .foregroundStyle(isToday ? Theme.ink : Theme.muted)
-            .frame(width: 58, alignment: .leading)
+            .frame(width: 64, alignment: .leading)
             VStack(alignment: .leading, spacing: 8) {
                 ForEach(stages, id: \.self) { stage in
                     VStack(alignment: .leading, spacing: 2) {

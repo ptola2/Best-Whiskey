@@ -42,19 +42,19 @@ struct MainTabView: View {
         let store = FastStore.shared
         TabView(selection: Binding(get: { store.tab }, set: { store.tab = $0 })) {
             TodayView()
-                .tabItem { Label("Today", systemImage: "drop") }
+                .tabItem { Label(tr("tab.today"), systemImage: "drop") }
                 .tag(AppTab.today)
             LogView()
-                .tabItem { Label("Log", systemImage: "list.clipboard") }
+                .tabItem { Label(tr("tab.log"), systemImage: "list.clipboard") }
                 .tag(AppTab.log)
             RefeedView()
-                .tabItem { Label("Refeed", systemImage: "fork.knife") }
+                .tabItem { Label(tr("tab.refeed"), systemImage: "fork.knife") }
                 .tag(AppTab.refeed)
             LearnView()
-                .tabItem { Label("Learn", systemImage: "book") }
+                .tabItem { Label(tr("tab.learn"), systemImage: "book") }
                 .tag(AppTab.learn)
             ProfileView()
-                .tabItem { Label("Profile", systemImage: "person.crop.circle") }
+                .tabItem { Label(tr("tab.profile"), systemImage: "person.crop.circle") }
                 .tag(AppTab.profile)
         }
     }
@@ -68,31 +68,34 @@ struct WelcomeView: View {
                     .frame(width: 64, height: 64)
                     .padding(.top, 36)
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Waterline")
+                    Text(verbatim: "Waterline")
                         .font(.system(size: 42, weight: .semibold, design: .serif))
                         .foregroundStyle(Theme.ink)
-                    Text("Water fasting, by the evidence")
+                    Text(tr("welcome.tagline"))
                         .font(.title3)
                         .foregroundStyle(Theme.muted)
                 }
                 VStack(alignment: .leading, spacing: 16) {
-                    WelcomeRow(symbol: "timer", title: "Know where you are",
-                               text: "A live timer shows each metabolic phase, from glycogen running out to the 72-hour threshold.")
-                    WelcomeRow(symbol: "heart.text.square", title: "Catch warning signs early",
-                               text: "Check-ins grade blood pressure, ketones and symptoms against the clinical research.")
-                    WelcomeRow(symbol: "fork.knife", title: "Break the fast safely",
-                               text: "A refeeding plan sized to your fast, using the ASPEN and NICE risk levels.")
+                    WelcomeRow(symbol: "timer", title: tr("welcome.timer.title"), text: tr("welcome.timer.body"))
+                    WelcomeRow(symbol: "heart.text.square", title: tr("welcome.warnings.title"), text: tr("welcome.warnings.body"))
+                    WelcomeRow(symbol: "fork.knife", title: tr("welcome.refeed.title"), text: tr("welcome.refeed.body"))
                 }
                 Notice(tone: .caution) {
-                    Text("Not medical advice").bold()
-                    Para(text: "Waterline is an educational tool. The research it draws on restricts fasts longer than 72 hours to medically supervised settings.", font: .subheadline)
+                    Text(tr("welcome.disclaimer.title")).bold()
+                    Para(text: tr("welcome.disclaimer.body"), font: .subheadline)
                 }
                 Button {
                     FastStore.shared.completeOnboarding()
                 } label: {
-                    Text("Get started").frame(maxWidth: .infinity)
+                    Text(tr("welcome.start")).frame(maxWidth: .infinity)
                 }
                 .buttonStyle(WLButtonStyle(kind: .primary))
+                Link(destination: AppLinks.privacyPolicy) {
+                    Label(tr("common.privacy_policy"), systemImage: "hand.raised")
+                        .font(.footnote.weight(.semibold))
+                }
+                .tint(Theme.accent)
+                .frame(maxWidth: .infinity)
             }
             .padding(24)
         }

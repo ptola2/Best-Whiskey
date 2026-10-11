@@ -48,7 +48,7 @@ struct Eyebrow: View {
     let text: String
 
     var body: some View {
-        Text(text.uppercased())
+        Text(text.uppercased(with: Locale.current))
             .font(.caption.weight(.semibold))
             .tracking(0.8)
             .foregroundStyle(Theme.muted)
@@ -214,9 +214,9 @@ struct YesNoControl: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            segment("Yes", selected: value == true) { onSet(true) }
+            segment(tr("common.yes"), selected: value == true) { onSet(true) }
             Rectangle().fill(Theme.line).frame(width: 1, height: 34)
-            segment("No", selected: value == false) { onSet(false) }
+            segment(tr("common.no"), selected: value == false) { onSet(false) }
         }
         .clipShape(RoundedRectangle(cornerRadius: 9, style: .continuous))
         .overlay(RoundedRectangle(cornerRadius: 9, style: .continuous).stroke(Theme.line, lineWidth: 1))
@@ -226,7 +226,9 @@ struct YesNoControl: View {
         Button(action: action) {
             Text(title)
                 .font(.footnote.weight(.semibold))
-                .frame(width: 52, height: 34)
+                .lineLimit(1)
+                .padding(.horizontal, 10)
+                .frame(minWidth: 52, minHeight: 34)
                 .foregroundStyle(selected ? Theme.surface : Theme.ink2)
                 .background(selected ? Theme.ink : Theme.surface2)
         }
@@ -386,7 +388,7 @@ extension View {
         toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
-                Button("Done") {
+                Button(tr("common.done")) {
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }
             }

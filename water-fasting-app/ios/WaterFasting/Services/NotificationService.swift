@@ -33,29 +33,29 @@ final class NotificationService {
         var items: [(date: Date, title: String, body: String)] = []
 
         let milestones: [(hours: Double, title: String, body: String)] = [
-            (12, "12 hours in", "Liver glycogen is running down and fat stores are opening up."),
-            (36, "36 hours: the metabolic switch", "Ketone production is climbing. Get up slowly: lightheadedness on standing is common now."),
-            (72, "The 72-hour threshold", "Body-wide protein changes appear around now. Fasts beyond this point belong under medical supervision."),
-            (168, "Day 7", "Weight loss is slowing and the kidneys are saving sodium. Keep checking in twice a day."),
+            (12, tr("notify.h12.title"), tr("notify.h12.body")),
+            (36, tr("notify.h36.title"), tr("notify.h36.body")),
+            (72, tr("notify.h72.title"), tr("notify.h72.body")),
+            (168, tr("notify.d7.title"), tr("notify.d7.body")),
         ]
         for m in milestones where m.hours < target {
             let date = start.addingTimeInterval(m.hours * 3600)
             if date > now { items.append((date: date, title: m.title, body: m.body)) }
         }
         if targetDate > now {
-            items.append((date: targetDate, title: "Target reached",
-                          body: "You reached your \(Fmt.target(targetHours)) target. End the fast in Waterline to get your refeeding plan."))
+            items.append((date: targetDate, title: tr("notify.target.title"),
+                          body: tr("notify.target.body", Fmt.target(targetHours))))
         }
         let pastTarget = targetDate.addingTimeInterval(12 * 3600)
         if pastTarget > now {
-            items.append((date: pastTarget, title: "12 hours past your target",
-                          body: "Your fast is still running. End it in Waterline to get your refeeding plan, or check in."))
+            items.append((date: pastTarget, title: tr("notify.past_target.title"),
+                          body: tr("notify.past_target.body")))
         }
         let unsupervisedLimit = start.addingTimeInterval(72 * 3600)
         // A 72 h target already gets "Target reached" at that moment; shorter fasts that overrun get this one.
         if !supervised && targetHours < 72 && unsupervisedLimit > now {
-            items.append((date: unsupervisedLimit, title: "72 hours without supervision",
-                          body: "The research restricts fasts beyond 72 hours to medically supervised settings. End the fast now, or confirm in Waterline that a clinician is supervising."))
+            items.append((date: unsupervisedLimit, title: tr("notify.unsupervised.title"),
+                          body: tr("notify.unsupervised.body")))
         }
 
         let calendar = Calendar.current
@@ -66,7 +66,7 @@ final class NotificationService {
             for hour in [9, 21] {
                 guard let date = calendar.date(bySettingHour: hour, minute: 0, second: 0, of: day) else { continue }
                 if date > now && date > start && date < windowEnd && count < maxCheckInReminders {
-                    items.append((date: date, title: "Time to check in", body: "Log lying and standing blood pressure, pulse, weight and how you feel."))
+                    items.append((date: date, title: tr("notify.checkin.title"), body: tr("notify.checkin.body")))
                     count += 1
                 }
             }
