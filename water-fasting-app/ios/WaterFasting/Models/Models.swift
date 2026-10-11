@@ -21,6 +21,12 @@ enum Level: String, Codable, CaseIterable, Comparable {
     }
 
     static func < (lhs: Level, rhs: Level) -> Bool { lhs.rank < rhs.rank }
+
+    /// Unknown values (written by a newer app version) read as caution rather than failing the whole decode.
+    init(from decoder: Decoder) throws {
+        let raw = try decoder.singleValueContainer().decode(String.self)
+        self = Level(rawValue: raw) ?? .caution
+    }
 }
 
 struct Note: Codable, Hashable {
@@ -83,6 +89,11 @@ enum EndReason: String, Codable, CaseIterable {
         case .other: return "Ended early"
         }
     }
+
+    init(from decoder: Decoder) throws {
+        let raw = try decoder.singleValueContainer().decode(String.self)
+        self = EndReason(rawValue: raw) ?? .other
+    }
 }
 
 struct PastFast: Codable, Hashable, Identifiable {
@@ -96,10 +107,17 @@ struct PastFast: Codable, Hashable, Identifiable {
     var checkInCount: Int
     var worst: Level
     var reason: EndReason
+    /// Set when the refeed that followed this fast was marked complete.
+    var refeedCompleted: Bool?
 }
 
 enum Sex: String, Codable, CaseIterable {
     case unspecified, female, male
+
+    init(from decoder: Decoder) throws {
+        let raw = try decoder.singleValueContainer().decode(String.self)
+        self = Sex(rawValue: raw) ?? .unspecified
+    }
 }
 
 struct Profile: Codable, Hashable {
@@ -127,6 +145,11 @@ struct AppData: Codable, Hashable {
     var refeed: RefeedState?
     var history: [PastFast] = []
     var updatedAt = Date(timeIntervalSince1970: 0)
+    /// Raised by "Delete all my data". A copy with a higher generation replaces older copies outright, so a deletion
+    /// reaches every device instead of being merged away.
+    var generation = 0
+    /// Check-ins the person removed, so a sync merge does not bring them back.
+    var removedCheckIns: [UUID] = []
 
     init() {}
 
@@ -142,6 +165,8 @@ struct AppData: Codable, Hashable {
         refeed = try c.decodeIfPresent(RefeedState.self, forKey: .refeed)
         history = try c.decodeIfPresent([PastFast].self, forKey: .history) ?? []
         updatedAt = try c.decodeIfPresent(Date.self, forKey: .updatedAt) ?? Date(timeIntervalSince1970: 0)
+        generation = try c.decodeIfPresent(Int.self, forKey: .generation) ?? 0
+        removedCheckIns = try c.decodeIfPresent([UUID].self, forKey: .removedCheckIns) ?? []
     }
 
     /// True once the person has entered anything worth keeping. Used so an empty install never overwrites a cloud copy.

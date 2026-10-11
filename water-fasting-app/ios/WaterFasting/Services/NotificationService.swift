@@ -1,14 +1,17 @@
 import Foundation
 import UserNotifications
 
-/// Local reminders during a fast: milestone alerts and twice-daily check-in prompts,
-/// matching the twice-daily checks used in supervised clinics.
+/// Local reminders during a fast: milestone alerts and twice-daily check-in prompts, matching the
+/// twice-daily checks used in supervised clinics. Check-in prompts run in a rolling window from now,
+/// not up to the target, so a fast that runs past its target keeps getting them. The window is
+/// renewed every time the app comes forward.
 @MainActor
 final class NotificationService {
     static let shared = NotificationService()
 
     private let center = UNUserNotificationCenter.current()
-    private let maxCheckInReminders = 40
+    private let windowDays = 14
+    private let maxCheckInReminders = 28
 
     private init() {}
 
@@ -20,7 +23,7 @@ final class NotificationService {
         }
     }
 
-    func scheduleFast(start: Date, targetHours: Int) async {
+    func scheduleFast(start: Date, targetHours: Int, supervised: Bool) async {
         guard await requestPermission() else { return }
         center.removeAllPendingNotificationRequests()
 
@@ -43,15 +46,26 @@ final class NotificationService {
             items.append((date: targetDate, title: "Target reached",
                           body: "You reached your \(Fmt.target(targetHours)) target. End the fast in Waterline to get your refeeding plan."))
         }
+        let pastTarget = targetDate.addingTimeInterval(12 * 3600)
+        if pastTarget > now {
+            items.append((date: pastTarget, title: "12 hours past your target",
+                          body: "Your fast is still running. End it in Waterline to get your refeeding plan, or check in."))
+        }
+        let unsupervisedLimit = start.addingTimeInterval(72 * 3600)
+        // A 72 h target already gets "Target reached" at that moment; shorter fasts that overrun get this one.
+        if !supervised && targetHours < 72 && unsupervisedLimit > now {
+            items.append((date: unsupervisedLimit, title: "72 hours without supervision",
+                          body: "The research restricts fasts beyond 72 hours to medically supervised settings. End the fast now, or confirm in Waterline that a clinician is supervising."))
+        }
 
         let calendar = Calendar.current
-        let lastReminder = targetDate.addingTimeInterval(86_400)
+        let windowEnd = now.addingTimeInterval(Double(windowDays) * 86_400)
         var day = calendar.startOfDay(for: max(start, now))
         var count = 0
-        while day < lastReminder && count < maxCheckInReminders {
+        while day < windowEnd && count < maxCheckInReminders {
             for hour in [9, 21] {
                 guard let date = calendar.date(bySettingHour: hour, minute: 0, second: 0, of: day) else { continue }
-                if date > now && date > start && date < lastReminder && count < maxCheckInReminders {
+                if date > now && date > start && date < windowEnd && count < maxCheckInReminders {
                     items.append((date: date, title: "Time to check in", body: "Log lying and standing blood pressure, pulse, weight and how you feel."))
                     count += 1
                 }

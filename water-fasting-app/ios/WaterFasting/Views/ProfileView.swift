@@ -57,6 +57,12 @@ private struct ScreeningSummary: View {
 }
 
 private struct AboutYouCard: View {
+    /// Converts typed text safely: anything outside 1 to 130 (or too large for Int) is treated as not entered.
+    static func age(from value: Double?) -> Int? {
+        guard let value, let whole = Fmt.safeInt(value), (1...130).contains(whole) else { return nil }
+        return whole
+    }
+
     var body: some View {
         let store = FastStore.shared
         let bmi = FastMath.bmi(store.data.profile)
@@ -73,7 +79,7 @@ private struct AboutYouCard: View {
             HStack(alignment: .top, spacing: 12) {
                 NumberField(label: "Age", unit: "years", value: Binding(
                     get: { store.data.profile.age.map { Double($0) } },
-                    set: { value in store.update { d in d.profile.age = value.map { Int($0) } } }), decimals: false)
+                    set: { value in store.update { d in d.profile.age = Self.age(from: value) } }), decimals: false)
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Sex, for calorie estimates").font(.footnote.weight(.semibold)).foregroundStyle(Theme.ink2)
                     Picker("Sex", selection: Binding(
@@ -216,6 +222,8 @@ private struct RemindersCard: View {
 
 private struct DataCard: View {
     @State private var confirmDelete = false
+    @State private var deleting = false
+    @State private var deleteError: String?
 
     var body: some View {
         Card {
@@ -224,11 +232,27 @@ private struct DataCard: View {
                  font: .subheadline, color: Theme.ink2)
             Button("Delete all my data", role: .destructive) { confirmDelete = true }
                 .buttonStyle(WLButtonStyle(kind: .danger))
+                .disabled(deleting)
                 .confirmationDialog("Delete everything?", isPresented: $confirmDelete, titleVisibility: .visible) {
-                    Button("Delete all my data", role: .destructive) { FastStore.shared.deleteAll() }
+                    Button("Delete all my data", role: .destructive) { delete() }
                 } message: {
-                    Text("Your profile, answers, current fast and history will be gone for good.")
+                    Text("Your profile, answers, current fast and history will be gone for good, including any cloud copy.")
                 }
+            if deleting {
+                ProgressView().frame(maxWidth: .infinity, alignment: .leading)
+            }
+            if let deleteError {
+                Para(text: deleteError, font: .footnote.weight(.semibold), color: Theme.stop)
+            }
+        }
+    }
+
+    private func delete() {
+        deleting = true
+        deleteError = nil
+        Task {
+            deleteError = await FastStore.shared.deleteAll()
+            deleting = false
         }
     }
 }

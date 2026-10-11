@@ -151,17 +151,20 @@ struct CheckInForm: View {
         check(lyingPulse, 30, 220, "Pulse")
         check(standingPulse, 30, 220, "Pulse")
 
-        let toInt: (Double?) -> Int? = { value in value.map { Int($0.rounded()) } }
-        let vitals = Vitals(lyingSystolic: toInt(lyingSys), lyingDiastolic: toInt(lyingDia), lyingPulse: toInt(lyingPulse),
-                            standingSystolic: toInt(standingSys), standingDiastolic: toInt(standingDia), standingPulse: toInt(standingPulse))
+        let vitalInputs = [lyingSys, lyingDia, lyingPulse, standingSys, standingDia, standingPulse]
         let trimmedNote = note.trimmingCharacters(in: .whitespacesAndNewlines)
-        if weight == nil && ketones == nil && vitals.isEmpty && symptoms.isEmpty && trimmedNote.isEmpty {
+        if weight == nil && ketones == nil && vitalInputs.allSatisfy({ $0 == nil }) && symptoms.isEmpty && trimmedNote.isEmpty {
             problems.append("Add at least one reading, symptom or note.")
         }
         guard problems.isEmpty else {
             error = problems.joined(separator: " ")
             return
         }
+
+        // Converted only after the range checks, and through safeInt, so oversized input can never trap.
+        let toInt: (Double?) -> Int? = { value in value.flatMap { Fmt.safeInt($0) } }
+        let vitals = Vitals(lyingSystolic: toInt(lyingSys), lyingDiastolic: toInt(lyingDia), lyingPulse: toInt(lyingPulse),
+                            standingSystolic: toInt(standingSys), standingDiastolic: toInt(standingDia), standingPulse: toInt(standingPulse))
 
         let ordered = Research.symptoms.map(\.id).filter { symptoms.contains($0) }
         let checkIn = CheckIn(at: Date(), weightKg: weight, ketones: ketones, vitals: vitals,

@@ -21,11 +21,20 @@ enum Fmt {
 
     static func one(_ value: Double) -> String { String(format: "%.1f", value) }
 
+    /// Whole numbers without a decimal point. Safe for any input: huge or non-finite values never reach Int().
     static func trimmed(_ value: Double) -> String {
-        value == value.rounded() ? String(Int(value)) : String(format: "%.1f", value)
+        guard value.isFinite else { return "" }
+        if value == value.rounded(), let whole = safeInt(value) { return String(whole) }
+        return String(format: "%.1f", value)
     }
 
-    static func roundTo10(_ value: Double) -> Int { Int((value / 10).rounded()) * 10 }
+    /// Int(x) traps outside Int's range, so every Double-to-Int conversion of user input goes through here.
+    static func safeInt(_ value: Double) -> Int? {
+        guard value.isFinite, abs(value) < 1e15 else { return nil }
+        return Int(value.rounded())
+    }
+
+    static func roundTo10(_ value: Double) -> Int { (safeInt(value / 10) ?? 0) * 10 }
 
     static func plural(_ n: Int, _ word: String) -> String { "\(n) \(word)\(n == 1 ? "" : "s")" }
 
@@ -207,9 +216,13 @@ enum Assessor {
             }
         }
 
-        if !ctx.isRefeed, let start = ctx.start {
-            let yesterday = Fmt.dayKey(c.at.addingTimeInterval(-86_400))
-            if let ml = ctx.water[yesterday], ml > 0, yesterday >= Fmt.dayKey(start) {
+        // Only judge yesterday's water when the fast covered all of yesterday. The day a fast starts is partial,
+        // so an evening start with a few hundred mL logged is normal, not a shortfall.
+        let calendar = Calendar.current
+        if !ctx.isRefeed, let start = ctx.start, let yesterdayDate = calendar.date(byAdding: .day, value: -1, to: c.at),
+           start <= calendar.startOfDay(for: yesterdayDate) {
+            let yesterday = Fmt.dayKey(yesterdayDate)
+            if let ml = ctx.water[yesterday], ml > 0 {
                 let litres = String(format: "%.2f", Double(ml) / 1000)
                 if ml < Research.waterMin {
                     add(.caution, "Yesterday you logged \(litres) L of water, under the 1.2 L minimum.")

@@ -64,12 +64,20 @@ Taken from the source document and shared with the web app:
 Your iOS App Builder rules say user data should live in Firestore, with the local file as the offline cache. The code for that is already written in `CloudSync.swift` and `CloudCard.swift`. It switches on by itself once Firebase is added:
 
 1. Firebase console: create a project, add an iOS app with the same bundle ID, download `GoogleService-Info.plist` and drag it into the `WaterFasting` folder in Xcode.
-2. Authentication, then Sign-in method: enable **Apple**.
+2. Authentication, then Sign-in method: enable **Apple**. Fill in its OAuth code flow section (Apple Team ID, Key ID and private key). Account deletion uses it to revoke the Apple token, which App Review requires.
 3. Firestore Database: create it (Standard edition, Production mode) and publish the rules in `firestore.rules`.
 4. Xcode: File, then Add Package Dependencies, `https://github.com/firebase/firebase-ios-sdk`. Add **FirebaseAuth** and **FirebaseFirestore** to the WaterFasting target.
 5. Signing & Capabilities: add **Sign in with Apple**.
 
-Profile then shows a Backup and sync card. Sign-in is optional, the app keeps working without it, and the card includes the account deletion that App Review requires. Data is stored at `users/{uid}/waterline/state`.
+Profile then shows a Backup and sync card. Sign-in is optional and the app keeps working without it. Data is stored at `users/{uid}/waterline/state`.
+
+How the sync behaves:
+
+- Every cloud write carries a server revision number and only lands if nothing changed on the server since this iPhone last synced, so device clocks never decide which copy wins. When two devices both changed, their data is merged (check-ins, past fasts and water are combined; removed check-ins stay removed).
+- A cloud copy written by a newer app version is never overwritten; sync pauses and asks for an update.
+- **Delete all my data** writes the deletion to the cloud first, so every signed-in device clears too. If that write fails, nothing is deleted.
+- **Sign out** backs up anything pending, then removes the data from this iPhone. It stays in the account, and it can never be uploaded into a different account.
+- **Delete account** asks for a fresh Sign in with Apple confirmation, revokes the Apple token, deletes the cloud copy and then the account. Data on the iPhone stays.
 
 ## App Store notes
 

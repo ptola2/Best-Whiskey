@@ -502,9 +502,11 @@ ol.sources a { overflow-wrap: anywhere; }
   }
 
   /* ---------- State ---------- */
-  function freshState() { return { v: 1, started: false, profile: {}, screening: {}, clinician: {}, active: null, refeed: null, history: [] }; }
+  function freshState() { return { v: 1, started: false, profile: {}, screening: {}, clinician: {}, active: null, refeed: null, history: [], savedAt: 0, generation: 0 }; }
   function normalize(s) {
     const f = Object.assign(freshState(), s || {});
+    f.savedAt = Number(f.savedAt) || 0;
+    f.generation = Number(f.generation) || 0;
     ['profile', 'screening', 'clinician'].forEach((k) => { if (!f[k] || typeof f[k] !== 'object') f[k] = {}; });
     if (!Array.isArray(f.history)) f.history = [];
     if (f.active) { f.active.water = f.active.water || {}; f.active.checkins = f.active.checkins || []; }
@@ -514,6 +516,10 @@ ol.sources a { overflow-wrap: anywhere; }
   const hasRealData = (s) => !!(s.started || s.active || s.refeed || s.history.length || s.profile.weightKg || Object.keys(s.screening).length);
   function readLocal() { try { const raw = localStorage.getItem(LS_STATE); return raw ? normalize(JSON.parse(raw)) : null; } catch (e) { return null; } }
   function writeLocal() { try { localStorage.setItem(LS_STATE, JSON.stringify(state)); } catch (e) { /* storage blocked */ } }
+  // Sync bookkeeping for this browser: whether local changes are unconfirmed, and the account copy they were based on.
+  const LS_SYNC = 'waterline.sync.v1';
+  let syncMeta = (() => { try { const m = JSON.parse(localStorage.getItem(LS_SYNC) || 'null'); if (m && typeof m === 'object') return { dirty: !!m.dirty, syncedSavedAt: m.syncedSavedAt == null ? null : Number(m.syncedSavedAt) }; } catch (e) { /* ignore */ } return { dirty: false, syncedSavedAt: null }; })();
+  function writeSyncMeta() { try { localStorage.setItem(LS_SYNC, JSON.stringify(syncMeta)); } catch (e) { /* ignore */ } }
 
   let state = readLocal() || freshState();
   let demo = !hasRealData(state);
@@ -521,27 +527,35 @@ ol.sources a { overflow-wrap: anywhere; }
   const S = () => (demo ? (demoData || (demoData = buildDemo())) : state);
 
   const ui = { tab: 'today', planTarget: 72, planSupervised: false, planDoctor: false, planStart: '', planError: '',
-    confirmEnd: false, endReason: 'target', confirmDelete: false, lastResult: null, formError: '', plannerDays: null, renderedPhase: -1, renderedReached: null, renderedRefeedDay: -1 };
+    confirmEnd: false, endReason: 'target', confirmDelete: false, deleting: false, lastResult: null, formError: '', plannerDays: null, renderedPhase: -1, renderedReached: null, renderedRefeedDay: -1, renderedOver72: null, renderedDayKey: '' };
   try { const t = localStorage.getItem(LS_TAB); if (TABS.includes(t)) ui.tab = t; } catch (e) { /* ignore */ }
   const hashTab = (location.hash || '').slice(1);
   if (TABS.includes(hashTab)) ui.tab = hashTab;
 
   /* ---------- Storage: private account store when the viewer offers it, browser otherwise ---------- */
   const store = { mode: 'local', ref: null, checking: false, retried: false };
-  let saveTimer = null, writing = false, again = false;
+  let saveTimer = null, writing = false, again = false, changeCount = 0;
 
   function commit() {
     if (demo) return;
+    state.savedAt = Date.now();
+    changeCount += 1;
     writeLocal();
+    syncMeta.dirty = true; writeSyncMeta();
     if (store.mode === 'account') { clearTimeout(saveTimer); saveTimer = setTimeout(flush, 400); }
     updateFoot();
   }
   async function flush() {
-    if (store.mode !== 'account' || !store.ref) return;
+    if (store.mode !== 'account' || !store.ref || ui.deleting) return;
     if (writing) { again = true; return; }
     writing = true;
+    const startedAt = changeCount;
+    const copy = JSON.parse(JSON.stringify(state));
     try {
-      await store.ref.set({ v: 1, savedAt: Date.now(), state: JSON.parse(JSON.stringify(state)) });
+      await store.ref.set({ v: 1, savedAt: copy.savedAt || Date.now(), generation: copy.generation || 0, state: copy });
+      syncMeta.syncedSavedAt = copy.savedAt || null;
+      if (changeCount === startedAt) syncMeta.dirty = false;
+      writeSyncMeta();
     } catch (e) {
       const code = e && e.code;
       if (code === 'unavailable' && !store.retried) {
@@ -570,12 +584,27 @@ ol.sources a { overflow-wrap: anywhere; }
         store.ref = ref; store.mode = 'account';
         const body = snap.exists ? snap.data() : null;
         if (body && body.state && typeof body.state === 'object') {
-          state = normalize(JSON.parse(JSON.stringify(body.state)));
-          demo = !hasRealData(state); demoData = null;
-          writeLocal();
+          const remote = normalize(JSON.parse(JSON.stringify(body.state)));
+          const remoteSaved = Number(body.savedAt) || remote.savedAt || 0;
+          const localHas = hasRealData(state);
+          let useRemote;
+          if (remote.generation !== state.generation) useRemote = remote.generation > state.generation; // a deletion on either side wins over older data
+          else if (!localHas || !syncMeta.dirty) useRemote = true;                 // nothing unsaved here
+          else if (syncMeta.syncedSavedAt == null) useRemote = true;               // first sync in this browser: the account copy leads
+          else if (remoteSaved === syncMeta.syncedSavedAt) useRemote = false;      // account unchanged since our last sync, so local is newer
+          else useRemote = remoteSaved > state.savedAt;                            // both changed: keep the newest copy
+          if (useRemote) {
+            if (localHas && syncMeta.dirty) { try { localStorage.setItem('waterline.state.backup', JSON.stringify(state)); } catch (e) { /* ignore */ } }
+            state = remote;
+            demo = !hasRealData(state); demoData = null;
+            writeLocal();
+            syncMeta = { dirty: false, syncedSavedAt: remoteSaved }; writeSyncMeta();
+          } else {
+            flush();
+          }
           store.checking = false; render(); return;
         }
-        if (hasRealData(state)) flush();
+        if (hasRealData(state) || state.generation > 0) flush();
       } catch (e) { store.ref = null; store.mode = 'local'; }
     }
     store.checking = false; updateFoot();
@@ -652,9 +681,12 @@ ol.sources a { overflow-wrap: anywhere; }
       else notes.push({ l: 'ok', text: 'BHB of ' + c.ketones + ' mmol/L. Ketones start reaching the brain in quantity above 2.0 mmol/L.' });
     }
     if (ctx.mode === 'fast' && ctx.water && ctx.start) {
-      const yKey = dateKey(c.at - DAY);
+      // Only judge yesterday when the fast covered all of it: the start day is partial.
+      const yDate = new Date(c.at); yDate.setDate(yDate.getDate() - 1);
+      const yKey = dateKey(yDate.getTime());
+      yDate.setHours(0, 0, 0, 0);
       const y = ctx.water[yKey];
-      if (y && yKey >= dateKey(ctx.start)) {
+      if (y && ctx.start <= yDate.getTime()) {
         if (y < WATER_MIN) add('caution', 'Yesterday you logged ' + (y / 1000).toFixed(2) + ' L of water, under the 1.2 L minimum.');
         else if (y > WATER_MAX) add('caution', 'Yesterday you logged ' + (y / 1000).toFixed(2) + ' L of water, above the usual 1.2 to 2.5 L. Large amounts of plain water can lower blood sodium.');
       }
@@ -766,6 +798,7 @@ ol.sources a { overflow-wrap: anywhere; }
     const reached = h >= a.targetHours;
     const pct = Math.min(h / a.targetHours, 1);
     let out = '';
+    if (!a.supervised && h >= 72) out += '<section class="notice stop"><p><strong>This fast has passed 72 hours without supervision.</strong> The research restricts fasts beyond 72 hours to medically supervised settings. End the fast now, or confirm that a clinician is supervising it.</p><div class="btn-row" style="margin-top:8px"><button type="button" class="btn danger" data-action="end-open">End fast</button><button type="button" class="btn" data-action="mark-supervised">A clinician is supervising</button></div></section>';
     if (reached) out += '<section class="notice ok"><p><strong>You reached your ' + esc(targetLabel(a.targetHours)) + ' target.</strong> Supervised clinics end a fast once its goal is met. End the fast below to get your refeeding plan.</p></section>';
     out += '<section class="panel hero" aria-label="Fast timer">' +
       '<div><p class="eyebrow">Fasting since ' + esc(fmtWhen(a.startedAt)) + '</p>' +
@@ -1166,7 +1199,8 @@ ol.sources a { overflow-wrap: anywhere; }
     if (!fromRender) {
       if (s.active && ui.tab === 'today') {
         const h = (now - s.active.startedAt) / HOUR;
-        if (phaseIndex(h) !== ui.renderedPhase || (h >= s.active.targetHours) !== ui.renderedReached) { if (!view.contains(document.activeElement) || document.activeElement.tagName === 'BUTTON') { render(); return; } }
+        if (phaseIndex(h) !== ui.renderedPhase || (h >= s.active.targetHours) !== ui.renderedReached
+          || (h >= 72) !== ui.renderedOver72 || dateKey(now) !== ui.renderedDayKey) { if (!view.contains(document.activeElement) || document.activeElement.tagName === 'BUTTON') { render(); return; } }
       }
       if (s.refeed && (ui.tab === 'today' || ui.tab === 'refeed')) {
         const d = Math.floor((now - s.refeed.startedAt) / DAY);
@@ -1176,7 +1210,7 @@ ol.sources a { overflow-wrap: anywhere; }
     if (s.refeed) ui.renderedRefeedDay = Math.floor((now - s.refeed.startedAt) / DAY);
     if (!s.active) return;
     const a = s.active, ms = now - a.startedAt, h = ms / HOUR;
-    ui.renderedPhase = phaseIndex(h); ui.renderedReached = h >= a.targetHours;
+    ui.renderedPhase = phaseIndex(h); ui.renderedReached = h >= a.targetHours; ui.renderedOver72 = h >= 72; ui.renderedDayKey = dateKey(now);
     const set = (k, v) => { const el = view.querySelector('[data-tick="' + k + '"]'); if (el) el.textContent = v; return el; };
     set('elapsed', clock(ms));
     set('day', 'Day ' + (Math.floor(h / 24) + 1));
@@ -1244,7 +1278,12 @@ ol.sources a { overflow-wrap: anywhere; }
       a.water[k] = Math.min(Math.max(0, (a.water[k] || 0) + parseInt(t.dataset.ml, 10)), 8000);
       commit(); render();
     },
-    'end-open'() { if (demo) return demoToast(); ui.confirmEnd = true; ui.endReason = 'target'; render(); },
+    'end-open'() {
+      if (demo) return demoToast();
+      ui.confirmEnd = true; ui.endReason = 'target'; render();
+      const confirmBtn = view.querySelector('[data-action="end-confirm"]'); if (confirmBtn) confirmBtn.scrollIntoView({ block: 'center' });
+    },
+    'mark-supervised'() { if (demo) return demoToast(); if (!state.active) return; state.active.supervised = true; commit(); render(); toast('Noted: a clinician is supervising this fast.'); },
     'end-cancel'() { ui.confirmEnd = false; render(); },
     'end-confirm'() {
       const a = state.active; if (!a) return;
@@ -1277,10 +1316,29 @@ ol.sources a { overflow-wrap: anywhere; }
     'delete-open'() { ui.confirmDelete = true; render(); },
     'delete-cancel'() { ui.confirmDelete = false; render(); },
     async 'delete-confirm'() {
+      // The account copy is replaced first, with a higher generation so no other browser brings the old data back.
+      // If that write fails, nothing is deleted.
+      if (ui.deleting) return;
+      const wiped = freshState();
+      wiped.generation = (state.generation || 0) + 1;
+      wiped.savedAt = Date.now();
       clearTimeout(saveTimer);
-      state = freshState(); demo = true; demoData = null; ui.confirmDelete = false;
-      try { localStorage.removeItem(LS_STATE); } catch (e) { /* ignore */ }
-      if (store.mode === 'account' && store.ref) { try { await store.ref.delete(); } catch (e) { /* ignore */ } }
+      if (store.mode === 'account' && store.ref) {
+        ui.deleting = true;
+        while (writing) await new Promise((r) => setTimeout(r, 50));
+        try {
+          await store.ref.set({ v: 1, savedAt: wiped.savedAt, generation: wiped.generation, state: wiped });
+        } catch (e) {
+          ui.deleting = false; ui.confirmDelete = false; render();
+          toast('Could not delete your saved copy. Nothing was deleted. Check your connection and try again.');
+          return;
+        }
+        ui.deleting = false;
+        syncMeta = { dirty: false, syncedSavedAt: wiped.savedAt }; writeSyncMeta();
+      }
+      again = false;
+      state = wiped; demo = true; demoData = null; ui.confirmDelete = false;
+      writeLocal();
       setTab('today'); toast('All your data was deleted.');
     },
   };
@@ -1301,7 +1359,19 @@ ol.sources a { overflow-wrap: anywhere; }
     ['lh', 'sh'].forEach((k) => range(c.bp[k], 30, 220, 'Pulse'));
     const empty = c.weightKg == null && c.ketones == null && !Object.values(c.bp).some((v) => v != null) && !c.symptoms.length && !c.note;
     if (empty) bad.push('Add at least one reading, symptom or note.');
-    if (bad.length) { ui.formError = Array.from(new Set(bad)).join(' '); render(); const err = view.querySelector('.form-error'); if (err) err.scrollIntoView({ block: 'center' }); return; }
+    if (bad.length) {
+      // Show the problem in place; re-rendering would wipe everything already entered.
+      let err = form.querySelector('.form-error');
+      if (!err) {
+        err = document.createElement('p');
+        err.className = 'form-error';
+        err.setAttribute('role', 'alert');
+        form.querySelector('.btn-row').before(err);
+      }
+      err.textContent = Array.from(new Set(bad)).join(' ');
+      err.scrollIntoView({ block: 'center' });
+      return;
+    }
     const isFast = target === state.active;
     const r = assess(c, isFast ? { mode: 'fast', start: target.startedAt, startWeightKg: target.startWeightKg, water: target.water } : { mode: 'refeed' });
     c.level = r.level; c.notes = r.notes;
@@ -1345,7 +1415,11 @@ ol.sources a { overflow-wrap: anywhere; }
 
   render();
   setInterval(() => tick(false), 1000);
-  document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(false); });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) { tick(false); return; }
+    if (store.mode === 'account' && syncMeta.dirty) { clearTimeout(saveTimer); flush(); }
+  });
+  window.addEventListener('pagehide', () => { if (store.mode === 'account' && syncMeta.dirty) { clearTimeout(saveTimer); flush(); } });
   initStore();
 })();
 </script>

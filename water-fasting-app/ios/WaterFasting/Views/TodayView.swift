@@ -43,9 +43,12 @@ struct ActiveFastSection: View {
     var body: some View {
         VStack(spacing: 14) {
             TimelineView(.periodic(from: .now, by: 1)) { context in
-                LiveFastPanels(fast: fast, now: context.date)
+                LiveFastPanels(fast: fast, now: context.date) { confirmEnd = true }
             }
-            WaterCard(fast: fast)
+            // Redrawn every minute so "today" rolls over at midnight.
+            TimelineView(.everyMinute) { context in
+                WaterCard(fast: fast, now: context.date)
+            }
             LatestCheckInCard(fast: fast)
             StopCard()
             Button(role: .destructive) {
@@ -69,6 +72,7 @@ struct ActiveFastSection: View {
 struct LiveFastPanels: View {
     let fast: ActiveFast
     let now: Date
+    var onEnd: () -> Void
 
     var body: some View {
         let elapsed = now.timeIntervalSince(fast.startedAt)
@@ -81,6 +85,18 @@ struct LiveFastPanels: View {
                 Notice(tone: .ok) {
                     Text(reachedLine).bold()
                     Para(text: "Supervised clinics end a fast once its goal is met. End the fast below to get your refeeding plan.", font: .subheadline)
+                }
+            }
+            if !fast.supervised && hours >= 72 {
+                Notice(tone: .stop) {
+                    Text("This fast has passed 72 hours without supervision.").bold()
+                    Para(text: "The research restricts fasts beyond 72 hours to medically supervised settings. End the fast now, or confirm that a clinician is supervising it.", font: .subheadline)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Button("End fast") { onEnd() }
+                            .buttonStyle(WLButtonStyle(kind: .danger))
+                        Button("A clinician is supervising") { FastStore.shared.markSupervised() }
+                            .buttonStyle(WLButtonStyle(kind: .secondary))
+                    }
                 }
             }
             TimerHero(fast: fast, elapsed: elapsed)
@@ -341,9 +357,10 @@ struct WatchCard: View {
 
 struct WaterCard: View {
     let fast: ActiveFast
+    var now = Date()
 
     var body: some View {
-        let ml = fast.waterByDay[Fmt.dayKey(Date())] ?? 0
+        let ml = fast.waterByDay[Fmt.dayKey(now)] ?? 0
         let message: String = {
             if ml == 0 { return "Nothing logged yet today." }
             if ml < Research.waterMin { return "Below the 1.2 L daily minimum so far." }

@@ -44,10 +44,17 @@ final class FastStore {
         persist()
     }
 
-    /// Replaces local data with a newer cloud copy without pushing it back.
+    /// Replaces local data with a copy from the cloud without pushing it back, and brings reminders in line
+    /// with whatever fast that copy has running.
     func replaceAll(with remote: AppData) {
+        let before = data
         data = remote
         persist(touch: false, push: false)
+        let a = before.active, b = remote.active
+        if a?.id != b?.id || a?.startedAt != b?.startedAt || a?.targetHours != b?.targetHours
+            || a?.supervised != b?.supervised || before.remindersOn != remote.remindersOn {
+            refreshReminders()
+        }
     }
 
     private func persist(touch: Bool = true, push: Bool = true) {
@@ -56,7 +63,7 @@ final class FastStore {
             try? bytes.write(to: fileURL, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
         }
         #if canImport(FirebaseCore) && canImport(FirebaseAuth) && canImport(FirebaseFirestore)
-        if push { CloudSync.shared.schedulePush(data) }
+        if push { CloudSync.shared.localChanged() }
         #endif
     }
 
@@ -79,9 +86,13 @@ final class FastStore {
             d.refeed = nil
         }
         lastResultID = nil
-        if data.remindersOn {
-            Task { await NotificationService.shared.scheduleFast(start: start, targetHours: targetHours) }
-        }
+        refreshReminders()
+    }
+
+    /// Records that a clinician is supervising the running fast (needed once it passes 72 hours).
+    func markSupervised() {
+        update { $0.active?.supervised = true }
+        refreshReminders()
     }
 
     func waterToday() -> Int {
@@ -125,6 +136,8 @@ final class FastStore {
         update { d in
             d.active?.checkIns.removeAll { $0.id == id }
             d.refeed?.checkIns.removeAll { $0.id == id }
+            d.removedCheckIns.append(id)
+            if d.removedCheckIns.count > 500 { d.removedCheckIns.removeFirst(d.removedCheckIns.count - 500) }
         }
         if lastResultID == id { lastResultID = nil }
     }
@@ -154,29 +167,56 @@ final class FastStore {
     }
 
     func finishRefeed() {
-        update { $0.refeed = nil }
+        let fastID = data.refeed?.fastId
+        update { d in
+            if let fastID, let index = d.history.firstIndex(where: { $0.id == fastID }) {
+                d.history[index].refeedCompleted = true
+            }
+            d.refeed = nil
+        }
         lastResultID = nil
         tab = .today
     }
 
     func setReminders(_ on: Bool) {
         update { $0.remindersOn = on }
-        if on, let a = data.active {
-            Task { await NotificationService.shared.scheduleFast(start: a.startedAt, targetHours: a.targetHours) }
+        refreshReminders()
+    }
+
+    /// Schedules (or clears) reminders for the running fast. Called on changes and whenever the app comes
+    /// forward, so the rolling window of check-in prompts keeps going for as long as the fast runs.
+    func refreshReminders() {
+        if data.remindersOn, let a = data.active {
+            Task { await NotificationService.shared.scheduleFast(start: a.startedAt, targetHours: a.targetHours, supervised: a.supervised) }
         } else {
             NotificationService.shared.cancelAll()
         }
     }
 
-    /// Removes everything from this iPhone and, when signed in, the cloud copy.
-    func deleteAll() {
-        NotificationService.shared.cancelAll()
+    /// Removes everything. When cloud backup is on, the deletion is written to the cloud first, so other
+    /// devices clear too; if that write fails nothing is deleted and the error is returned.
+    func deleteAll() async -> String? {
+        var wiped = AppData()
+        wiped.generation = data.generation + 1
+        wiped.updatedAt = Date()
         #if canImport(FirebaseCore) && canImport(FirebaseAuth) && canImport(FirebaseFirestore)
-        CloudSync.shared.cancelPendingPush()
-        Task { await CloudSync.shared.deleteRemoteState() }
+        if let failure = await CloudSync.shared.publishWipe(wiped) { return failure }
         #endif
-        data = AppData()
-        try? FileManager.default.removeItem(at: fileURL)
+        NotificationService.shared.cancelAll()
+        data = wiped
+        persist(touch: false, push: false)
+        lastResultID = nil
+        tab = .today
+        return nil
+    }
+
+    /// Clears this iPhone after signing out. The account's copy in the cloud is untouched.
+    func resetAfterSignOut() {
+        NotificationService.shared.cancelAll()
+        var fresh = AppData()
+        fresh.onboarded = true
+        data = fresh
+        persist(touch: false, push: false)
         lastResultID = nil
         tab = .today
     }

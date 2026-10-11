@@ -10,6 +10,8 @@ enum AppTab: Hashable {
 
 /// Top-level flow: welcome until onboarded, then the tab bar.
 struct RootView: View {
+    @Environment(\.scenePhase) private var scenePhase
+
     var body: some View {
         let store = FastStore.shared
         let screen: AppScreen = store.data.onboarded ? .main : .welcome
@@ -23,6 +25,10 @@ struct RootView: View {
             }
         }
         .animation(.easeInOut(duration: 0.3), value: screen)
+        .onChange(of: scenePhase) { _, phase in
+            // Renews the rolling window of check-in reminders while a fast runs.
+            if phase == .active { FastStore.shared.refreshReminders() }
+        }
         .task {
             #if canImport(FirebaseCore) && canImport(FirebaseAuth) && canImport(FirebaseFirestore)
             CloudSync.shared.start()
