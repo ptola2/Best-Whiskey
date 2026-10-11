@@ -34,9 +34,13 @@ These come straight from the source document.
 
 Waterline is an educational tool. The research it is built on restricts fasts longer than 72 hours to medically supervised settings.
 
+## iPhone app
+
+A native SwiftUI version lives in `ios/`. See `ios/README.md` to open and run it in Xcode.
+
 ## Ideas for next steps
 
-- Native iOS version in SwiftUI with HealthKit for weight and blood pressure, and local notifications for check-in reminders.
-- Installable PWA (manifest and service worker) for offline use.
+- Apple Health (HealthKit) in the iPhone app for weight and blood pressure.
+- Installable home screen web app that works offline.
 - Weight and ketone trend charts across a fast.
 - Export of check-ins as a PDF or CSV to share with a clinician.
