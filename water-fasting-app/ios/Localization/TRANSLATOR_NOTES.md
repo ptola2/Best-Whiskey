@@ -24,8 +24,11 @@ anything it reports before committing.
   leave out the number only when the language's grammar calls for it.
 - No em dashes. Use a colon, comma or full stop instead.
 - Keep these as they are: Waterline, ASPEN, NICE, CTCAE, BHB, HOMA-IR, IGF-1,
-  mTORC1, AMPK, LC3-II, Beclin-1, ECG, Mifflin-St Jeor, SGLT2, ARFID, Free T3,
-  Grade 3, and units such as mmHg, mmol/L, mEq, mg/dL, kcal, kg, cm, mL and L.
+  mTORC1, AMPK, LC3-II, Beclin-1, Mifflin-St Jeor, SGLT2, ARFID, and units such
+  as mmHg, mmol/L, mEq, mg/dL, kcal, kg, cm, mL and L.
+- ECG, Free T3 and Grade 3 (a CTCAE severity grade) should use the standard
+  form in your language, for example EKG and freies T3 in German, T3 libre and
+  grade 3 in French, ЭКГ in Russian.
   Languages that normally write units in their own script (for example
   Russian кг, мм рт. ст.) may use those forms.
   Medicine and condition names should use the common medical term in your
