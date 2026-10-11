@@ -230,6 +230,11 @@ private struct DataCard: View {
             CardTitle(text: "Your data", style: .title3)
             Para(text: "Everything is saved in a protected file on this iPhone. Nothing leaves the device unless you switch on cloud backup.",
                  font: .subheadline, color: Theme.ink2)
+            Link(destination: AppLinks.privacyPolicy) {
+                Label("Privacy policy", systemImage: "hand.raised")
+                    .font(.subheadline.weight(.semibold))
+            }
+            .tint(Theme.accent)
             Button("Delete all my data", role: .destructive) { confirmDelete = true }
                 .buttonStyle(WLButtonStyle(kind: .danger))
                 .disabled(deleting)

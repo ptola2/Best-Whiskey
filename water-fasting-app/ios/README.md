@@ -79,6 +79,14 @@ How the sync behaves:
 - **Sign out** backs up anything pending, then removes the data from this iPhone. It stays in the account, and it can never be uploaded into a different account.
 - **Delete account** asks for a fresh Sign in with Apple confirmation, revokes the Apple token, deletes the cloud copy and then the account. Data on the iPhone stays.
 
+## Privacy policy
+
+`PRIVACY_POLICY.md` is the app's privacy policy, written to match what the code actually does. Publish it as a page on malebolabs.com, then:
+
+1. Open the live page in a browser and copy its exact address.
+2. Put that address in `WaterFasting/Models/AppLinks.swift` (the in-app link in Profile, required by guideline 5.1.1) and in App Store Connect.
+3. If version 1 ships without cloud backup, delete section 4, section 11 and the Google Firebase row in section 7, and remove the "Account" row from the table in section 1.
+
 ## App Store notes
 
 - Category: **Health & Fitness**.
