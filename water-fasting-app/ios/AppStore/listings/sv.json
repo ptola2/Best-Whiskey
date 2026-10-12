@@ -1,0 +1,44 @@
+{
+  "name": "Waterline: vattenfasta",
+  "subtitle": "Fastetimer & säkerhetskontroll",
+  "promotional_text": "Följ din vattenfasta timme för timme, checka in med blodtryck och symtom och bryt fastan på ett säkert sätt med en uppbyggnadsplan baserad på klinisk forskning.",
+  "description": "Waterline hjälper dig att förstå och följa en ren vattenfasta, utifrån vad den kliniska forskningen säger, inklusive riskerna.\n\nVET VAR DU BEFINNER DIG\n• En timer i realtid visar varje metabol fas, från att glykogenet tar slut till 72-timmarsgränsen.\n• En tidslinje och kortet ”Att hålla koll på” visar vilka problem som brukar börja vilken dag.\n\nCHECKA IN TVÅ GÅNGER OM DAGEN\n• Logga vikt, ketoner, blodtryck liggande och stående, puls och symtom.\n• Varje incheckning bedöms mot publicerade gränsvärden, så att du ser vilka tecken som behöver uppmärksammas och vilka som betyder att du ska avbryta och söka hjälp.\n• Håll koll på hur mycket rent vatten du dricker i förhållande till det dagliga intervallet 1,2 till 2,5 L.\n\nSÄKERHETEN FÖRST\n• En säkerhetskontroll som bygger på de medicinska kontraindikationerna utesluter vattenfasta för den som det inte passar, till exempel vid typ 1-diabetes, graviditet eller en ätstörning.\n• Läkemedel och sjukdomar som kräver en läkares bedömning flaggas innan du börjar.\n• Precis som i forskningen kräver fastor längre än 72 timmar bekräftad medicinsk övervakning.\n• Lägg till telefonnumret till din vårdkontakt så att det alltid bara är ett tryck bort.\n\nBRYT FASTAN PÅ ETT SÄKERT SÄTT\n• En uppbyggnadsplan anpassad efter din fasta, med riskgraderna från ASPEN och NICE: hur länge den pågår, hur många kalorier, vad du ska äta varje dag och vad du ska hålla koll på.\n\nFÖRSTÅ VETENSKAPEN\n• Förändringar timme för timme, hormoner, studieresultat, biverkningar och refeedingsyndrom, med en länk till varje källa.\n\nPRIVAT FRÅN GRUNDEN\n• Inget konto behövs. Allt stannar på din iPhone. Ingen reklam och ingen spårning.\n\nPÅ DITT SPRÅK\n• 21 språk, bland annat arabiska, franska, hindi, japanska, kinesiska, spanska, swahili och tyska. Byt när du vill.\n\nVIKTIGT\nWaterline är ett utbildningsverktyg. Det är varken en medicinteknisk produkt eller medicinsk rådgivning, och det ställer inte diagnoser och behandlar inte några sjukdomar eller tillstånd. Vattenfasta är inte säkert för alla. Träffa en läkare före varje fasta, och fasta längre än 72 timmar endast under medicinsk övervakning. Vid en nödsituation ringer du ditt lokala larmnummer.",
+  "keywords": "fasta,ketos,ketoner,autofagi,uppbyggnad,refeeding,långtidsfasta,elektrolyter,72 timmar,tracker",
+  "screenshots": [
+    {
+      "screen": "Today: timer during a fast",
+      "title": "Vet var du är i fastan",
+      "subtitle": "En timer i realtid genom varje metabol fas"
+    },
+    {
+      "screen": "Profile: safety check answered",
+      "title": "Säkerhetskontroll före start",
+      "subtitle": "Bygger på de medicinska kontraindikationerna"
+    },
+    {
+      "screen": "Log: a graded check-in",
+      "title": "Checka in två gånger om dagen",
+      "subtitle": "Mätvärden bedömda mot kliniska gränsvärden"
+    },
+    {
+      "screen": "Today: warning signs card",
+      "title": "Vet när du ska avbryta",
+      "subtitle": "Varningstecken och din vårdkontakt ett tryck bort"
+    },
+    {
+      "screen": "Refeed: your plan",
+      "title": "Bryt fastan på ett säkert sätt",
+      "subtitle": "En uppbyggnadsplan anpassad efter din fasta"
+    },
+    {
+      "screen": "Learn: hour by hour",
+      "title": "Vetenskapen, med alla källor",
+      "subtitle": "Timme för timme, från publicerad forskning"
+    },
+    {
+      "screen": "Language screen",
+      "title": "På ditt språk",
+      "subtitle": "21 språk, byt när du vill"
+    }
+  ]
+}
