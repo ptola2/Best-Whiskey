@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waterline Screenshot Maker</title>
+<style>
+  :root {
+    --paper: #EDF2F3; --surface: #FFFFFF; --ink: #0F2530; --ink2: #3C5460; --muted: #647A85;
+    --line: #D2DDE1; --accent: #16708A; --accent-soft: #D7EBF1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0B1419; --surface: #121F26; --ink: #E1EBEE; --ink2: #B4C5CC; --muted: #8399A3;
+      --line: #263842; --accent: #62BAD2; --accent-soft: #163742;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+         font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font: 600 30px/1.2 ui-serif, Georgia, serif; margin: 0 0 6px; }
+  p.lead { color: var(--ink2); margin: 0 0 24px; max-width: 70ch; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-bottom: 16px; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
+  label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 13px; color: var(--ink2); }
+  select, button { font: inherit; border-radius: 10px; border: 1px solid var(--line); background: var(--paper);
+                   color: var(--ink); padding: 9px 12px; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; cursor: pointer; }
+  button:disabled { opacity: .5; cursor: default; }
+  .drop { border: 2px dashed var(--line); border-radius: 14px; padding: 28px 16px; text-align: center; color: var(--muted);
+          cursor: pointer; transition: border-color .15s, background .15s; }
+  .drop.over { border-color: var(--accent); background: var(--accent-soft); color: var(--ink); }
+  .drop strong { color: var(--ink); }
+  ol.shots { margin: 8px 0 0; padding-left: 20px; color: var(--ink2); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; margin-top: 14px; }
+  .grid figure { margin: 0; }
+  .grid img { width: 100%; border-radius: 10px; border: 1px solid var(--line); display: block; }
+  .grid figcaption { font-size: 12px; color: var(--muted); margin-top: 4px; display: flex; justify-content: space-between; gap: 6px; }
+  .grid a { color: var(--accent); }
+  .note { font-size: 13px; color: var(--muted); }
+  .status { font-size: 13px; color: var(--ink2); min-height: 20px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Waterline screenshot maker</h1>
+  <p class="lead">Drop in raw screenshots from the simulator (Cmd+S saves them to the Desktop), choose a language,
+    and download App Store images with a caption on top. Everything happens in this browser: nothing is uploaded.</p>
+
+  <div class="card">
+    <div class="row">
+      <label>Caption language
+        <select id="lang"></select>
+      </label>
+      <label>Background
+        <select id="theme">
+          <option value="mineral">Mineral teal</option>
+          <option value="paper">Paper</option>
+          <option value="ink">Deep ink</option>
+        </select>
+      </label>
+      <label>Size
+        <select id="size">
+          <option value="1320x2868">6.9-inch, 1320 x 2868</option>
+          <option value="1206x2622">6.3-inch, 1206 x 2622</option>
+        </select>
+      </label>
+      <button class="primary" id="download" disabled>Download all</button>
+    </div>
+    <p class="note">App Store Connect needs at least one 6.3-inch image and a 6.9-inch set. Make both: switch the size and download again.</p>
+  </div>
+
+  <div class="card">
+    <div class="drop" id="drop" tabindex="0" role="button" aria-label="Choose screenshots">
+      <strong>Drop screenshots here</strong> or click to choose. They are used in file-name order, matching this list:
+      <ol class="shots" id="shotlist"></ol>
+    </div>
+    <input type="file" id="files" accept="image/*" multiple hidden>
+    <p class="status" id="status"></p>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<script id="captions" type="application/json">
+{
+ "en": [
+  {"title": "Know where you are in your fast", "subtitle": "A live timer through every metabolic phase"},
+  {"title": "A safety check before you start", "subtitle": "Built from the medical contraindications"},
+  {"title": "Check in twice a day", "subtitle": "Readings graded against clinical thresholds"},
+  {"title": "Know when to stop", "subtitle": "Clear warning signs, your clinician one tap away"},
+  {"title": "Break the fast safely", "subtitle": "A refeeding plan sized to your fast"},
+  {"title": "The science, with every source", "subtitle": "Hour by hour, from published research"},
+  {"title": "In your language", "subtitle": "21 languages, switch at any time"}
+ ]
+}
+</script>
+<script>
+const CAPTIONS = JSON.parse(document.getElementById('captions').textContent);
+const SCREENS = ['Today: timer during a fast', 'Profile: safety check answered', 'Log: a graded check-in',
+  'Today: warning signs card', 'Refeed: your plan', 'Learn: hour by hour', 'Language screen'];
+const NAMES = { en: 'English', ar: 'العربية', de: 'Deutsch', es: 'Español', fr: 'Français', hi: 'हिन्दी',
+  id: 'Bahasa Indonesia', it: 'Italiano', ja: '日本語', ko: '한국어', ms: 'Bahasa Melayu', nl: 'Nederlands',
+  pl: 'Polski', 'pt-BR': 'Português (Brasil)', ru: 'Русский', sv: 'Svenska', th: 'ไทย', tr: 'Türkçe',
+  vi: 'Tiếng Việt', 'zh-Hans': '简体中文' };
+const THEMES = {
+  mineral: { top: '#16708A', bottom: '#0D4556', title: '#FFFFFF', sub: 'rgba(255,255,255,0.86)', frame: 'rgba(255,255,255,0.35)' },
+  paper:   { top: '#F4F8F9', bottom: '#D7EBF1', title: '#0F2530', sub: '#3C5460', frame: 'rgba(15,37,48,0.12)' },
+  ink:     { top: '#14303C', bottom: '#0B1419', title: '#E1EBEE', sub: 'rgba(225,235,238,0.8)', frame: 'rgba(255,255,255,0.18)' },
+};
+const FONT = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "PingFang SC", "Hiragino Sans", ' +
+  '"Apple SD Gothic Neo", "Geeza Pro", "Kohinoor Devanagari", "Thonburi", "Noto Sans", sans-serif';
+
+const $ = (id) => document.getElementById(id);
+let images = [];
+let outputs = [];
+
+for (const code of Object.keys(CAPTIONS)) {
+  const opt = document.createElement('option');
+  opt.value = code;
+  opt.textContent = `${NAMES[code] || code} (${code})`;
+  $('lang').appendChild(opt);
+}
+for (const s of SCREENS) {
+  const li = document.createElement('li');
+  li.textContent = s;
+  $('shotlist').appendChild(li);
+}
+
+function segments(text, lang) {
+  // Breaks text where a line may wrap: words for most languages, proper word units for Thai, Chinese and Japanese.
+  if (window.Intl && Intl.Segmenter) {
+    const seg = new Intl.Segmenter(lang, { granularity: 'word' });
+    return Array.from(seg.segment(text), (s) => s.segment);
+  }
+  return text.split(/(\s+)/);
+}
+
+function wrap(ctx, text, lang, maxWidth) {
+  const lines = [];
+  let line = '';
+  for (const piece of segments(text, lang)) {
+    const test = line + piece;
+    if (line && ctx.measureText(test.trim()).width > maxWidth) {
+      lines.push(line.trim());
+      line = piece.trimStart();
+    } else {
+      line = test;
+    }
+  }
+  if (line.trim()) lines.push(line.trim());
+  return lines;
+}
+
+function fitText(ctx, text, lang, maxWidth, size, minSize, weight, maxLines) {
+  let s = size;
+  let lines;
+  do {
+    ctx.font = `${weight} ${s}px ${FONT}`;
+    lines = wrap(ctx, text, lang, maxWidth);
+    if (lines.length <= maxLines) break;
+    s -= 2;
+  } while (s > minSize);
+  return { lines, size: s };
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function render(img, caption, W, H, theme, lang) {
+  const t = THEMES[theme];
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  const bg = ctx.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, t.top);
+  bg.addColorStop(1, t.bottom);
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.direction = lang === 'ar' ? 'rtl' : 'ltr';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'alphabetic';
+  const maxWidth = W * 0.86;
+  let y = H * 0.075;
+
+  const title = fitText(ctx, caption.title, lang, maxWidth, Math.round(W * 0.074), Math.round(W * 0.052), 700, 2);
+  ctx.font = `700 ${title.size}px ${FONT}`;
+  ctx.fillStyle = t.title;
+  for (const line of title.lines) {
+    y += title.size * 1.12;
+    ctx.fillText(line, W / 2, y);
+  }
+
+  const sub = fitText(ctx, caption.subtitle, lang, maxWidth, Math.round(W * 0.040), Math.round(W * 0.030), 500, 2);
+  ctx.font = `500 ${sub.size}px ${FONT}`;
+  ctx.fillStyle = t.sub;
+  y += sub.size * 0.6;
+  for (const line of sub.lines) {
+    y += sub.size * 1.3;
+    ctx.fillText(line, W / 2, y);
+  }
+
+  // The screenshot, with rounded corners, running off the bottom edge like a phone held up.
+  const shotW = W * 0.80;
+  const shotH = shotW * (img.naturalHeight / img.naturalWidth);
+  const x = (W - shotW) / 2;
+  const top = y + H * 0.04;
+  const radius = W * 0.065;
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,0.28)';
+  ctx.shadowBlur = W * 0.04;
+  ctx.shadowOffsetY = W * 0.012;
+  roundRect(ctx, x, top, shotW, shotH, radius);
+  ctx.fillStyle = '#000';
+  ctx.fill();
+  ctx.restore();
+  ctx.save();
+  roundRect(ctx, x, top, shotW, shotH, radius);
+  ctx.clip();
+  ctx.drawImage(img, x, top, shotW, shotH);
+  ctx.restore();
+  ctx.lineWidth = W * 0.006;
+  ctx.strokeStyle = t.frame;
+  roundRect(ctx, x, top, shotW, shotH, radius);
+  ctx.stroke();
+  return canvas;
+}
+
+function loadFiles(fileList) {
+  const files = Array.from(fileList).filter((f) => f.type.startsWith('image/'))
+    .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+  if (!files.length) return;
+  Promise.all(files.map((f) => new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve({ img, name: f.name });
+    img.onerror = reject;
+    img.src = URL.createObjectURL(f);
+  }))).then((loaded) => {
+    images = loaded.slice(0, SCREENS.length);
+    const extra = loaded.length > SCREENS.length ? ` (only the first ${SCREENS.length} are used)` : '';
+    $('status').textContent = `${images.length} screenshot(s) loaded${extra}.`;
+    build();
+  }).catch(() => { $('status').textContent = 'One of the files could not be read as an image.'; });
+}
+
+async function build() {
+  const lang = $('lang').value;
+  const theme = $('theme').value;
+  const [W, H] = $('size').value.split('x').map(Number);
+  const captions = CAPTIONS[lang] || CAPTIONS.en;
+  outputs.forEach((o) => URL.revokeObjectURL(o.url));
+  outputs = [];
+  $('grid').innerHTML = '';
+  if (document.fonts && document.fonts.ready) await document.fonts.ready;
+  for (let i = 0; i < images.length; i++) {
+    const canvas = render(images[i].img, captions[i] || captions[0], W, H, theme, lang);
+    // JPEG has no alpha channel, which App Store Connect requires.
+    const blob = await new Promise((r) => canvas.toBlob(r, 'image/jpeg', 0.93));
+    const url = URL.createObjectURL(blob);
+    const name = `waterline-${lang}-${W}x${H}-${i + 1}.jpg`;
+    outputs.push({ url, name });
+    const fig = document.createElement('figure');
+    fig.innerHTML = `<img alt=""><figcaption><span>${i + 1}. ${SCREENS[i]}</span><a download>Save</a></figcaption>`;
+    fig.querySelector('img').src = url;
+    const a = fig.querySelector('a');
+    a.href = url;
+    a.download = name;
+    $('grid').appendChild(fig);
+  }
+  $('download').disabled = outputs.length === 0;
+}
+
+async function downloadAll() {
+  for (const o of outputs) {
+    const a = document.createElement('a');
+    a.href = o.url;
+    a.download = o.name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    await new Promise((r) => setTimeout(r, 350));
+  }
+}
+
+const drop = $('drop');
+drop.addEventListener('click', () => $('files').click());
+drop.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('files').click(); } });
+drop.addEventListener('dragover', (e) => { e.preventDefault(); drop.classList.add('over'); });
+drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+drop.addEventListener('drop', (e) => { e.preventDefault(); drop.classList.remove('over'); loadFiles(e.dataTransfer.files); });
+$('files').addEventListener('change', (e) => loadFiles(e.target.files));
+for (const id of ['lang', 'theme', 'size']) $(id).addEventListener('change', () => { if (images.length) build(); });
+$('download').addEventListener('click', downloadAll);
+</script>
+</body>
+</html>

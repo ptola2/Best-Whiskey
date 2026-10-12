@@ -53,6 +53,7 @@ WaterFasting/
     Theme.swift, Components.swift
   Assets.xcassets                App icon and accent colour
   Localizable.xcstrings          All text in 21 languages (generated, see Languages)
+  PrivacyInfo.xcprivacy          Privacy manifest required by the App Store
 Localization/
   en.json, fr.json, ...          Text for each language, edited by hand
   build_catalog.py               Checks the files and writes Localizable.xcstrings
@@ -133,13 +134,18 @@ Before release, have a native speaker check at least the safety text in each lan
 
 App Store Connect: add a listing (name, subtitle, description, screenshots) for each language you want to show in the store. App Store Connect has no Swahili listing, so Swahili speakers see the English listing but still get the app in Swahili once installed.
 
-## App Store notes
+## App Store
 
-- Category: **Health & Fitness**.
-- Mac (Designed for iPhone) and Vision Pro availability are already turned off in the build settings. Also untick "Make available on Apple Silicon Macs" in App Store Connect.
-- App Privacy: without Firebase nothing leaves the phone, so "Data Not Collected" is accurate. With cloud backup on, declare Health & Fitness, User ID, Email Address (if shared through Sign in with Apple) and Other User Content, all linked to the user, used for App Functionality, no tracking.
-- Health apps get close review under guideline 1.4.1. Keep the disclaimers and the Sources section; they show where every number comes from.
-- Screenshots: 1320 x 2868 (6.9-inch) and 1284 x 2778 (6.5-inch). Run the matching simulator and press Cmd+S.
+Everything for App Store Connect is in `AppStore/`:
+
+- `APP_STORE_CONNECT.md`: every field in order: signing, bundle ID, app record, category, age rating answers, App Privacy answers, pricing and availability, review notes and the screenshot plan.
+- `listings/<language>.md`: name, subtitle, promotional text, description and keywords for each store language, ready to paste. `listings/*.json` are the sources; after editing one, run `python3 AppStore/build_listings.py` to check the App Store limits and rebuild the pages.
+- `screenshot-maker.html`: open it in Safari or Chrome, drop in simulator screenshots, and it makes captioned App Store images at 1320 x 2868 and 1206 x 2622 in any of the store languages.
+- `SUPPORT_PAGE.md`: text for the support page the App Store requires.
+
+`WaterFasting/PrivacyInfo.xcprivacy` is the privacy manifest Apple requires for every upload. It declares that nothing is collected or tracked, and why the app uses UserDefaults (the language setting).
+
+Mac (Designed for iPhone) and Vision Pro availability are already turned off in the build settings. Also untick "Make available on Apple Silicon Macs" in App Store Connect.
 
 ## Before you ship
 
