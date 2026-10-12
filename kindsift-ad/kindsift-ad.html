@@ -1,0 +1,1117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KindSift Storage Ad</title>
+<!--
+  KindSift: Clean Up Storage. Vertical ad, 1080 x 1920, 6.0 s.
+
+  Autoplays on load and holds the end card at 6.0 s.
+  URL options:
+    ?loop=1      restart at 6.0 s
+    ?speed=0.25  slow motion preview
+    ?t=3.2       freeze on one moment (no playback)
+    ?render=1    no autoplay; drive frames with window.KS.seek(seconds)
+    ?fit=0       never scale the 1080 x 1920 stage to the window
+  Every frame is a pure function of time, so seeking is frame accurate
+  (see render.mjs for a headless MP4 export).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --red:#FF453A; --mint:#30D158; --teal:#40C8E0; --cyan:#64D2FF; --blue:#0A84FF;
+  --label2:rgba(235,235,245,.62);
+  --font:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;background:#000;overflow:hidden}
+body{font-family:var(--font);color:#fff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:geometricPrecision}
+
+#stage{position:absolute;left:50%;top:50%;width:1080px;height:1920px;margin:-960px 0 0 -540px;background:#000;overflow:hidden;transform-origin:50% 50%}
+.abs{position:absolute}
+.anim{opacity:0;visibility:hidden;will-change:transform,opacity}
+
+/* ambient light */
+.glow{position:absolute;border-radius:50%;pointer-events:none;z-index:0}
+#glowRed{width:1500px;height:1500px;left:-210px;top:-20px;background:radial-gradient(closest-side,rgba(255,69,58,.26),rgba(255,69,58,.08) 52%,rgba(255,69,58,0) 100%)}
+#glowGreen{width:1600px;height:1600px;left:-260px;top:100px;background:radial-gradient(closest-side,rgba(48,209,88,.22),rgba(64,200,224,.07) 55%,rgba(48,209,88,0) 100%)}
+#endGlow{width:1100px;height:1100px;left:-10px;top:150px;background:radial-gradient(closest-side,rgba(48,209,88,.40),rgba(48,209,88,.12) 42%,rgba(64,200,224,.04) 70%,rgba(48,209,88,0) 100%)}
+
+.layer{position:absolute;inset:0;z-index:1}
+#fx{position:absolute;left:0;top:0;width:1080px;height:1920px;z-index:3;pointer-events:none}
+#endCard{z-index:4}
+
+/* glass */
+.glass{
+  background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.035));
+  border:1.5px solid rgba(255,255,255,.10);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.08),0 40px 120px rgba(0,0,0,.6);
+  -webkit-backdrop-filter:blur(40px) saturate(170%);backdrop-filter:blur(40px) saturate(170%);
+}
+
+/* 1. iOS alert */
+#alert{left:162px;top:548px;width:756px;border-radius:40px;z-index:2;
+  background:rgba(40,40,42,.80);-webkit-backdrop-filter:blur(50px) saturate(180%);backdrop-filter:blur(50px) saturate(180%);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.06),0 50px 140px rgba(0,0,0,.75)}
+.al-body{padding:56px 52px 50px;text-align:center}
+.al-title{font-size:48px;font-weight:600;letter-spacing:-.012em;line-height:1.2}
+.al-msg{margin-top:12px;font-size:37px;line-height:1.3;color:rgba(255,255,255,.86);letter-spacing:-.005em}
+.al-btns{display:flex;border-top:1.5px solid rgba(84,84,88,.7)}
+.al-btn{flex:1;height:124px;display:flex;align-items:center;justify-content:center;font-size:48px;color:var(--blue);letter-spacing:-.01em}
+.al-btn+.al-btn{border-left:1.5px solid rgba(84,84,88,.7)}
+.al-btn.b{font-weight:600}
+
+/* 2. headline */
+#headline{left:0;right:0;top:196px;text-align:center;font-size:86px;font-weight:700;letter-spacing:-.04em;line-height:1.1}
+.hl{position:relative;display:block;white-space:nowrap}
+.wm{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em .16em;margin:0 -.04em -.16em}
+.w{display:inline-block;will-change:transform,opacity}
+.grad{background-image:linear-gradient(90deg,#30D158 0%,#3BD0A0 38%,#40C8E0 68%,#64D2FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+
+/* scanner card */
+#scanner{left:80px;top:456px;width:920px;height:548px;border-radius:52px;padding:40px;overflow:hidden}
+.sc-head{height:72px;display:flex;align-items:center;justify-content:space-between}
+.sc-brand{display:flex;align-items:center;gap:20px}
+.sc-name{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.sc-sub{font-size:24px;font-weight:500;color:var(--label2);margin-top:3px}
+.sc-status{display:flex;align-items:center;gap:14px;font-size:28px;font-weight:600;color:var(--label2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.sc-status.on{color:#4BE07A}
+#scDot{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint)}
+.sc-prog{margin-top:20px;height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
+#scProg{height:100%;width:0;border-radius:3px;background:linear-gradient(90deg,#30D158,#40C8E0,#64D2FF)}
+.sc-row{position:relative;margin-top:34px;height:336px}
+.th{position:absolute;top:0;width:248px;height:248px}
+.th-img,.ghost{position:absolute;left:0;top:0;width:248px;height:248px;border-radius:30px}
+.th-img img,.ghost img{display:block;width:248px;height:248px}
+.ghost{overflow:hidden}
+.ghost img{filter:brightness(.92) saturate(.95)}
+.ghost::after{content:"";position:absolute;inset:0;border-radius:30px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.3)}
+.th-tint{position:absolute;inset:0;border-radius:30px;background:rgba(48,209,88,.30);box-shadow:inset 0 0 0 3px rgba(140,255,185,.95);opacity:0}
+.th-ring{position:absolute;inset:-7px;border-radius:37px;border:4px solid var(--mint);box-shadow:0 0 30px rgba(48,209,88,.5);opacity:0}
+.th-check{position:absolute;top:14px;right:14px;width:58px;height:58px;border-radius:50%;background:var(--mint);border:3.5px solid #fff;display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.th-check svg{width:32px;height:32px}
+.lb{position:absolute;top:270px;width:320px;text-align:center}
+.lb b{display:block;font-size:28px;font-weight:600;letter-spacing:-.01em}
+.lb span{display:block;margin-top:6px;font-size:25px;font-weight:600;color:#4BE07A;font-variant-numeric:tabular-nums}
+#beam{position:absolute;top:-34px;left:0;width:5px;height:316px;margin-left:-2.5px;border-radius:3px;
+  background:linear-gradient(180deg,rgba(156,255,196,0),#9CFFC4 16%,#30D158 50%,#9CFFC4 84%,rgba(156,255,196,0));
+  box-shadow:0 0 18px 4px rgba(48,209,88,.55),0 0 80px 22px rgba(48,209,88,.20)}
+#beam::before{content:"";position:absolute;right:5px;top:0;bottom:0;width:320px;
+  background:linear-gradient(90deg,rgba(48,209,88,0),rgba(48,209,88,.18)),repeating-linear-gradient(180deg,rgba(156,255,196,.12) 0 2px,rgba(0,0,0,0) 2px 12px);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent),linear-gradient(90deg,transparent,#000);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent),linear-gradient(90deg,transparent,#000);
+  mask-composite:intersect}
+#success{position:absolute;left:0;right:0;top:4px;display:flex;flex-direction:column;align-items:center;text-align:center}
+#succIcon{width:150px;height:150px;overflow:visible}
+.su1{margin-top:20px;font-size:60px;font-weight:700;letter-spacing:-.035em;line-height:1.1}
+.su2{margin-top:8px;font-size:30px;font-weight:500;color:var(--label2)}
+
+/* storage card */
+#storage{left:80px;top:1048px;width:920px;border-radius:52px;padding:38px 44px 42px}
+.st-alarm{position:absolute;inset:-1.5px;border-radius:52px;pointer-events:none;box-shadow:inset 0 0 0 2px rgba(255,69,58,.6),0 0 90px rgba(255,69,58,.20);opacity:0}
+.st-row{display:flex;justify-content:space-between;align-items:center;height:52px}
+.st-label{display:flex;align-items:center;gap:14px;font-size:32px;font-weight:600;color:rgba(235,235,245,.80);letter-spacing:-.01em}
+.st-label svg{width:30px;height:30px}
+.st-chips{position:relative;width:320px;height:52px}
+.chip{position:absolute;right:0;top:0;height:52px;padding:0 22px 0 16px;border-radius:26px;display:flex;align-items:center;gap:10px;font-size:26px;font-weight:600;white-space:nowrap;transform-origin:100% 50%}
+.chip svg{width:28px;height:28px}
+.chip.warn{background:rgba(255,69,58,.16);color:#FF6961;box-shadow:inset 0 0 0 1.5px rgba(255,69,58,.38)}
+.chip.ok{background:rgba(48,209,88,.15);color:#4BE07A;box-shadow:inset 0 0 0 1.5px rgba(48,209,88,.38)}
+.st-count{display:flex;align-items:flex-end;margin-top:14px;height:112px}
+.odo{display:flex;height:112px;font-size:100px;font-weight:700;letter-spacing:-.03em;line-height:112px;font-variant-numeric:tabular-nums}
+.odo-col{display:block;height:112px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 13%,#000 87%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0,#000 13%,#000 87%,transparent 100%)}
+.odo-col{position:relative}
+.odo-col .sizer{visibility:hidden}
+.odo-col .dg{position:absolute;left:0;right:0;top:0;text-align:center;will-change:transform,opacity}
+.odo-dot{display:block}
+.st-unit{font-size:58px;font-weight:700;letter-spacing:-.02em;line-height:1;margin:0 0 22px 12px}
+.st-of{font-size:32px;font-weight:500;color:var(--label2);line-height:1;margin:0 0 25px 18px}
+.bar{position:relative;margin-top:18px;height:28px;border-radius:14px;background:rgba(255,255,255,.09)}
+#barW{position:absolute;left:0;top:0;bottom:0;width:0}
+.fill{position:absolute;inset:0;border-radius:14px}
+.fill.red{background:linear-gradient(90deg,#FF7A70,#FF453A)}
+.fill.green{background:linear-gradient(90deg,#30D158,#40C8E0 70%,#64D2FF);box-shadow:0 0 26px rgba(48,209,88,.45);clip-path:inset(0 100% 0 0 round 14px)}
+.bar-sheen{position:absolute;inset:0;border-radius:14px;overflow:hidden}
+.bar-sheen i{position:absolute;top:0;bottom:0;left:0;width:180px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));opacity:0}
+
+/* 3. CTA */
+#cta{left:150px;top:1392px;width:780px;height:132px}
+#ctaGlow{position:absolute;inset:14px 40px;border-radius:60px;box-shadow:0 0 90px 20px rgba(48,209,88,.45)}
+.ring{position:absolute;inset:0;border-radius:66px;border:3px solid rgba(80,230,130,.9);box-shadow:0 0 30px rgba(48,209,88,.55);opacity:0}
+#ctaPill{position:absolute;inset:0;border-radius:66px;overflow:hidden;
+  background:linear-gradient(180deg,#4FE67E 0%,#30D158 55%,#27C24E 100%);
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.38),inset 0 -2px 0 rgba(0,0,0,.12),0 24px 70px rgba(48,209,88,.32)}
+.pl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:16px;font-size:44px;font-weight:700;letter-spacing:-.022em;color:#03230F;white-space:nowrap}
+.pl svg{width:42px;height:42px}
+#ripple{position:absolute;left:-290px;top:-784px;width:1700px;height:1700px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(255,255,255,0));opacity:0}
+#touch{position:absolute;left:508px;top:14px;width:104px;height:104px;border-radius:50%;background:rgba(255,255,255,.30);border:2.5px solid rgba(255,255,255,.8);box-shadow:0 0 34px rgba(255,255,255,.35)}
+
+/* subtitle */
+#sub{left:0;right:0;top:1566px;text-align:center}
+.sub1{display:inline-flex;align-items:center;gap:12px;font-size:36px;font-weight:700;letter-spacing:-.015em}
+.sub1 svg{width:34px;height:34px;color:var(--mint)}
+.sub2{margin-top:8px;font-size:34px;font-weight:500;color:var(--label2);letter-spacing:-.01em}
+
+/* app icon */
+.app-icon{position:relative;border-radius:22.4%;overflow:hidden;
+  background:linear-gradient(155deg,#5CF29A 0%,#30D158 46%,#0FB3A8 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.app-icon::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 75% at 25% 0%,rgba(255,255,255,.36),rgba(255,255,255,0) 56%);pointer-events:none}
+.app-icon svg{position:absolute;left:12%;top:12%;width:76%;height:76%;filter:drop-shadow(0 2px 3px rgba(0,70,40,.25))}
+.app-icon.mini{width:72px;height:72px;flex:none}
+
+/* 4. end card */
+#iconWrap{left:390px;top:550px;width:300px;height:300px}
+#endIcon{width:300px;height:300px;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.22),0 40px 110px rgba(48,209,88,.38)}
+#iconSheen{position:absolute;top:-25%;height:150%;left:0;width:42%;z-index:2;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));opacity:0}
+#endHead{left:0;right:0;top:912px;text-align:center}
+.eh{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
+#eh1{display:inline-block;font-size:60px;font-weight:600;line-height:1.2;letter-spacing:-.022em;color:rgba(255,255,255,.92)}
+#eh2{display:inline-block;font-size:140px;font-weight:800;line-height:1.05;letter-spacing:-.05em;padding:0 .04em}
+#badgeWrap{left:0;right:0;top:1216px;display:flex;justify-content:center}
+.badge{display:inline-flex;align-items:center;gap:16px;height:138px;padding:0 36px 0 30px;background:#000;border:2.5px solid #A6A6A6;border-radius:24px}
+.badge svg{width:60px;height:60px;fill:#fff;margin-top:-8px}
+.b1{font-size:27px;font-weight:500;letter-spacing:.012em;line-height:1.1}
+.b2{font-size:60px;font-weight:600;letter-spacing:-.032em;line-height:1}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="glowRed" class="glow anim"></div>
+  <div id="glowGreen" class="glow anim"></div>
+
+  <div class="layer" id="sceneMain">
+    <!-- 1. pain point -->
+    <div id="alert" class="abs anim">
+      <div class="al-body">
+        <div class="al-title">Storage Almost Full</div>
+        <div class="al-msg">You can manage storage in Settings.</div>
+      </div>
+      <div class="al-btns"><div class="al-btn">Close</div><div class="al-btn b">Settings</div></div>
+    </div>
+
+    <!-- 2. solution -->
+    <div id="headline" class="abs anim">
+      <div class="hl" data-words="Sift the junk."></div>
+      <div class="hl grad-line" data-words="Keep the memories."></div>
+    </div>
+
+    <div id="scanner" class="abs glass anim">
+      <div class="sc-head">
+        <div class="sc-brand">
+          <div class="app-icon mini" data-icon="m"></div>
+          <div><div class="sc-name">KindSift</div><div class="sc-sub">Smart Cleanup</div></div>
+        </div>
+        <div class="sc-status" id="scStatus"><i id="scDot"></i><span id="scText">Scanning 0 photos</span></div>
+      </div>
+      <div class="sc-prog"><div id="scProg"></div></div>
+      <div class="sc-row" id="row">
+        <div class="th anim" id="th0" style="left:0"></div>
+        <div class="th anim" id="th1" style="left:296px"></div>
+        <div class="th anim" id="th2" style="left:592px"></div>
+        <div class="lb anim" id="lb0" style="left:-36px"><b>Duplicate burst</b><span>6.1 GB</span></div>
+        <div class="lb anim" id="lb1" style="left:260px"><b>Blurry shot</b><span>2.4 GB</span></div>
+        <div class="lb anim" id="lb2" style="left:556px"><b>4K video</b><span>6.3 GB</span></div>
+        <div id="beam" class="anim"></div>
+        <div id="success" class="anim">
+          <svg id="succIcon" viewBox="0 0 160 160" aria-hidden="true">
+            <circle cx="80" cy="80" r="70" fill="rgba(48,209,88,.12)"/>
+            <circle id="succRing" cx="80" cy="80" r="70" fill="none" stroke="#30D158" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 80 80)"/>
+            <path id="succCheck" d="M50 82 71 103 112 60" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+          </svg>
+          <div class="su1" id="su1">14.8 GB freed</div>
+          <div class="su2" id="su2">Junk gone. Memories kept.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="storage" class="abs glass anim">
+      <div class="st-alarm" id="alarm"></div>
+      <div class="st-row">
+        <div class="st-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3" stroke-linecap="round"/></svg>
+          iPhone Storage
+        </div>
+        <div class="st-chips">
+          <div class="chip warn anim" id="chipWarn">
+            <svg viewBox="0 0 24 24"><path d="M10.27 3.9 2.4 17.5a2 2 0 0 0 1.73 3h15.74a2 2 0 0 0 1.73-3L13.73 3.9a2 2 0 0 0-3.46 0Z" fill="currentColor"/><path d="M12 9.2v4.6" stroke="#2A0806" stroke-width="2.3" stroke-linecap="round"/><circle cx="12" cy="17" r="1.3" fill="#2A0806"/></svg>
+            Almost Full
+          </div>
+          <div class="chip ok anim" id="chipOk">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m7.5 12.3 3 3 6-6.3" fill="none" stroke="#04210F" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            15 GB Free
+          </div>
+        </div>
+      </div>
+      <div class="st-count"><div class="odo" id="odo"></div><span class="st-unit">GB</span><span class="st-of">of 128 GB used</span></div>
+      <div class="bar">
+        <div id="barW">
+          <div class="fill red" id="barRed"></div>
+          <div class="fill green" id="barGreen"></div>
+          <div class="bar-sheen"><i id="barSheen"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. clean up -->
+    <div id="cta" class="abs anim">
+      <div id="ctaGlow"></div>
+      <div class="ring" id="ring1"></div>
+      <div class="ring" id="ring2"></div>
+      <div id="ctaPill">
+        <div id="ripple"></div>
+        <div class="pl" id="ctaLabel">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5c.7 4.9 2.1 6.3 7 7-4.9.7-6.3 2.1-7 7-.7-4.9-2.1-6.3-7-7 4.9-.7 6.3-2.1 7-7Z"/><path d="M19 15.5c.3 2 .9 2.6 2.9 2.9-2 .3-2.6.9-2.9 2.9-.3-2-.9-2.6-2.9-2.9 2-.3 2.6-.9 2.9-2.9Z"/></svg>
+          Clean 14.8 GB with One Tap
+        </div>
+        <div class="pl anim" id="ctaDone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5.5 12.5 4.2 4.2L18.5 7.8"/></svg>
+          Done
+        </div>
+      </div>
+      <div id="touch" class="anim"></div>
+    </div>
+
+    <div id="sub" class="abs anim">
+      <div class="sub1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.8" fill="currentColor" stroke="none"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
+        100% on-device.
+      </div>
+      <div class="sub2">Your photos never leave your iPhone.</div>
+    </div>
+  </div>
+
+  <canvas id="fx" width="1080" height="1920"></canvas>
+
+  <!-- 4. call to action -->
+  <div class="layer" id="endCard">
+    <div id="endGlow" class="glow anim"></div>
+    <div id="iconWrap" class="abs anim">
+      <div class="app-icon" id="endIcon" data-icon="e"><div id="iconSheen"></div></div>
+    </div>
+    <div id="endHead" class="abs">
+      <div class="eh"><span id="eh1" class="anim">Clean Up Storage:</span></div>
+      <div class="eh"><span id="eh2" class="grad anim">KindSift</span></div>
+    </div>
+    <div id="badgeWrap" class="abs anim">
+      <div class="badge" role="img" aria-label="Download on the App Store">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+        <div><div class="b1">Download on the</div><div class="b2">App Store</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  const W = 1080, H = 1920, DURATION = 6;
+  const $ = (id) => document.getElementById(id);
+  const params = new URLSearchParams(location.search);
+  const stage = $('stage');
+
+  /* ------------------------------------------------------------------ */
+  /* Easing                                                              */
+  /* ------------------------------------------------------------------ */
+
+  function cubicBezier(x1, y1, x2, y2) {
+    const cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx;
+    const cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+    const sx = (u) => ((ax * u + bx) * u + cx) * u;
+    const sy = (u) => ((ay * u + by) * u + cy) * u;
+    const dx = (u) => (3 * ax * u + 2 * bx) * u + cx;
+    return (x) => {
+      if (x <= 0) return 0;
+      if (x >= 1) return 1;
+      let u = x;
+      for (let i = 0; i < 8; i++) {
+        const err = sx(u) - x;
+        if (Math.abs(err) < 1e-7) return sy(u);
+        const d = dx(u);
+        if (Math.abs(d) < 1e-6) break;
+        u -= err / d;
+      }
+      let lo = 0, hi = 1;
+      u = x;
+      for (let i = 0; i < 40; i++) {
+        const v = sx(u);
+        if (Math.abs(v - x) < 1e-7) break;
+        if (v < x) lo = u; else hi = u;
+        u = (lo + hi) / 2;
+      }
+      return sy(u);
+    };
+  }
+
+  // House curve for every entrance, exit and value change.
+  const EASE = cubicBezier(0.16, 1, 0.3, 1);
+  // Gentler start for the scan beam so the sweep reads across all three thumbnails.
+  const SWEEP = cubicBezier(0.45, 0, 0.2, 1);
+
+  const clamp = (v, a = 0, b = 1) => (v < a ? a : v > b ? b : v);
+  const lerp = (a, b, k) => a + (b - a) * k;
+  const prog = (t, start, dur) => clamp((t - start) / dur);
+  const ez = (t, start, dur) => EASE(prog(t, start, dur));
+  const wave = (t, period) => 0.5 - 0.5 * Math.cos((2 * Math.PI * t) / period);
+
+  // Damped spring, x in seconds since release. Settles to 1 with a soft overshoot.
+  function spring(x, freq, damp) {
+    if (x <= 0) return 0;
+    const w = 2 * Math.PI * freq, wd = w * Math.sqrt(1 - damp * damp);
+    return 1 - Math.exp(-damp * w * x) * (Math.cos(wd * x) + ((damp * w) / wd) * Math.sin(wd * x));
+  }
+
+  function set(el, o) {
+    const s = el.style;
+    const op = o.op === undefined ? 1 : o.op;
+    s.opacity = op.toFixed(4);
+    s.visibility = op < 0.002 ? 'hidden' : 'visible';
+    const x = o.x || 0, y = o.y || 0, sc = o.s === undefined ? 1 : o.s, r = o.r || 0;
+    s.transform = `translate(${x.toFixed(2)}px,${y.toFixed(2)}px) scale(${sc.toFixed(4)}) rotate(${r.toFixed(2)}deg)`;
+    const b = o.b || 0;
+    s.filter = b > 0.05 ? `blur(${b.toFixed(2)}px)` : 'none';
+  }
+
+  function mulberry32(a) {
+    return () => {
+      a |= 0; a = (a + 0x6d2b79f5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Static build: icon, headline words, odometer                        */
+  /* ------------------------------------------------------------------ */
+
+  function iconSVG(uid) {
+    const holes = [
+      [37.5, 77], [46.5, 77], [55.5, 77], [64.5, 77], [73.5, 77], [82.5, 77],
+      [42, 86], [51, 86], [60, 86], [69, 86], [78, 86],
+      [51, 95], [60, 95], [69, 95],
+    ].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.7"/>`).join('');
+    return `<svg viewBox="0 0 120 120" aria-hidden="true">
+      <defs>
+        <mask id="ksMask${uid}"><rect width="120" height="120" fill="#fff"/><g fill="#000">${holes}</g></mask>
+        <linearGradient id="ksGlyph${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e2ffee"/></linearGradient>
+      </defs>
+      <g fill="url(#ksGlyph${uid})">
+        <path d="M60 47.5C57 45.6 44.5 37.4 44.5 29.3 44.5 24.7 48 21 52.5 21c3.3 0 5.9 1.9 7.5 4.6 1.6-2.7 4.2-4.6 7.5-4.6 4.5 0 8 3.7 8 8.3 0 8.1-12.5 16.3-15.5 18.2Z"/>
+        <path d="M90 12c1 6.5 2.5 8 9 9-6.5 1-8 2.5-9 9-1-6.5-2.5-8-9-9 6.5-1 8-2.5 9-9Z"/>
+        <rect x="19" y="53" width="82" height="11" rx="5.5"/>
+        <path mask="url(#ksMask${uid})" d="M26 68h68c0 19.5-15 34-34 34S26 87.5 26 68Z"/>
+      </g>
+    </svg>`;
+  }
+  document.querySelectorAll('[data-icon]').forEach((el) => {
+    el.insertAdjacentHTML('afterbegin', iconSVG(el.dataset.icon));
+  });
+
+  const words = [];
+  document.querySelectorAll('#headline .hl').forEach((line) => {
+    line.dataset.words.split(' ').forEach((txt, i) => {
+      if (i) line.appendChild(document.createTextNode(' '));
+      const m = document.createElement('span');
+      m.className = 'wm';
+      const w = document.createElement('span');
+      w.className = 'w' + (line.classList.contains('grad-line') ? ' grad' : '');
+      w.textContent = txt;
+      m.appendChild(w);
+      line.appendChild(m);
+      words.push({ el: w, mask: m, line });
+    });
+  });
+
+  // Storage counter in tenths of a GB. Each column shows the true digit and
+  // rolls it in (iOS numeric text style), so every frame reads as a real value.
+  const ODO_H = 112;
+  const COUNT = { t0: 2.96, d: 1.0, from: 1278, to: 1130 };
+  const odoCols = [{ f: 1000 }, { f: 100 }, { f: 10 }, null, { f: 1 }];
+  const odo = $('odo');
+  odoCols.forEach((c) => {
+    if (!c) {
+      const dot = document.createElement('span');
+      dot.className = 'odo-dot';
+      dot.textContent = '.';
+      odo.appendChild(dot);
+      return;
+    }
+    const col = document.createElement('span');
+    col.className = 'odo-col';
+    col.innerHTML = '<span class="sizer">0</span><span class="dg"></span><span class="dg"></span>';
+    odo.appendChild(col);
+    [c.cur, c.prev] = col.querySelectorAll('.dg');
+    c.shown = ['', ''];
+  });
+
+  /* ------------------------------------------------------------------ */
+  /* Procedural photos (canvas, so the particle dissolve can sample them) */
+  /* ------------------------------------------------------------------ */
+
+  const TH = 248, TH_R = 30, CELL = 8, HC = CELL / 2;
+  const CANVAS_FONT = '"SF Pro Text",-apple-system,BlinkMacSystemFont,Inter,"Helvetica Neue",Arial,sans-serif';
+
+  function makeCanvas(w, h = w) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    return c;
+  }
+  // Photo canvases are read back for grain and particle sampling.
+  const ctx2d = (c) => c.getContext('2d', { willReadFrequently: true });
+  function grain(ctx, S, amount, rnd) {
+    const img = ctx.getImageData(0, 0, S, S), d = img.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const n = (rnd() - 0.5) * amount;
+      d[i] += n; d[i + 1] += n; d[i + 2] += n;
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+  function roundCorners(ctx, S, r) {
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-in';
+    ctx.beginPath();
+    ctx.roundRect(0, 0, S, S, r);
+    ctx.fill();
+    ctx.restore();
+  }
+  function pill(ctx, x, y, w, h, text, size) {
+    ctx.fillStyle = 'rgba(0,0,0,.42)';
+    ctx.beginPath(); ctx.roundRect(x, y, w, h, h / 2); ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.font = `700 ${size}px ${CANVAS_FONT}`;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(text, x + w / 2, y + h / 2 + 1);
+  }
+
+  function paintSunset(S, rnd) {
+    const c = makeCanvas(S), ctx = ctx2d(c);
+    const hz = S * 0.6;
+    let g = ctx.createLinearGradient(0, 0, 0, hz);
+    g.addColorStop(0, '#1d1748'); g.addColorStop(0.38, '#6b2c6e'); g.addColorStop(0.7, '#e0586a');
+    g.addColorStop(0.9, '#ff9a5a'); g.addColorStop(1, '#ffc77a');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, S, hz + 1);
+    ctx.save();
+    ctx.filter = 'blur(5px)';
+    ctx.fillStyle = 'rgba(255,170,150,.38)';
+    ctx.beginPath(); ctx.ellipse(S * 0.26, hz * 0.46, S * 0.3, S * 0.028, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(S * 0.78, hz * 0.3, S * 0.26, S * 0.022, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+    const sx = S * 0.6, sy = hz - 2;
+    const rg = ctx.createRadialGradient(sx, sy, 0, sx, sy, S * 0.55);
+    rg.addColorStop(0, 'rgba(255,236,190,.95)'); rg.addColorStop(0.16, 'rgba(255,190,120,.55)');
+    rg.addColorStop(0.5, 'rgba(255,120,90,.12)'); rg.addColorStop(1, 'rgba(255,120,90,0)');
+    ctx.fillStyle = rg; ctx.fillRect(0, 0, S, hz);
+    ctx.fillStyle = '#fff1cf';
+    ctx.beginPath(); ctx.arc(sx, sy, S * 0.075, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#2a1640';
+    ctx.beginPath();
+    ctx.moveTo(0, hz); ctx.lineTo(0, hz - S * 0.075);
+    ctx.quadraticCurveTo(S * 0.12, hz - S * 0.115, S * 0.24, hz - S * 0.05);
+    ctx.quadraticCurveTo(S * 0.32, hz - S * 0.02, S * 0.42, hz);
+    ctx.closePath(); ctx.fill();
+    g = ctx.createLinearGradient(0, hz, 0, S);
+    g.addColorStop(0, '#7a3f6a'); g.addColorStop(0.35, '#3a2350'); g.addColorStop(1, '#0e0b22');
+    ctx.fillStyle = g; ctx.fillRect(0, hz, S, S - hz);
+    for (let y = hz + 3; y < S; y += 4) {
+      const k = (y - hz) / (S - hz);
+      const w = S * (0.06 + 0.24 * k) * (0.55 + rnd() * 0.8);
+      ctx.fillStyle = `rgba(255,${(195 - 70 * k) | 0},${(135 - 45 * k) | 0},${(0.78 * (1 - k) + 0.05).toFixed(3)})`;
+      ctx.fillRect(sx - w / 2 + (rnd() - 0.5) * 12, y, w, 2);
+    }
+    grain(ctx, S, 14, rnd);
+    pill(ctx, 14, 14, 62, 30, '×12', 17);
+    roundCorners(ctx, S, TH_R);
+    return c;
+  }
+
+  function paintLake(S, rnd) {
+    const base = makeCanvas(S), b = ctx2d(base);
+    const hz = S * 0.6;
+    let g = b.createLinearGradient(0, 0, 0, hz);
+    g.addColorStop(0, '#4f8fcb'); g.addColorStop(0.6, '#a9d4ec'); g.addColorStop(1, '#f2e2c6');
+    b.fillStyle = g; b.fillRect(0, 0, S, hz);
+    const ridge = (pts, color) => {
+      b.fillStyle = color; b.beginPath(); b.moveTo(0, hz);
+      pts.forEach(([x, y]) => b.lineTo(x * S, y * S));
+      b.lineTo(S, hz); b.closePath(); b.fill();
+    };
+    ridge([[0, 0.42], [0.18, 0.3], [0.32, 0.38], [0.5, 0.18], [0.66, 0.34], [0.82, 0.26], [1, 0.4]], '#7f9fc0');
+    b.fillStyle = '#f4f8ff';
+    b.beginPath();
+    b.moveTo(0.5 * S, 0.18 * S); b.lineTo(0.56 * S, 0.245 * S); b.lineTo(0.52 * S, 0.235 * S);
+    b.lineTo(0.49 * S, 0.26 * S); b.lineTo(0.45 * S, 0.23 * S); b.closePath(); b.fill();
+    ridge([[0, 0.5], [0.14, 0.42], [0.3, 0.5], [0.44, 0.4], [0.6, 0.52], [0.78, 0.44], [1, 0.52]], '#3b5a78');
+    b.fillStyle = '#1b3a32';
+    for (let x = -6; x < S + 6; x += 9) {
+      const h = 14 + rnd() * 18;
+      b.beginPath(); b.moveTo(x, hz + 1); b.lineTo(x + 6, hz - h); b.lineTo(x + 12, hz + 1); b.closePath(); b.fill();
+    }
+    g = b.createLinearGradient(0, hz, 0, S);
+    g.addColorStop(0, '#6f9cb8'); g.addColorStop(1, '#16283a');
+    b.fillStyle = g; b.fillRect(0, hz, S, S - hz);
+    b.save();
+    b.globalAlpha = 0.32; b.translate(0, hz * 2); b.scale(1, -1);
+    b.drawImage(base, 0, 0, S, hz, 0, 0, S, hz);
+    b.restore();
+    b.fillStyle = 'rgba(255,255,255,.18)';
+    for (let i = 0; i < 18; i++) b.fillRect(rnd() * S, hz + 8 + rnd() * (S - hz - 10), 10 + rnd() * 30, 1.5);
+    // Out of focus with a little camera shake: that is why it is junk.
+    const c = makeCanvas(S), ctx = ctx2d(c);
+    ctx.filter = 'blur(5.5px)';
+    ctx.drawImage(base, -12, -12, S + 24, S + 24);
+    ctx.globalAlpha = 0.45;
+    ctx.drawImage(base, -4, -14, S + 24, S + 24);
+    ctx.filter = 'none'; ctx.globalAlpha = 1;
+    grain(ctx, S, 12, rnd);
+    roundCorners(ctx, S, TH_R);
+    return c;
+  }
+
+  function paintCity(S, rnd) {
+    const c = makeCanvas(S), ctx = ctx2d(c);
+    let g = ctx.createLinearGradient(0, 0, 0, S);
+    g.addColorStop(0, '#0b0b2b'); g.addColorStop(0.55, '#2b1450'); g.addColorStop(0.85, '#7a2a6a'); g.addColorStop(1, '#c2456a');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, S, S);
+    const base = S * 0.84;
+    let x = -4;
+    while (x < S) {
+      const w = 22 + rnd() * 26, h = 70 + rnd() * 120;
+      ctx.fillStyle = rnd() > 0.5 ? '#120f28' : '#18122f';
+      ctx.fillRect(x, base - h, w, h + S);
+      for (let wy = base - h + 8; wy < base - 6; wy += 9) {
+        for (let wx = x + 4; wx < x + w - 5; wx += 7) {
+          if (rnd() < 0.42) {
+            ctx.fillStyle = rnd() < 0.8 ? 'rgba(255,214,140,.85)' : 'rgba(150,210,255,.8)';
+            ctx.fillRect(wx, wy, 3, 4);
+          }
+        }
+      }
+      x += w + 2;
+    }
+    g = ctx.createLinearGradient(0, base - 20, 0, S);
+    g.addColorStop(0, 'rgba(255,110,70,0)'); g.addColorStop(1, 'rgba(255,110,70,.55)');
+    ctx.fillStyle = g; ctx.fillRect(0, base - 20, S, S);
+    ctx.save();
+    ctx.filter = 'blur(2px)';
+    const hues = ['255,180,90', '255,90,130', '120,200,255', '255,230,160'];
+    for (let i = 0; i < 16; i++) {
+      ctx.fillStyle = `rgba(${hues[i % 4]},${(0.22 + rnd() * 0.32).toFixed(2)})`;
+      ctx.beginPath(); ctx.arc(rnd() * S, S * 0.55 + rnd() * S * 0.45, 6 + rnd() * 18, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.restore();
+    g = ctx.createLinearGradient(0, S * 0.6, 0, S);
+    g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.5)');
+    ctx.fillStyle = g; ctx.fillRect(0, S * 0.6, S, S * 0.4);
+    grain(ctx, S, 12, rnd);
+    // video chrome
+    const cx = S / 2, cy = S / 2;
+    ctx.fillStyle = 'rgba(255,255,255,.22)';
+    ctx.beginPath(); ctx.arc(cx, cy, 32, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(cx, cy, 32, 0, Math.PI * 2); ctx.stroke();
+    ctx.fillStyle = '#fff';
+    ctx.beginPath(); ctx.moveTo(cx - 9, cy - 14); ctx.lineTo(cx + 15, cy); ctx.lineTo(cx - 9, cy + 14); ctx.closePath(); ctx.fill();
+    pill(ctx, 14, 14, 48, 30, '4K', 17);
+    ctx.font = `600 18px ${CANVAS_FONT}`;
+    ctx.textAlign = 'right'; ctx.textBaseline = 'alphabetic';
+    ctx.shadowColor = 'rgba(0,0,0,.6)'; ctx.shadowBlur = 6;
+    ctx.fillStyle = '#fff';
+    ctx.fillText('02:47', S - 16, S - 16);
+    ctx.shadowBlur = 0;
+    roundCorners(ctx, S, TH_R);
+    return c;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Scene timing                                                        */
+  /* ------------------------------------------------------------------ */
+
+  const BEAM = { t0: 1.74, d: 0.70, from: -70, to: 920 };
+  const beamX = (t) => lerp(BEAM.from, BEAM.to, SWEEP(prog(t, BEAM.t0, BEAM.d)));
+  const THUMB_CENTERS = [124, 420, 716];
+  // Detection time for each thumbnail: the moment the beam crosses its center.
+  const DETECT = THUMB_CENTERS.map((cx) => {
+    let lo = BEAM.t0, hi = BEAM.t0 + BEAM.d;
+    for (let i = 0; i < 40; i++) {
+      const mid = (lo + hi) / 2;
+      if (beamX(mid) < cx) lo = mid; else hi = mid;
+    }
+    return lo;
+  });
+  const countV = (t) => lerp(COUNT.from, COUNT.to, ez(t, COUNT.t0, COUNT.d));
+  // First moment the (falling) counter reaches a value.
+  function countTimeAt(v) {
+    let lo = COUNT.t0, hi = COUNT.t0 + COUNT.d;
+    for (let i = 0; i < 40; i++) {
+      const mid = (lo + hi) / 2;
+      if (countV(mid) > v) lo = mid; else hi = mid;
+    }
+    return hi;
+  }
+  const DISSOLVE = [2.94, 3.0, 3.06];
+  const EXIT = 4.12;
+  const exitK = (t, i) => ez(t, EXIT + i * 0.035, 0.38);
+  const STATUS = [
+    { at: 2.42, text: '14.8 GB found', on: true },
+    { at: 2.92, text: 'Cleaning…', on: false },
+    { at: 3.62, text: 'All clean', on: true },
+  ];
+
+  /* ------------------------------------------------------------------ */
+  /* Elements                                                            */
+  /* ------------------------------------------------------------------ */
+
+  const el = {};
+  ['glowRed', 'glowGreen', 'alert', 'headline', 'scanner', 'scStatus', 'scText', 'scDot', 'scProg',
+    'beam', 'success', 'succRing', 'succCheck', 'su1', 'su2', 'storage', 'alarm', 'chipWarn', 'chipOk',
+    'barW', 'barRed', 'barGreen', 'barSheen', 'cta', 'ctaGlow', 'ring1', 'ring2', 'ctaPill', 'ripple',
+    'ctaLabel', 'ctaDone', 'touch', 'sub', 'endGlow', 'iconWrap', 'iconSheen', 'eh1', 'eh2', 'badgeWrap',
+  ].forEach((id) => { el[id] = $(id); });
+  const succIcon = $('succIcon');
+
+  const thumbs = [0, 1, 2].map((i) => {
+    const root = $('th' + i);
+    root.innerHTML =
+      (i === 0 ? '<div class="ghost"><img alt=""></div><div class="ghost"><img alt=""></div>' : '') +
+      '<div class="th-img"><img alt=""></div><div class="th-ring"></div><div class="th-tint"></div>' +
+      '<div class="th-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 12.5 3.6 3.6 7.4-7.6"/></svg></div>';
+    return {
+      root,
+      img: root.querySelector('.th-img'),
+      ghosts: [...root.querySelectorAll('.ghost')],
+      ring: root.querySelector('.th-ring'),
+      tint: root.querySelector('.th-tint'),
+      check: root.querySelector('.th-check'),
+      label: $('lb' + i),
+    };
+  });
+
+  const fxCanvas = $('fx');
+  const fx = fxCanvas.getContext('2d');
+  let photos = [], cells = [], glints = [], thumbPos = [], fxDirty = false;
+
+  /* ------------------------------------------------------------------ */
+  /* Particle dissolve                                                   */
+  /* ------------------------------------------------------------------ */
+
+  function buildParticles() {
+    const rnd = mulberry32(20261012);
+    const n = TH / CELL;
+    cells = photos.map((img) => {
+      const alpha = ctx2d(img).getImageData(0, 0, TH, TH).data;
+      const list = [];
+      for (let gy = 0; gy < n; gy++) {
+        for (let gx = 0; gx < n; gx++) {
+          const cxp = gx * CELL + HC, cyp = gy * CELL + HC;
+          if (alpha[(cyp * TH + cxp) * 4 + 3] < 8) continue;
+          const u = (gx + 0.5) / n, v = (gy + 0.5) / n;
+          list.push({
+            sx: gx * CELL, sy: gy * CELL,
+            d: (0.7 * u + 0.3 * (1 - v)) * 0.3 + rnd() * 0.06,
+            life: 0.38 + rnd() * 0.28,
+            vx: 60 + rnd() * 170 + u * 30,
+            vy: -(30 + rnd() * 150),
+            rot: (rnd() - 0.5) * 5,
+            ph: rnd() * Math.PI * 2,
+            wa: 6 + rnd() * 20,
+          });
+        }
+      }
+      return list;
+    });
+    glints = cells.map((list) => list.filter(() => rnd() < 0.06).map((p) => ({ p, size: 1.6 + rnd() * 2.6, tw: rnd() * Math.PI * 2 })));
+  }
+
+  function offsetIn(node, root) {
+    let x = 0, y = 0;
+    while (node && node !== root) { x += node.offsetLeft; y += node.offsetTop; node = node.offsetParent; }
+    return { x: Math.round(x), y: Math.round(y) };
+  }
+
+  function particlePos(p, X, Y, k) {
+    const m = 1 - Math.pow(1 - k, 2.2);
+    return [
+      X + p.sx + HC + p.vx * m + Math.sin(p.ph + k * 4.5) * p.wa * k,
+      Y + p.sy + HC + p.vy * m,
+    ];
+  }
+
+  function drawFX(t) {
+    const live = photos.length && t >= DISSOLVE[0] && t < DISSOLVE[2] + 1.3;
+    if (!live) {
+      if (fxDirty) { fx.setTransform(1, 0, 0, 1, 0, 0); fx.clearRect(0, 0, W, H); fxDirty = false; }
+      return;
+    }
+    fxDirty = true;
+    fx.setTransform(1, 0, 0, 1, 0, 0);
+    fx.globalAlpha = 1;
+    fx.globalCompositeOperation = 'source-over';
+    fx.clearRect(0, 0, W, H);
+    const fade = 1 - ez(t, 4.0, 0.3);
+
+    for (let i = 0; i < 3; i++) {
+      const t0 = DISSOLVE[i];
+      if (t < t0) continue;
+      const img = photos[i], X = thumbPos[i].x, Y = thumbPos[i].y;
+      for (const p of cells[i]) {
+        const te = t0 + p.d;
+        if (t < te) {
+          // still intact: pixel exact copy of the thumbnail
+          fx.setTransform(1, 0, 0, 1, 0, 0);
+          fx.globalAlpha = 1;
+          fx.drawImage(img, p.sx, p.sy, CELL, CELL, X + p.sx, Y + p.sy, CELL, CELL);
+          continue;
+        }
+        const k = (t - te) / p.life;
+        if (k >= 1) continue;
+        const [px, py] = particlePos(p, X, Y, k);
+        const sc = 1 - 0.85 * k, ang = p.rot * k;
+        const c = Math.cos(ang) * sc, s = Math.sin(ang) * sc;
+        fx.setTransform(c, s, -s, c, px, py);
+        fx.globalAlpha = Math.pow(1 - k, 1.6) * fade;
+        fx.drawImage(img, p.sx, p.sy, CELL, CELL, -HC, -HC, CELL, CELL);
+        if (k < 0.2) {
+          // a mint flash on the dissolve front
+          fx.globalCompositeOperation = 'lighter';
+          fx.globalAlpha = (1 - k / 0.2) * 0.32 * fade;
+          fx.fillStyle = '#5CFF95';
+          fx.fillRect(-HC, -HC, CELL, CELL);
+          fx.globalCompositeOperation = 'source-over';
+        }
+      }
+    }
+
+    fx.setTransform(1, 0, 0, 1, 0, 0);
+    fx.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < 3; i++) {
+      const t0 = DISSOLVE[i];
+      if (t < t0) continue;
+      const X = thumbPos[i].x, Y = thumbPos[i].y;
+      for (const g of glints[i]) {
+        const te = t0 + g.p.d;
+        if (t < te) continue;
+        const k = (t - te) / (g.p.life * 1.25);
+        if (k >= 1) continue;
+        const [px, py] = particlePos(g.p, X, Y, Math.min(1, k * 1.1));
+        const tw = 0.6 + 0.4 * Math.sin(g.tw + k * 18);
+        fx.globalAlpha = (1 - k) * tw * 0.9 * fade;
+        fx.fillStyle = k < 0.5 ? '#DFFFEA' : '#7CFFB2';
+        fx.beginPath();
+        fx.arc(px, py - 6 * k, g.size * (1 - 0.5 * k), 0, Math.PI * 2);
+        fx.fill();
+      }
+    }
+    fx.globalCompositeOperation = 'source-over';
+    fx.globalAlpha = 1;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Render: every visual is a pure function of t                        */
+  /* ------------------------------------------------------------------ */
+
+  let lastStatus = '';
+
+  function render(t) {
+    // red warning pulse, alive from 0.9 s until the clean up lands
+    const pulseAmp = ez(t, 0.9, 0.3) * (1 - ez(t, 2.92, 0.4));
+    const pulse = wave(Math.max(0, t - 0.9), 0.9) * pulseAmp;
+
+    // ambient light
+    set(el.glowRed, { op: ez(t, 0, 0.9) * (1 - ez(t, 2.95, 0.7)) * (0.72 + 0.28 * pulse) });
+    set(el.glowGreen, { op: ez(t, 3.05, 0.85) * (1 - ez(t, EXIT, 0.5)) });
+
+    /* 1. Pain point ---------------------------------------------------- */
+    const aOut = ez(t, 1.36, 0.36);
+    set(el.alert, {
+      op: ez(t, 0.08, 0.22) * (1 - aOut),
+      s: lerp(0.72, 1, spring(t - 0.08, 2.0, 0.58)) * lerp(1, 0.92, aOut),
+      y: -12 * aOut,
+      b: 14 * (1 - ez(t, 0.08, 0.32)) + 18 * aOut,
+    });
+
+    const xo2 = exitK(t, 2);
+    const stIn = ez(t, 0.34, 0.75);
+    set(el.storage, {
+      op: ez(t, 0.34, 0.4) * (1 - xo2),
+      y: 70 * (1 - stIn) - 30 * xo2,
+      s: 1 - 0.05 * xo2,
+      b: 12 * (1 - ez(t, 0.34, 0.5)) + 12 * xo2,
+    });
+    el.alarm.style.opacity = ((0.3 + 0.7 * pulse) * pulseAmp).toFixed(3);
+
+    const fillPct = 99.84 * ez(t, 0.5, 0.85) + (88.28 - 99.84) * ez(t, 2.98, 0.92);
+    el.barW.style.width = fillPct.toFixed(3) + '%';
+    const green = ez(t, 3.05, 0.6);
+    el.barGreen.style.clipPath = `inset(0 ${(100 * (1 - green)).toFixed(2)}% 0 0 round 14px)`;
+    el.barRed.style.opacity = (1 - ez(t, 3.3, 0.35)).toFixed(3);
+    el.barRed.style.boxShadow = `0 0 ${(16 + 26 * pulse).toFixed(1)}px rgba(255,69,58,${(0.3 + 0.5 * pulse).toFixed(3)})`;
+    const sh = prog(t, 3.42, 0.7);
+    el.barSheen.style.opacity = sh > 0 && sh < 1 ? (Math.sin(Math.PI * sh) * 0.9).toFixed(3) : '0';
+    el.barSheen.style.transform = `translateX(${lerp(-200, 840, EASE(sh)).toFixed(1)}px)`;
+
+    const warnOut = ez(t, 3.28, 0.3);
+    set(el.chipWarn, {
+      op: ez(t, 0.85, 0.2) * (0.82 + 0.18 * pulse) * (1 - warnOut),
+      s: lerp(0.6, 1, spring(t - 0.85, 2.6, 0.55)) * lerp(1, 0.85, warnOut),
+      y: -14 * warnOut,
+    });
+    set(el.chipOk, {
+      op: ez(t, 3.38, 0.25),
+      s: lerp(0.6, 1, spring(t - 3.38, 2.6, 0.55)),
+      y: 14 * (1 - ez(t, 3.38, 0.4)),
+    });
+
+    const v = Math.round(countV(t));
+    const rate = Math.abs(countV(t + 0.008) - countV(t - 0.008)) / 0.016;
+    for (const c of odoCols) {
+      if (!c) continue;
+      const val = Math.floor(v / c.f);
+      let k = 1, prev = val;
+      if (val < Math.floor(COUNT.from / c.f)) {
+        prev = val + 1;
+        k = EASE(prog(t, countTimeAt((val + 1) * c.f - 0.5), 0.2));
+      }
+      const blur = 7 * clamp(rate / c.f / 28);
+      const cur = String(val % 10), old = String(prev % 10);
+      if (c.shown[0] !== cur) { c.cur.textContent = cur; c.shown[0] = cur; }
+      if (c.shown[1] !== old) { c.prev.textContent = old; c.shown[1] = old; }
+      set(c.cur, { op: k, y: -0.7 * ODO_H * (1 - k), b: blur + 6 * (1 - k) });
+      set(c.prev, { op: 1 - k, y: 0.7 * ODO_H * k, b: blur + 6 * k });
+    }
+
+    /* 2. Solution / scan ----------------------------------------------- */
+    const xo0 = exitK(t, 0);
+    set(el.headline, { op: 1 - xo0, y: -30 * xo0, s: 1 - 0.05 * xo0, b: 12 * xo0 });
+    words.forEach((w, j) => {
+      const k = ez(t, 1.5 + j * 0.055, 0.75);
+      set(w.el, { op: k, y: 100 * (1 - k), b: 10 * (1 - k) });
+    });
+
+    const xo1 = exitK(t, 1);
+    const scIn = ez(t, 1.42, 0.7);
+    set(el.scanner, {
+      op: ez(t, 1.42, 0.3) * (1 - xo1),
+      y: 160 * (1 - scIn) - 30 * xo1,
+      s: lerp(0.92, 1, scIn) * (1 - 0.05 * xo1),
+      b: 20 * (1 - ez(t, 1.42, 0.45)) + 12 * xo1,
+    });
+
+    // status line: count while scanning, then short state labels
+    let text, on = false;
+    if (t < STATUS[0].at) {
+      text = `Scanning ${Math.round(12480 * ez(t, 1.7, 0.72)).toLocaleString('en-US')} photos`;
+    } else {
+      const st = STATUS.filter((s) => t >= s.at).pop();
+      text = st.text; on = st.on;
+    }
+    const key = text + on;
+    if (key !== lastStatus) {
+      el.scText.textContent = text;
+      el.scStatus.classList.toggle('on', on);
+      lastStatus = key;
+    }
+    const dip = Math.min(...STATUS.map((s) => clamp(Math.abs(t - s.at) / 0.09)));
+    el.scText.style.opacity = (0.25 + 0.75 * EASE(dip)).toFixed(3);
+    const scanning = t < STATUS[0].at;
+    el.scDot.style.opacity = (scanning ? 0.45 + 0.55 * wave(t, 0.5) : 1).toFixed(3);
+    el.scProg.style.width = (100 * ez(t, 1.7, 0.72)).toFixed(2) + '%';
+
+    set(el.beam, {
+      op: ez(t, BEAM.t0, 0.1) * (1 - ez(t, DETECT[2] + 0.05, 0.25)),
+      x: beamX(t),
+    });
+
+    thumbs.forEach((th, i) => {
+      const k = ez(t, 1.6 + i * 0.07, 0.7);
+      const amp = ez(t, 1.7, 0.5) * (1 - ez(t, 2.55, 0.35));
+      const bob = Math.sin(2 * Math.PI * t * 0.55 + i * 1.9) * 7 * amp;
+      set(th.root, { op: k, y: 40 * (1 - k) + bob, s: lerp(0.86, 1, k) });
+
+      const td = DETECT[i], tdis = DISSOLVE[i];
+      th.tint.style.opacity = (t >= td ? Math.exp(-(t - td) * 6.5) : 0).toFixed(3);
+      th.ring.style.opacity = (ez(t, td, 0.25) * (1 - ez(t, 2.8, 0.13))).toFixed(3);
+
+      const ck = spring(t - td - 0.02, 3.0, 0.5);
+      const ckOut = ez(t, tdis, 0.2);
+      set(th.check, {
+        op: ez(t, td, 0.1) * (1 - ckOut),
+        s: Math.max(0, ck) * (1 - 0.45 * ckOut),
+        r: -35 * (1 - ck),
+      });
+
+      const lk = ez(t, td + 0.04, 0.45);
+      const lOut = ez(t, tdis, 0.3);
+      set(th.label, { op: lk * (1 - lOut), y: 18 * (1 - lk) - 14 * lOut, b: 6 * (1 - lk) + 6 * lOut });
+
+      // hand off to the canvas the instant the dissolve begins
+      th.img.style.visibility = t >= tdis && photos.length ? 'hidden' : 'visible';
+      th.ghosts.forEach((g, gi) => {
+        const go = ez(t, tdis - 0.04, 0.3);
+        set(g, {
+          op: (gi === 0 ? 0.55 : 0.85) * (1 - go),
+          y: (gi === 0 ? -50 : -30) - 14 * go,
+          s: (gi === 0 ? 0.84 : 0.92) * (1 - 0.08 * go),
+          b: 6 * go,
+        });
+      });
+    });
+
+    // success state replaces the cleared thumbnails
+    const sp = spring(t - 3.46, 2.4, 0.6);
+    set(el.success, { op: ez(t, 3.46, 0.2) });
+    set(succIcon, { op: ez(t, 3.46, 0.2), s: lerp(0.6, 1, sp) });
+    el.succRing.style.strokeDashoffset = (1 - ez(t, 3.46, 0.5)).toFixed(4);
+    el.succCheck.style.strokeDashoffset = (1 - ez(t, 3.6, 0.38)).toFixed(4);
+    const s1 = ez(t, 3.54, 0.5), s2 = ez(t, 3.64, 0.5);
+    set(el.su1, { op: s1, y: 24 * (1 - s1), b: 8 * (1 - s1) });
+    set(el.su2, { op: s2, y: 20 * (1 - s2), b: 8 * (1 - s2) });
+
+    /* 3. Clean up ------------------------------------------------------ */
+    const xo3 = exitK(t, 3);
+    const cIn = ez(t, 2.42, 0.55);
+    set(el.cta, {
+      op: ez(t, 2.42, 0.3) * (1 - xo3),
+      y: 90 * (1 - cIn) - 30 * xo3,
+      s: lerp(0.9, 1, cIn) * (1 - 0.05 * xo3),
+      b: 14 * (1 - ez(t, 2.42, 0.4)) + 12 * xo3,
+    });
+    el.ctaGlow.style.opacity = (0.55 + 0.45 * wave(Math.max(0, t - 2.42), 0.8)).toFixed(3);
+    [[el.ring1, 2.52], [el.ring2, 2.7]].forEach(([ring, r0]) => {
+      const k = prog(t, r0, 0.65);
+      const on = k > 0 && k < 1;
+      ring.style.opacity = on ? (0.6 * (1 - EASE(k))).toFixed(3) : '0';
+      ring.style.transform = `scale(${lerp(1, 1.16, EASE(k)).toFixed(4)},${lerp(1, 1.5, EASE(k)).toFixed(4)})`;
+    });
+
+    // finger tap: settle in, press, release with a spring
+    const press = t < 2.9 ? ez(t, 2.8, 0.1) : 1 - spring(t - 2.9, 3.0, 0.5);
+    el.ctaPill.style.transform = `scale(${(1 - 0.04 * press).toFixed(4)})`;
+    const tOut = ez(t, 2.95, 0.28);
+    set(el.touch, {
+      op: ez(t, 2.62, 0.14) * (1 - tOut) * 0.95,
+      s: lerp(1.45, 1, ez(t, 2.62, 0.22)) * (1 - 0.18 * Math.max(0, press)) * (1 + 0.3 * tOut),
+    });
+    const rk = prog(t, 2.86, 0.6);
+    el.ripple.style.opacity = rk > 0 && rk < 1 ? (0.5 * (1 - rk)).toFixed(3) : '0';
+    el.ripple.style.transform = `scale(${EASE(rk).toFixed(4)})`;
+
+    const lo = ez(t, 2.98, 0.3), dn = ez(t, 3.08, 0.4);
+    set(el.ctaLabel, { op: 1 - lo, y: -26 * lo, b: 8 * lo });
+    set(el.ctaDone, { op: dn, y: 26 * (1 - dn), b: 8 * (1 - dn) });
+
+    const xo4 = exitK(t, 4);
+    const sb = ez(t, 3.25, 0.6);
+    set(el.sub, { op: sb * (1 - xo4), y: 30 * (1 - sb) - 30 * xo4, b: 10 * (1 - sb) + 12 * xo4 });
+
+    drawFX(t);
+
+    /* 4. Call to action ------------------------------------------------ */
+    set(el.endGlow, { op: ez(t, 4.28, 0.9) * (0.9 + 0.1 * Math.sin((2 * Math.PI * Math.max(0, t - 4.28)) / 2.4)) });
+    const ik = spring(t - 4.32, 1.9, 0.62);
+    set(el.iconWrap, {
+      op: ez(t, 4.32, 0.3),
+      s: lerp(0.55, 1, ik),
+      y: 40 * (1 - ez(t, 4.32, 0.7)),
+      b: 22 * (1 - ez(t, 4.32, 0.45)),
+    });
+    const shk = prog(t, 5.0, 0.85);
+    el.iconSheen.style.opacity = shk > 0 && shk < 1 ? Math.sin(Math.PI * shk).toFixed(3) : '0';
+    el.iconSheen.style.transform = `translateX(${lerp(-180, 440, EASE(shk)).toFixed(1)}px) skewX(-18deg)`;
+
+    const h1 = ez(t, 4.56, 0.7), h2 = ez(t, 4.66, 0.75);
+    set(el.eh1, { op: h1, y: 80 * (1 - h1), b: 10 * (1 - h1) });
+    set(el.eh2, { op: h2, y: 160 * (1 - h2), b: 14 * (1 - h2) });
+    const bk = ez(t, 4.98, 0.65);
+    set(el.badgeWrap, { op: bk, y: 36 * (1 - bk), s: lerp(0.96, 1, bk), b: 8 * (1 - bk) });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Layout, assets, playback                                            */
+  /* ------------------------------------------------------------------ */
+
+  function fit() {
+    if (params.get('fit') === '0') { stage.style.transform = 'none'; return; }
+    const s = Math.min(1, window.innerWidth / W, window.innerHeight / H);
+    stage.style.transform = `scale(${s})`;
+  }
+  window.addEventListener('resize', fit);
+  fit();
+  render(0);
+
+  function layoutWordGradients() {
+    words.forEach((w) => {
+      if (!w.el.classList.contains('grad')) return;
+      w.el.style.backgroundSize = `${w.line.scrollWidth}px 100%`;
+      w.el.style.backgroundPosition = `${-w.mask.offsetLeft}px 0`;
+    });
+  }
+
+  async function prepare() {
+    const fontLoads = ['400', '500', '600', '700', '800'].map((wt) => document.fonts.load(`${wt} 40px Inter`));
+    await Promise.race([
+      Promise.all([document.fonts.ready, ...fontLoads]).catch(() => {}),
+      new Promise((r) => setTimeout(r, 2500)),
+    ]);
+    const rnd = mulberry32(7);
+    photos = [paintSunset(TH, rnd), paintLake(TH, rnd), paintCity(TH, rnd)];
+    const urls = photos.map((c) => c.toDataURL('image/png'));
+    const loads = [];
+    thumbs.forEach((th, i) => {
+      th.root.querySelectorAll('img').forEach((img) => {
+        img.src = urls[i];
+        if (img.decode) loads.push(img.decode().catch(() => {}));
+      });
+    });
+    await Promise.all(loads);
+    buildParticles();
+    thumbPos = thumbs.map((th) => offsetIn(th.img, stage));
+    layoutWordGradients();
+  }
+
+  const speed = parseFloat(params.get('speed')) || 1;
+  const loop = params.get('loop') === '1';
+  let raf = 0, startAt = 0;
+
+  function tick(now) {
+    let t = ((now - startAt) / 1000) * speed;
+    if (t >= DURATION) {
+      if (loop) { startAt = now; t = 0; } else { render(DURATION); raf = 0; return; }
+    }
+    render(t);
+    raf = requestAnimationFrame(tick);
+  }
+  function play(from = 0) {
+    cancelAnimationFrame(raf);
+    startAt = performance.now() - (from * 1000) / speed;
+    raf = requestAnimationFrame(tick);
+  }
+  function pause() { cancelAnimationFrame(raf); raf = 0; }
+
+  window.KS = {
+    duration: DURATION,
+    ready: false,
+    play,
+    pause,
+    seek(t) { pause(); render(clamp(t, 0, DURATION)); },
+  };
+
+  prepare().then(() => {
+    window.KS.ready = true;
+    const frozen = params.get('t');
+    if (frozen !== null) { window.KS.seek(parseFloat(frozen) || 0); return; }
+    if (params.get('render') === '1') { render(0); return; }
+    play(0);
+  });
+  stage.addEventListener('click', () => { if (window.KS.ready && params.get('render') !== '1') play(0); });
+})();
+</script>
+</body>
+</html>
