@@ -616,5 +616,13 @@
   "complication.bone.onset": "Langdurig vasten",
   "complication.bone.cause": "Bot geeft calciumzouten af om zuur te bufferen",
   "complication.bone.signs": "Meer calcium in de urine",
-  "complication.bone.response": "Vastenduur beperken; geen lang vasten bij een lage botdichtheid"
+  "complication.bone.response": "Vastenduur beperken; geen lang vasten bij een lage botdichtheid",
+
+  "language.title": "Taal",
+  "language.choose": "Kies je taal",
+  "language.subtitle": "Je kunt dit later wijzigen in Profiel.",
+  "language.suggested": "Voorgesteld voor jou",
+  "language.all": "Alle talen",
+  "language.system": "Zelfde als iPhone",
+  "language.basis": "Op basis van de taal en regio van je iPhone."
 }

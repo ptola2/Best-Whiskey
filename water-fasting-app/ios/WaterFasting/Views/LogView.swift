@@ -54,7 +54,7 @@ struct ResultBanner: View {
         if let id, let checkIn = checkIns.first(where: { $0.id == id }) {
             Notice(tone: tone(checkIn.level)) {
                 StatusPill(level: checkIn.level)
-                NoteList(notes: checkIn.notes)
+                NoteList(notes: FastStore.shared.notes(for: checkIn))
             }
         }
     }
@@ -334,12 +334,13 @@ struct CheckInRow: View {
             if !checkIn.note.isEmpty {
                 Para(text: checkIn.note, font: .subheadline)
             }
-            NoteList(notes: checkIn.notes)
+            NoteList(notes: FastStore.shared.notes(for: checkIn))
             Button(tr("checkin.row.remove")) { confirmRemove = true }
                 .font(.footnote)
                 .foregroundStyle(Theme.accent)
                 .confirmationDialog(tr("checkin.row.remove_confirm"), isPresented: $confirmRemove, titleVisibility: .visible) {
                     Button(tr("checkin.row.remove_action"), role: .destructive) { FastStore.shared.removeCheckIn(checkIn.id) }
+                    Button(tr("common.cancel"), role: .cancel) {}
                 }
         }
     }

@@ -616,5 +616,13 @@
   "complication.bone.onset": "Längre fastor",
   "complication.bone.cause": "Skelettet frisätter kalciumsalter för att buffra syra",
   "complication.bone.signs": "Mer kalcium i urinen",
-  "complication.bone.response": "Begränsa fastans längd; undvik långa fastor vid låg bentäthet"
+  "complication.bone.response": "Begränsa fastans längd; undvik långa fastor vid låg bentäthet",
+
+  "language.title": "Språk",
+  "language.choose": "Välj språk",
+  "language.subtitle": "Du kan ändra det senare under Profil.",
+  "language.suggested": "Förslag till dig",
+  "language.all": "Alla språk",
+  "language.system": "Samma som iPhone",
+  "language.basis": "Utifrån språk och region på din iPhone."
 }

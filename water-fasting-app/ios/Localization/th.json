@@ -613,5 +613,13 @@
   "complication.bone.onset": "การอดอาหารเป็นเวลานาน",
   "complication.bone.cause": "กระดูกปล่อยเกลือแคลเซียมออกมาเพื่อปรับสมดุลกรด",
   "complication.bone.signs": "แคลเซียมในปัสสาวะสูงขึ้น",
-  "complication.bone.response": "จำกัดระยะเวลาการอดอาหาร หลีกเลี่ยงการอดอาหารนานหากความหนาแน่นของกระดูกต่ำ"
+  "complication.bone.response": "จำกัดระยะเวลาการอดอาหาร หลีกเลี่ยงการอดอาหารนานหากความหนาแน่นของกระดูกต่ำ",
+
+  "language.title": "ภาษา",
+  "language.choose": "เลือกภาษาของคุณ",
+  "language.subtitle": "คุณเปลี่ยนได้ภายหลังในโปรไฟล์",
+  "language.suggested": "แนะนำสำหรับคุณ",
+  "language.all": "ภาษาทั้งหมด",
+  "language.system": "เหมือนกับ iPhone",
+  "language.basis": "อิงตามภาษาและภูมิภาคของ iPhone ของคุณ"
 }

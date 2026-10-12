@@ -628,5 +628,13 @@
   "complication.bone.onset": "الصيام المطوّل",
   "complication.bone.cause": "تُطلق العظام أملاح الكالسيوم لمعادلة الأحماض",
   "complication.bone.signs": "زيادة الكالسيوم في البول",
-  "complication.bone.response": "تحديد مدة الصيام؛ وتجنب الصيام الطويل مع انخفاض كثافة العظام"
+  "complication.bone.response": "تحديد مدة الصيام؛ وتجنب الصيام الطويل مع انخفاض كثافة العظام",
+
+  "language.title": "اللغة",
+  "language.choose": "اختر لغتك",
+  "language.subtitle": "يمكنك تغييرها لاحقًا من الملف الشخصي.",
+  "language.suggested": "مقترحة لك",
+  "language.all": "كل اللغات",
+  "language.system": "نفس لغة iPhone",
+  "language.basis": "بناءً على لغة جهاز iPhone ومنطقته."
 }

@@ -613,5 +613,13 @@
   "complication.bone.onset": "Puasa yang lama",
   "complication.bone.cause": "Tulang membebaskan garam kalsium untuk menimbal asid",
   "complication.bone.signs": "Lebih banyak kalsium dalam air kencing",
-  "complication.bone.response": "Hadkan tempoh puasa; elakkan puasa panjang jika ketumpatan tulang rendah"
+  "complication.bone.response": "Hadkan tempoh puasa; elakkan puasa panjang jika ketumpatan tulang rendah",
+
+  "language.title": "Bahasa",
+  "language.choose": "Pilih bahasa anda",
+  "language.subtitle": "Anda boleh menukarnya kemudian dalam Profil.",
+  "language.suggested": "Dicadangkan untuk anda",
+  "language.all": "Semua bahasa",
+  "language.system": "Sama seperti iPhone",
+  "language.basis": "Berdasarkan bahasa dan wilayah iPhone anda."
 }

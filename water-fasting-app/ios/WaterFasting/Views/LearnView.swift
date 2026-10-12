@@ -139,7 +139,7 @@ private struct RisksContent: View {
     var body: some View {
         Para(text: tr("learn.risks.intro"), font: .subheadline)
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 140), spacing: 10)], spacing: 10) {
-            StatTile(value: 90.formatted(.percent), caption: tr("learn.stat.any_effect"))
+            StatTile(value: 90.formatted(.percent.locale(AppLanguage.shared.locale)), caption: tr("learn.stat.any_effect"))
             StatTile(value: "20/28/32", caption: tr("learn.stat.grade3"))
             StatTile(value: "1 / 0", caption: tr("learn.stat.serious"))
         }

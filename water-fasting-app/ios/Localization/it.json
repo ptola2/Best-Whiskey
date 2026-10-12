@@ -646,5 +646,13 @@
   "complication.bone.onset": "Digiuni prolungati",
   "complication.bone.cause": "Le ossa rilasciano sali di calcio per tamponare l'acido",
   "complication.bone.signs": "Più calcio nelle urine",
-  "complication.bone.response": "Limitare la durata del digiuno; evitare digiuni lunghi con bassa densità ossea"
+  "complication.bone.response": "Limitare la durata del digiuno; evitare digiuni lunghi con bassa densità ossea",
+
+  "language.title": "Lingua",
+  "language.choose": "Scegli la tua lingua",
+  "language.subtitle": "Puoi cambiarla in seguito in Profilo.",
+  "language.suggested": "Suggerite per te",
+  "language.all": "Tutte le lingue",
+  "language.system": "Come su iPhone",
+  "language.basis": "In base alla lingua e alla regione del tuo iPhone."
 }

@@ -619,5 +619,13 @@
   "complication.bone.onset": "Jejuns prolongados",
   "complication.bone.cause": "Os ossos liberam sais de cálcio para neutralizar o ácido",
   "complication.bone.signs": "Mais cálcio na urina",
-  "complication.bone.response": "Limitar a duração do jejum; evitar jejuns longos com baixa densidade óssea"
+  "complication.bone.response": "Limitar a duração do jejum; evitar jejuns longos com baixa densidade óssea",
+
+  "language.title": "Idioma",
+  "language.choose": "Escolha seu idioma",
+  "language.subtitle": "Você pode mudar depois em Perfil.",
+  "language.suggested": "Sugeridos para você",
+  "language.all": "Todos os idiomas",
+  "language.system": "Igual ao iPhone",
+  "language.basis": "Com base no idioma e na região do seu iPhone."
 }

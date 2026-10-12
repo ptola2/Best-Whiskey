@@ -38,11 +38,13 @@ struct CloudCard: View {
                 .disabled(cloud.isBusy)
                 .confirmationDialog(tr("cloud.sign_out.confirm"), isPresented: $confirmSignOut, titleVisibility: .visible) {
                     Button(tr("cloud.sign_out")) { Task { await cloud.signOut() } }
+                    Button(tr("common.cancel"), role: .cancel) {}
                 } message: {
                     Text(tr("cloud.sign_out.message"))
                 }
                 .confirmationDialog(tr("cloud.delete.confirm"), isPresented: $confirmDelete, titleVisibility: .visible) {
                     Button(tr("common.continue"), role: .destructive) { cloud.confirmingDeletion = true }
+                    Button(tr("common.cancel"), role: .cancel) {}
                 } message: {
                     Text(tr("cloud.delete.message"))
                 }

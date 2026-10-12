@@ -616,5 +616,13 @@
   "complication.bone.onset": "लंबे उपवास",
   "complication.bone.cause": "एसिड को संतुलित करने के लिए हड्डियाँ कैल्शियम लवण छोड़ती हैं",
   "complication.bone.signs": "पेशाब में ज़्यादा कैल्शियम",
-  "complication.bone.response": "उपवास की अवधि सीमित करें; हड्डियों का घनत्व कम हो तो लंबे उपवास से बचें"
+  "complication.bone.response": "उपवास की अवधि सीमित करें; हड्डियों का घनत्व कम हो तो लंबे उपवास से बचें",
+
+  "language.title": "भाषा",
+  "language.choose": "अपनी भाषा चुनें",
+  "language.subtitle": "आप इसे बाद में प्रोफ़ाइल में बदल सकते हैं।",
+  "language.suggested": "आपके लिए सुझाव",
+  "language.all": "सभी भाषाएँ",
+  "language.system": "iPhone जैसी",
+  "language.basis": "आपके iPhone की भाषा और क्षेत्र के आधार पर।"
 }

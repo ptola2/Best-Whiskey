@@ -10,6 +10,7 @@ struct ProfileView: View {
                     AboutYouCard()
                     SafetyCheckCard()
                     ClinicianCard()
+                    LanguageCard()
                     RemindersCard()
                     #if canImport(FirebaseCore) && canImport(FirebaseAuth) && canImport(FirebaseFirestore)
                     CloudCard()
@@ -238,6 +239,7 @@ private struct DataCard: View {
                 .disabled(deleting)
                 .confirmationDialog(tr("profile.data.delete_confirm"), isPresented: $confirmDelete, titleVisibility: .visible) {
                     Button(tr("profile.data.delete"), role: .destructive) { delete() }
+                    Button(tr("common.cancel"), role: .cancel) {}
                 } message: {
                     Text(tr("profile.data.delete_message"))
                 }

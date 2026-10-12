@@ -622,5 +622,13 @@
   "complication.bone.onset": "Длительные голодания",
   "complication.bone.cause": "Кости высвобождают соли кальция для нейтрализации кислоты",
   "complication.bone.signs": "Больше кальция в моче",
-  "complication.bone.response": "Ограничить длительность голодания; избегать длительных голоданий при низкой плотности костей"
+  "complication.bone.response": "Ограничить длительность голодания; избегать длительных голоданий при низкой плотности костей",
+
+  "language.title": "Язык",
+  "language.choose": "Выберите язык",
+  "language.subtitle": "Его можно изменить позже в разделе «Профиль».",
+  "language.suggested": "Рекомендуемые",
+  "language.all": "Все языки",
+  "language.system": "Как на iPhone",
+  "language.basis": "С учётом языка и региона вашего iPhone."
 }

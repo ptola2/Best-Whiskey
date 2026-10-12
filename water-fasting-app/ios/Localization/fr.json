@@ -619,5 +619,13 @@
   "complication.bone.onset": "Jeûnes prolongés",
   "complication.bone.cause": "L’os libère des sels de calcium pour neutraliser l’acide",
   "complication.bone.signs": "Plus de calcium dans les urines",
-  "complication.bone.response": "Limiter la durée du jeûne ; éviter les jeûnes longs en cas de faible densité osseuse"
+  "complication.bone.response": "Limiter la durée du jeûne ; éviter les jeûnes longs en cas de faible densité osseuse",
+
+  "language.title": "Langue",
+  "language.choose": "Choisissez votre langue",
+  "language.subtitle": "Vous pourrez la modifier plus tard dans Profil.",
+  "language.suggested": "Suggestions pour vous",
+  "language.all": "Toutes les langues",
+  "language.system": "Comme sur l’iPhone",
+  "language.basis": "D’après la langue et la région de votre iPhone."
 }

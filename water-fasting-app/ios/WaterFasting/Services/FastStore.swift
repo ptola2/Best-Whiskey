@@ -132,6 +132,22 @@ final class FastStore {
         return c
     }
 
+    /// A check-in's notes in the language on screen. Saved notes keep the wording of the language they were written
+    /// in, so after a language change they are graded again from the same readings. If that ever gave a different
+    /// result, the saved notes are shown instead.
+    func notes(for c: CheckIn) -> [Note] {
+        let ctx: AssessContext
+        if let fast = data.active, fast.checkIns.contains(where: { $0.id == c.id }) {
+            ctx = AssessContext(isRefeed: false, start: fast.startedAt, startWeightKg: fast.startWeightKg, water: fast.waterByDay)
+        } else if let refeed = data.refeed, refeed.checkIns.contains(where: { $0.id == c.id }) {
+            ctx = AssessContext(isRefeed: true, start: nil, startWeightKg: nil, water: [:])
+        } else {
+            return c.notes
+        }
+        let result = Assessor.assess(c, ctx)
+        return result.level == c.level ? result.notes : c.notes
+    }
+
     func removeCheckIn(_ id: UUID) {
         update { d in
             d.active?.checkIns.removeAll { $0.id == id }

@@ -616,5 +616,13 @@
   "complication.bone.onset": "Längere Fastenperioden",
   "complication.bone.cause": "Knochen geben Calciumsalze ab, um Säure abzupuffern",
   "complication.bone.signs": "Mehr Calcium im Urin",
-  "complication.bone.response": "Fastendauer begrenzen; lange Fastenperioden bei geringer Knochendichte vermeiden"
+  "complication.bone.response": "Fastendauer begrenzen; lange Fastenperioden bei geringer Knochendichte vermeiden",
+
+  "language.title": "Sprache",
+  "language.choose": "Wählen Sie Ihre Sprache",
+  "language.subtitle": "Sie können sie später unter „Profil“ ändern.",
+  "language.suggested": "Vorschläge für Sie",
+  "language.all": "Alle Sprachen",
+  "language.system": "Wie auf dem iPhone",
+  "language.basis": "Basierend auf Sprache und Region Ihres iPhone."
 }

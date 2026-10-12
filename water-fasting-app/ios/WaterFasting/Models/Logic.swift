@@ -20,9 +20,9 @@ enum Fmt {
     }
 
     /// One decimal place with the person's own decimal separator (82.5 or 82,5).
-    static func one(_ value: Double) -> String { String(format: "%.1f", locale: Locale.current, value) }
+    static func one(_ value: Double) -> String { String(format: "%.1f", locale: AppLanguage.shared.locale, value) }
 
-    static func two(_ value: Double) -> String { String(format: "%.2f", locale: Locale.current, value) }
+    static func two(_ value: Double) -> String { String(format: "%.2f", locale: AppLanguage.shared.locale, value) }
 
     /// Whole numbers without a decimal point. Safe for any input: huge or non-finite values never reach Int().
     static func trimmed(_ value: Double) -> String {
@@ -51,10 +51,12 @@ enum Fmt {
     static func dayKey(_ date: Date) -> String { dayKeyFormatter.string(from: date) }
 
     static func when(_ date: Date) -> String {
-        date.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute())
+        date.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute().locale(AppLanguage.shared.locale))
     }
 
-    static func day(_ date: Date) -> String { date.formatted(date: .abbreviated, time: .omitted) }
+    static func day(_ date: Date) -> String {
+        date.formatted(Date.FormatStyle(date: .abbreviated, time: .omitted, locale: AppLanguage.shared.locale))
+    }
 }
 
 // MARK: - Fast arithmetic

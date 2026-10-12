@@ -163,7 +163,7 @@ struct ProgressRing: View {
                 .stroke(Theme.accent, style: StrokeStyle(lineWidth: 10, lineCap: .round))
                 .rotationEffect(.degrees(-90))
             VStack(spacing: 2) {
-                Text(Int(progress * 100).formatted(.percent))
+                Text(Int(progress * 100).formatted(.percent.locale(AppLanguage.shared.locale)))
                     .font(.system(.title3, design: .monospaced).weight(.medium))
                     .foregroundStyle(Theme.ink)
                 Text(tr("timer.of_target"))
@@ -457,7 +457,7 @@ struct LatestCheckInCard: View {
                 let day = FastMath.dayNumber(hours: last.at.timeIntervalSince(fast.startedAt) / 3600)
                 StatusPill(level: last.level)
                 Text(tr("latest.when", day, Fmt.when(last.at))).font(.footnote).foregroundStyle(Theme.muted)
-                if let top = last.notes.first {
+                if let top = FastStore.shared.notes(for: last).first {
                     Para(text: top.text, font: .subheadline)
                 }
                 Button(tr("latest.again")) { FastStore.shared.tab = .log }

@@ -616,5 +616,13 @@
   "complication.bone.onset": "Uzun oruçlar",
   "complication.bone.cause": "Kemik, asidi tamponlamak için kalsiyum tuzları salar",
   "complication.bone.signs": "İdrarda kalsiyum artışı",
-  "complication.bone.response": "Oruç süresi sınırlanır; kemik yoğunluğu düşükse uzun oruçlardan kaçınılır"
+  "complication.bone.response": "Oruç süresi sınırlanır; kemik yoğunluğu düşükse uzun oruçlardan kaçınılır",
+
+  "language.title": "Dil",
+  "language.choose": "Dilinizi seçin",
+  "language.subtitle": "Bunu daha sonra Profil bölümünden değiştirebilirsiniz.",
+  "language.suggested": "Size önerilenler",
+  "language.all": "Tüm diller",
+  "language.system": "iPhone ile aynı",
+  "language.basis": "iPhone'unuzun dil ve bölge ayarlarına göre."
 }

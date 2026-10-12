@@ -622,5 +622,13 @@
   "complication.bone.onset": "Długie posty",
   "complication.bone.cause": "Kości uwalniają sole wapnia, aby buforować kwas",
   "complication.bone.signs": "Więcej wapnia w moczu",
-  "complication.bone.response": "Ograniczenie długości postu; unikanie długich postów przy niskiej gęstości kości"
+  "complication.bone.response": "Ograniczenie długości postu; unikanie długich postów przy niskiej gęstości kości",
+
+  "language.title": "Język",
+  "language.choose": "Wybierz język",
+  "language.subtitle": "Możesz go później zmienić w Profilu.",
+  "language.suggested": "Sugerowane",
+  "language.all": "Wszystkie języki",
+  "language.system": "Jak w iPhonie",
+  "language.basis": "Na podstawie języka i regionu ustawionych w iPhonie."
 }

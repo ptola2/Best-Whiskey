@@ -36,18 +36,20 @@ WaterFasting/
     SyncMerge.swift              Combines two copies of the data when devices sync
     L10n.swift                   tr() and trCount(), which look up translated text
     AppLinks.swift               Privacy policy address
+    AppLanguage.swift            Language choice, suggestions and flags
   Services/
     FastStore.swift              Single source of truth, JSON cache, all actions
     NotificationService.swift    Milestone alerts and 9:00 / 21:00 check-in reminders
     CloudSync.swift              Optional Firestore backup with Sign in with Apple
   Views/
-    RootView.swift               Welcome flow and tab bar
+    RootView.swift               Language, welcome and tab bar
     TodayView.swift              Timer, phase timeline, water, warnings, fast planner
     LogView.swift                Check-in form, graded results, weight, history
     RefeedView.swift             Active refeeding plan and standalone planner
     LearnView.swift              The research, section by section, with sources
     ProfileView.swift            Details, safety check, clinician, reminders, data
     CloudCard.swift              Backup and sync card (only with Firebase)
+    LanguageViews.swift          Language screen, list with flags, Profile card
     Theme.swift, Components.swift
   Assets.xcassets                App icon and accent colour
   Localizable.xcstrings          All text in 21 languages (generated, see Languages)
@@ -100,7 +102,16 @@ How the sync behaves:
 
 ## Languages
 
-The app is translated into 21 languages: English (the source), Arabic, Chinese (Simplified, for Mandarin), Dutch, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Malay, Polish, Portuguese (Brazil), Russian, Spanish, Swahili, Swedish, Thai, Turkish and Vietnamese. iPhone picks the language from the phone's settings, and people can also choose one for Waterline alone in Settings, then Waterline, then Language.
+The app is translated into 21 languages: English (the source), Arabic, Chinese (Simplified, for Mandarin), Dutch, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Malay, Polish, Portuguese (Brazil), Russian, Spanish, Swahili, Swedish, Thai, Turkish and Vietnamese.
+
+Choosing a language:
+
+- **First launch** opens on a language screen, before the welcome. Each language shows its flag, its own name (Français, العربية) and its name in the language on screen. Tapping one switches the screen at once, so people see the app in that language before they continue.
+- **The starting choice** comes from the iPhone. Its language wins when Waterline has it. When the iPhone is in English, which is often just the default, the iPhone's Region decides instead: an English-language iPhone set to France starts in French, one set to Saudi Arabia starts in Arabic, and English stays one tap away under "Suggested for you". Region comes from Settings, not GPS, so there is no location permission and nothing leaves the phone.
+- **Flags** follow the person's country where the language is spoken there (Spanish shows Mexico's flag in Mexico, Arabic shows Morocco's in Morocco), otherwise a usual flag for the language.
+- **Changing it later:** Profile has a Language card, and the welcome screen has a flag button at the top. Both open the same list, which also offers "Same as iPhone" to follow the phone's settings again (including the per-app language in Settings, then Waterline, then Language).
+- The switch is instant, with no restart: every screen, number, date and scheduled reminder changes language. Saved check-in results are shown in the new language too.
+- The choice is a setting on the phone (`AppLanguage.swift`, kept in UserDefaults). It is not synced and stays after "Delete all my data".
 
 How it fits together:
 

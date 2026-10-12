@@ -646,5 +646,13 @@
   "complication.bone.onset": "Extended fasts",
   "complication.bone.cause": "Bone releases calcium salts to buffer acid",
   "complication.bone.signs": "More calcium in urine",
-  "complication.bone.response": "Cap fast length; avoid long fasts with low bone density"
+  "complication.bone.response": "Cap fast length; avoid long fasts with low bone density",
+
+  "language.title": "Language",
+  "language.choose": "Choose your language",
+  "language.subtitle": "You can change it later in Profile.",
+  "language.suggested": "Suggested for you",
+  "language.all": "All languages",
+  "language.system": "Same as iPhone",
+  "language.basis": "Based on your iPhone's language and region."
 }

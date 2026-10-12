@@ -616,5 +616,13 @@
   "complication.bone.onset": "Mifungo mirefu",
   "complication.bone.cause": "Mifupa hutoa chumvi za kalsiamu ili kudhibiti asidi",
   "complication.bone.signs": "Kalsiamu zaidi kwenye mkojo",
-  "complication.bone.response": "Weka kikomo cha urefu wa mfungo; epuka mifungo mirefu ukiwa na msongamano mdogo wa mifupa"
+  "complication.bone.response": "Weka kikomo cha urefu wa mfungo; epuka mifungo mirefu ukiwa na msongamano mdogo wa mifupa",
+
+  "language.title": "Lugha",
+  "language.choose": "Chagua lugha yako",
+  "language.subtitle": "Unaweza kuibadilisha baadaye kwenye Wasifu.",
+  "language.suggested": "Mapendekezo kwako",
+  "language.all": "Lugha zote",
+  "language.system": "Sawa na iPhone",
+  "language.basis": "Kulingana na lugha na eneo la iPhone yako."
 }

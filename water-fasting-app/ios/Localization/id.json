@@ -613,5 +613,13 @@
   "complication.bone.onset": "Puasa panjang",
   "complication.bone.cause": "Tulang melepaskan garam kalsium untuk menetralkan asam",
   "complication.bone.signs": "Kalsium dalam urine meningkat",
-  "complication.bone.response": "Batasi lama puasa; hindari puasa panjang jika kepadatan tulang rendah"
+  "complication.bone.response": "Batasi lama puasa; hindari puasa panjang jika kepadatan tulang rendah",
+
+  "language.title": "Bahasa",
+  "language.choose": "Pilih bahasa Anda",
+  "language.subtitle": "Anda dapat mengubahnya nanti di Profil.",
+  "language.suggested": "Disarankan untuk Anda",
+  "language.all": "Semua bahasa",
+  "language.system": "Sama dengan iPhone",
+  "language.basis": "Berdasarkan bahasa dan wilayah iPhone Anda."
 }

@@ -646,5 +646,13 @@
   "complication.bone.onset": "Ayunos prolongados",
   "complication.bone.cause": "El hueso libera sales de calcio para neutralizar el ácido",
   "complication.bone.signs": "Más calcio en la orina",
-  "complication.bone.response": "Limitar la duración del ayuno; evitar ayunos largos con baja densidad ósea"
+  "complication.bone.response": "Limitar la duración del ayuno; evitar ayunos largos con baja densidad ósea",
+
+  "language.title": "Idioma",
+  "language.choose": "Elige tu idioma",
+  "language.subtitle": "Puedes cambiarlo más tarde en Perfil.",
+  "language.suggested": "Sugeridos para ti",
+  "language.all": "Todos los idiomas",
+  "language.system": "Igual que el iPhone",
+  "language.basis": "Según el idioma y la región de tu iPhone."
 }

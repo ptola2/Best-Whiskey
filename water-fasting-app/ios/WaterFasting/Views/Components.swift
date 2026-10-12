@@ -48,7 +48,7 @@ struct Eyebrow: View {
     let text: String
 
     var body: some View {
-        Text(text.uppercased(with: Locale.current))
+        Text(text.uppercased(with: AppLanguage.shared.locale))
             .font(.caption.weight(.semibold))
             .tracking(0.8)
             .foregroundStyle(Theme.muted)

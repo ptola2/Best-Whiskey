@@ -1,30 +1,35 @@
 import SwiftUI
 
 enum AppScreen {
-    case welcome, main
+    case language, welcome, main
 }
 
 enum AppTab: Hashable {
     case today, log, refeed, learn, profile
 }
 
-/// Top-level flow: welcome until onboarded, then the tab bar.
+/// Top-level flow: language on first launch, then welcome until onboarded, then the tab bar.
 struct RootView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         let store = FastStore.shared
-        let screen: AppScreen = store.data.onboarded ? .main : .welcome
+        let screen: AppScreen = store.data.onboarded ? .main : (AppLanguage.shared.confirmed ? .welcome : .language)
         ZStack {
-            if screen == .welcome {
+            switch screen {
+            case .language:
+                LanguageWelcomeView()
+                    .transition(.opacity)
+            case .welcome:
                 WelcomeView()
                     .transition(.opacity)
-            } else {
+            case .main:
                 MainTabView()
                     .transition(.opacity)
             }
         }
         .animation(.easeInOut(duration: 0.3), value: screen)
+        .appLanguageEnvironment()
         .onChange(of: scenePhase) { _, phase in
             // Renews the rolling window of check-in reminders while a fast runs.
             if phase == .active { FastStore.shared.refreshReminders() }
@@ -64,9 +69,13 @@ struct WelcomeView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                BrandMark()
-                    .frame(width: 64, height: 64)
-                    .padding(.top, 36)
+                HStack(alignment: .center) {
+                    BrandMark()
+                        .frame(width: 64, height: 64)
+                    Spacer(minLength: 12)
+                    LanguageChip()
+                }
+                .padding(.top, 36)
                 VStack(alignment: .leading, spacing: 6) {
                     Text(verbatim: "Waterline")
                         .font(.system(size: 42, weight: .semibold, design: .serif))

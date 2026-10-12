@@ -613,5 +613,13 @@
   "complication.bone.onset": "長期の断食",
   "complication.bone.cause": "酸を中和するために骨がカルシウム塩を放出する",
   "complication.bone.signs": "尿中カルシウムの増加",
-  "complication.bone.response": "断食期間を制限、骨密度が低い場合は長期の断食を避ける"
+  "complication.bone.response": "断食期間を制限、骨密度が低い場合は長期の断食を避ける",
+
+  "language.title": "言語",
+  "language.choose": "言語を選択してください",
+  "language.subtitle": "あとから「プロフィール」で変更できます。",
+  "language.suggested": "おすすめ",
+  "language.all": "すべての言語",
+  "language.system": "iPhoneと同じ",
+  "language.basis": "iPhoneの言語と地域に基づいています。"
 }

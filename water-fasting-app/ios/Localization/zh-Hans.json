@@ -613,5 +613,13 @@
   "complication.bone.onset": "长时间断食",
   "complication.bone.cause": "骨骼释放钙盐以缓冲酸",
   "complication.bone.signs": "尿钙增加",
-  "complication.bone.response": "限制断食时长；骨密度低时避免长时间断食"
+  "complication.bone.response": "限制断食时长；骨密度低时避免长时间断食",
+
+  "language.title": "语言",
+  "language.choose": "选择你的语言",
+  "language.subtitle": "之后可以在“我的”中更改。",
+  "language.suggested": "为你推荐",
+  "language.all": "所有语言",
+  "language.system": "与 iPhone 相同",
+  "language.basis": "根据你的 iPhone 语言和地区推荐。"
 }

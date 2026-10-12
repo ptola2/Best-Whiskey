@@ -613,5 +613,13 @@
   "complication.bone.onset": "Các đợt nhịn ăn dài ngày",
   "complication.bone.cause": "Xương giải phóng muối canxi để trung hòa acid",
   "complication.bone.signs": "Lượng canxi trong nước tiểu tăng",
-  "complication.bone.response": "Giới hạn thời gian nhịn ăn; tránh nhịn ăn dài ngày khi mật độ xương thấp"
+  "complication.bone.response": "Giới hạn thời gian nhịn ăn; tránh nhịn ăn dài ngày khi mật độ xương thấp",
+
+  "language.title": "Ngôn ngữ",
+  "language.choose": "Chọn ngôn ngữ của bạn",
+  "language.subtitle": "Bạn có thể đổi sau trong Hồ sơ.",
+  "language.suggested": "Gợi ý cho bạn",
+  "language.all": "Tất cả ngôn ngữ",
+  "language.system": "Giống iPhone",
+  "language.basis": "Dựa trên ngôn ngữ và vùng của iPhone của bạn."
 }
