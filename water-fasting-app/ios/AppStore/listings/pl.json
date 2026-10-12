@@ -1,0 +1,44 @@
+{
+  "name": "Waterline: post wodny",
+  "subtitle": "Licznik postu i kontrole",
+  "promotional_text": "Śledź post wodny godzina po godzinie, kontroluj ciśnienie krwi i objawy, a potem bezpiecznie go zakończ z planem wychodzenia z postu opartym na badaniach klinicznych.",
+  "description": "Waterline pomaga ci zrozumieć i śledzić post o samej wodzie. Opiera się na wynikach badań klinicznych, także tych dotyczących zagrożeń.\n\nWIEDZ, NA JAKIM ETAPIE JESTEŚ\n• Licznik na żywo pokazuje każdą fazę metaboliczną, od wyczerpania glikogenu po próg 72 godzin.\n• Oś czasu i karta „Na co uważać” pokazują, w którym dniu zwykle pojawiają się poszczególne problemy.\n\nRÓB KONTROLĘ DWA RAZY DZIENNIE\n• Zapisuj masę ciała, ciśnienie krwi na leżąco i na stojąco, tętno, ciała ketonowe i objawy.\n• Każda kontrola jest oceniana na tle opublikowanych wartości progowych, dzięki czemu widzisz, które sygnały wymagają uwagi, a które oznaczają: przerwij i szukaj pomocy.\n• Zapisuj, ile czystej wody wypijasz, i porównuj to z dziennym zakresem od 1,2 do 2,5 L.\n\nBEZPIECZEŃSTWO PRZEDE WSZYSTKIM\n• Ocena bezpieczeństwa oparta na przeciwwskazaniach medycznych wyklucza post wodny u osób, dla których nie jest odpowiedni, np. przy cukrzycy typu 1, w ciąży lub przy zaburzeniu odżywiania.\n• Leki i choroby wymagające udziału lekarza są oznaczane, zanim zaczniesz.\n• Tak jak w badaniach, posty dłuższe niż 72 godziny wymagają potwierdzonego nadzoru medycznego.\n• Dodaj numer telefonu lekarza prowadzącego, aby zawsze mieć go pod ręką: wystarczy jedno dotknięcie.\n\nBEZPIECZNIE ZAKOŃCZ POST\n• Plan wychodzenia z postu dopasowany do długości twojego postu, oparty na poziomach ryzyka ASPEN i NICE: ile trwa, ile kalorii, co jeść każdego dnia i na co uważać.\n\nPOZNAJ PODSTAWY NAUKOWE\n• Zmiany godzina po godzinie, hormony, wyniki badań, skutki uboczne i zespół ponownego odżywienia, z linkiem do każdego źródła.\n\nPRYWATNOŚĆ OD PODSTAW\n• Konto nie jest potrzebne. Wszystko zostaje na twoim iPhonie. Bez reklam i bez śledzenia.\n\nW TWOIM JĘZYKU\n• 21 języków, w tym arabski, chiński, francuski, hindi, hiszpański, japoński, niemiecki i suahili. Język możesz zmienić w każdej chwili.\n\nWAŻNE\nWaterline to narzędzie edukacyjne. Nie jest wyrobem medycznym ani poradą medyczną i nie służy do diagnozowania ani leczenia żadnych chorób. Post wodny nie jest bezpieczny dla każdego. Przed każdym postem skonsultuj się z lekarzem, a dłużej niż 72 godziny pość wyłącznie pod nadzorem medycznym. W nagłym wypadku zadzwoń pod lokalny numer alarmowy.",
+  "keywords": "głodówka,wychodzenie,ketoza,ketony,autofagia,elektrolity,wodzie,przedłużony,tracker,72 godziny",
+  "screenshots": [
+    {
+      "screen": "Today: timer during a fast",
+      "title": "Wiedz, na jakim etapie jesteś",
+      "subtitle": "Licznik na żywo pokazuje każdą fazę metaboliczną"
+    },
+    {
+      "screen": "Profile: safety check answered",
+      "title": "Najpierw ocena bezpieczeństwa",
+      "subtitle": "Oparta na przeciwwskazaniach medycznych"
+    },
+    {
+      "screen": "Log: a graded check-in",
+      "title": "Kontrola dwa razy dziennie",
+      "subtitle": "Pomiary oceniane według progów klinicznych"
+    },
+    {
+      "screen": "Today: warning signs card",
+      "title": "Wiedz, kiedy przerwać",
+      "subtitle": "Jasne sygnały alarmowe, lekarz prowadzący pod ręką"
+    },
+    {
+      "screen": "Refeed: your plan",
+      "title": "Bezpiecznie zakończ post",
+      "subtitle": "Plan wychodzenia dopasowany do twojego postu"
+    },
+    {
+      "screen": "Learn: hour by hour",
+      "title": "Wiedza ze wszystkimi źródłami",
+      "subtitle": "Godzina po godzinie, z opublikowanych badań"
+    },
+    {
+      "screen": "Language screen",
+      "title": "W twoim języku",
+      "subtitle": "21 języków, zmiana w każdej chwili"
+    }
+  ]
+}
