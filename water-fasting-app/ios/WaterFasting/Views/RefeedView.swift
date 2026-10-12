@@ -98,7 +98,7 @@ struct PlanBody: View {
     let currentDay: Int
 
     var body: some View {
-        let reasons = plan.reasons.isEmpty ? "" : " " + tr("refeed.plan.for_you", plan.reasons.joined(separator: ", "))
+        let reasons = plan.reasons.isEmpty ? "" : " " + tr("refeed.plan.for_you", trList(plan.reasons))
         VStack(spacing: 14) {
             Card {
                 HStack(alignment: .center) {

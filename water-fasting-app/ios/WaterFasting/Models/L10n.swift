@@ -19,3 +19,11 @@ func tr(_ key: String, _ args: CVarArg...) -> String {
 func trCount(_ key: String, _ count: Int) -> String {
     String.localizedStringWithFormat(Bundle.main.localizedString(forKey: key, value: nil, table: nil), count)
 }
+
+/// Joins items the way the app's language writes a list ("a, b and c", "a、b和c", "a، b وc"). Uses the language
+/// the app is showing, so the list never comes out in a language the rest of the screen is not in.
+func trList(_ items: [String]) -> String {
+    let formatter = ListFormatter()
+    formatter.locale = Locale(identifier: Bundle.main.preferredLocalizations.first ?? "en")
+    return formatter.string(from: items) ?? items.joined(separator: ", ")
+}

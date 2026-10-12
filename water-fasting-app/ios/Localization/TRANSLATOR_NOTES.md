@@ -43,8 +43,8 @@ anything it reports before committing.
 | --- | --- |
 | `stop.title` + `stop.*` | A heading followed by a bulleted list. English uses a lead-in ("End the fast and get help if you") with list items that finish the sentence. If that does not work in your language, make the heading complete on its own (ending with a colon) and make each item a standalone phrase. |
 | `refeed_warnings.title` + `refeed_warnings.*` | Same pattern as above. |
-| `refeed.reason.*` | Short lowercase phrases joined with ", " and placed in `refeed.plan.for_you` ("For you: %@."). |
-| `assess.warnings` | `%1$@` is a list of symptom names (`symptom.*`) joined with "; ". `%2$@` is a full sentence (`assess.action.*`). |
+| `refeed.reason.*` | Short lowercase phrases joined into a list in your language's own style ("a, b and c") and placed in `refeed.plan.for_you` ("For you: %@."). |
+| `assess.warnings` | `%1$@` is a list of symptom names (`symptom.*`), joined in your language's own list style. `%2$@` is a full sentence (`assess.action.*`). |
 | `profile.summary.incomplete` | `%@` is either `count.questions_left` or `profile.summary.add_details`. |
 | `fmt.hours`, `count.days` | A fast length such as "72 h" or "5 days". It is placed into `timer.day_of_plan`, `timer.to_go`, `fast.target_reached.title`, `notify.target.body`, `plan.start` and `history.target`. Phrase those sentences so a length in its basic form fits (for example "Day %1$lld · %2$@ plan" style wording) rather than relying on case endings. |
 | `fmt.days_hours`, `fmt.hours_minutes`, `fmt.minutes` | A running timer ("2 d 5 h"). Use the short unit abbreviations people expect in your language. |

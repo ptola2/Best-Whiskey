@@ -1,7 +1,7 @@
 {
   "tab.today": "Aujourd’hui",
   "tab.log": "Journal",
-  "tab.refeed": "Réalimentation",
+  "tab.refeed": "Reprise",
   "tab.learn": "Comprendre",
   "tab.profile": "Profil",
   "common.done": "OK",
@@ -411,7 +411,7 @@
   "learn.refeeding.aspen.severe": "Sévère",
   "learn.refeeding.aspen.severe_value": "Plus de 30 %, ou atteinte d’organes, ou carence en thiamine",
   "learn.refeeding.higher_risk": "Risque plus élevé : peu ou pas de nourriture pendant plus de 7 à 10 jours, IMC inférieur à 16, perte involontaire de 10 à 15 % du poids corporel en 3 à 6 mois, ou phosphate ou potassium bas avant la reprise alimentaire.",
-  "learn.refeeding.rule": "La règle générale : se réalimenter pendant au moins la moitié de la durée du jeûne, en commençant par du jus dilué, puis des fruits et des légumes vapeur, puis des féculents et des graisses végétales, sans sel ajouté. L’onglet Réalimentation établit ce plan pour vous.",
+  "learn.refeeding.rule": "La règle générale : se réalimenter pendant au moins la moitié de la durée du jeûne, en commençant par du jus dilué, puis des fruits et des légumes vapeur, puis des féculents et des graisses végétales, sans sel ajouté. L’onglet Reprise établit ce plan pour vous.",
   "learn.who.absolute": "Totalement exclu",
   "learn.who.bmi": "IMC inférieur à 18,5. Trop peu de réserves pour supporter la privation de nourriture.",
   "learn.who.relative": "Nécessite un médecin et souvent une hospitalisation",

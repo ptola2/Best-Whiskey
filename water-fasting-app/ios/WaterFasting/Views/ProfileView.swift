@@ -40,12 +40,12 @@ private struct ScreeningSummary: View {
         } else if !result.blockers.isEmpty {
             Notice(tone: .stop) {
                 StatusPill(level: .stop, text: tr("blocked.title"))
-                Para(text: result.blockers.map(\.title).joined(separator: "; ") + ". " + tr("profile.summary.blocked.body"), font: .subheadline)
+                Para(text: tr("common.title_and_reason", trList(result.blockers.map(\.title)), tr("profile.summary.blocked.body")), font: .subheadline)
             }
         } else if !result.cautions.isEmpty {
             Notice(tone: .caution) {
                 StatusPill(level: .caution, text: tr("profile.summary.doctor"))
-                Para(text: result.cautions.map(\.question).joined(separator: "; ") + ".", font: .subheadline)
+                Para(text: trList(result.cautions.map(\.question)), font: .subheadline)
             }
         } else {
             Notice(tone: .ok) {

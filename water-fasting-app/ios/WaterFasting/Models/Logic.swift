@@ -170,7 +170,7 @@ enum Assessor {
         let sym = Set(c.symptoms)
         let stops = Research.symptoms.filter { $0.group == .stop && sym.contains($0.id) }
         if !stops.isEmpty {
-            let list = stops.map(\.label).joined(separator: "; ")
+            let list = trList(stops.map(\.label))
             let action = ctx.isRefeed ? tr("assess.action.refeed") : tr("assess.action.fast")
             add(.stop, tr("assess.warnings", list, action))
         }

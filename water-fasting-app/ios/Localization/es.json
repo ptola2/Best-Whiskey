@@ -1,7 +1,7 @@
 {
   "tab.today": "Hoy",
   "tab.log": "Registro",
-  "tab.refeed": "Realimentación",
+  "tab.refeed": "Realimentar",
   "tab.learn": "Aprender",
   "tab.profile": "Perfil",
 
@@ -428,7 +428,7 @@
   "learn.refeeding.aspen.severe": "Grave",
   "learn.refeeding.aspen.severe_value": "Más del 30 %, o problemas en órganos, o déficit de tiamina",
   "learn.refeeding.higher_risk": "Mayor riesgo: poca o ninguna comida durante más de 7 a 10 días, IMC inferior a 16, pérdida no intencionada del 10 al 15 % del peso corporal en 3 a 6 meses, o fosfato o potasio bajos antes de volver a comer.",
-  "learn.refeeding.rule": "La regla general: dedica a la realimentación al menos la mitad de lo que duró el ayuno, empezando con jugo diluido, luego fruta y verduras al vapor, y después almidones y grasas vegetales, sin sal añadida. La pestaña Realimentación prepara este plan por ti.",
+  "learn.refeeding.rule": "La regla general: dedica a la realimentación al menos la mitad de lo que duró el ayuno, empezando con jugo diluido, luego fruta y verduras al vapor, y después almidones y grasas vegetales, sin sal añadida. La pestaña Realimentar prepara este plan por ti.",
   "learn.who.absolute": "Totalmente descartado",
   "learn.who.bmi": "IMC inferior a 18,5. Muy pocas reservas para soportar la inanición.",
   "learn.who.relative": "Necesita un médico y, a menudo, hospitalización",
