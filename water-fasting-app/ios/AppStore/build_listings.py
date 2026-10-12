@@ -63,6 +63,9 @@ def check(lang, data, english):
         errors.append(f"{lang}: keywords are {size} bytes (limit 100)")
     if ", " in data["keywords"]:
         errors.append(f"{lang}: keywords have spaces after commas, which waste bytes")
+    for field in ("name", "subtitle", "keywords"):
+        if "\u00a0" in data[field] or "\u202f" in data[field]:
+            errors.append(f"{lang}: {field} has a non-breaking space; use a plain space in App Store fields")
     if "Waterline" not in data["name"]:
         errors.append(f"{lang}: name must contain Waterline")
     shots = data["screenshots"]
