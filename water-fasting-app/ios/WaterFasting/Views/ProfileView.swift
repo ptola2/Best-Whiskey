@@ -7,10 +7,10 @@ struct ProfileView: View {
             ScrollView {
                 VStack(spacing: 14) {
                     ScreeningSummary(result: screening)
+                    LanguageCard()
                     AboutYouCard()
                     SafetyCheckCard()
                     ClinicianCard()
-                    LanguageCard()
                     RemindersCard()
                     #if canImport(FirebaseCore) && canImport(FirebaseAuth) && canImport(FirebaseFirestore)
                     CloudCard()
@@ -23,6 +23,7 @@ struct ProfileView: View {
             .scrollDismissesKeyboard(.interactively)
             .screenBackground()
             .navigationTitle(tr("tab.profile"))
+            .languageToolbarButton()
             .keyboardDoneButton()
         }
     }

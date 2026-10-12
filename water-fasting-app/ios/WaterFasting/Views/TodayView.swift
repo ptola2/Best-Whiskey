@@ -20,6 +20,7 @@ struct TodayView: View {
             .scrollDismissesKeyboard(.interactively)
             .screenBackground()
             .navigationTitle(tr("tab.today"))
+            .languageToolbarButton()
             .keyboardDoneButton()
         }
     }
@@ -293,7 +294,7 @@ struct PhaseTimeline: View {
             ZStack(alignment: .topLeading) {
                 ForEach(ticks) { tick in
                     Text(tick.text)
-                        .font(.caption2.monospaced())
+                        .font(.caption2.monospacedDigit())
                         .foregroundStyle(Theme.muted)
                         .lineLimit(1)
                         .minimumScaleFactor(0.7)
@@ -351,7 +352,7 @@ struct WatchCard: View {
                 let window = risk.toDay > 100 ? tr("watch.days_from", risk.fromDay) : tr("watch.days_range", risk.fromDay, risk.toDay)
                 VStack(alignment: .leading, spacing: 3) {
                     Text(window)
-                        .font(.caption.monospaced())
+                        .font(.caption.weight(.medium).monospacedDigit())
                         .foregroundStyle(Theme.muted)
                     Text(risk.name).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.ink)
                     Para(text: risk.signs + " " + risk.action, font: .footnote, color: Theme.ink2)
@@ -435,7 +436,7 @@ struct WaterMeter: View {
                     Text(Fmt.one(2.5)).frame(width: 48, alignment: .center).offset(x: width * (bandStart + bandWidth) - 24)
                     Text("3 " + tr("unit.litres")).frame(width: 48, alignment: .trailing).offset(x: width - 48)
                 }
-                .font(.caption2.monospaced())
+                .font(.caption2.monospacedDigit())
                 .foregroundStyle(Theme.muted)
             }
             .frame(height: 14)

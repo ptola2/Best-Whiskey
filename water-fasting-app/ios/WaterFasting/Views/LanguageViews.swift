@@ -195,7 +195,36 @@ private struct LanguageRow<Icon: View>: View {
     }
 }
 
-/// The full list in a sheet, used from Profile and the welcome screen.
+extension View {
+    /// Adds a flag to the navigation bar that opens the language list, so the language is always one tap away.
+    func languageToolbarButton() -> some View {
+        modifier(LanguageToolbarButton())
+    }
+}
+
+private struct LanguageToolbarButton: ViewModifier {
+    @State private var showPicker = false
+
+    func body(content: Content) -> some View {
+        let language = AppLanguage.shared
+        content
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showPicker = true
+                    } label: {
+                        Text(AppLanguage.flag(for: language.current))
+                            .font(.title3)
+                    }
+                    .accessibilityLabel(tr("language.title"))
+                    .accessibilityValue(language.current.nativeName)
+                }
+            }
+            .sheet(isPresented: $showPicker) { LanguageSheet() }
+    }
+}
+
+/// The full list in a sheet, used from Profile, Today and the welcome screen.
 struct LanguageSheet: View {
     @Environment(\.dismiss) private var dismiss
 

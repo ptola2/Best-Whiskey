@@ -119,7 +119,7 @@ struct PlanBody: View {
                 KeyValueRow(label: tr("refeed.plan.calories")) {
                     Para(text: plan.calorieHeadline, font: .subheadline)
                     if let value = plan.calorieValue {
-                        Text(value).font(.subheadline.monospaced().weight(.semibold)).foregroundStyle(Theme.ink)
+                        Text(value).font(.subheadline.weight(.semibold).monospacedDigit()).foregroundStyle(Theme.ink)
                     }
                     if !plan.calorieBasis.isEmpty {
                         Para(text: plan.calorieBasis, font: .footnote, color: Theme.muted)
@@ -154,9 +154,9 @@ private struct DayRow: View {
         let isDone = currentDay > 0 && number < currentDay
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
-                Text(tr("refeed.plan.day", number)).font(.footnote.monospaced())
+                Text(tr("refeed.plan.day", number)).font(.footnote.weight(.medium).monospacedDigit())
                 if isToday {
-                    Text(tr("refeed.plan.today")).font(.caption.monospaced())
+                    Text(tr("refeed.plan.today")).font(.caption.weight(.semibold))
                 }
             }
             .foregroundStyle(isToday ? Theme.ink : Theme.muted)

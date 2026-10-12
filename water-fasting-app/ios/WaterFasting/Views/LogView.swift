@@ -317,7 +317,7 @@ struct CheckInRow: View {
                 StatusPill(level: checkIn.level)
             }
             if !metrics.isEmpty {
-                Para(text: metrics.joined(separator: "   "), font: .footnote.monospaced(), color: Theme.ink2)
+                Para(text: metrics.joined(separator: "   "), font: .footnote.monospacedDigit(), color: Theme.ink2)
             }
             if !labels.isEmpty {
                 FlowLayout(spacing: 6) {
@@ -407,13 +407,13 @@ struct HistoryCard: View {
                     Rectangle().fill(Theme.line).frame(height: 1)
                     HStack {
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(tr("unit.hours_short", Int(fast.hours.rounded()))).font(.subheadline.monospaced().weight(.semibold)).foregroundStyle(Theme.ink)
+                            Text(tr("unit.hours_short", Int(fast.hours.rounded()))).font(.subheadline.weight(.semibold).monospacedDigit()).foregroundStyle(Theme.ink)
                             Text(Fmt.day(fast.startedAt)).font(.caption).foregroundStyle(Theme.muted)
                         }
                         Spacer()
                         StatusPill(level: fast.worst, text: worstText(fast.worst))
                     }
-                    Para(text: summary(fast), font: .footnote.monospaced(), color: Theme.ink2)
+                    Para(text: summary(fast), font: .footnote.monospacedDigit(), color: Theme.ink2)
                 }
             }
         }

@@ -8,13 +8,14 @@ enum AppTab: Hashable {
     case today, log, refeed, learn, profile
 }
 
-/// Top-level flow: language on first launch, then welcome until onboarded, then the tab bar.
+/// Top-level flow: the language screen until a language is confirmed (once per install, and once for anyone who
+/// set up the app before the screen existed), then welcome until onboarded, then the tab bar.
 struct RootView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         let store = FastStore.shared
-        let screen: AppScreen = store.data.onboarded ? .main : (AppLanguage.shared.confirmed ? .welcome : .language)
+        let screen: AppScreen = !AppLanguage.shared.confirmed ? .language : (store.data.onboarded ? .main : .welcome)
         ZStack {
             switch screen {
             case .language:

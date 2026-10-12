@@ -98,7 +98,7 @@ private struct PhasesContent: View {
                     .fill(Theme.bands[phase.id])
                     .frame(width: 12)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(phase.range).font(.caption.monospaced()).foregroundStyle(Theme.muted)
+                    Text(phase.range).font(.caption.weight(.medium).monospacedDigit()).foregroundStyle(Theme.muted)
                     Text(phase.name).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.ink)
                     Para(text: phase.text, font: .footnote, color: Theme.ink2)
                 }
@@ -121,7 +121,7 @@ private struct StudiesContent: View {
         ForEach(Research.studies) { study in
             VStack(alignment: .leading, spacing: 3) {
                 Text(study.name).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.ink)
-                Text(study.cohort).font(.caption.monospaced()).foregroundStyle(Theme.muted)
+                Text(study.cohort).font(.caption.weight(.medium)).foregroundStyle(Theme.muted)
                 Para(text: study.finding, font: .footnote, color: Theme.ink2)
             }
         }
