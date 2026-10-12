@@ -1,0 +1,44 @@
+{
+  "name": "Waterline: digiuno ad acqua",
+  "subtitle": "Timer, rilevazioni e sicurezza",
+  "promotional_text": "Segui un digiuno a sola acqua ora per ora, registra pressione e sintomi e interrompilo in sicurezza con un piano di rialimentazione basato sulla ricerca clinica.",
+  "description": "Waterline ti aiuta a capire e a monitorare un digiuno a sola acqua, partendo da ciò che dice la ricerca clinica, rischi compresi.\n\nSAPPI A CHE PUNTO SEI\n• Un timer in tempo reale mostra ogni fase metabolica, dall'esaurimento del glicogeno alla soglia delle 72 ore.\n• Una cronologia e la scheda «Da tenere d'occhio» mostrano in quale giorno iniziano di solito i diversi problemi.\n\nDUE RILEVAZIONI AL GIORNO\n• Registra peso, chetoni, pressione arteriosa da sdraiati e in piedi, pulsazioni e sintomi.\n• Ogni rilevazione viene valutata in base a soglie pubblicate, così vedi quali segnali richiedono attenzione e quali significano «Fermati e chiedi aiuto».\n• Tieni traccia dell'acqua semplice che bevi rispetto all'intervallo giornaliero da 1,2 a 2,5 L.\n\nPRIMA DI TUTTO LA SICUREZZA\n• Un controllo di sicurezza basato sulle controindicazioni mediche esclude il digiuno a sola acqua per le persone a cui non è adatto, ad esempio in caso di diabete di tipo 1, gravidanza o disturbo alimentare.\n• Farmaci e condizioni che richiedono il parere di un medico vengono segnalati prima di iniziare.\n• Come nella ricerca, i digiuni oltre le 72 ore richiedono una supervisione medica confermata.\n• Aggiungi il numero di telefono del tuo medico: potrai chiamarlo in qualsiasi momento con un solo tocco.\n\nINTERROMPI IL DIGIUNO IN SICUREZZA\n• Un piano di rialimentazione commisurato al tuo digiuno, con i livelli di rischio ASPEN e NICE: quanto dura, quante calorie, cosa mangiare ogni giorno e cosa tenere d'occhio.\n\nSCOPRI LA SCIENZA\n• Cambiamenti ora per ora, ormoni, risultati degli studi, effetti collaterali e sindrome da rialimentazione, con un link a ogni fonte.\n\nPENSATA PER LA PRIVACY\n• Nessun account necessario. Tutto resta sul tuo iPhone. Niente pubblicità e nessun tracciamento.\n\nNELLA TUA LINGUA\n• 21 lingue, tra cui arabo, cinese, francese, giapponese, hindi, spagnolo, swahili e tedesco. Puoi cambiare lingua in qualsiasi momento.\n\nIMPORTANTE\nWaterline è uno strumento educativo. Non è un dispositivo medico, non è un consiglio medico e non diagnostica né cura alcuna patologia. Il digiuno a sola acqua non è sicuro per tutti. Consulta un medico prima di qualsiasi digiuno e digiuna oltre le 72 ore solo sotto supervisione medica. In caso di emergenza, chiama il numero di emergenza locale.",
+  "keywords": "idrico,rialimentazione,chetosi,chetoni,autofagia,prolungato,elettroliti,idratazione,72 ore,tracker",
+  "screenshots": [
+    {
+      "screen": "Today: timer during a fast",
+      "title": "Sappi a che punto sei",
+      "subtitle": "Un timer in tempo reale per ogni fase metabolica"
+    },
+    {
+      "screen": "Profile: safety check answered",
+      "title": "Un controllo di sicurezza",
+      "subtitle": "Prima di iniziare, in base alle controindicazioni"
+    },
+    {
+      "screen": "Log: a graded check-in",
+      "title": "Due rilevazioni al giorno",
+      "subtitle": "Valori valutati in base a soglie cliniche"
+    },
+    {
+      "screen": "Today: warning signs card",
+      "title": "Sappi quando fermarti",
+      "subtitle": "Segnali d'allarme chiari, il tuo medico a un tocco"
+    },
+    {
+      "screen": "Refeed: your plan",
+      "title": "Esci dal digiuno in sicurezza",
+      "subtitle": "Un piano di rialimentazione adatto al tuo digiuno"
+    },
+    {
+      "screen": "Learn: hour by hour",
+      "title": "La scienza, con tutte le fonti",
+      "subtitle": "Ora per ora, dalla ricerca pubblicata"
+    },
+    {
+      "screen": "Language screen",
+      "title": "Nella tua lingua",
+      "subtitle": "21 lingue, cambia quando vuoi"
+    }
+  ]
+}
