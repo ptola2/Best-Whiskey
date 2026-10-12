@@ -1,0 +1,44 @@
+{
+  "name": "Waterline: watervasten",
+  "subtitle": "Vastentimer & veiligheidscheck",
+  "promotional_text": "Volg je watervasten uur na uur, houd met check-ins je bloeddruk en klachten bij en stop veilig met een opbouwschema op basis van klinisch onderzoek.",
+  "description": "Waterline helpt je om een vasten op alleen water te begrijpen en bij te houden. De app is gebaseerd op wat het klinisch onderzoek zegt, inclusief de risico's.\n\nWEET WAAR JE STAAT\n• Een live timer toont elke stofwisselingsfase, van het opraken van glycogeen tot de drempel van 72 uur.\n• Een tijdlijn en de kaart „Om op te letten” laten zien welke problemen meestal op welke dag beginnen.\n\nCHECK TWEE KEER PER DAG IN\n• Noteer je gewicht, ketonen, bloeddruk liggend en staand, hartslag en klachten.\n• Elke check-in wordt beoordeeld aan de hand van gepubliceerde grenswaarden. Zo zie je welke signalen aandacht nodig hebben en bij welke je moet stoppen en hulp moet zoeken.\n• Houd bij hoeveel gewoon water je drinkt, afgezet tegen het dagelijkse bereik van 1,2 tot 2,5 L.\n\nVEILIGHEID VOOROP\n• Een veiligheidscheck op basis van de medische contra-indicaties sluit watervasten uit voor mensen voor wie het niet geschikt is, zoals bij diabetes type 1, zwangerschap of een eetstoornis.\n• Medicijnen en aandoeningen waarvoor een arts nodig is, worden al vóór de start gemarkeerd.\n• Net als in het onderzoek vereist vasten van langer dan 72 uur bevestigd medisch toezicht.\n• Voeg het telefoonnummer van je zorgverlener toe, zodat je die altijd met één tik kunt bellen.\n\nSTOP VEILIG MET VASTEN\n• Een opbouwschema afgestemd op je vasten, op basis van de risiconiveaus van ASPEN en NICE: hoe lang het duurt, hoeveel calorieën, wat je elke dag eet en waar je op moet letten.\n\nONTDEK DE WETENSCHAP\n• Veranderingen uur na uur, hormonen, studieresultaten, bijwerkingen en het refeedingsyndroom, met een link naar elke bron.\n\nONTWORPEN VOOR PRIVACY\n• Geen account nodig. Alles blijft op je iPhone. Geen advertenties en geen tracking.\n\nIN JE EIGEN TAAL\n• 21 talen, waaronder Arabisch, Chinees, Duits, Frans, Hindi, Japans, Spaans en Swahili. Je kunt op elk moment wisselen.\n\nBELANGRIJK\nWaterline is een educatief hulpmiddel. Het is geen medisch hulpmiddel en geen medisch advies, en het stelt geen diagnoses en behandelt geen aandoeningen. Watervasten is niet voor iedereen veilig. Raadpleeg vóór elk vasten een arts, en vast alleen langer dan 72 uur onder medisch toezicht. Bel in een noodgeval het lokale alarmnummer.",
+  "keywords": "vasten,opbouwen,refeeding,ketose,ketonen,autofagie,tracker,meerdaags,langdurig,elektrolyten,72 uur",
+  "screenshots": [
+    {
+      "screen": "Today: timer during a fast",
+      "title": "Weet waar je bent in je vasten",
+      "subtitle": "Een live timer door elke stofwisselingsfase"
+    },
+    {
+      "screen": "Profile: safety check answered",
+      "title": "Begin met de veiligheidscheck",
+      "subtitle": "Gebaseerd op de medische contra-indicaties"
+    },
+    {
+      "screen": "Log: a graded check-in",
+      "title": "Twee keer per dag inchecken",
+      "subtitle": "Metingen getoetst aan klinische grenswaarden"
+    },
+    {
+      "screen": "Today: warning signs card",
+      "title": "Weet wanneer je moet stoppen",
+      "subtitle": "Waarschuwingssignalen, je zorgverlener bij de hand"
+    },
+    {
+      "screen": "Refeed: your plan",
+      "title": "Stop veilig met vasten",
+      "subtitle": "Een opbouwschema afgestemd op je vasten"
+    },
+    {
+      "screen": "Learn: hour by hour",
+      "title": "De wetenschap, met elke bron",
+      "subtitle": "Uur na uur, uit gepubliceerd onderzoek"
+    },
+    {
+      "screen": "Language screen",
+      "title": "In je eigen taal",
+      "subtitle": "21 talen, op elk moment te wisselen"
+    }
+  ]
+}
