@@ -65,6 +65,7 @@ final class FastStore {
         #if canImport(FirebaseCore) && canImport(FirebaseAuth) && canImport(FirebaseFirestore)
         if push { CloudSync.shared.localChanged() }
         #endif
+        WidgetBridge.refresh()
     }
 
     // MARK: Actions

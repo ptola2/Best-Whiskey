@@ -24,7 +24,10 @@ label differs slightly, look for the nearest match.
 | --- | --- |
 | Description | `Waterline` |
 | Bundle ID (Explicit) | `com.malebolabs.waterline` |
-| Capabilities | **HealthKit**. Tick **Sign in with Apple** too only if you ship cloud backup. |
+| Capabilities | **HealthKit** and **App Groups** (`group.com.malebolabs.waterline`). Tick **Sign in with Apple** too only if you ship cloud backup. |
+
+The widget extension has its own bundle ID, `com.malebolabs.waterline.widget`, with **App Groups** (the same group).
+Register the group itself under Identifiers, App Groups, if Xcode has not already.
 
 Local reminders do not need the Push Notifications capability. With automatic signing, Xcode also adds HealthKit to the App ID by itself, because the project's entitlements file (`WaterFasting.entitlements`) asks for it.
 

@@ -45,6 +45,11 @@ check-ins to Health, and the check-in form shows recent readings from a smart sc
 use them with one tap. To change access later, open the Health app, tap your profile picture, then Apps, then
 Waterline.
 
+**How do I add the widget?**
+On the Home Screen, touch and hold an empty area, tap Edit, then Add Widget, and choose Waterline. While a fast runs,
+the Lock Screen and Dynamic Island also show it as a Live Activity. iOS ends a Live Activity after about 8 hours;
+opening Waterline starts a new one. Live Activities can be turned off in Settings, Waterline.
+
 **Reminders are not arriving.**
 Check that Reminders is on in Profile, and that notifications are allowed for Waterline in the iPhone's Settings,
 Notifications. Reminders run while a fast is in progress.

@@ -635,5 +635,19 @@
   "health.use_for": "Gunakan untuk %@",
   "health.profile_weight": "Gunakan %@ kg dari Apple Health",
   "infoplist.NSHealthShareUsageDescription": "Waterline membaca berat badan, tekanan darah, dan detak jantung Anda dari Apple Health untuk mengisi cek kondisi dan profil Anda.",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline menyimpan berat badan dan tekanan darah dari cek kondisi Anda ke Apple Health."
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline menyimpan berat badan dan tekanan darah dari cek kondisi Anda ke Apple Health.",
+
+  "live.fasting": "Berpuasa",
+  "live.target": "Target %@",
+  "live.reached": "Target tercapai",
+  "live.next": "Berikutnya: %@",
+  "live.idle.title": "Tidak ada puasa berjalan",
+  "live.idle.body": "Buka Waterline untuk merencanakan puasa.",
+  "extension.widget.name": "Penghitung waktu puasa",
+  "extension.widget.description": "Pantau puasa Anda sekilas: waktu yang telah berlalu, fase metabolik, dan kemajuan menuju target Anda.",
+  "extension.idle.title": "Tidak ada puasa berjalan",
+  "extension.idle.body": "Buka Waterline untuk merencanakan puasa.",
+  "extension.sample.fasting": "Berpuasa",
+  "extension.sample.phase": "Peralihan metabolik",
+  "extension.sample.target": "Target 72 jam"
 }

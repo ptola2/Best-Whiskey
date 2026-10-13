@@ -638,5 +638,19 @@
   "health.use_for": "Använd för %@",
   "health.profile_weight": "Använd %@ kg från Apple Health",
   "infoplist.NSHealthShareUsageDescription": "Waterline läser din vikt, ditt blodtryck och din puls från Apple Health för att fylla i incheckningar och din profil.",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline sparar vikt och blodtryck från dina incheckningar i Apple Health."
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline sparar vikt och blodtryck från dina incheckningar i Apple Health.",
+
+  "live.fasting": "Fasta",
+  "live.target": "Mål %@",
+  "live.reached": "Målet är nått",
+  "live.next": "Nästa: %@",
+  "live.idle.title": "Ingen pågående fasta",
+  "live.idle.body": "Öppna Waterline för att planera en fasta.",
+  "extension.widget.name": "Fastetimer",
+  "extension.widget.description": "Din fasta i korthet: tiden hittills, din metabola fas och hur nära du är ditt mål.",
+  "extension.idle.title": "Ingen pågående fasta",
+  "extension.idle.body": "Öppna Waterline för att planera en fasta.",
+  "extension.sample.fasting": "Fasta",
+  "extension.sample.phase": "Den metabola omställningen",
+  "extension.sample.target": "Mål 72 h"
 }

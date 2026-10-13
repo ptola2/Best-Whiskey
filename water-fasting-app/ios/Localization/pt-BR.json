@@ -641,5 +641,19 @@
   "health.use_for": "Usar para: %@",
   "health.profile_weight": "Usar %@ kg do Apple Health",
   "infoplist.NSHealthShareUsageDescription": "O Waterline lê seu peso, sua pressão arterial e sua frequência cardíaca do Apple Health para preencher os registros e seu perfil.",
-  "infoplist.NSHealthUpdateUsageDescription": "O Waterline salva no Apple Health o peso e a pressão arterial dos seus registros."
+  "infoplist.NSHealthUpdateUsageDescription": "O Waterline salva no Apple Health o peso e a pressão arterial dos seus registros.",
+
+  "live.fasting": "Em jejum",
+  "live.target": "Meta: %@",
+  "live.reached": "Meta atingida",
+  "live.next": "A seguir: %@",
+  "live.idle.title": "Nenhum jejum em andamento",
+  "live.idle.body": "Abra o Waterline para planejar um jejum.",
+  "extension.widget.name": "Cronômetro do jejum",
+  "extension.widget.description": "Seu jejum em resumo: o tempo decorrido, sua fase metabólica e o progresso rumo à sua meta.",
+  "extension.idle.title": "Nenhum jejum em andamento",
+  "extension.idle.body": "Abra o Waterline para planejar um jejum.",
+  "extension.sample.fasting": "Em jejum",
+  "extension.sample.phase": "A virada metabólica",
+  "extension.sample.target": "Meta: 72 h"
 }

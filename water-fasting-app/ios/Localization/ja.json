@@ -635,5 +635,19 @@
   "health.use_for": "%@に使用",
   "health.profile_weight": "Apple Healthの%@ kgを使用",
   "infoplist.NSHealthShareUsageDescription": "Waterlineは、チェックインとプロフィールに入力するために、Apple Healthから体重、血圧、心拍数を読み取ります。",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterlineは、チェックインの体重と血圧をApple Healthに保存します。"
+  "infoplist.NSHealthUpdateUsageDescription": "Waterlineは、チェックインの体重と血圧をApple Healthに保存します。",
+
+  "live.fasting": "断食中",
+  "live.target": "目標：%@",
+  "live.reached": "目標達成",
+  "live.next": "次：%@",
+  "live.idle.title": "進行中の断食はありません",
+  "live.idle.body": "Waterlineを開いて、断食を計画してください。",
+  "extension.widget.name": "断食タイマー",
+  "extension.widget.description": "経過時間、現在の代謝の段階、目標までの進み具合をひと目で確認できます。",
+  "extension.idle.title": "進行中の断食はありません",
+  "extension.idle.body": "Waterlineを開いて、断食を計画してください。",
+  "extension.sample.fasting": "断食中",
+  "extension.sample.phase": "代謝の切り替え",
+  "extension.sample.target": "目標：72時間"
 }

@@ -668,5 +668,19 @@
   "health.use_for": "Usar para %@",
   "health.profile_weight": "Usar %@ kg de Apple Health",
   "infoplist.NSHealthShareUsageDescription": "Waterline lee tu peso, tu presión arterial y tu frecuencia cardíaca de Apple Health para completar tus registros y tu perfil.",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline guarda en Apple Health el peso y la presión arterial de tus registros."
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline guarda en Apple Health el peso y la presión arterial de tus registros.",
+
+  "live.fasting": "En ayuno",
+  "live.target": "Objetivo: %@",
+  "live.reached": "Objetivo alcanzado",
+  "live.next": "Siguiente: %@",
+  "live.idle.title": "Ningún ayuno en curso",
+  "live.idle.body": "Abre Waterline para planificar un ayuno.",
+  "extension.widget.name": "Temporizador de ayuno",
+  "extension.widget.description": "Tu ayuno de un vistazo: el tiempo transcurrido, tu fase metabólica y tu progreso hacia tu objetivo.",
+  "extension.idle.title": "Ningún ayuno en curso",
+  "extension.idle.body": "Abre Waterline para planificar un ayuno.",
+  "extension.sample.fasting": "En ayuno",
+  "extension.sample.phase": "El cambio metabólico",
+  "extension.sample.target": "Objetivo: 72 h"
 }

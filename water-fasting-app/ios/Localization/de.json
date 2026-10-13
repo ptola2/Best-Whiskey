@@ -638,5 +638,19 @@
   "health.use_for": "Für „%@“ übernehmen",
   "health.profile_weight": "%@ kg aus Apple Health übernehmen",
   "infoplist.NSHealthShareUsageDescription": "Waterline liest Ihr Gewicht, Ihren Blutdruck und Ihre Herzfrequenz aus Apple Health, um Kontrollen und Ihr Profil auszufüllen.",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline speichert Gewicht und Blutdruck aus Ihren Kontrollen in Apple Health."
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline speichert Gewicht und Blutdruck aus Ihren Kontrollen in Apple Health.",
+
+  "live.fasting": "Fasten",
+  "live.target": "Ziel: %@",
+  "live.reached": "Ziel erreicht",
+  "live.next": "Als Nächstes: %@",
+  "live.idle.title": "Kein laufendes Fasten",
+  "live.idle.body": "Öffnen Sie Waterline, um ein Fasten zu planen.",
+  "extension.widget.name": "Fasten-Timer",
+  "extension.widget.description": "Ihr Fasten auf einen Blick: die bisherige Dauer, Ihre Stoffwechselphase und Ihr Fortschritt bis zum Ziel.",
+  "extension.idle.title": "Kein laufendes Fasten",
+  "extension.idle.body": "Öffnen Sie Waterline, um ein Fasten zu planen.",
+  "extension.sample.fasting": "Fasten",
+  "extension.sample.phase": "Die Stoffwechselumstellung",
+  "extension.sample.target": "Ziel: 72 Std."
 }

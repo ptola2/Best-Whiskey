@@ -638,5 +638,19 @@
   "health.use_for": "Gebruik voor %@",
   "health.profile_weight": "Gebruik %@ kg uit Apple Health",
   "infoplist.NSHealthShareUsageDescription": "Waterline leest je gewicht, bloeddruk en hartslag uit Apple Health om check-ins en je profiel in te vullen.",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline bewaart het gewicht en de bloeddruk uit je check-ins in Apple Health."
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline bewaart het gewicht en de bloeddruk uit je check-ins in Apple Health.",
+
+  "live.fasting": "Vasten",
+  "live.target": "Doel: %@",
+  "live.reached": "Doel bereikt",
+  "live.next": "Hierna: %@",
+  "live.idle.title": "Geen vasten bezig",
+  "live.idle.body": "Open Waterline om een vastenperiode te plannen.",
+  "extension.widget.name": "Vastentimer",
+  "extension.widget.description": "Je vasten in één oogopslag: de verstreken tijd, je stofwisselingsfase en je voortgang richting je doel.",
+  "extension.idle.title": "Geen vasten bezig",
+  "extension.idle.body": "Open Waterline om een vastenperiode te plannen.",
+  "extension.sample.fasting": "Vasten",
+  "extension.sample.phase": "De metabole omschakeling",
+  "extension.sample.target": "Doel: 72 uur"
 }

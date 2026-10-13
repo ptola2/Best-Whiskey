@@ -42,6 +42,7 @@ WaterFasting/
     NotificationService.swift    Milestone alerts and 9:00 / 21:00 check-in reminders
     CloudSync.swift              Optional Firestore backup with Sign in with Apple
     HealthService.swift          Apple Health: reads and saves weight and blood pressure
+    WidgetBridge.swift           Keeps the widget and the Live Activity in step with the fast
   Views/
     RootView.swift               Language, welcome and tab bar
     TodayView.swift              Timer, phase timeline, water, warnings, fast planner
@@ -55,6 +56,12 @@ WaterFasting/
   Assets.xcassets                App icon and accent colour
   Localizable.xcstrings          All text in 21 languages (generated, see Languages)
   PrivacyInfo.xcprivacy          Privacy manifest required by the App Store
+Shared/                          Compiled into both the app and the widget
+  FastWidgetData.swift           The fast as the widget sees it, shared through the App Group
+  FastActivityAttributes.swift   The Live Activity's data
+WaterlineWidget/                 The widget extension
+  FastTimerWidget.swift          Home Screen and Lock Screen widgets
+  FastLiveActivity.swift         Lock Screen and Dynamic Island Live Activity
 Localization/
   en.json, fr.json, ...          Text for each language, edited by hand
   build_catalog.py               Checks the files and writes Localizable.xcstrings
@@ -70,6 +77,19 @@ Taken from the source document and shared with the web app:
 - Every fast over 72 hours needs confirmed clinical supervision.
 - Check-ins flag the warning signs, likely low sodium, an orthostatic drop of 20/10 mmHg or more, a standing pulse rise of 30 or more, water outside 1.2 to 2.5 L, and BHB above 7.0 mmol/L.
 - Refeeding lasts at least half the fast and uses the ASPEN and NICE risk tiers.
+
+## Widget and Live Activity
+
+The `WaterlineWidget` extension adds:
+
+- **A Home Screen widget** (small and medium) and **Lock Screen widgets** (circular, rectangular, inline). They show the time fasted so far, counting every second, the current metabolic phase, the next one, and a bar filling toward the target. The widget moves to each new phase by itself, even if the app stays closed.
+- **A Live Activity** on the Lock Screen and in the Dynamic Island while a fast runs, with the same live timer and progress bar. iOS ends a Live Activity after about 8 hours, so Waterline starts a fresh one each time the app is opened during a long fast; the widget covers the time in between. People can turn Live Activities off in Settings, Waterline.
+
+The app writes the fast and every label into the shared App Group (`group.com.malebolabs.waterline`) whenever the fast or the language changes, so the widget always matches the language chosen inside Waterline. Only the widget gallery's name and description come from the extension's own catalog (`WaterlineWidget/Localizable.xcstrings`, built by `build_catalog.py` from the `extension.*` keys).
+
+In Xcode, the project now has two targets: **WaterFasting** (the app) and **WaterlineWidgetExtension**. Pick your Team in Signing & Capabilities for both. Each lists App Groups with `group.com.malebolabs.waterline` ticked; with automatic signing Xcode registers the group and the widget's bundle ID (`com.malebolabs.waterline.widget`) for you.
+
+To try it in the simulator: start a fast, go to the Home Screen, long-press, tap Edit, then Add Widget, and pick Waterline. Lock the simulator (Cmd+L) to see the Live Activity.
 
 ## Apple Health
 
@@ -168,5 +188,4 @@ This project was written without access to Xcode, so it has been checked with a 
 
 Not done yet:
 
-- Home Screen widget or Live Activity for the timer
 - RevenueCat paywall (no paid tier has been decided)

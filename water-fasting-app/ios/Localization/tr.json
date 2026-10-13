@@ -638,5 +638,19 @@
   "health.use_for": "%@ için kullan",
   "health.profile_weight": "Apple Health'teki %@ kg değerini kullan",
   "infoplist.NSHealthShareUsageDescription": "Waterline, kontrolleri ve profilinizi doldurmak için Apple Health'ten kilonuzu, kan basıncınızı ve kalp atış hızınızı okur.",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline, kontrollerinizdeki kilo ve kan basıncı değerlerini Apple Health'e kaydeder."
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline, kontrollerinizdeki kilo ve kan basıncı değerlerini Apple Health'e kaydeder.",
+
+  "live.fasting": "Oruç",
+  "live.target": "Hedef: %@",
+  "live.reached": "Hedefe ulaşıldı",
+  "live.next": "Sıradaki: %@",
+  "live.idle.title": "Devam eden oruç yok",
+  "live.idle.body": "Oruç planlamak için Waterline uygulamasını açın.",
+  "extension.widget.name": "Oruç sayacı",
+  "extension.widget.description": "Orucunuz bir bakışta: şimdiye kadar geçen süre, metabolik evreniz ve hedefinize doğru ilerlemeniz.",
+  "extension.idle.title": "Devam eden oruç yok",
+  "extension.idle.body": "Oruç planlamak için Waterline uygulamasını açın.",
+  "extension.sample.fasting": "Oruç",
+  "extension.sample.phase": "Metabolik geçiş",
+  "extension.sample.target": "Hedef: 72 saat"
 }

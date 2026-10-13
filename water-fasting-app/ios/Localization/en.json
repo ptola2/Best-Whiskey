@@ -668,5 +668,19 @@
   "health.use_for": "Use for %@",
   "health.profile_weight": "Use %@ kg from Apple Health",
   "infoplist.NSHealthShareUsageDescription": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile.",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline saves the weight and blood pressure from your check-ins to Apple Health.",
+
+  "live.fasting": "Fasting",
+  "live.target": "Target %@",
+  "live.reached": "Target reached",
+  "live.next": "Next: %@",
+  "live.idle.title": "No fast running",
+  "live.idle.body": "Open Waterline to plan a fast.",
+  "extension.widget.name": "Fast timer",
+  "extension.widget.description": "Your fast at a glance: the time so far, your metabolic phase and progress to your target.",
+  "extension.idle.title": "No fast running",
+  "extension.idle.body": "Open Waterline to plan a fast.",
+  "extension.sample.fasting": "Fasting",
+  "extension.sample.phase": "The metabolic switch",
+  "extension.sample.target": "Target 72 h"
 }

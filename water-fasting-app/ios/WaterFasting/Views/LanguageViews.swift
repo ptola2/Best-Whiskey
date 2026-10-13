@@ -136,8 +136,9 @@ struct LanguageList: View {
 
     private func choose(_ code: String?) {
         AppLanguage.shared.select(code)
-        // Scheduled reminders hold their text, so they are rewritten in the new language.
+        // Scheduled reminders, the widget and the Live Activity hold their text, so they are rewritten in the new language.
         FastStore.shared.refreshReminders()
+        WidgetBridge.refresh()
     }
 }
 

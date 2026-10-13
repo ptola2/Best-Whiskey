@@ -635,5 +635,19 @@
   "health.use_for": "ใช้เป็นค่า%@",
   "health.profile_weight": "ใช้น้ำหนัก %@ kg จาก Apple Health",
   "infoplist.NSHealthShareUsageDescription": "Waterline อ่านน้ำหนัก ความดันโลหิต และอัตราการเต้นของหัวใจของคุณจาก Apple Health เพื่อกรอกข้อมูลการเช็กอินและโปรไฟล์ของคุณ",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline บันทึกน้ำหนักและความดันโลหิตจากการเช็กอินของคุณลงใน Apple Health"
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline บันทึกน้ำหนักและความดันโลหิตจากการเช็กอินของคุณลงใน Apple Health",
+
+  "live.fasting": "กำลังอดอาหาร",
+  "live.target": "เป้าหมาย %@",
+  "live.reached": "ถึงเป้าหมายแล้ว",
+  "live.next": "ถัดไป: %@",
+  "live.idle.title": "ไม่มีการอดอาหารที่กำลังดำเนินอยู่",
+  "live.idle.body": "เปิด Waterline เพื่อวางแผนการอดอาหาร",
+  "extension.widget.name": "ตัวจับเวลาการอดอาหาร",
+  "extension.widget.description": "ภาพรวมการอดอาหารของคุณ: เวลาที่ผ่านไป ระยะเมแทบอลิซึม และความคืบหน้าสู่เป้าหมาย",
+  "extension.idle.title": "ไม่มีการอดอาหารที่กำลังดำเนินอยู่",
+  "extension.idle.body": "เปิด Waterline เพื่อวางแผนการอดอาหาร",
+  "extension.sample.fasting": "กำลังอดอาหาร",
+  "extension.sample.phase": "จุดเปลี่ยนเมแทบอลิซึม",
+  "extension.sample.target": "เป้าหมาย 72 ชม."
 }

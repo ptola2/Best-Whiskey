@@ -635,5 +635,19 @@
   "health.use_for": "用于%@",
   "health.profile_weight": "使用 Apple Health 中的 %@ kg",
   "infoplist.NSHealthShareUsageDescription": "Waterline 会从 Apple Health 读取你的体重、血压和心率，用于填写自查和“我的”页面中的信息。",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline 会将自查中的体重和血压保存到 Apple Health。"
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline 会将自查中的体重和血压保存到 Apple Health。",
+
+  "live.fasting": "断食中",
+  "live.target": "目标 %@",
+  "live.reached": "已达到目标",
+  "live.next": "下一阶段：%@",
+  "live.idle.title": "没有进行中的断食",
+  "live.idle.body": "打开 Waterline 规划断食。",
+  "extension.widget.name": "断食计时器",
+  "extension.widget.description": "断食进展一目了然：已进行时长、所处代谢阶段和目标进度。",
+  "extension.idle.title": "没有进行中的断食",
+  "extension.idle.body": "打开 Waterline 规划断食。",
+  "extension.sample.fasting": "断食中",
+  "extension.sample.phase": "代谢转换",
+  "extension.sample.target": "目标 72 小时"
 }

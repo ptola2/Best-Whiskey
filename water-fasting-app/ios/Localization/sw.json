@@ -638,5 +638,19 @@
   "health.use_for": "Tumia kwenye sehemu ya %@",
   "health.profile_weight": "Tumia %@ kg kutoka Apple Health",
   "infoplist.NSHealthShareUsageDescription": "Waterline husoma uzito wako, shinikizo lako la damu na mapigo yako ya moyo kutoka Apple Health ili kujaza ukaguzi na wasifu wako.",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline huhifadhi kwenye Apple Health uzito na shinikizo la damu kutoka kwenye ukaguzi wako."
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline huhifadhi kwenye Apple Health uzito na shinikizo la damu kutoka kwenye ukaguzi wako.",
+
+  "live.fasting": "Mfungo",
+  "live.target": "Lengo: %@",
+  "live.reached": "Lengo limefikiwa",
+  "live.next": "Inayofuata: %@",
+  "live.idle.title": "Hakuna mfungo unaoendelea",
+  "live.idle.body": "Fungua Waterline ili upange mfungo.",
+  "extension.widget.name": "Kipima muda cha mfungo",
+  "extension.widget.description": "Mfungo wako kwa muhtasari: muda uliopita, awamu yako ya kimetaboliki na maendeleo kuelekea lengo lako.",
+  "extension.idle.title": "Hakuna mfungo unaoendelea",
+  "extension.idle.body": "Fungua Waterline ili upange mfungo.",
+  "extension.sample.fasting": "Mfungo",
+  "extension.sample.phase": "Mabadiliko ya kimetaboliki",
+  "extension.sample.target": "Lengo: saa 72"
 }

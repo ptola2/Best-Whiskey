@@ -644,5 +644,19 @@
   "health.use_for": "Użyj jako: %@",
   "health.profile_weight": "Użyj %@ kg z Apple Health",
   "infoplist.NSHealthShareUsageDescription": "Waterline odczytuje masę ciała, ciśnienie krwi i tętno z Apple Health, aby uzupełniać kontrole i twój profil.",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline zapisuje masę ciała i ciśnienie krwi z twoich kontroli w Apple Health."
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline zapisuje masę ciała i ciśnienie krwi z twoich kontroli w Apple Health.",
+
+  "live.fasting": "Post",
+  "live.target": "Cel: %@",
+  "live.reached": "Cel osiągnięty",
+  "live.next": "Następnie: %@",
+  "live.idle.title": "Brak trwającego postu",
+  "live.idle.body": "Otwórz aplikację Waterline, aby zaplanować post.",
+  "extension.widget.name": "Licznik postu",
+  "extension.widget.description": "Twój post w skrócie: czas, który już minął, faza metaboliczna i postęp w drodze do celu.",
+  "extension.idle.title": "Brak trwającego postu",
+  "extension.idle.body": "Otwórz aplikację Waterline, aby zaplanować post.",
+  "extension.sample.fasting": "Post",
+  "extension.sample.phase": "Przełączenie metaboliczne",
+  "extension.sample.target": "Cel: 72 h"
 }

@@ -638,5 +638,19 @@
   "health.use_for": "“%@” के लिए इस्तेमाल करें",
   "health.profile_weight": "Apple Health से %@ kg इस्तेमाल करें",
   "infoplist.NSHealthShareUsageDescription": "Waterline चेक-इन और आपकी प्रोफ़ाइल भरने के लिए Apple Health से आपका वज़न, ब्लड प्रेशर और हार्ट रेट पढ़ता है।",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline आपके चेक-इन का वज़न और ब्लड प्रेशर Apple Health में सेव करता है।"
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline आपके चेक-इन का वज़न और ब्लड प्रेशर Apple Health में सेव करता है।",
+
+  "live.fasting": "उपवास जारी",
+  "live.target": "लक्ष्य %@",
+  "live.reached": "लक्ष्य पूरा हुआ",
+  "live.next": "अगला: %@",
+  "live.idle.title": "कोई उपवास नहीं चल रहा",
+  "live.idle.body": "उपवास की योजना बनाने के लिए Waterline खोलें।",
+  "extension.widget.name": "उपवास टाइमर",
+  "extension.widget.description": "एक नज़र में आपका उपवास: अब तक का समय, आपका मेटाबोलिक चरण और लक्ष्य की ओर आपकी प्रगति।",
+  "extension.idle.title": "कोई उपवास नहीं चल रहा",
+  "extension.idle.body": "उपवास की योजना बनाने के लिए Waterline खोलें।",
+  "extension.sample.fasting": "उपवास जारी",
+  "extension.sample.phase": "मेटाबोलिक स्विच",
+  "extension.sample.target": "लक्ष्य 72 घंटे"
 }

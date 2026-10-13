@@ -650,5 +650,19 @@
   "health.use_for": "استخدام في حقل «%@»",
   "health.profile_weight": "استخدام %@ kg من Apple Health",
   "infoplist.NSHealthShareUsageDescription": "يقرأ Waterline وزنك وضغط دمك ومعدل ضربات قلبك من Apple Health لملء تسجيلات الحالة وملفك الشخصي.",
-  "infoplist.NSHealthUpdateUsageDescription": "يحفظ Waterline الوزن وضغط الدم من تسجيلات حالتك في Apple Health."
+  "infoplist.NSHealthUpdateUsageDescription": "يحفظ Waterline الوزن وضغط الدم من تسجيلات حالتك في Apple Health.",
+
+  "live.fasting": "الصيام",
+  "live.target": "الهدف: %@",
+  "live.reached": "تم بلوغ الهدف",
+  "live.next": "التالي: %@",
+  "live.idle.title": "لا يوجد صيام جارٍ",
+  "live.idle.body": "افتح Waterline للتخطيط لصيام.",
+  "extension.widget.name": "مؤقت الصيام",
+  "extension.widget.description": "صيامك في لمحة: المدة المنقضية حتى الآن، ومرحلتك الأيضية، وتقدمك نحو هدفك.",
+  "extension.idle.title": "لا يوجد صيام جارٍ",
+  "extension.idle.body": "افتح Waterline للتخطيط لصيام.",
+  "extension.sample.fasting": "الصيام",
+  "extension.sample.phase": "التحول الأيضي",
+  "extension.sample.target": "الهدف: 72 ساعة"
 }

@@ -36,6 +36,8 @@ struct RootView: View {
             if phase == .active {
                 FastStore.shared.refreshReminders()
                 HealthService.shared.refreshStatus()
+                // Moves the widget to the current phase and restarts a Live Activity that iOS ended after 8 hours.
+                WidgetBridge.refresh()
             }
         }
         .task {

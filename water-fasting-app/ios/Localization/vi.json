@@ -635,5 +635,19 @@
   "health.use_for": "Dùng cho %@",
   "health.profile_weight": "Dùng %@ kg từ Apple Health",
   "infoplist.NSHealthShareUsageDescription": "Waterline đọc cân nặng, huyết áp và nhịp tim của bạn từ Apple Health để điền vào các lần ghi nhận và hồ sơ của bạn.",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline lưu cân nặng và huyết áp từ các lần ghi nhận của bạn vào Apple Health."
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline lưu cân nặng và huyết áp từ các lần ghi nhận của bạn vào Apple Health.",
+
+  "live.fasting": "Đang nhịn ăn",
+  "live.target": "Mục tiêu %@",
+  "live.reached": "Đã đạt mục tiêu",
+  "live.next": "Tiếp theo: %@",
+  "live.idle.title": "Không có đợt nhịn ăn đang diễn ra",
+  "live.idle.body": "Mở Waterline để lên kế hoạch nhịn ăn.",
+  "extension.widget.name": "Đồng hồ nhịn ăn",
+  "extension.widget.description": "Xem nhanh đợt nhịn ăn của bạn: thời gian đã qua, giai đoạn chuyển hóa và tiến độ đến mục tiêu.",
+  "extension.idle.title": "Không có đợt nhịn ăn đang diễn ra",
+  "extension.idle.body": "Mở Waterline để lên kế hoạch nhịn ăn.",
+  "extension.sample.fasting": "Đang nhịn ăn",
+  "extension.sample.phase": "Bước chuyển đổi chuyển hóa",
+  "extension.sample.target": "Mục tiêu 72 giờ"
 }

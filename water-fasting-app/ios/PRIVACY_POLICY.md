@@ -81,6 +81,8 @@ Reminders (check-in prompts, milestones and safety alerts) are scheduled by iOS 
 
 Because reminders can mention your fast, they may appear on your Lock Screen. You can hide notification previews in iOS Settings, or turn reminders off in Waterline's Profile tab.
 
+The Waterline widget and Live Activity show how long you have been fasting, your current phase and your progress on the Home Screen, the Lock Screen and in the Dynamic Island, where others near your iPhone can see them. They read this from a shared space on your iPhone that only Waterline and its widget can use; nothing is sent anywhere. You can remove the widget, and turn Live Activities off in iOS Settings, Waterline.
+
 ## 6. Links and phone calls
 
 - The Learn section links to published research on other websites, such as PubMed Central, MDPI and Karger. Links open in your browser, and those websites have their own privacy policies. Waterline does not send them any of your information.

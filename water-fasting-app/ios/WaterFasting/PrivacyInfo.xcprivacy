@@ -13,14 +13,15 @@
 	<array/>
 	<key>NSPrivacyAccessedAPITypes</key>
 	<array>
-		<!-- UserDefaults holds the language chosen in the app (AppLanguage.swift). It is read and written only by
-		     Waterline itself: reason CA92.1. -->
+		<!-- UserDefaults holds the language chosen in the app (AppLanguage.swift), read and written only by Waterline
+		     itself (CA92.1), and the fast shared with the widget through the App Group (1C8F.1). -->
 		<dict>
 			<key>NSPrivacyAccessedAPIType</key>
 			<string>NSPrivacyAccessedAPICategoryUserDefaults</string>
 			<key>NSPrivacyAccessedAPITypeReasons</key>
 			<array>
 				<string>CA92.1</string>
+				<string>1C8F.1</string>
 			</array>
 		</dict>
 	</array>

@@ -641,5 +641,19 @@
   "health.use_for": "Utiliser pour %@",
   "health.profile_weight": "Utiliser %@ kg d’Apple Health",
   "infoplist.NSHealthShareUsageDescription": "Waterline lit votre poids, votre tension artérielle et votre fréquence cardiaque dans Apple Health pour remplir vos bilans et votre profil.",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline enregistre dans Apple Health le poids et la tension artérielle de vos bilans."
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline enregistre dans Apple Health le poids et la tension artérielle de vos bilans.",
+
+  "live.fasting": "En jeûne",
+  "live.target": "Objectif : %@",
+  "live.reached": "Objectif atteint",
+  "live.next": "Ensuite : %@",
+  "live.idle.title": "Aucun jeûne en cours",
+  "live.idle.body": "Ouvrez Waterline pour planifier un jeûne.",
+  "extension.widget.name": "Minuteur de jeûne",
+  "extension.widget.description": "Votre jeûne en un coup d’œil : le temps écoulé, votre phase métabolique et votre progression vers votre objectif.",
+  "extension.idle.title": "Aucun jeûne en cours",
+  "extension.idle.body": "Ouvrez Waterline pour planifier un jeûne.",
+  "extension.sample.fasting": "En jeûne",
+  "extension.sample.phase": "La bascule métabolique",
+  "extension.sample.target": "Objectif : 72 h"
 }

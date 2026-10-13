@@ -22,6 +22,12 @@ CATALOG = APP / "Localizable.xcstrings"
 INFOPLIST_PREFIX = "infoplist."
 INFOPLIST_CATALOG = APP / "InfoPlist.xcstrings"
 PROJECT = HERE.parent / "WaterFasting.xcodeproj" / "project.pbxproj"
+# Keys starting with "extension." belong to the widget extension, which looks them up with String(localized:).
+# They go into WaterlineWidget/Localizable.xcstrings. Everything else the widget shows is written by the app.
+EXTENSION_PREFIX = "extension."
+EXTENSION_DIR = HERE.parent / "WaterlineWidget"
+EXTENSION_CATALOG = EXTENSION_DIR / "Localizable.xcstrings"
+EXTENSION_CALL = re.compile(r'String\(localized:\s*"((?:[^"\\]|\\.)*)"')
 
 LANGUAGES = ["ar", "de", "es", "fr", "hi", "id", "it", "ja", "ko", "ms", "nl",
              "pl", "pt-BR", "ru", "sv", "sw", "th", "tr", "vi", "zh-Hans"]
@@ -182,6 +188,9 @@ def main():
 
     literal, patterns = code_keys()
     used = set(literal)
+    extension_used = {m.group(1) for path in EXTENSION_DIR.rglob("*.swift")
+                      for m in EXTENSION_CALL.finditer(path.read_text(encoding="utf-8"))}
+    used |= extension_used
     for pattern in patterns:
         keys = expand(pattern)
         if keys is None:
@@ -232,7 +241,7 @@ def main():
             return {"variations": {"plural": {cat: unit(text) for cat, text in value.items()}}}
         return unit(value)
 
-    app_strings, plist_strings = {}, {}
+    app_strings, plist_strings, extension_strings = {}, {}, {}
     for key in sorted(english):
         localizations = {"en": entry(english[key])}
         for lang in LANGUAGES:
@@ -240,9 +249,12 @@ def main():
         item = {"extractionState": "manual", "localizations": localizations}
         if key.startswith(INFOPLIST_PREFIX):
             plist_strings[key[len(INFOPLIST_PREFIX):]] = item
+        elif key.startswith(EXTENSION_PREFIX):
+            extension_strings[key] = item
         else:
             app_strings[key] = item
-    for path, strings in ((CATALOG, app_strings), (INFOPLIST_CATALOG, plist_strings)):
+    for path, strings in ((CATALOG, app_strings), (INFOPLIST_CATALOG, plist_strings),
+                          (EXTENSION_CATALOG, extension_strings)):
         catalog = {"sourceLanguage": "en", "strings": strings, "version": "1.0"}
         path.write_text(json.dumps(catalog, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         print(f"Wrote {path.relative_to(HERE.parent)}")

@@ -644,5 +644,19 @@
   "health.use_for": "Использовать для: %@",
   "health.profile_weight": "Использовать %@ кг из Apple Health",
   "infoplist.NSHealthShareUsageDescription": "Waterline считывает ваш вес, давление и частоту пульса из Apple Health, чтобы заполнять проверки и ваш профиль.",
-  "infoplist.NSHealthUpdateUsageDescription": "Waterline сохраняет вес и давление из ваших проверок в Apple Health."
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline сохраняет вес и давление из ваших проверок в Apple Health.",
+
+  "live.fasting": "Голодание",
+  "live.target": "Цель: %@",
+  "live.reached": "Цель достигнута",
+  "live.next": "Далее: %@",
+  "live.idle.title": "Нет текущего голодания",
+  "live.idle.body": "Откройте Waterline, чтобы спланировать голодание.",
+  "extension.widget.name": "Таймер голодания",
+  "extension.widget.description": "Главное о вашем голодании: сколько времени прошло, текущая метаболическая фаза и прогресс на пути к цели.",
+  "extension.idle.title": "Нет текущего голодания",
+  "extension.idle.body": "Откройте Waterline, чтобы спланировать голодание.",
+  "extension.sample.fasting": "Голодание",
+  "extension.sample.phase": "Метаболическое переключение",
+  "extension.sample.target": "Цель: 72 ч"
 }
