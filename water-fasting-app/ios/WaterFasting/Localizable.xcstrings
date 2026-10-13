@@ -21188,7 +21188,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save the weight and blood pressure from your check-ins to Apple Health, and fill in check-ins from readings already there."
+            "value": "अपने चेक-इन का वज़न और ब्लड प्रेशर Apple Health में सेव करें, और वहाँ पहले से मौजूद रीडिंग से चेक-इन भरें।"
           }
         },
         "id": {
@@ -21319,7 +21319,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Saving to Apple Health is off for Waterline. Turn it on in the Health app: tap your profile picture, then Apps, then Waterline."
+            "value": "Waterline के लिए Apple Health में सेव करना बंद है। इसे स्वास्थ्य ऐप में चालू करें: अपनी प्रोफ़ाइल फ़ोटो पर टैप करें, फिर “ऐप्स” पर, फिर Waterline पर।"
           }
         },
         "id": {
@@ -21581,7 +21581,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld/%2$lld mmHg, pulse %3$lld · %4$@"
+            "value": "%1$lld/%2$lld mmHg, पल्स %3$lld · %4$@"
           }
         },
         "id": {
@@ -21712,7 +21712,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "No weight or blood pressure in Apple Health from the last 24 hours."
+            "value": "Apple Health में पिछले 24 घंटों की वज़न या ब्लड प्रेशर की कोई रीडिंग नहीं है।"
           }
         },
         "id": {
@@ -21843,7 +21843,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "From Apple Health"
+            "value": "Apple Health से"
           }
         },
         "id": {
@@ -22105,7 +22105,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Use %@ kg from Apple Health"
+            "value": "Apple Health से %@ kg इस्तेमाल करें"
           }
         },
         "id": {
@@ -22367,7 +22367,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Use"
+            "value": "इस्तेमाल करें"
           }
         },
         "id": {
@@ -22498,7 +22498,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Use for %@"
+            "value": "“%@” के लिए इस्तेमाल करें"
           }
         },
         "id": {

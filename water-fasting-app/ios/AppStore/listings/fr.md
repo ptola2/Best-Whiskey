@@ -28,7 +28,7 @@ Suivez un jeûne hydrique heure par heure, surveillez tension et symptômes, et 
 
 ## Description
 
-_2455 characters_
+_2622 characters_
 
 ```
 Waterline vous aide à comprendre et à suivre un jeûne à l’eau seule, en s’appuyant sur ce que dit la recherche clinique, y compris sur les risques.
@@ -41,6 +41,7 @@ UN BILAN DEUX FOIS PAR JOUR
 • Notez votre poids, vos cétones, votre tension artérielle en position couchée et debout, votre pouls et vos symptômes.
 • Chaque bilan est évalué au regard de seuils publiés : vous voyez quels signes demandent votre attention et lesquels signifient « Arrêtez et demandez de l’aide ».
 • Suivez votre consommation d’eau pure par rapport à la plage quotidienne de 1,2 à 2,5 L.
+• Compatible avec Apple Health : enregistrez le poids et la tension artérielle de vos bilans, et remplissez vos bilans à partir des mesures déjà présentes dans Santé.
 
 LA SÉCURITÉ D’ABORD
 • Un contrôle de sécurité fondé sur les contre-indications médicales exclut le jeûne hydrique pour les personnes à qui il ne convient pas, par exemple en cas de diabète de type 1, de grossesse ou de trouble du comportement alimentaire.

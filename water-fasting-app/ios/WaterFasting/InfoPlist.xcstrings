@@ -37,7 +37,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+            "value": "Waterline चेक-इन और आपकी प्रोफ़ाइल भरने के लिए Apple Health से आपका वज़न, ब्लड प्रेशर और हार्ट रेट पढ़ता है।"
           }
         },
         "id": {
@@ -168,7 +168,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+            "value": "Waterline आपके चेक-इन का वज़न और ब्लड प्रेशर Apple Health में सेव करता है।"
           }
         },
         "id": {

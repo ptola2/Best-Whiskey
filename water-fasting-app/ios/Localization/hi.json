@@ -624,5 +624,19 @@
   "language.suggested": "आपके लिए सुझाव",
   "language.all": "सभी भाषाएँ",
   "language.system": "iPhone जैसी",
-  "language.basis": "आपके iPhone की भाषा और क्षेत्र के आधार पर।"
+  "language.basis": "आपके iPhone की भाषा और क्षेत्र के आधार पर।",
+
+  "health.title": "Apple Health",
+  "health.body": "अपने चेक-इन का वज़न और ब्लड प्रेशर Apple Health में सेव करें, और वहाँ पहले से मौजूद रीडिंग से चेक-इन भरें।",
+  "health.denied": "Waterline के लिए Apple Health में सेव करना बंद है। इसे स्वास्थ्य ऐप में चालू करें: अपनी प्रोफ़ाइल फ़ोटो पर टैप करें, फिर “ऐप्स” पर, फिर Waterline पर।",
+  "health.import.title": "Apple Health से",
+  "health.import.none": "Apple Health में पिछले 24 घंटों की वज़न या ब्लड प्रेशर की कोई रीडिंग नहीं है।",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, पल्स %3$lld · %4$@",
+  "health.use": "इस्तेमाल करें",
+  "health.use_for": "“%@” के लिए इस्तेमाल करें",
+  "health.profile_weight": "Apple Health से %@ kg इस्तेमाल करें",
+  "infoplist.NSHealthShareUsageDescription": "Waterline चेक-इन और आपकी प्रोफ़ाइल भरने के लिए Apple Health से आपका वज़न, ब्लड प्रेशर और हार्ट रेट पढ़ता है।",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline आपके चेक-इन का वज़न और ब्लड प्रेशर Apple Health में सेव करता है।"
 }
