@@ -28,7 +28,7 @@ Följ din vattenfasta timme för timme, checka in med blodtryck och symtom och b
 
 ## Description
 
-_2174 characters_
+_2312 characters_
 
 ```
 Waterline hjälper dig att förstå och följa en ren vattenfasta, utifrån vad den kliniska forskningen säger, inklusive riskerna.
@@ -41,6 +41,7 @@ CHECKA IN TVÅ GÅNGER OM DAGEN
 • Logga vikt, ketoner, blodtryck liggande och stående, puls och symtom.
 • Varje incheckning bedöms mot publicerade gränsvärden, så att du ser vilka tecken som behöver uppmärksammas och vilka som betyder att du ska avbryta och söka hjälp.
 • Håll koll på hur mycket rent vatten du dricker i förhållande till det dagliga intervallet 1,2 till 2,5 L.
+• Fungerar med Apple Health: spara vikt och blodtryck från dina incheckningar och fyll i incheckningar med mätvärden som redan finns där.
 
 SÄKERHETEN FÖRST
 • En säkerhetskontroll som bygger på de medicinska kontraindikationerna utesluter vattenfasta för den som det inte passar, till exempel vid typ 1-diabetes, graviditet eller en ätstörning.

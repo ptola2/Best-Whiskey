@@ -28,7 +28,7 @@ Segui un digiuno a sola acqua ora per ora, registra pressione e sintomi e interr
 
 ## Description
 
-_2289 characters_
+_2447 characters_
 
 ```
 Waterline ti aiuta a capire e a monitorare un digiuno a sola acqua, partendo da ciò che dice la ricerca clinica, rischi compresi.
@@ -41,6 +41,7 @@ DUE RILEVAZIONI AL GIORNO
 • Registra peso, chetoni, pressione arteriosa da sdraiati e in piedi, pulsazioni e sintomi.
 • Ogni rilevazione viene valutata in base a soglie pubblicate, così vedi quali segnali richiedono attenzione e quali significano «Fermati e chiedi aiuto».
 • Tieni traccia dell'acqua semplice che bevi rispetto all'intervallo giornaliero da 1,2 a 2,5 L.
+• Funziona con Apple Health: salva il peso e la pressione arteriosa delle tue rilevazioni e compila le rilevazioni con i valori già presenti in Apple Health.
 
 PRIMA DI TUTTO LA SICUREZZA
 • Un controllo di sicurezza basato sulle controindicazioni mediche esclude il digiuno a sola acqua per le persone a cui non è adatto, ad esempio in caso di diabete di tipo 1, gravidanza o disturbo alimentare.

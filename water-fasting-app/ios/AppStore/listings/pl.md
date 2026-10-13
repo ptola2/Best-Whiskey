@@ -28,7 +28,7 @@ _166 characters_
 
 ## Description
 
-_2210 characters_
+_2344 characters_
 
 ```
 Waterline pomaga ci zrozumieć i śledzić post o samej wodzie. Opiera się na wynikach badań klinicznych, także tych dotyczących zagrożeń.
@@ -41,6 +41,7 @@ RÓB KONTROLĘ DWA RAZY DZIENNIE
 • Zapisuj masę ciała, ciśnienie krwi na leżąco i na stojąco, tętno, ciała ketonowe i objawy.
 • Każda kontrola jest oceniana na tle opublikowanych wartości progowych, dzięki czemu widzisz, które sygnały wymagają uwagi, a które oznaczają: przerwij i szukaj pomocy.
 • Zapisuj, ile czystej wody wypijasz, i porównuj to z dziennym zakresem od 1,2 do 2,5 L.
+• Współpracuje z Apple Health: zapisuj tam masę ciała i ciśnienie krwi z kontroli, a kontrole uzupełniaj pomiarami, które już tam są.
 
 BEZPIECZEŃSTWO PRZEDE WSZYSTKIM
 • Ocena bezpieczeństwa oparta na przeciwwskazaniach medycznych wyklucza post wodny u osób, dla których nie jest odpowiedni, np. przy cukrzycy typu 1, w ciąży lub przy zaburzeniu odżywiania.

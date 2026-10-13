@@ -28,7 +28,7 @@ Sigue tu ayuno con agua hora a hora, registra la presión arterial y los síntom
 
 ## Description
 
-_2329 characters_
+_2481 characters_
 
 ```
 Waterline te ayuda a entender y llevar el control de un ayuno solo con agua, a partir de lo que dice la investigación clínica, riesgos incluidos.
@@ -41,6 +41,7 @@ HAZ TU REGISTRO DOS VECES AL DÍA
 • Anota el peso, las cetonas, la presión arterial en posición acostada y de pie, el pulso y los síntomas.
 • Cada registro se evalúa según umbrales publicados, para que veas qué señales requieren atención y cuáles indican que debes detenerte y pedir ayuda.
 • Lleva la cuenta del agua sola que bebes, con el rango diario de 1,2 a 2,5 L como referencia.
+• Funciona con Apple Health: guarda el peso y la presión arterial de tus registros, y completa tus registros con las mediciones que ya tengas en Salud.
 
 LA SEGURIDAD, LO PRIMERO
 • Una revisión de seguridad basada en las contraindicaciones médicas descarta el ayuno con agua para quienes no es adecuado, por ejemplo en caso de diabetes tipo 1, embarazo o un trastorno de la conducta alimentaria.

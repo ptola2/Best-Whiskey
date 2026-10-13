@@ -621,5 +621,19 @@
   "language.suggested": "Gợi ý cho bạn",
   "language.all": "Tất cả ngôn ngữ",
   "language.system": "Giống iPhone",
-  "language.basis": "Dựa trên ngôn ngữ và vùng của iPhone của bạn."
+  "language.basis": "Dựa trên ngôn ngữ và vùng của iPhone của bạn.",
+
+  "health.title": "Apple Health",
+  "health.body": "Lưu cân nặng và huyết áp từ các lần ghi nhận của bạn vào Apple Health và dùng các chỉ số đã có ở đó để điền vào lần ghi nhận.",
+  "health.denied": "Quyền lưu vào Apple Health của Waterline đang tắt. Hãy bật trong ứng dụng Sức khỏe: chạm vào ảnh hồ sơ của bạn, sau đó chạm vào Ứng dụng, rồi chạm vào Waterline.",
+  "health.import.title": "Từ Apple Health",
+  "health.import.none": "Apple Health không có dữ liệu cân nặng hay huyết áp nào trong 24 giờ qua.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, mạch %3$lld · %4$@",
+  "health.use": "Dùng",
+  "health.use_for": "Dùng cho %@",
+  "health.profile_weight": "Dùng %@ kg từ Apple Health",
+  "infoplist.NSHealthShareUsageDescription": "Waterline đọc cân nặng, huyết áp và nhịp tim của bạn từ Apple Health để điền vào các lần ghi nhận và hồ sơ của bạn.",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline lưu cân nặng và huyết áp từ các lần ghi nhận của bạn vào Apple Health."
 }

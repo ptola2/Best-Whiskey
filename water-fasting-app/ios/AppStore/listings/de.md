@@ -28,7 +28,7 @@ Verfolgen Sie Ihr Wasserfasten Stunde für Stunde, prüfen Sie Blutdruck und Sym
 
 ## Description
 
-_2422 characters_
+_2600 characters_
 
 ```
 Waterline hilft Ihnen, ein reines Wasserfasten zu verstehen und zu verfolgen. Grundlage ist das, was die klinische Forschung zeigt, einschließlich der Risiken.
@@ -41,6 +41,7 @@ ZWEIMAL TÄGLICH EINE KONTROLLE
 • Tragen Sie Gewicht, Ketone, Blutdruck im Liegen und im Stehen, Puls und Symptome ein.
 • Jede Kontrolle wird anhand veröffentlichter Grenzwerte bewertet. So sehen Sie, welche Anzeichen Aufmerksamkeit brauchen und bei welchen Sie das Fasten beenden und Hilfe holen sollten.
 • Erfassen Sie, wie viel reines Wasser Sie trinken, gemessen am täglichen Bereich von 1,2 bis 2,5 L.
+• Funktioniert mit Apple Health: Speichern Sie Gewicht und Blutdruck aus Ihren Kontrollen und übernehmen Sie Messwerte, die bereits in Health vorhanden sind, in Ihre Kontrollen.
 
 SICHERHEIT ZUERST
 • Eine Sicherheitsprüfung auf Grundlage der medizinischen Kontraindikationen schließt Wasserfasten für Menschen aus, für die es nicht geeignet ist, etwa bei Typ-1-Diabetes, in der Schwangerschaft oder bei einer Essstörung.

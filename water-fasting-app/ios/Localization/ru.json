@@ -630,5 +630,19 @@
   "language.suggested": "Рекомендуемые",
   "language.all": "Все языки",
   "language.system": "Как на iPhone",
-  "language.basis": "С учётом языка и региона вашего iPhone."
+  "language.basis": "С учётом языка и региона вашего iPhone.",
+
+  "health.title": "Apple Health",
+  "health.body": "Сохраняйте вес и давление из проверок в Apple Health и заполняйте проверки данными, которые там уже есть.",
+  "health.denied": "Сохранение в Apple Health для Waterline выключено. Включите его в приложении «Здоровье»: коснитесь фото профиля, затем «Приложения», затем Waterline.",
+  "health.import.title": "Из Apple Health",
+  "health.import.none": "В Apple Health нет данных о весе или давлении за последние 24 часа.",
+  "health.import.weight": "%1$@ кг · %2$@",
+  "health.import.bp": "%1$lld/%2$lld мм рт. ст. · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld мм рт. ст., пульс %3$lld · %4$@",
+  "health.use": "Использовать",
+  "health.use_for": "Использовать для: %@",
+  "health.profile_weight": "Использовать %@ кг из Apple Health",
+  "infoplist.NSHealthShareUsageDescription": "Waterline считывает ваш вес, давление и частоту пульса из Apple Health, чтобы заполнять проверки и ваш профиль.",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline сохраняет вес и давление из ваших проверок в Apple Health."
 }

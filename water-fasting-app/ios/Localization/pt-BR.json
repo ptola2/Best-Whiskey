@@ -627,5 +627,19 @@
   "language.suggested": "Sugeridos para você",
   "language.all": "Todos os idiomas",
   "language.system": "Igual ao iPhone",
-  "language.basis": "Com base no idioma e na região do seu iPhone."
+  "language.basis": "Com base no idioma e na região do seu iPhone.",
+
+  "health.title": "Apple Health",
+  "health.body": "Salve o peso e a pressão arterial dos seus registros no Apple Health e preencha registros com medições que já estão lá.",
+  "health.denied": "Salvar no Apple Health está desativado para o Waterline. Ative no aplicativo Saúde: toque na sua foto de perfil, depois em Apps e depois em Waterline.",
+  "health.import.title": "Do Apple Health",
+  "health.import.none": "Nenhum peso ou pressão arterial no Apple Health nas últimas 24 horas.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, pulso %3$lld · %4$@",
+  "health.use": "Usar",
+  "health.use_for": "Usar para: %@",
+  "health.profile_weight": "Usar %@ kg do Apple Health",
+  "infoplist.NSHealthShareUsageDescription": "O Waterline lê seu peso, sua pressão arterial e sua frequência cardíaca do Apple Health para preencher os registros e seu perfil.",
+  "infoplist.NSHealthUpdateUsageDescription": "O Waterline salva no Apple Health o peso e a pressão arterial dos seus registros."
 }

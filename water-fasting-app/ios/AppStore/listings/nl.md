@@ -28,7 +28,7 @@ Volg je watervasten uur na uur, houd met check-ins je bloeddruk en klachten bij 
 
 ## Description
 
-_2200 characters_
+_2331 characters_
 
 ```
 Waterline helpt je om een vasten op alleen water te begrijpen en bij te houden. De app is gebaseerd op wat het klinisch onderzoek zegt, inclusief de risico's.
@@ -41,6 +41,7 @@ CHECK TWEE KEER PER DAG IN
 • Noteer je gewicht, ketonen, bloeddruk liggend en staand, hartslag en klachten.
 • Elke check-in wordt beoordeeld aan de hand van gepubliceerde grenswaarden. Zo zie je welke signalen aandacht nodig hebben en bij welke je moet stoppen en hulp moet zoeken.
 • Houd bij hoeveel gewoon water je drinkt, afgezet tegen het dagelijkse bereik van 1,2 tot 2,5 L.
+• Werkt met Apple Health: bewaar het gewicht en de bloeddruk uit je check-ins, en vul check-ins in met metingen die daar al staan.
 
 VEILIGHEID VOOROP
 • Een veiligheidscheck op basis van de medische contra-indicaties sluit watervasten uit voor mensen voor wie het niet geschikt is, zoals bij diabetes type 1, zwangerschap of een eetstoornis.

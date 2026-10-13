@@ -621,5 +621,19 @@
   "language.suggested": "おすすめ",
   "language.all": "すべての言語",
   "language.system": "iPhoneと同じ",
-  "language.basis": "iPhoneの言語と地域に基づいています。"
+  "language.basis": "iPhoneの言語と地域に基づいています。",
+
+  "health.title": "Apple Health",
+  "health.body": "チェックインの体重と血圧をApple Healthに保存し、Apple Healthにすでにある測定値をチェックインに入力します。",
+  "health.denied": "WaterlineからApple Healthへの保存がオフになっています。オンにするには、「ヘルスケア」アプリでプロフィール写真をタップし、「App」、「Waterline」の順にタップしてください。",
+  "health.import.title": "Apple Healthから",
+  "health.import.none": "過去24時間の体重や血圧のデータがApple Healthにありません。",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg、脈拍%3$lld · %4$@",
+  "health.use": "使用",
+  "health.use_for": "%@に使用",
+  "health.profile_weight": "Apple Healthの%@ kgを使用",
+  "infoplist.NSHealthShareUsageDescription": "Waterlineは、チェックインとプロフィールに入力するために、Apple Healthから体重、血圧、心拍数を読み取ります。",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterlineは、チェックインの体重と血圧をApple Healthに保存します。"
 }

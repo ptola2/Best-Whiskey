@@ -28,7 +28,7 @@ Theo dõi đợt nhịn ăn chỉ uống nước theo từng giờ, ghi nhận h
 
 ## Description
 
-_2228 characters_
+_2382 characters_
 
 ```
 Waterline giúp bạn hiểu và theo dõi một đợt nhịn ăn chỉ uống nước, dựa trên những gì nghiên cứu lâm sàng cho thấy, kể cả các rủi ro.
@@ -41,6 +41,7 @@ GHI NHẬN HAI LẦN MỖI NGÀY
 • Ghi lại cân nặng, thể ceton, huyết áp khi nằm và khi đứng, mạch và triệu chứng.
 • Mỗi lần ghi nhận được đánh giá theo các ngưỡng đã công bố, để bạn thấy dấu hiệu nào cần chú ý và dấu hiệu nào có nghĩa là phải dừng lại và tìm trợ giúp.
 • Theo dõi lượng nước lọc so với khoảng 1,2 đến 2,5 L mỗi ngày.
+• Hoạt động với Apple Health: lưu cân nặng và huyết áp từ các lần ghi nhận của bạn, và dùng các chỉ số đã có trong Apple Health để điền vào lần ghi nhận.
 
 AN TOÀN LÀ TRÊN HẾT
 • Bước kiểm tra an toàn, xây dựng từ các chống chỉ định y khoa, sẽ loại trừ việc nhịn ăn chỉ uống nước với những người không phù hợp, chẳng hạn người bị đái tháo đường típ 1, đang mang thai hoặc mắc rối loạn ăn uống.

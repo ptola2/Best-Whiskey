@@ -624,5 +624,19 @@
   "language.suggested": "Size önerilenler",
   "language.all": "Tüm diller",
   "language.system": "iPhone ile aynı",
-  "language.basis": "iPhone'unuzun dil ve bölge ayarlarına göre."
+  "language.basis": "iPhone'unuzun dil ve bölge ayarlarına göre.",
+
+  "health.title": "Apple Health",
+  "health.body": "Kontrollerinizdeki kilo ve kan basıncı değerlerini Apple Health'e kaydedin ve orada zaten bulunan ölçümlerle kontrolleri doldurun.",
+  "health.denied": "Waterline için Apple Health'e kaydetme izni kapalı. Bunu Sağlık uygulamasından açabilirsiniz: profil resminize, ardından Uygulamalar'a, sonra da Waterline'a dokunun.",
+  "health.import.title": "Apple Health'ten",
+  "health.import.none": "Apple Health'te son 24 saate ait kilo veya kan basıncı kaydı yok.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, nabız %3$lld · %4$@",
+  "health.use": "Kullan",
+  "health.use_for": "%@ için kullan",
+  "health.profile_weight": "Apple Health'teki %@ kg değerini kullan",
+  "infoplist.NSHealthShareUsageDescription": "Waterline, kontrolleri ve profilinizi doldurmak için Apple Health'ten kilonuzu, kan basıncınızı ve kalp atış hızınızı okur.",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline, kontrollerinizdeki kilo ve kan basıncı değerlerini Apple Health'e kaydeder."
 }

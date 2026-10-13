@@ -621,5 +621,19 @@
   "language.suggested": "추천 언어",
   "language.all": "모든 언어",
   "language.system": "iPhone과 동일",
-  "language.basis": "iPhone의 언어와 지역을 기준으로 했어요."
+  "language.basis": "iPhone의 언어와 지역을 기준으로 했어요.",
+
+  "health.title": "Apple Health",
+  "health.body": "체크인의 체중과 혈압을 Apple Health에 저장하고, Apple Health에 이미 있는 측정값으로 체크인을 채워요.",
+  "health.denied": "Waterline의 Apple Health 저장이 꺼져 있어요. 건강 앱에서 프로필 사진, “앱”, “Waterline”을 차례로 탭해 켜세요.",
+  "health.import.title": "Apple Health에서",
+  "health.import.none": "지난 24시간 동안 Apple Health에 기록된 체중이나 혈압이 없어요.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, 맥박 %3$lld · %4$@",
+  "health.use": "사용",
+  "health.use_for": "%@에 사용",
+  "health.profile_weight": "Apple Health의 %@ kg 사용",
+  "infoplist.NSHealthShareUsageDescription": "Waterline은 Apple Health에서 체중, 혈압, 심박수를 읽어 와 체크인과 프로필을 채워요.",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline은 체크인의 체중과 혈압을 Apple Health에 저장해요."
 }

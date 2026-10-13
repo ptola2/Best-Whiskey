@@ -28,7 +28,7 @@ Follow a water fast hour by hour, check in on blood pressure and symptoms, and b
 
 ## Description
 
-_1899 characters_
+_2037 characters_
 
 ```
 Waterline helps you understand and track a water-only fast, built from what the clinical research says, including the risks.
@@ -41,6 +41,7 @@ CHECK IN TWICE A DAY
 • Log weight, ketones, lying and standing blood pressure, pulse and symptoms.
 • Each check-in is graded against published thresholds, so you can see which signs need attention and which mean stop and get help.
 • Track plain water against the 1.2 to 2.5 L daily range.
+• Works with Apple Health: save the weight and blood pressure from your check-ins, and fill in check-ins from readings already in Health.
 
 SAFETY FIRST
 • A safety check built from the medical contraindications rules out water fasting for people it does not suit, such as type 1 diabetes, pregnancy or an eating disorder.

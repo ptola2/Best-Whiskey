@@ -28,7 +28,7 @@ Pantau puasa air jam demi jam, cek kondisi tekanan darah dan gejala Anda, lalu a
 
 ## Description
 
-_2257 characters_
+_2424 characters_
 
 ```
 Waterline membantu Anda memahami dan memantau puasa hanya air, berdasarkan apa yang ditunjukkan penelitian klinis, termasuk risikonya.
@@ -41,6 +41,7 @@ CEK KONDISI DUA KALI SEHARI
 • Catat berat badan, keton, tekanan darah saat berbaring dan berdiri, denyut nadi, serta gejala.
 • Setiap cek kondisi dinilai berdasarkan ambang batas yang telah dipublikasikan, sehingga Anda dapat melihat tanda mana yang perlu diperhatikan dan mana yang berarti “Berhenti dan cari bantuan”.
 • Pantau asupan air putih Anda terhadap kisaran harian 1,2 sampai 2,5 L.
+• Terhubung dengan Apple Health: simpan berat badan dan tekanan darah dari cek kondisi Anda, dan isi cek kondisi dari hasil pengukuran yang sudah ada di Apple Health.
 
 UTAMAKAN KEAMANAN
 • Pemeriksaan keamanan yang disusun dari kontraindikasi medis menyaring orang yang tidak cocok menjalani puasa air, misalnya karena diabetes tipe 1, kehamilan, atau gangguan makan.

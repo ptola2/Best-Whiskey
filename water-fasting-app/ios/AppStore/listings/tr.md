@@ -28,7 +28,7 @@ Su orucunuzu saat saat takip edin, kan basıncınızı ve belirtilerinizi kontro
 
 ## Description
 
-_2252 characters_
+_2407 characters_
 
 ```
 Waterline, yalnızca su ile yapılan bir orucu anlamanıza ve takip etmenize yardımcı olur. Riskler de dahil olmak üzere, klinik araştırmaların ortaya koyduklarına dayanır.
@@ -41,6 +41,7 @@ GÜNDE İKİ KEZ KONTROL YAPIN
 • Kilonuzu, ketonlarınızı, yatarken ve ayaktayken kan basıncınızı, nabzınızı ve belirtilerinizi kaydedin.
 • Her kontrol, yayımlanmış eşik değerlere göre değerlendirilir. Böylece hangi işaretlerin dikkat gerektirdiğini, hangilerinin ise durup yardım almanız gerektiği anlamına geldiğini görürsünüz.
 • İçtiğiniz sade suyu, günlük 1,2 ila 2,5 L aralığına göre takip edin.
+• Apple Health ile çalışır: kontrollerinizdeki kilo ve kan basıncı değerlerini kaydedin, Apple Health'te zaten bulunan ölçümlerle de kontrolleri doldurun.
 
 ÖNCE GÜVENLİK
 • Tıbbi kontrendikasyonlara dayanan bir güvenlik kontrolü, tip 1 diyabet, hamilelik veya yeme bozukluğu gibi su orucunun uygun olmadığı durumlarda orucu dışlar.

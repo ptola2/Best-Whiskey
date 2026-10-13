@@ -636,5 +636,19 @@
   "language.suggested": "مقترحة لك",
   "language.all": "كل اللغات",
   "language.system": "نفس لغة iPhone",
-  "language.basis": "بناءً على لغة جهاز iPhone ومنطقته."
+  "language.basis": "بناءً على لغة جهاز iPhone ومنطقته.",
+
+  "health.title": "Apple Health",
+  "health.body": "احفظ الوزن وضغط الدم من تسجيلات حالتك في Apple Health، واملأ تسجيلات الحالة من القراءات الموجودة فيه بالفعل.",
+  "health.denied": "الحفظ في Apple Health غير مفعّل لتطبيق Waterline. فعّله من تطبيق صحتي: اضغط على صورة ملفك الشخصي، ثم «التطبيقات»، ثم Waterline.",
+  "health.import.title": "من Apple Health",
+  "health.import.none": "لا توجد قراءات للوزن أو ضغط الدم في Apple Health خلال آخر 24 ساعة.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg، النبض %3$lld · %4$@",
+  "health.use": "استخدام",
+  "health.use_for": "استخدام في حقل «%@»",
+  "health.profile_weight": "استخدام %@ kg من Apple Health",
+  "infoplist.NSHealthShareUsageDescription": "يقرأ Waterline وزنك وضغط دمك ومعدل ضربات قلبك من Apple Health لملء تسجيلات الحالة وملفك الشخصي.",
+  "infoplist.NSHealthUpdateUsageDescription": "يحفظ Waterline الوزن وضغط الدم من تسجيلات حالتك في Apple Health."
 }

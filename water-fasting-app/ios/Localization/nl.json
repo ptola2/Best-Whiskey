@@ -624,5 +624,19 @@
   "language.suggested": "Voorgesteld voor jou",
   "language.all": "Alle talen",
   "language.system": "Zelfde als iPhone",
-  "language.basis": "Op basis van de taal en regio van je iPhone."
+  "language.basis": "Op basis van de taal en regio van je iPhone.",
+
+  "health.title": "Apple Health",
+  "health.body": "Bewaar het gewicht en de bloeddruk uit je check-ins in Apple Health, en vul check-ins in met metingen die daar al staan.",
+  "health.denied": "Opslaan in Apple Health staat uit voor Waterline. Zet het aan in de Gezondheid-app: tik op je profielfoto, dan op Apps en dan op Waterline.",
+  "health.import.title": "Uit Apple Health",
+  "health.import.none": "Geen gewicht of bloeddruk in Apple Health van de afgelopen 24 uur.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, hartslag %3$lld · %4$@",
+  "health.use": "Gebruik",
+  "health.use_for": "Gebruik voor %@",
+  "health.profile_weight": "Gebruik %@ kg uit Apple Health",
+  "infoplist.NSHealthShareUsageDescription": "Waterline leest je gewicht, bloeddruk en hartslag uit Apple Health om check-ins en je profiel in te vullen.",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline bewaart het gewicht en de bloeddruk uit je check-ins in Apple Health."
 }

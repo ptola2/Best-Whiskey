@@ -624,5 +624,19 @@
   "language.suggested": "Mapendekezo kwako",
   "language.all": "Lugha zote",
   "language.system": "Sawa na iPhone",
-  "language.basis": "Kulingana na lugha na eneo la iPhone yako."
+  "language.basis": "Kulingana na lugha na eneo la iPhone yako.",
+
+  "health.title": "Apple Health",
+  "health.body": "Hifadhi kwenye Apple Health uzito na shinikizo la damu kutoka kwenye ukaguzi wako, na ujaze ukaguzi kwa vipimo vilivyomo tayari humo.",
+  "health.denied": "Uhifadhi kwenye Apple Health umezimwa kwa Waterline. Ili kuuwasha, fungua programu ya Health: gusa picha yako ya wasifu, kisha Apps, kisha Waterline.",
+  "health.import.title": "Kutoka Apple Health",
+  "health.import.none": "Hakuna uzito wala shinikizo la damu kwenye Apple Health katika saa 24 zilizopita.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, mapigo ya moyo %3$lld · %4$@",
+  "health.use": "Tumia",
+  "health.use_for": "Tumia kwenye sehemu ya %@",
+  "health.profile_weight": "Tumia %@ kg kutoka Apple Health",
+  "infoplist.NSHealthShareUsageDescription": "Waterline husoma uzito wako, shinikizo lako la damu na mapigo yako ya moyo kutoka Apple Health ili kujaza ukaguzi na wasifu wako.",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline huhifadhi kwenye Apple Health uzito na shinikizo la damu kutoka kwenye ukaguzi wako."
 }

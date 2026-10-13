@@ -624,5 +624,19 @@
   "language.suggested": "Vorschläge für Sie",
   "language.all": "Alle Sprachen",
   "language.system": "Wie auf dem iPhone",
-  "language.basis": "Basierend auf Sprache und Region Ihres iPhone."
+  "language.basis": "Basierend auf Sprache und Region Ihres iPhone.",
+
+  "health.title": "Apple Health",
+  "health.body": "Speichern Sie Gewicht und Blutdruck aus Ihren Kontrollen in Apple Health und übernehmen Sie Messwerte, die dort bereits vorhanden sind, in Ihre Kontrollen.",
+  "health.denied": "Das Speichern in Apple Health ist für Waterline deaktiviert. Aktivieren Sie es in der Health-App: Tippen Sie auf Ihr Profilbild, dann auf „Apps“ und dann auf „Waterline“.",
+  "health.import.title": "Aus Apple Health",
+  "health.import.none": "Keine Werte für Gewicht oder Blutdruck aus den letzten 24 Stunden in Apple Health.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, Puls %3$lld · %4$@",
+  "health.use": "Übernehmen",
+  "health.use_for": "Für „%@“ übernehmen",
+  "health.profile_weight": "%@ kg aus Apple Health übernehmen",
+  "infoplist.NSHealthShareUsageDescription": "Waterline liest Ihr Gewicht, Ihren Blutdruck und Ihre Herzfrequenz aus Apple Health, um Kontrollen und Ihr Profil auszufüllen.",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline speichert Gewicht und Blutdruck aus Ihren Kontrollen in Apple Health."
 }

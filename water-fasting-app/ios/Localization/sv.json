@@ -624,5 +624,19 @@
   "language.suggested": "Förslag till dig",
   "language.all": "Alla språk",
   "language.system": "Samma som iPhone",
-  "language.basis": "Utifrån språk och region på din iPhone."
+  "language.basis": "Utifrån språk och region på din iPhone.",
+
+  "health.title": "Apple Health",
+  "health.body": "Spara vikt och blodtryck från dina incheckningar i Apple Health och fyll i incheckningar med mätvärden som redan finns där.",
+  "health.denied": "Att spara i Apple Health är avstängt för Waterline. Slå på det i appen Hälsa: tryck på din profilbild, sedan på Appar och sedan på Waterline.",
+  "health.import.title": "Från Apple Health",
+  "health.import.none": "Inga vikt- eller blodtrycksvärden i Apple Health från de senaste 24 timmarna.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, puls %3$lld · %4$@",
+  "health.use": "Använd",
+  "health.use_for": "Använd för %@",
+  "health.profile_weight": "Använd %@ kg från Apple Health",
+  "infoplist.NSHealthShareUsageDescription": "Waterline läser din vikt, ditt blodtryck och din puls från Apple Health för att fylla i incheckningar och din profil.",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline sparar vikt och blodtryck från dina incheckningar i Apple Health."
 }

@@ -627,5 +627,19 @@
   "language.suggested": "Suggestions pour vous",
   "language.all": "Toutes les langues",
   "language.system": "Comme sur l’iPhone",
-  "language.basis": "D’après la langue et la région de votre iPhone."
+  "language.basis": "D’après la langue et la région de votre iPhone.",
+
+  "health.title": "Apple Health",
+  "health.body": "Enregistrez dans Apple Health le poids et la tension artérielle de vos bilans, et remplissez vos bilans à partir des mesures qui s’y trouvent déjà.",
+  "health.denied": "L’enregistrement dans Apple Health est désactivé pour Waterline. Activez-le dans l’app Santé : touchez votre photo de profil, puis Apps, puis Waterline.",
+  "health.import.title": "Depuis Apple Health",
+  "health.import.none": "Aucune mesure de poids ou de tension artérielle dans Apple Health au cours des dernières 24 heures.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, pouls %3$lld · %4$@",
+  "health.use": "Utiliser",
+  "health.use_for": "Utiliser pour %@",
+  "health.profile_weight": "Utiliser %@ kg d’Apple Health",
+  "infoplist.NSHealthShareUsageDescription": "Waterline lit votre poids, votre tension artérielle et votre fréquence cardiaque dans Apple Health pour remplir vos bilans et votre profil.",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline enregistre dans Apple Health le poids et la tension artérielle de vos bilans."
 }

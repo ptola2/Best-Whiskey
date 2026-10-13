@@ -621,5 +621,19 @@
   "language.suggested": "为你推荐",
   "language.all": "所有语言",
   "language.system": "与 iPhone 相同",
-  "language.basis": "根据你的 iPhone 语言和地区推荐。"
+  "language.basis": "根据你的 iPhone 语言和地区推荐。",
+
+  "health.title": "Apple Health",
+  "health.body": "将自查中的体重和血压保存到 Apple Health，并用其中已有的读数填写自查。",
+  "health.denied": "Waterline 保存到 Apple Health 的权限已关闭。请在“健康”App 中开启：轻点你的个人资料图片，然后轻点“App”，再轻点“Waterline”。",
+  "health.import.title": "来自 Apple Health",
+  "health.import.none": "Apple Health 中没有过去 24 小时内的体重或血压数据。",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg，脉搏 %3$lld · %4$@",
+  "health.use": "使用",
+  "health.use_for": "用于%@",
+  "health.profile_weight": "使用 Apple Health 中的 %@ kg",
+  "infoplist.NSHealthShareUsageDescription": "Waterline 会从 Apple Health 读取你的体重、血压和心率，用于填写自查和“我的”页面中的信息。",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline 会将自查中的体重和血压保存到 Apple Health。"
 }

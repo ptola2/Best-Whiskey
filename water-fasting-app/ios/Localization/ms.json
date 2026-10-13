@@ -621,5 +621,19 @@
   "language.suggested": "Dicadangkan untuk anda",
   "language.all": "Semua bahasa",
   "language.system": "Sama seperti iPhone",
-  "language.basis": "Berdasarkan bahasa dan wilayah iPhone anda."
+  "language.basis": "Berdasarkan bahasa dan wilayah iPhone anda.",
+
+  "health.title": "Apple Health",
+  "health.body": "Simpan berat badan dan tekanan darah daripada pemeriksaan anda ke Apple Health, dan isi pemeriksaan menggunakan bacaan yang sudah ada di sana.",
+  "health.denied": "Kebenaran Waterline untuk menyimpan ke Apple Health dimatikan. Hidupkan dalam aplikasi Kesihatan: ketik gambar profil anda, kemudian App, kemudian Waterline.",
+  "health.import.title": "Daripada Apple Health",
+  "health.import.none": "Tiada bacaan berat badan atau tekanan darah dalam Apple Health bagi tempoh 24 jam yang lalu.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, nadi %3$lld · %4$@",
+  "health.use": "Guna",
+  "health.use_for": "Guna untuk %@",
+  "health.profile_weight": "Guna %@ kg daripada Apple Health",
+  "infoplist.NSHealthShareUsageDescription": "Waterline membaca berat badan, tekanan darah dan kadar denyutan jantung anda daripada Apple Health untuk mengisi pemeriksaan dan profil anda.",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline menyimpan berat badan dan tekanan darah daripada pemeriksaan anda ke Apple Health."
 }

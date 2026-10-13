@@ -28,7 +28,7 @@ Ikuti puasa air jam demi jam, buat pemeriksaan tekanan darah dan simptom, lalu t
 
 ## Description
 
-_2334 characters_
+_2505 characters_
 
 ```
 Waterline membantu anda memahami dan menjejak puasa air sahaja, berpandukan apa yang ditunjukkan oleh penyelidikan klinikal, termasuk risikonya.
@@ -41,6 +41,7 @@ BUAT PEMERIKSAAN DUA KALI SEHARI
 • Catat berat badan, keton, tekanan darah semasa berbaring dan berdiri, nadi dan simptom.
 • Setiap pemeriksaan dinilai berdasarkan ambang yang diterbitkan, jadi anda dapat melihat tanda yang memerlukan perhatian dan tanda yang bermaksud “Berhenti dan dapatkan bantuan”.
 • Jejak air kosong yang anda minum berbanding julat harian 1.2 hingga 2.5 L.
+• Berfungsi dengan Apple Health: simpan berat badan dan tekanan darah daripada pemeriksaan anda, dan isi pemeriksaan menggunakan bacaan yang sudah ada dalam Apple Health.
 
 KESELAMATAN DIUTAMAKAN
 • Semakan keselamatan yang dibina daripada kontraindikasi perubatan menolak puasa air bagi mereka yang tidak sesuai melakukannya, seperti penghidap diabetes jenis 1, wanita hamil atau mereka yang mengalami gangguan makan.

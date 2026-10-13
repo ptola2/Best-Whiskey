@@ -28,7 +28,7 @@ Acompanhe um jejum de água hora a hora, registre a pressão arterial e os sinto
 
 ## Description
 
-_2199 characters_
+_2334 characters_
 
 ```
 O Waterline ajuda você a entender e acompanhar um jejum apenas com água, com base no que diz a pesquisa clínica, incluindo os riscos.
@@ -41,6 +41,7 @@ FAÇA REGISTROS DUAS VEZES AO DIA
 • Registre o peso, as cetonas, a pressão arterial deitado e em pé, o pulso e os sintomas.
 • Cada registro é classificado com base em limites publicados, para você ver quais sinais pedem atenção e quais significam parar e procurar ajuda.
 • Acompanhe quanta água pura você bebe em relação à faixa diária de 1,2 a 2,5 L.
+• Funciona com o Apple Health: salve o peso e a pressão arterial dos seus registros e preencha registros com medições que já estão lá.
 
 SEGURANÇA EM PRIMEIRO LUGAR
 • Uma verificação de segurança baseada nas contraindicações médicas descarta o jejum de água para quem não deve fazê-lo, como em casos de diabetes tipo 1, gravidez ou transtorno alimentar.

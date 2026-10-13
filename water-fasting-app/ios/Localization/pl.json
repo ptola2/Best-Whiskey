@@ -630,5 +630,19 @@
   "language.suggested": "Sugerowane",
   "language.all": "Wszystkie języki",
   "language.system": "Jak w iPhonie",
-  "language.basis": "Na podstawie języka i regionu ustawionych w iPhonie."
+  "language.basis": "Na podstawie języka i regionu ustawionych w iPhonie.",
+
+  "health.title": "Apple Health",
+  "health.body": "Zapisuj masę ciała i ciśnienie krwi z kontroli w Apple Health, a kontrole uzupełniaj pomiarami, które już tam są.",
+  "health.denied": "Zapisywanie w Apple Health jest wyłączone dla aplikacji Waterline. Włącz je w aplikacji Zdrowie: stuknij w swoje zdjęcie profilowe, potem w Aplikacje, a następnie w Waterline.",
+  "health.import.title": "Z Apple Health",
+  "health.import.none": "Brak pomiarów masy ciała ani ciśnienia krwi w Apple Health z ostatnich 24 godzin.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, tętno %3$lld · %4$@",
+  "health.use": "Użyj",
+  "health.use_for": "Użyj jako: %@",
+  "health.profile_weight": "Użyj %@ kg z Apple Health",
+  "infoplist.NSHealthShareUsageDescription": "Waterline odczytuje masę ciała, ciśnienie krwi i tętno z Apple Health, aby uzupełniać kontrole i twój profil.",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline zapisuje masę ciała i ciśnienie krwi z twoich kontroli w Apple Health."
 }

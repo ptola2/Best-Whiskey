@@ -621,5 +621,19 @@
   "language.suggested": "แนะนำสำหรับคุณ",
   "language.all": "ภาษาทั้งหมด",
   "language.system": "เหมือนกับ iPhone",
-  "language.basis": "อิงตามภาษาและภูมิภาคของ iPhone ของคุณ"
+  "language.basis": "อิงตามภาษาและภูมิภาคของ iPhone ของคุณ",
+
+  "health.title": "Apple Health",
+  "health.body": "บันทึกน้ำหนักและความดันโลหิตจากการเช็กอินของคุณลงใน Apple Health และดึงค่าที่มีอยู่แล้วใน Apple Health มากรอกในการเช็กอิน",
+  "health.denied": "การบันทึกลงใน Apple Health ปิดอยู่สำหรับ Waterline เปิดได้ในแอปสุขภาพ โดยแตะรูปโปรไฟล์ของคุณ แล้วแตะ “แอป” จากนั้นแตะ Waterline",
+  "health.import.title": "จาก Apple Health",
+  "health.import.none": "ไม่มีข้อมูลน้ำหนักหรือความดันโลหิตใน Apple Health ในช่วง 24 ชั่วโมงที่ผ่านมา",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg ชีพจร %3$lld · %4$@",
+  "health.use": "ใช้",
+  "health.use_for": "ใช้เป็นค่า%@",
+  "health.profile_weight": "ใช้น้ำหนัก %@ kg จาก Apple Health",
+  "infoplist.NSHealthShareUsageDescription": "Waterline อ่านน้ำหนัก ความดันโลหิต และอัตราการเต้นของหัวใจของคุณจาก Apple Health เพื่อกรอกข้อมูลการเช็กอินและโปรไฟล์ของคุณ",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline บันทึกน้ำหนักและความดันโลหิตจากการเช็กอินของคุณลงใน Apple Health"
 }
