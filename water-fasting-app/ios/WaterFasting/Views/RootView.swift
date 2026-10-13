@@ -33,7 +33,10 @@ struct RootView: View {
         .appLanguageEnvironment()
         .onChange(of: scenePhase) { _, phase in
             // Renews the rolling window of check-in reminders while a fast runs.
-            if phase == .active { FastStore.shared.refreshReminders() }
+            if phase == .active {
+                FastStore.shared.refreshReminders()
+                HealthService.shared.refreshStatus()
+            }
         }
         .task {
             #if canImport(FirebaseCore) && canImport(FirebaseAuth) && canImport(FirebaseFirestore)

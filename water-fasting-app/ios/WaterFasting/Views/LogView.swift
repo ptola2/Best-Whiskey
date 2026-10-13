@@ -85,6 +85,8 @@ struct CheckInForm: View {
     @State private var note = ""
     @State private var error: String?
     @State private var formID = UUID()
+    /// Values taken from Apple Health, which are not saved back to it.
+    @State private var imports = HealthImports()
 
     var body: some View {
         let day = FastMath.dayNumber(hours: Date().timeIntervalSince(start) / 3600)
@@ -94,6 +96,23 @@ struct CheckInForm: View {
             Para(text: tr("checkin.optional"), font: .footnote, color: Theme.muted)
 
             VStack(alignment: .leading, spacing: 14) {
+                HealthReadingsPanel { kg in
+                    weight = kg
+                    imports.weightKg = kg
+                } onPressure: { reading, lying in
+                    let taken = HealthImports.Reading(systolic: reading.systolic, diastolic: reading.diastolic)
+                    if lying {
+                        lyingSys = Double(reading.systolic)
+                        lyingDia = Double(reading.diastolic)
+                        if let pulse = reading.pulse { lyingPulse = Double(pulse) }
+                        imports.lying = taken
+                    } else {
+                        standingSys = Double(reading.systolic)
+                        standingDia = Double(reading.diastolic)
+                        if let pulse = reading.pulse { standingPulse = Double(pulse) }
+                        imports.standing = taken
+                    }
+                }
                 HStack(alignment: .top, spacing: 12) {
                     NumberField(label: tr("checkin.weight"), unit: tr("unit.kg"), value: $weight)
                     NumberField(label: tr("checkin.ketones"), unit: tr("unit.mmol_l"), value: $ketones)
@@ -168,8 +187,11 @@ struct CheckInForm: View {
         let ordered = Research.symptoms.map(\.id).filter { symptoms.contains($0) }
         let checkIn = CheckIn(at: Date(), weightKg: weight, ketones: ketones, vitals: vitals,
                               symptoms: ordered, note: String(trimmedNote.prefix(500)))
-        FastStore.shared.addCheckIn(checkIn)
+        let saved = FastStore.shared.addCheckIn(checkIn)
+        let taken = imports
+        Task { await HealthService.shared.save(saved, imports: taken) }
 
+        imports = HealthImports()
         weight = nil
         ketones = nil
         lyingSys = nil
@@ -184,6 +206,72 @@ struct CheckInForm: View {
         formID = UUID()
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         onSaved()
+    }
+}
+
+/// Recent weight and blood pressure from Apple Health (a smart scale or cuff), each one tap away from the form.
+private struct HealthReadingsPanel: View {
+    var onWeight: (Double) -> Void
+    var onPressure: (HealthService.Pressure, _ lying: Bool) -> Void
+
+    @State private var weight: HealthService.Weight?
+    @State private var pressures: [HealthService.Pressure] = []
+    @State private var loaded = false
+
+    var body: some View {
+        let health = HealthService.shared
+        if health.isOn {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(spacing: 6) {
+                    Image(systemName: "heart.fill").foregroundStyle(.pink)
+                    Text(tr("health.import.title")).font(.footnote.weight(.semibold)).foregroundStyle(Theme.ink)
+                }
+                .accessibilityElement(children: .combine)
+                if loaded && weight == nil && pressures.isEmpty {
+                    Para(text: tr("health.import.none"), font: .footnote, color: Theme.muted)
+                }
+                if let weight {
+                    // One decimal, as the form shows it, so the value is recognised as unchanged when saved.
+                    let kg = (weight.kg * 10).rounded() / 10
+                    HStack(spacing: 8) {
+                        Para(text: tr("health.import.weight", Fmt.one(kg), Fmt.when(weight.date)), font: .footnote, color: Theme.ink2)
+                        Spacer(minLength: 8)
+                        Button(tr("health.use")) { onWeight(kg) }
+                            .accessibilityLabel(tr("health.use_for", tr("checkin.weight")))
+                    }
+                }
+                ForEach(pressures) { reading in
+                    VStack(alignment: .leading, spacing: 6) {
+                        Para(text: describe(reading), font: .footnote, color: Theme.ink2)
+                        HStack(spacing: 8) {
+                            Button(tr("checkin.bp.lying")) { onPressure(reading, true) }
+                                .accessibilityLabel(tr("health.use_for", tr("checkin.bp.lying")))
+                            Button(tr("checkin.bp.standing")) { onPressure(reading, false) }
+                                .accessibilityLabel(tr("health.use_for", tr("checkin.bp.standing")))
+                        }
+                    }
+                }
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
+            .tint(Theme.accent)
+            .padding(12)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Theme.surface2, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+            .task {
+                weight = await health.latestWeight(withinHours: 24)
+                pressures = await health.recentPressures(withinHours: 24, limit: 3)
+                loaded = true
+            }
+        }
+    }
+
+    private func describe(_ reading: HealthService.Pressure) -> String {
+        let when = Fmt.when(reading.date)
+        if let pulse = reading.pulse {
+            return tr("health.import.bp_pulse", reading.systolic, reading.diastolic, pulse, when)
+        }
+        return tr("health.import.bp", reading.systolic, reading.diastolic, when)
     }
 }
 

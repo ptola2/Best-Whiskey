@@ -32,11 +32,18 @@ On your iPhone, in a protected file only Waterline can read. Nothing is sent any
 [privacy policy](https://malebolabs.com/waterline-privacy-policy/).
 
 **How do I delete my data?**
-Profile, Your data, Delete all my data. Deleting the app also removes everything.
+Profile, Your data, Delete all my data. Deleting the app also removes everything Waterline stores. Readings it saved to
+Apple Health stay there until you delete them in the Health app.
 
 **How do I change the language?**
 Tap the flag at the top of Today or Profile, or use the Language card in Profile. Choose "Same as iPhone" to follow
 your phone's language. Waterline is available in 21 languages.
+
+**How does Apple Health work with Waterline?**
+Turn on Apple Health in Profile and allow access. Waterline then saves the weight and blood pressure from your
+check-ins to Health, and the check-in form shows recent readings from a smart scale or blood pressure cuff so you can
+use them with one tap. To change access later, open the Health app, tap your profile picture, then Apps, then
+Waterline.
 
 **Reminders are not arriving.**
 Check that Reminders is on in Profile, and that notifications are allowed for Waterline in the iPhone's Settings,

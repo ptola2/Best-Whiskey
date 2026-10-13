@@ -17,6 +17,11 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 APP = HERE.parent / "WaterFasting"
 CATALOG = APP / "Localizable.xcstrings"
+# Keys starting with "infoplist." are Info.plist texts (permission prompts). They go into InfoPlist.xcstrings under
+# the Info.plist key name, and their English must match the INFOPLIST_KEY_ build setting in the Xcode project.
+INFOPLIST_PREFIX = "infoplist."
+INFOPLIST_CATALOG = APP / "InfoPlist.xcstrings"
+PROJECT = HERE.parent / "WaterFasting.xcodeproj" / "project.pbxproj"
 
 LANGUAGES = ["ar", "de", "es", "fr", "hi", "id", "it", "ja", "ko", "ms", "nl",
              "pl", "pt-BR", "ru", "sv", "sw", "th", "tr", "vi", "zh-Hans"]
@@ -186,7 +191,14 @@ def main():
     for key in sorted(used - set(english)):
         fail(f"en: {key} is used in the code but missing from en.json")
     for key in sorted(set(english) - used):
-        fail(f"en: {key} is in en.json but not used in the code")
+        if not key.startswith(INFOPLIST_PREFIX):
+            fail(f"en: {key} is in en.json but not used in the code")
+    project = PROJECT.read_text(encoding="utf-8")
+    for key in sorted(k for k in english if k.startswith(INFOPLIST_PREFIX)):
+        name = key[len(INFOPLIST_PREFIX):]
+        settings = set(re.findall(rf'INFOPLIST_KEY_{name} = "((?:[^"\\]|\\.)*)";', project))
+        if settings != {english[key]}:
+            fail(f"en: {key} does not match INFOPLIST_KEY_{name} in project.pbxproj")
     for key, value in english.items():
         check_value("en", key, value, value)
 
@@ -220,15 +232,20 @@ def main():
             return {"variations": {"plural": {cat: unit(text) for cat, text in value.items()}}}
         return unit(value)
 
-    strings = {}
+    app_strings, plist_strings = {}, {}
     for key in sorted(english):
         localizations = {"en": entry(english[key])}
         for lang in LANGUAGES:
             localizations[lang] = entry(translations[lang][key])
-        strings[key] = {"extractionState": "manual", "localizations": localizations}
-    catalog = {"sourceLanguage": "en", "strings": strings, "version": "1.0"}
-    CATALOG.write_text(json.dumps(catalog, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(f"Wrote {CATALOG.relative_to(HERE.parent)}")
+        item = {"extractionState": "manual", "localizations": localizations}
+        if key.startswith(INFOPLIST_PREFIX):
+            plist_strings[key[len(INFOPLIST_PREFIX):]] = item
+        else:
+            app_strings[key] = item
+    for path, strings in ((CATALOG, app_strings), (INFOPLIST_CATALOG, plist_strings)):
+        catalog = {"sourceLanguage": "en", "strings": strings, "version": "1.0"}
+        path.write_text(json.dumps(catalog, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(f"Wrote {path.relative_to(HERE.parent)}")
     return 0
 
 

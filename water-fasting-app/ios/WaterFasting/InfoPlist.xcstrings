@@ -1,0 +1,268 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSHealthShareUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile."
+          }
+        }
+      }
+    },
+    "NSHealthUpdateUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

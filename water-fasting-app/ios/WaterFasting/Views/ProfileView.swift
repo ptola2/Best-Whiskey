@@ -11,6 +11,7 @@ struct ProfileView: View {
                     AboutYouCard()
                     SafetyCheckCard()
                     ClinicianCard()
+                    HealthCard()
                     RemindersCard()
                     #if canImport(FirebaseCore) && canImport(FirebaseAuth) && canImport(FirebaseFirestore)
                     CloudCard()
@@ -59,6 +60,8 @@ private struct ScreeningSummary: View {
 }
 
 private struct AboutYouCard: View {
+    @State private var healthWeight: HealthService.Weight?
+
     /// Converts typed text safely: anything outside 1 to 130 (or too large for Int) is treated as not entered.
     static func age(from value: Double?) -> Int? {
         guard let value, let whole = Fmt.safeInt(value), (1...130).contains(whole) else { return nil }
@@ -77,6 +80,18 @@ private struct AboutYouCard: View {
                 NumberField(label: tr("profile.weight"), unit: tr("unit.kg"), value: Binding(
                     get: { store.data.profile.weightKg },
                     set: { value in store.update { d in d.profile.weightKg = value } }))
+            }
+            if HealthService.shared.isOn, let healthWeight {
+                let kg = (healthWeight.kg * 10).rounded() / 10
+                if store.data.profile.weightKg.map({ abs($0 - kg) >= 0.05 }) ?? true {
+                    Button {
+                        store.update { d in d.profile.weightKg = kg }
+                    } label: {
+                        Label(tr("health.profile_weight", Fmt.one(kg)), systemImage: "heart.fill")
+                            .font(.footnote.weight(.semibold))
+                    }
+                    .tint(Theme.accent)
+                }
             }
             HStack(alignment: .top, spacing: 12) {
                 NumberField(label: tr("profile.age"), unit: tr("unit.years"), value: Binding(
@@ -110,6 +125,9 @@ private struct AboutYouCard: View {
                 }
                 .padding(.top, 4)
             }
+        }
+        .task(id: HealthService.shared.isOn) {
+            healthWeight = await HealthService.shared.latestWeight(withinHours: 24 * 30)
         }
     }
 }
@@ -202,6 +220,31 @@ private struct LabeledField: View {
                 .background(Theme.surface2, in: RoundedRectangle(cornerRadius: 9, style: .continuous))
                 .overlay(RoundedRectangle(cornerRadius: 9, style: .continuous).stroke(Theme.line, lineWidth: 1))
                 .accessibilityLabel(label)
+        }
+    }
+}
+
+/// The Apple Health link. Shown only on devices that have Health.
+private struct HealthCard: View {
+    var body: some View {
+        let health = HealthService.shared
+        if health.isAvailable {
+            Card {
+                Toggle(isOn: Binding(get: { health.isOn }, set: { on in Task { await health.setOn(on) } })) {
+                    VStack(alignment: .leading, spacing: 3) {
+                        HStack(spacing: 6) {
+                            Image(systemName: "heart.fill").foregroundStyle(.pink)
+                            Text(tr("health.title")).font(.headline).foregroundStyle(Theme.ink)
+                        }
+                        Para(text: tr("health.body"), font: .footnote, color: Theme.muted)
+                    }
+                }
+                .tint(Theme.accent)
+                .disabled(health.isBusy)
+                if health.savingDenied {
+                    Para(text: tr("health.denied"), font: .footnote.weight(.semibold), color: Theme.warn)
+                }
+            }
         }
     }
 }

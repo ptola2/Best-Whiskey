@@ -156,6 +156,7 @@ final class FastStore {
             if d.removedCheckIns.count > 500 { d.removedCheckIns.removeFirst(d.removedCheckIns.count - 500) }
         }
         if lastResultID == id { lastResultID = nil }
+        Task { await HealthService.shared.removeSamples(forCheckIn: id) }
     }
 
     func endFast(_ reason: EndReason) {

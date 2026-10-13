@@ -654,5 +654,19 @@
   "language.suggested": "Suggested for you",
   "language.all": "All languages",
   "language.system": "Same as iPhone",
-  "language.basis": "Based on your iPhone's language and region."
+  "language.basis": "Based on your iPhone's language and region.",
+
+  "health.title": "Apple Health",
+  "health.body": "Save the weight and blood pressure from your check-ins to Apple Health, and fill in check-ins from readings already there.",
+  "health.denied": "Saving to Apple Health is off for Waterline. Turn it on in the Health app: tap your profile picture, then Apps, then Waterline.",
+  "health.import.title": "From Apple Health",
+  "health.import.none": "No weight or blood pressure in Apple Health from the last 24 hours.",
+  "health.import.weight": "%1$@ kg · %2$@",
+  "health.import.bp": "%1$lld/%2$lld mmHg · %3$@",
+  "health.import.bp_pulse": "%1$lld/%2$lld mmHg, pulse %3$lld · %4$@",
+  "health.use": "Use",
+  "health.use_for": "Use for %@",
+  "health.profile_weight": "Use %@ kg from Apple Health",
+  "infoplist.NSHealthShareUsageDescription": "Waterline reads your weight, blood pressure and heart rate from Apple Health to fill in check-ins and your profile.",
+  "infoplist.NSHealthUpdateUsageDescription": "Waterline saves the weight and blood pressure from your check-ins to Apple Health."
 }

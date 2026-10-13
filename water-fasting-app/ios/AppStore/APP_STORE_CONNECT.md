@@ -24,9 +24,9 @@ label differs slightly, look for the nearest match.
 | --- | --- |
 | Description | `Waterline` |
 | Bundle ID (Explicit) | `com.malebolabs.waterline` |
-| Capabilities | None for version 1. Tick **Sign in with Apple** only if you ship cloud backup. |
+| Capabilities | **HealthKit**. Tick **Sign in with Apple** too only if you ship cloud backup. |
 
-Local reminders do not need the Push Notifications capability.
+Local reminders do not need the Push Notifications capability. With automatic signing, Xcode also adds HealthKit to the App ID by itself, because the project's entitlements file (`WaterFasting.entitlements`) asks for it.
 
 **Signing in Xcode.** Select the WaterFasting target, then Signing & Capabilities:
 
@@ -135,7 +135,9 @@ backup (Firebase).
 | Do you or your third-party partners collect data from this app? | **No, we do not collect data from this app** |
 
 The product page will show **Data Not Collected**. This is accurate: everything stays in a file on the iPhone,
-there is no analytics, crash reporting or advertising SDK, and the language setting stays on the device.
+there is no analytics, crash reporting or advertising SDK, and the language setting stays on the device. Apple
+Health does not change this: Waterline reads and saves Health data on the iPhone and never sends it anywhere, and
+Apple counts data as collected only when it leaves the device.
 
 Before publishing, edit the policy page as `../README.md` describes (remove section 4, section 11, the Google
 Firebase row in section 7, and the Account row in section 1), so the page matches the app.
@@ -220,6 +222,8 @@ No account is needed. To try the main flow:
 5. On Today, tap End fast, then open Refeed to see the refeeding plan.
 
 Safety design: any absolute contraindication (type 1 diabetes, pregnancy or breastfeeding, an eating disorder, BMI under 18.5, age under 18 and others) blocks starting a fast. Medicines that need a doctor are flagged. Fasts longer than 72 hours require the person to confirm medical supervision, as in the clinical research. All data stays on the device; nothing is collected.
+
+Apple Health (optional): turn it on in Profile, Apple Health. Waterline reads weight, blood pressure and heart rate to fill in check-ins and the profile (the check-in form shows recent readings with a Use button), and saves the weight and blood pressure from each check-in. It never writes back values it read from Health, removing a check-in removes what it saved, and Health data never leaves the device.
 ```
 
 If you ship with cloud backup, add: `Optional backup uses Sign in with Apple (Profile, Backup and sync). Account

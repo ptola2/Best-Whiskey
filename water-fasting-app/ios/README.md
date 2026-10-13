@@ -41,6 +41,7 @@ WaterFasting/
     FastStore.swift              Single source of truth, JSON cache, all actions
     NotificationService.swift    Milestone alerts and 9:00 / 21:00 check-in reminders
     CloudSync.swift              Optional Firestore backup with Sign in with Apple
+    HealthService.swift          Apple Health: reads and saves weight and blood pressure
   Views/
     RootView.swift               Language, welcome and tab bar
     TodayView.swift              Timer, phase timeline, water, warnings, fast planner
@@ -69,6 +70,20 @@ Taken from the source document and shared with the web app:
 - Every fast over 72 hours needs confirmed clinical supervision.
 - Check-ins flag the warning signs, likely low sodium, an orthostatic drop of 20/10 mmHg or more, a standing pulse rise of 30 or more, water outside 1.2 to 2.5 L, and BHB above 7.0 mmol/L.
 - Refeeding lasts at least half the fast and uses the ASPEN and NICE risk tiers.
+
+## Apple Health
+
+Profile has an **Apple Health** switch. Waterline asks for permission only when it is turned on.
+
+- **Check-ins save to Health.** The weight and the lying and standing blood pressure from each check-in are saved to Apple Health. Each blood pressure reading carries its position (`WaterlinePosition` metadata: lying or standing).
+- **Health fills in check-ins.** The check-in form shows weight and blood pressure from the last 24 hours that came from other apps or devices (a smart scale, a blood pressure cuff), each with a Use button. Blood pressure can go into the lying or standing fields, and the pulse fills in too when the cuff recorded one at the same time. Profile offers the latest weight from Health for your profile.
+- **No duplicates.** Values taken from Health are never written back, and Waterline never offers back what it saved itself.
+- **Removing a check-in** removes what Waterline saved to Health for it. "Delete all my data" leaves Health alone; people manage Health data in the Health app.
+- Health data stays on the iPhone. It is read and written by `Services/HealthService.swift` only.
+
+Set up, already done in the project: the HealthKit entitlement (`WaterFasting.entitlements`), the two permission texts (`NSHealthShareUsageDescription`, `NSHealthUpdateUsageDescription`, translated in `WaterFasting/InfoPlist.xcstrings`), and the Apple Health section in `PRIVACY_POLICY.md`. Health only works on a real iPhone or a simulator with the Health app; the card is hidden where Health is not available.
+
+**Update the published privacy policy** at malebolabs.com with the new Apple Health part of section 2 before submitting: App Review checks that a HealthKit app's policy describes its Health use.
 
 ## Turn on cloud backup (optional)
 
@@ -153,6 +168,5 @@ This project was written without access to Xcode, so it has been checked with a 
 
 Not done yet:
 
-- Apple Health (HealthKit) for weight and blood pressure
 - Home Screen widget or Live Activity for the timer
 - RevenueCat paywall (no paid tier has been decided)

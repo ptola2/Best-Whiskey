@@ -1,6 +1,6 @@
 # Waterline Privacy Policy
 
-**Last updated: 11 October 2026**
+**Last updated: 13 October 2026**
 
 Published at: https://malebolabs.com/waterline-privacy-policy/
 
@@ -12,6 +12,7 @@ Contact for any privacy question or request: **passytotola@gmail.com**
 
 - Waterline works without an account. What you enter stays on your iPhone, in a file that iOS encrypts and only Waterline can read.
 - We cannot see your entries. Nothing leaves your iPhone unless you choose to turn on Backup and sync.
+- If you connect Apple Health, Waterline reads and saves weight and blood pressure there, on your iPhone, only with your permission.
 - There are no ads, no analytics tools, no tracking and no AI services in Waterline.
 - We never sell your information, and we never use your health information for advertising or marketing.
 - You can delete everything from inside the app at any time.
@@ -27,10 +28,11 @@ Contact for any privacy question or request: **passytotola@gmail.com**
 | Check-ins | Weight, blood ketones, blood pressure and pulse lying and standing, symptoms and notes | On your iPhone | To flag warning signs and show your progress |
 | Refeeding | Fast length, refeeding risk level and check-ins during refeeding | On your iPhone | To build and follow your refeeding plan |
 | Clinician contact | The name and phone number you enter | On your iPhone | To show your clinician's details and a Call button during a fast |
-| Settings | Whether reminders are on | On your iPhone | To schedule reminders |
+| Settings | Whether reminders are on, the app language and whether Apple Health is connected | On your iPhone | To schedule reminders and show the app the way you chose |
+| Apple Health (only if you turn it on) | Weight, blood pressure and heart rate read from Apple Health; the weight and blood pressure from your check-ins saved to it | On your iPhone, in Apple Health | To fill in check-ins and your profile, and keep your readings in one place |
 | Account (only if you turn on Backup and sync) | Account identifier and the email address Apple shares with us, which can be a private relay address | Google Firebase | To sign you in and link your backup to you |
 
-Waterline does not collect your location, contacts, photos, camera, microphone, Apple Health data, advertising identifier, browsing history or payment details.
+Waterline does not collect your location, contacts, photos, camera, microphone, advertising identifier, browsing history or payment details.
 
 If you have chosen in iOS Settings to share analytics with app developers, Apple may give us anonymous crash reports and usage statistics for Waterline. These do not identify you and do not include anything you enter in the app.
 
@@ -44,7 +46,14 @@ Most of what you enter in Waterline is health information. Privacy laws treat it
 - We never use it to train AI models.
 - We never share it with third parties, except the backup provider in section 4 and only if you turn backup on.
 
-Waterline does not read from or write to Apple Health. If a future version adds Apple Health, we will update this policy first and ask for your permission in the app. Apple Health data would never be used for advertising, never be sold, and never be shared with third parties for their own purposes.
+**Apple Health (optional).** Waterline uses Apple Health only if you turn it on in Profile. iOS then asks your permission, and you choose exactly what Waterline may read and save:
+
+- **Read:** weight, blood pressure and heart rate, to fill in your check-ins and profile when you tap Use. Readings from other apps and devices, such as a smart scale or a blood pressure cuff, are shown only on your iPhone.
+- **Save:** the weight and blood pressure from your check-ins, so they sit with your other health records.
+- Data from Apple Health is never used for advertising, marketing or data mining, never sold, and never shared with third parties. It is not sent to us.
+- If you also turn on Backup and sync, the check-ins you save are backed up as section 4 describes, including any value you took from Apple Health.
+- Removing a check-in in Waterline also removes what Waterline saved to Apple Health for it. Delete all my data does not change Apple Health: you can delete readings in the Health app.
+- You can change or withdraw Waterline's access at any time in the Health app: tap your profile picture, then Apps, then Waterline.
 
 ## 3. Information kept on your iPhone
 
